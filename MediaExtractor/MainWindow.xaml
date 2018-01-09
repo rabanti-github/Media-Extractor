@@ -1,0 +1,74 @@
+﻿<Window x:Class="MediaExtractor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaExtractor"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="620" MinHeight="300">
+    <Grid UseLayoutRounding="False" Margin="0,26,0,0">
+        <Menu Height="26" Margin="0,-26,0,0" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem x:Name="openFileMenuItem" Header="Open File" Click="openFileMenuItem_Click" />
+                <MenuItem x:Name="saveFileMenuItem" Header="Save File" Click="saveFileMenuItem_Click" IsEnabled="{Binding IsEnabled, ElementName=saveFileButton}" />
+                <MenuItem x:Name="saveAllFilesMenuItem" Header="Save all Files" Click="saveAllFilesMenuItem_Click" IsEnabled="{Binding IsEnabled, ElementName=saveAllFilesButton}" />
+                <Separator/>
+                <MenuItem x:Name="quitMenuItem" Header="Quit" Click="quitMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Filter">
+                <MenuItem x:Name="imageFilterMenuItem" Header="Images" IsChecked="True" IsCheckable="True" Checked="imageFilterMenuItem_Checked" Unchecked="imageFilterMenuItem_Unchecked" />
+                <MenuItem x:Name="otherFilterMenuItem" Header="Other" IsCheckable="True" Checked="otherFilterMenuItem_Checked" Unchecked="otherFilterMenuItem_Unchecked" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem x:Name="aboutMenuItem" Header="About" Click="aboutMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="0,0,0,35
+              ">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Button x:Name="OpenFileButton" Content="Open File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="94" Click="OpenFileButton_Click"/>
+                <Label Content="Path" Margin="10,37,2,0" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Path=FileName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" x:Name="pathField" Height="23" Margin="10,63,2,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                <Label Content="Embedded Files" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top"/>
+                <ListView x:Name="imagesListView" Margin="10,122,10,10" ItemsSource="{Binding Path=ListViewItems}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Filename" Width="210" DisplayMemberBinding="{Binding Path=FileName}"/>
+                                <GridViewColumn Header="Extension" Width="60" DisplayMemberBinding="{Binding Path=FileExtension}"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </Grid>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
+            <Grid Grid.Column="2">
+                <Border  Margin="0,37,0,0" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                    <Viewbox x:Name="imageBoxContainer" Margin="10" ClipToBounds="True">
+                        <Image x:Name="imageBox" />
+                    </Viewbox>
+                </Border>
+                <Button x:Name="saveFileButton" Content="Save File" Margin="0,10,10,0" VerticalAlignment="Top" Width="103" IsEnabled="{Binding Path=SaveStatus}" HorizontalAlignment="Right" Click="saveFileButton_Click"/>
+                <Button x:Name="saveAllFilesButton" Content="Save all Files" Margin="0,10,123,0" VerticalAlignment="Top" Width="100" IsEnabled="{Binding Path=SaveAllStatus}" HorizontalAlignment="Right" Click="saveAllFilesButton_Click"/>
+                <Label Content="Preview" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="59" FontWeight="Bold"/>
+            </Grid>
+        </Grid>
+        <StatusBar Height="35" VerticalAlignment="Bottom">
+            <StatusBarItem HorizontalAlignment="Left">
+                <Label x:Name="statusLabel" Content="{Binding Path=StatusText}" HorizontalContentAlignment="Stretch" Height="35" HorizontalAlignment="Left" Margin="5,0"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <ProgressBar x:Name="progressBar" Height="25" Width="151" Value="{Binding Path=Progress}"/>
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>
