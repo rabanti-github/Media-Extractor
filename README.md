@@ -24,5 +24,3 @@ Media Extractor is an application to preview and extract packed media in Microso
 * The overwrite files dialog is broken at the moment
 * Archive files (e.g. zip or 7z) should be listed as supported file extensions (at the moment supported by "all files" selection)
 * An existing folder structure (e.g. in an Office file or archive) should be preserved when exporting all files at once
-* Code clean-up
-* Code documentation

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
+ * Copyright Raphael Stoeckli © 2018
+ * This program is licensed under the MIT License.
+ * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
+ */
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -14,7 +21,7 @@ using System.Reflection;
 namespace MediaExtractor
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Logic of the MainWindow Class
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -22,6 +29,9 @@ namespace MediaExtractor
         private ViewModel CurrentModel { get; set; }
         private Extractor CurrentExtractor{ get; set; }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -32,6 +42,9 @@ namespace MediaExtractor
             HandleArguments();
         }
 
+        /// <summary>
+        /// Method to handle command line arguments (open file as...)
+        /// </summary>
         private void HandleArguments()
         {
             string[] args = Environment.GetCommandLineArgs();
@@ -49,11 +62,10 @@ namespace MediaExtractor
             }
         }
 
-        private void OpenFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFile();
-        }
 
+        /// <summary>
+        /// Method to open a file or archive
+        /// </summary>
         private void OpenFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -73,6 +85,11 @@ namespace MediaExtractor
             }
         }
 
+
+        /// <summary>
+        /// Method to change the currently displayed cursor
+        /// </summary>
+        /// <param name="cursor">Cursor to show</param>
         public void ChangeCursor(Cursor cursor)
         {
             this.Dispatcher.Invoke
@@ -82,6 +99,10 @@ namespace MediaExtractor
                 );
         }
 
+        /// <summary>
+        /// Method to load a file. Method will called in a new tread
+        /// </summary>
+        /// <param name="data">Reference to the currently active Window</param>
         public static void LoadFile(object data)
         {
             MainWindow reference = (MainWindow)data;
@@ -110,7 +131,10 @@ namespace MediaExtractor
             reference.ChangeCursor(c);
         }
 
-
+        /// <summary>
+        /// Method to recalculate the listView items 
+        /// </summary>
+        /// <param name="reference">Reference to the currently active window</param>
         private static void RecalculateListViwItems(MainWindow reference)
         {
                 Application.Current.Dispatcher.Invoke((Action)(delegate
@@ -143,7 +167,11 @@ namespace MediaExtractor
                 }));
         }
 
-
+        /// <summary>
+        /// Event Method to handle a changed ListView item
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Cursor c = this.Cursor;
@@ -180,56 +208,132 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// Menu Event for the image filter item (checked)
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void imageFilterMenuItem_Checked(object sender, RoutedEventArgs e)
         {
             MainWindow.RecalculateListViwItems(this);
         }
 
+        /// <summary>
+        /// Menu Event for other files filter (checked)
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void otherFilterMenuItem_Checked(object sender, RoutedEventArgs e)
         {
             MainWindow.RecalculateListViwItems(this);
         }
 
+        /// <summary>
+        /// Menu Event for the image filter item (unchecked)
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void imageFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
         {
             MainWindow.RecalculateListViwItems(this);
         }
 
+        /// <summary>
+        /// Menu Event for other files filter (unchecked)
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void otherFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
         {
             MainWindow.RecalculateListViwItems(this);
         }
 
+        /// <summary>
+        /// Menu Event for the exit item
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void quitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Menu Event for the file open item
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void openFileMenuItem_Click(object sender, RoutedEventArgs e)
         {
             OpenFile();
         }
 
+        /// <summary>
+        /// Menu Event for the save all files item
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void saveAllFilesMenuItem_Click(object sender, RoutedEventArgs e)
         {
             SaveAllFiles();
         }
 
+        /// <summary>
+        /// Menu Event for the safe file item
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void saveFileMenuItem_Click(object sender, RoutedEventArgs e)
         {
             SaveFile();
         }
 
+        /// <summary>
+        /// Menu Event for the about item
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
+        private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+            string name = versionInfo.ProductName;
+            string version = versionInfo.ProductVersion.ToString();
+            MessageBox.Show(name + " v" + version + "\n--------------------------\nAuthor: Raphael Stoeckli\nLicense: MIT", "About", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        /// <summary>
+        /// Menu Event for the open file item
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
+        private void OpenFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFile();
+        }
+
+        /// <summary>
+        /// Event for the save file button
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void saveFileButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFile();
         }
 
+        /// <summary>
+        /// Event for the save all files button
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
         private void saveAllFilesButton_Click(object sender, RoutedEventArgs e)
         {
             SaveAllFiles();
         }
 
+        /// <summary>
+        /// Method to ave all files
+        /// </summary>
         private void SaveAllFiles()
         {
             try
@@ -265,7 +369,6 @@ namespace MediaExtractor
                             }
                             duplicatesFound = false;
 
-                          //  Save(item.FileReference, sfd.FileName, true);
                         }
                     }
                     bool errorsFound = false;
@@ -308,6 +411,13 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// Method to check whether the specified input file exists
+        /// </summary>
+        /// <param name="folder">Folder</param>
+        /// <param name="item">Extractor Item</param>
+        /// <param name="fileName">Determined file name as output parameter</param>
+        /// <returns>True if he file exists</returns>
         private bool CheckFileExists(string folder, Extractor.ExtractorItem item, out string fileName)
         {
             char[] chars = new char[] { '/', '\\' };
@@ -316,6 +426,9 @@ namespace MediaExtractor
             return File.Exists(fileName);
         }
 
+        /// <summary>
+        /// Method to save the currently selected entry as file
+        /// </summary>
         private void SaveFile()
         {
             try
@@ -323,7 +436,6 @@ namespace MediaExtractor
                 MediaExtractor.ListViewItem item = (MediaExtractor.ListViewItem)this.imagesListView.SelectedItem;
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Title = "Save current File as...";
-                //ofd.DefaultExt = ".docx";
                 sfd.Filter = "All files|*.*";
                 sfd.FileName = item.FileName;
                 Nullable<bool> result = sfd.ShowDialog();
@@ -338,6 +450,13 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// Method to save a single entry as file
+        /// </summary>
+        /// <param name="item">ExtractorItem to save</param>
+        /// <param name="filename">file name for the target file</param>
+        /// <param name="writeStatus">If true, the status of the operation will be stated</param>
+        /// <returns>True if the file could be saved</returns>
         private bool Save(Extractor.ExtractorItem item, string filename, bool writeStatus)
         {
             try
@@ -364,12 +483,6 @@ namespace MediaExtractor
             return true;
         }
 
-        private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-           string name = versionInfo.ProductName;
-           string version = versionInfo.ProductVersion.ToString();
-            MessageBox.Show(name + " v" + version + "\n--------------------------\nAuthor: Raphael Stoeckli\nLicense: MIT", "About", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
+
     }
 }

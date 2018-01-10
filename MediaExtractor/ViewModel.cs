@@ -1,14 +1,22 @@
-﻿using System;
+﻿/*
+ * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
+ * Copyright Raphael Stoeckli © 2018
+ * This program is licensed under the MIT License.
+ * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
+ */
+
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Media.Imaging;
 
 namespace MediaExtractor
 {
+    /// <summary>
+    /// Class for data binding
+    /// </summary>
     public class ViewModel : INotifyPropertyChanged
     {
-       // public PropertyChangedEventHandler PropertyChanged;
-
         private ObservableCollection<ListViewItem> listViewItems;
         private BitmapImage image;
         private bool saveStatus;
@@ -19,6 +27,9 @@ namespace MediaExtractor
         private float currentFile;
         private int progress;
 
+        /// <summary>
+        /// The current progress of extraction or rendering (progress bar from 0 to 100 %)
+        /// </summary>
         public int Progress
         {
             get { return progress; }
@@ -29,7 +40,9 @@ namespace MediaExtractor
             }
         }
         
-
+        /// <summary>
+        /// Current file index as float (to avoid multiplr casting when calculating the progress)
+        /// </summary>
         public float CurrentFile
         {
             get { return currentFile; }
@@ -40,8 +53,10 @@ namespace MediaExtractor
                 CalculateProgress();
             }
         }
-        
 
+        /// <summary>
+        /// Total number of files in the cuurently loaded archive as float (to avoid multiplr casting when calculating the progress)
+        /// </summary>
         public float NumberOfFiles
         {
             get { return numberOfFiles; }
@@ -53,7 +68,9 @@ namespace MediaExtractor
             }
         }
         
-
+        /// <summary>
+        /// Enabled / Disabled State of the button to save all files
+        /// </summary>
         public bool SaveAllStatus
         {
             get { return saveAllStatus; }
@@ -63,8 +80,23 @@ namespace MediaExtractor
                 NotifyPropertyChanged("SaveAllStatus");
             }
         }
-        
 
+        /// <summary>
+        /// Enabled / Disabled State of the button to save a single files
+        /// </summary>
+        public bool SaveStatus
+        {
+            get { return saveStatus; }
+            set
+            {
+                saveStatus = value;
+                NotifyPropertyChanged("SaveStatus");
+            }
+        }
+
+        /// <summary>
+        /// The text of the status bar
+        /// </summary>
         public string StatusText
         {
             get { return statusText; }
@@ -75,7 +107,9 @@ namespace MediaExtractor
             }
         }
         
-
+        /// <summary>
+        /// The name / full path of the currently loaded file
+        /// </summary>
         public string FileName
         {
             get { return fileName; }
@@ -86,18 +120,9 @@ namespace MediaExtractor
             }
         }
         
-
-        public bool SaveStatus
-        {
-            get { return saveStatus; }
-            set 
-            { 
-                saveStatus = value;
-                NotifyPropertyChanged("SaveStatus");
-            }
-        }
-        
-
+        /// <summary>
+        /// Currently displayed preview image
+        /// </summary>
         public BitmapImage Image
         {
             get { return image; }
@@ -108,6 +133,9 @@ namespace MediaExtractor
             }
         }
         
+        /// <summary>
+        /// Items of the listview (file overview)
+        /// </summary>
         public ObservableCollection<ListViewItem> ListViewItems
         {
             get { return listViewItems; }
@@ -118,9 +146,9 @@ namespace MediaExtractor
             }
         }
       
-  
-
-
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public ViewModel()
         {
             this.ListViewItems = new ObservableCollection<ListViewItem>();
@@ -129,7 +157,9 @@ namespace MediaExtractor
             this.StatusText = "Ready";
         }
 
-
+        /// <summary>
+        /// Method to calculate the cuurent progress when opening a file or archive
+        /// </summary>
         public void CalculateProgress()
         {
             if (this.numberOfFiles == 0)
@@ -143,6 +173,9 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// Method to clear the listview (file overview)
+        /// </summary>
         public void ClearListView()
         {
             this.ListViewItems.Clear();
@@ -151,7 +184,9 @@ namespace MediaExtractor
             this.SaveStatus = false;
         }
 
-
+        /// <summary>
+        /// Method to propagate changes for the data binding
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
