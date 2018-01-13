@@ -19,6 +19,8 @@
             <MenuItem Header="Filter">
                 <MenuItem x:Name="imageFilterMenuItem" Header="Images" IsChecked="True" IsCheckable="True" Checked="imageFilterMenuItem_Checked" Unchecked="imageFilterMenuItem_Unchecked" />
                 <MenuItem x:Name="otherFilterMenuItem" Header="Other" IsCheckable="True" Checked="otherFilterMenuItem_Checked" Unchecked="otherFilterMenuItem_Unchecked" />
+                <Separator/>
+                <MenuItem x:Name="keepFolderStructureMenuItem" IsChecked="{Binding Path=KeepFolderStructure}" Header="Keep Folder Structure" IsCheckable="True" />
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem x:Name="aboutMenuItem" Header="About" Click="aboutMenuItem_Click"/>

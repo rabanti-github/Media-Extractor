@@ -71,7 +71,7 @@ namespace MediaExtractor
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select Office File...";
             ofd.DefaultExt = ".docx";
-            ofd.Filter = "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|All files|*.*";
+            ofd.Filter = "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*";
             Nullable<bool> result = ofd.ShowDialog();
             if (result == true)
             {
@@ -351,7 +351,7 @@ namespace MediaExtractor
                     foreach (MediaExtractor.ListViewItem item in this.CurrentModel.ListViewItems)
                     {
                         items.Add(item.FileReference);
-                        if (CheckFileExists(ofd.FileName, item.FileReference, out fileName) == true && duplicatesFound == false)
+                        if (CheckFileExists(ofd.FileName, item.FileReference, this.CurrentModel.KeepFolderStructure, out fileName) == true && duplicatesFound == false)
                         {
                             MessageBoxResult res2 = MessageBox.Show("At least one existing file was found in the folder.\nShall a dialog for each file be displayed (yes) or all files be overwritten (no)?", "Existing files", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
                             if (res2 == MessageBoxResult.No)
@@ -373,11 +373,12 @@ namespace MediaExtractor
                     }
                     bool errorsFound = false;
                     bool check;
+                    FileInfo fi;
                     MessageBoxResult res3;
                     foreach (Extractor.ExtractorItem item in items)
                     {
                         
-                        if (CheckFileExists(ofd.FileName, item, out fileName) == true && overwriteFiles == false)
+                        if (CheckFileExists(ofd.FileName, item, this.CurrentModel.KeepFolderStructure, out fileName) == true && overwriteFiles == false)
                         {
                            res3 = MessageBox.Show("The file " + item.FileName + " already exists.\nOverwrite (Yes), rename (no) or ?", "Existing file", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
                             if (res3 == MessageBoxResult.No)
@@ -390,7 +391,19 @@ namespace MediaExtractor
                                 return;
                             }
                         }
-                        check = Save(item, fileName, false);
+                        if (this.CurrentModel.KeepFolderStructure == true)
+                        {
+                            fi = new FileInfo(fileName);
+                            if (Directory.Exists(fi.DirectoryName) == false)
+                            {
+                                Directory.CreateDirectory(fi.DirectoryName);
+                            }
+                            check = Save(item, fileName, false);
+                        }
+                        else
+                        {
+                            check = Save(item, fileName, false);                            
+                        }
                         if (check == false) { errorsFound = true; }
 
                         if (errorsFound == true)
@@ -417,12 +430,22 @@ namespace MediaExtractor
         /// <param name="folder">Folder</param>
         /// <param name="item">Extractor Item</param>
         /// <param name="fileName">Determined file name as output parameter</param>
+        /// <param name="keepFolderStructure">If true, the relative folder of the item will be added to the root folder</param>
         /// <returns>True if he file exists</returns>
-        private bool CheckFileExists(string folder, Extractor.ExtractorItem item, out string fileName)
+        private bool CheckFileExists(string folder, Extractor.ExtractorItem item, bool keepFolderStructure, out string fileName)
         {
+            string separator = Path.DirectorySeparatorChar.ToString();
             char[] chars = new char[] { '/', '\\' };
-            folder = folder.TrimEnd(chars);
-            fileName = folder + System.IO.Path.DirectorySeparatorChar.ToString() + item.FileName;
+            if (keepFolderStructure == true)
+            {
+                folder = folder.TrimEnd(chars) + separator + item.Path.Trim(chars);
+            }
+            else
+            {
+                folder = folder.TrimEnd(chars);
+            }
+
+            fileName = folder + separator + item.FileName;
             return File.Exists(fileName);
         }
 

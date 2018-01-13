@@ -35,7 +35,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Enumg for the format of embedded images
+        /// Enum for the format of embedded images
         /// </summary>
         public enum ImageFormat
         {
@@ -70,7 +70,7 @@ namespace MediaExtractor
         public string FileName { get; set; }
 
         /// <summary>
-        /// Last ocurred error when processing the archive or file
+        /// Last occurred error when processing the archive or file
         /// </summary>
         public string LastError
         {
@@ -78,7 +78,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// If true, errors ocurred during the processing
+        /// If true, errors occurred during the processing
         /// </summary>
         public bool HasErrors
         {
@@ -86,7 +86,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Gets the number of emmbedded items (usually images)
+        /// Gets the number of embedded items (usually images)
         /// </summary>
         public int NumberOfImages
         {
@@ -132,7 +132,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Method to reset the errors ocurred during the processing of the archive or file
+        /// Method to reset the errors occurred during the processing of the archive or file
         /// </summary>
         public void ResetErrors()
         {
@@ -248,6 +248,7 @@ namespace MediaExtractor
             MemoryStream ms;
             string[] split;
             char[] delimiter = new char[] { '\\', '/' };
+            string file, path;
             for(int i = 0; i < archive.Entries.Count; i++)
             {
                 if ((archive.Entries[i].IsFolder == false && archive.Entries[i].FileName.ToLower().EndsWith(extension)) || allFiles == true)
@@ -257,7 +258,9 @@ namespace MediaExtractor
                     ms.Flush();
                     ms.Position = 0;
                     split = archive.Entries[i].FileName.Split(delimiter);
-                    list.Add(new ExtractorItem(split[split.Length - 1], ms, false));
+                    file = split[split.Length - 1];
+                    path = archive.Entries[i].FileName.Substring(0, archive.Entries[i].FileName.Length - file.Length);
+                    list.Add(new ExtractorItem(file, ms, false, path));
                 }
             }
             return list;
@@ -266,7 +269,7 @@ namespace MediaExtractor
         /// <summary>
         /// Method to get the MemoryStream of the archive or file
         /// </summary>
-        /// <returns>MemoryStream of the file. In case of an erroro, an empty stream will be returned</returns>
+        /// <returns>MemoryStream of the file. In case of an error, an empty stream will be returned</returns>
         private MemoryStream GetFileStream()
         {
             try
@@ -292,6 +295,10 @@ namespace MediaExtractor
         /// </summary>
         public class ExtractorItem
         {
+            /// <summary>
+            /// Relative path of the item within the archive / file
+            /// </summary>
+            public string Path { get; set; }
             /// <summary>
             /// File extension of the item
             /// </summary>
@@ -333,7 +340,7 @@ namespace MediaExtractor
             }
             
             /// <summary>
-            /// Message of the last ocurred error when processing the item
+            /// Message of the last occurred error when processing the item
             /// </summary>
             public string ErrorMessage { get; set; }
 
@@ -350,8 +357,9 @@ namespace MediaExtractor
             /// </summary>
             /// <param name="fileName">File name of the item</param>
             /// <param name="stream">Passed memoryStream of the item</param>
-            /// <param name="createImage">If true, an Image object will be created incase of an image file</param>
-            public ExtractorItem(string fileName, MemoryStream stream, bool createImage)
+            /// <param name="createImage">If true, an Image object will be created in case of an image file</param>
+            /// <param name="path">Relative path within the archive / file</param>
+            public ExtractorItem(string fileName, MemoryStream stream, bool createImage, string path)
             {
                 string[] tokens = fileName.Split('.');
                 if (tokens.Length > 1)
@@ -370,6 +378,7 @@ namespace MediaExtractor
 
 
                 this.FileName = fileName;
+                this.Path = path;
                 this.Stream = stream;
                 this.ErrorMessage = string.Empty;
                 this.IsImage = IsImage;

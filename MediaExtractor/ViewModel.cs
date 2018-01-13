@@ -23,6 +23,7 @@ namespace MediaExtractor
         private string fileName;
         private string statusText;
         private bool saveAllStatus;
+        private bool keepFolderStructure = true;
         private float numberOfFiles;
         private float currentFile;
         private int progress;
@@ -41,7 +42,7 @@ namespace MediaExtractor
         }
         
         /// <summary>
-        /// Current file index as float (to avoid multiplr casting when calculating the progress)
+        /// Current file index as float (to avoid multiple casting when calculating the progress)
         /// </summary>
         public float CurrentFile
         {
@@ -55,7 +56,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Total number of files in the cuurently loaded archive as float (to avoid multiplr casting when calculating the progress)
+        /// Total number of files in the currently loaded archive as float (to avoid multiple casting when calculating the progress)
         /// </summary>
         public float NumberOfFiles
         {
@@ -78,6 +79,19 @@ namespace MediaExtractor
             {
                 saveAllStatus = value;
                 NotifyPropertyChanged("SaveAllStatus");
+            }
+        }
+        
+        /// <summary>
+        /// If true, the folder structure of the file / archive will be kept when extracted (save all files)
+        /// </summary>
+        public bool KeepFolderStructure
+        {
+            get { return keepFolderStructure; }
+            set
+            {
+                keepFolderStructure = value;
+                NotifyPropertyChanged("KeepFolderStructure");
             }
         }
 
@@ -158,7 +172,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Method to calculate the cuurent progress when opening a file or archive
+        /// Method to calculate the current progress when opening a file or archive
         /// </summary>
         public void CalculateProgress()
         {
