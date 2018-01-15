@@ -21,6 +21,10 @@ namespace MediaExtractor
         {
             /// <summary>Entry is an image</summary>
             image,
+            /// <summary>Entry is an XML file</summary>
+            xml,
+            /// <summary>Entry is a text file</summary>
+            text,
             /// <summary>Entry is not an image</summary>
             other,
             /// <summary>Entry no file at all / error</summary>
@@ -35,6 +39,12 @@ namespace MediaExtractor
         /// File extension of the entry
         /// </summary>
         public string FileExtension { get; set; }
+
+        /// <summary>
+        /// Relative path of the file
+        /// </summary>
+        public string Path { get; set; }
+
         /// <summary>
         /// Coarse file type of the entry
         /// </summary>
@@ -42,6 +52,38 @@ namespace MediaExtractor
         /// <summary>
         /// Reference to the ExtractorItem of the entry
         /// </summary>
-        public Extractor.ExtractorItem FileReference { get; set; }
+        public ExtractorItem FileReference { get; set; }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ListViewItem()
+        {
+
+        }
+
+        /// <summary>
+        /// Method to determine the type of the item
+        /// </summary>
+        public void SetType()
+        {
+            if (this.FileReference.IsXml)
+            {
+                this.Type = FileType.xml;
+            }
+            else if (this.FileReference.IsImage)
+            {
+                this.Type = FileType.image;
+            }
+            else if (this.FileReference.IsText)
+            {
+                this.Type = FileType.text;
+            }
+            else
+            {
+                this.Type = FileType.other;
+            }
+        }
+
     }
 }

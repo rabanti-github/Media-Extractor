@@ -10,14 +10,13 @@ using System.Collections.Generic;
 using SevenZipExtractor;
 using System.IO;
 using System.Windows.Media.Imaging;
-using System.Drawing.Imaging;
 
 namespace MediaExtractor
 {
     /// <summary>
     /// Class for extraction and rendering of embedded files in an opened file or archive
     /// </summary>
-    public class Extractor
+    public partial class Extractor
     {
         /// <summary>
         /// Enum for the source format of the processed file or archive
@@ -25,43 +24,47 @@ namespace MediaExtractor
         public enum SourceFormat
         {
             /// <summary>File is a Microsoft Word file (e.g. docx, dotx)</summary>
-            word,
+            Word,
             /// <summary>File is a Microsoft Excel file (e.g. xlsx, xltx)</summary>
-            excel,
+            Excel,
             /// <summary>File is a Microsoft PowerPoint file (e.g. pptx, potx)</summary>
-            powerPoint,
+            PowerPoint,
             /// <summary>File is in an unspecified, other format</summary>
-            other,
+            Other,
         }
 
         /// <summary>
-        /// Enum for the format of embedded images
+        /// Enum for the format of embedded embeddedFiles / file
         /// </summary>
-        public enum ImageFormat
+        public enum EmbeddedFormat
         {
             /// <summary>Image is a Enhanced Meta File</summary>
-            emf,
+            Emf,
             /// <summary>Image is a Windows Meta File</summary>
-            wmf,
+            Wmf,
             /// <summary>Image is a Portable Network Graphic</summary>
-            png,
+            Png,
             /// <summary>Image is a JPEG File</summary>
-            jpg,
-            /// <summary>Image is in an unspecified / generic format</summary>
-            all,
+            Jpg,
+            /// <summary>File is a text file</summary>
+            Txt,
+            /// <summary>File is a XML file</summary>
+            Xml,
+            /// <summary>Image / File is in an unspecified / generic format</summary>
+            All,
         }
 
         private string lastError;
         private bool hasErrors;
-        private List<ExtractorItem> images;
+        private List<ExtractorItem> embeddedFiles;
         private ViewModel currentModel;
 
         /// <summary>
-        /// List of all embedded items (usually images)
+        /// List of all embedded items (usually embeddedFiles)
         /// </summary>
-        public List<ExtractorItem> Images
+        public List<ExtractorItem> EmbeddedFiles
         {
-            get { return this.images; }
+            get { return this.embeddedFiles; }
         }
 
         /// <summary>
@@ -86,14 +89,14 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Gets the number of embedded items (usually images)
+        /// Gets the number of embedded items (usually embeddedFiles)
         /// </summary>
         public int NumberOfImages
         {
             get
             {
-                if (this.images == null) { return 0; }
-                else { return this.images.Count;  }
+                if (this.embeddedFiles == null) { return 0; }
+                else { return this.embeddedFiles.Count;  }
             }
         }
 
@@ -109,26 +112,26 @@ namespace MediaExtractor
         /// <param name="model">ViewModel for data binding</param>
         public Extractor(string file, ViewModel model)
         {
-            this.FileName = file;
-            this.lastError = "";
-            this.DocumentFormat =  SourceFormat.other;
-            this.images = new List<ExtractorItem>();
-            this.currentModel = model;
+            FileName = file;
+            lastError = "";
+            DocumentFormat =  SourceFormat.Other;
+            embeddedFiles = new List<ExtractorItem>();
+            currentModel = model;
         }
 
         /// <summary>
-        /// 
+        /// Constructor with parameters
         /// </summary>
         /// <param name="file">name of the archive or file</param>
         /// <param name="format">Format of the archive or file</param>
         /// <param name="model">ViewModel for data binding</param>
         public Extractor(string file, SourceFormat format, ViewModel model)
         {
-            this.FileName = file;
-            this.lastError = "";
-            this.DocumentFormat = format;
-            this.images = new List<ExtractorItem>();
-            this.currentModel = model;
+            FileName = file;
+            lastError = "";
+            DocumentFormat = format;
+            embeddedFiles = new List<ExtractorItem>();
+            currentModel = model;
         }
 
         /// <summary>
@@ -136,32 +139,43 @@ namespace MediaExtractor
         /// </summary>
         public void ResetErrors()
         {
-            this.hasErrors = false;
-            this.lastError = string.Empty;
+            hasErrors = false;
+            lastError = string.Empty;
         }
 
         /// <summary>
         /// Method to extract an embedded file
         /// </summary>
         /// <param name="format">Format of the embedded file</param>
-        public void Extract(ImageFormat format)
+        public void Extract(EmbeddedFormat format)
         {
             try
             {
                 MemoryStream ms = GetFileStream();
                 SevenZipExtractor.ArchiveFile ex = new ArchiveFile(ms, SevenZipFormat.Zip);
-                this.images = GetEntries(format, ref ex);
-                this.currentModel.NumberOfFiles = this.images.Count;
-                for(int i = 0; i < this.currentModel.NumberOfFiles; i++)
+                embeddedFiles = GetEntries(format, ref ex);
+                currentModel.NumberOfFiles = embeddedFiles.Count;
+                for(int i = 0; i < currentModel.NumberOfFiles; i++)
                 {
-                    this.images[i].CreateImage(true);
-                    this.currentModel.CurrentFile = i + 1;
+                    if (embeddedFiles[i].IsImage)
+                    {
+                        embeddedFiles[i].CreateImage(true);
+                    }
+                    else if (embeddedFiles[i].IsXml)
+                    {
+                        embeddedFiles[i].CreateXml();
+                    }
+                    else if (embeddedFiles[i].IsText)
+                    {
+                        embeddedFiles[i].CreateText();
+                    }
+                    currentModel.CurrentFile = i + 1;
                 }
             }
             catch(Exception e)
             {
-                this.hasErrors = true;
-                this.lastError = e.Message;
+                hasErrors = true;
+                lastError = e.Message;
             }
         }
 
@@ -172,9 +186,9 @@ namespace MediaExtractor
         public List<string> GetFileNames()
         {
             List<string> output = new List<string>();
-            if (this.images != null)
+            if (embeddedFiles != null)
             {
-                foreach (ExtractorItem item in this.images)
+                foreach (ExtractorItem item in embeddedFiles)
                 {
                     output.Add(item.FileName);
                 }
@@ -190,16 +204,15 @@ namespace MediaExtractor
         /// <returns>If true, the ImageSource could be created, otherwise not</returns>
         public bool GetImageSourceByName(string filename, out BitmapImage image)
         {
-            foreach (ExtractorItem item in this.images)
+            foreach (ExtractorItem item in embeddedFiles)
             {
-                if (item.FileName == filename)
+                if (item.FileName == filename && item.IsImage)
                 {
                     image = item.Image;
                     if (item.ValidImage == false)
                     {
-                        this.lastError = item.ErrorMessage;
-                        this.hasErrors = true;
-
+                        lastError = item.ErrorMessage;
+                        hasErrors = true;
                     }
                     else
                     {
@@ -209,8 +222,39 @@ namespace MediaExtractor
                 }
             }
             image = null;
-            this.lastError = "Image could not be created";
-            this.hasErrors = true;
+            lastError = "Image could not be created";
+            hasErrors = true;
+            return false;
+        }
+
+        /// <summary>
+        /// Method to get the generic text (plain text or XML) of an embedded file if applicable
+        /// </summary>
+        /// <param name="filename">file name to process</param>
+        /// <param name="genericText">Text as out parameter</param>
+        /// <returns>If true, the generic text could be created, otherwise not</returns>
+        public bool GetGenericTextByName(string filename, out string genericText)
+        {
+            foreach (ExtractorItem item in embeddedFiles)
+            {
+                if (item.FileName == filename && (item.IsText || item.IsXml))
+                {
+                    genericText = item.GenericText;
+                    if (item.ValidGenericText == false)
+                    {
+                        lastError = item.ErrorMessage;
+                        hasErrors = true;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+
+                }
+            }
+            genericText = string.Empty;
+            lastError = "Text preview could not be created";
+            hasErrors = true;
             return false;
         }
 
@@ -220,25 +264,25 @@ namespace MediaExtractor
         /// <param name="format">Target format</param>
         /// <param name="archive">Reference to the opened file (handled as archive)</param>
         /// <returns>A list of items</returns>
-        private List<ExtractorItem> GetEntries(ImageFormat format, ref ArchiveFile archive)
+        private List<ExtractorItem> GetEntries(EmbeddedFormat format, ref ArchiveFile archive)
         {
             string extension = "";
             bool allFiles = false;
             switch (format)
             {
-                case ImageFormat.emf:
+                case EmbeddedFormat.Emf:
                     extension = ".emf";
                     break;
-                case ImageFormat.wmf:
+                case EmbeddedFormat.Wmf:
                     extension = ".wmf";
                     break; 
-                case ImageFormat.png:
+                case EmbeddedFormat.Png:
                     extension = ".png";
                     break;
-                case ImageFormat.jpg:
+                case EmbeddedFormat.Jpg:
                     extension = ".jpg";
                     break;
-                case ImageFormat.all:
+                case EmbeddedFormat.All:
                     allFiles = true;
                     break;
                 default:
@@ -289,162 +333,5 @@ namespace MediaExtractor
                 return new MemoryStream();
             }
         }
-
-        /// <summary>
-        /// Sub-class to handle particular embedded files in a archive or file
-        /// </summary>
-        public class ExtractorItem
-        {
-            /// <summary>
-            /// Relative path of the item within the archive / file
-            /// </summary>
-            public string Path { get; set; }
-            /// <summary>
-            /// File extension of the item
-            /// </summary>
-            public string FileExtension { get; set; }
-            /// <summary>
-            /// File name of the item
-            /// </summary>
-            public string FileName { get; set; }
-            /// <summary>
-            /// MemoryStream of the item
-            /// </summary>
-            public MemoryStream Stream { get; set; }
-            /// <summary>
-            /// If true, the item was identified as valid image file
-            /// </summary>
-            public bool ValidImage { get; set; }
-            /// <summary>
-            /// If true, the item is described as image file (by its file extension)
-            /// </summary>
-            public bool IsImage { get; set; }
-
-            private BitmapImage image;
-            private bool initialized = false;
-
-            /// <summary>
-            /// Gets the Image object if the item is a valid image
-            /// </summary>
-            public BitmapImage Image
-            {
-                get 
-                {
-                    if (image == null && initialized == false)
-                    {
-                        CreateImage(true);
-                        initialized = true;
-                    }
-                    return image; 
-                }
-            }
-            
-            /// <summary>
-            /// Message of the last occurred error when processing the item
-            /// </summary>
-            public string ErrorMessage { get; set; }
-
-            /// <summary>
-            /// Default constructor
-            /// </summary>
-            public ExtractorItem()
-            {
-
-            }
-
-            /// <summary>
-            /// Constructor with parameters
-            /// </summary>
-            /// <param name="fileName">File name of the item</param>
-            /// <param name="stream">Passed memoryStream of the item</param>
-            /// <param name="createImage">If true, an Image object will be created in case of an image file</param>
-            /// <param name="path">Relative path within the archive / file</param>
-            public ExtractorItem(string fileName, MemoryStream stream, bool createImage, string path)
-            {
-                string[] tokens = fileName.Split('.');
-                if (tokens.Length > 1)
-                {
-                    this.FileExtension = tokens[tokens.Length - 1].ToUpper();
-                    if (FileExtension == "JPG" || FileExtension == "JPEG" || FileExtension == "PNG" || FileExtension == "WMF" || FileExtension == "EMF"  || FileExtension == "GIF" || FileExtension == "BMP" || FileExtension == "ICO")
-                    {
-                        this.IsImage = true;
-                    }
-                }
-                else
-                {
-                    this.FileExtension = "";
-                    this.IsImage = false;
-                }
-
-
-                this.FileName = fileName;
-                this.Path = path;
-                this.Stream = stream;
-                this.ErrorMessage = string.Empty;
-                this.IsImage = IsImage;
-                if (createImage == true && this.IsImage == true)
-                {
-                    CreateImage(true);
-                    this.initialized = true;
-                }
-            }
-
-            /// <summary>
-            /// Method to create an image object from the item
-            /// </summary>
-            /// <param name="retry">If false, only an attempt as png file will be proforemd. If true, all formats (jpg, emf, bmp, gif and wmf) will be tried after a fail of a png conversion</param>
-            public void CreateImage(bool retry)
-            {
-                List<System.Drawing.Imaging.ImageFormat> formats = new List<System.Drawing.Imaging.ImageFormat>();
-                formats.Add(System.Drawing.Imaging.ImageFormat.Png);
-                if (retry == true)
-                {
-                    formats.Add(System.Drawing.Imaging.ImageFormat.Jpeg);
-                    formats.Add(System.Drawing.Imaging.ImageFormat.Emf);
-                    formats.Add(System.Drawing.Imaging.ImageFormat.Bmp);
-                    formats.Add(System.Drawing.Imaging.ImageFormat.Gif);
-                    formats.Add(System.Drawing.Imaging.ImageFormat.Wmf);
-                }
-                foreach (System.Drawing.Imaging.ImageFormat format in formats)
-                {
-                    try
-                    {
-                        
-                        MemoryStream ms2 = new MemoryStream();
-                        if (format == System.Drawing.Imaging.ImageFormat.Emf || format == System.Drawing.Imaging.ImageFormat.Wmf)
-                        {
-                            Metafile mf = new Metafile(this.Stream);
-                            mf.Save(ms2, format);
-                        }
-                        else
-                        {
-                            System.Drawing.Image img = System.Drawing.Image.FromStream(this.Stream);
-                            img.Save(ms2, format);
-                        }
-                        
-                        ms2.Flush();
-                        ms2.Position = 0;
-                        BitmapImage ims = new BitmapImage();
-                        ims.BeginInit();
-                        ims.CacheOption = BitmapCacheOption.OnLoad;
-                        ims.StreamSource = ms2;
-                        ims.EndInit();
-                        ims.Freeze();
-                        this.image = ims;
-                        this.ValidImage = true;
-                        this.ErrorMessage = string.Empty;
-                        return;
-                    }
-                    catch (Exception e)
-                    {
-                        this.ValidImage = false;
-                        this.ErrorMessage = e.Message;
-                        this.image = null;
-                    }
-                }
-            }
-
-        }
-
     }
 }

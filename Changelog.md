@@ -1,5 +1,13 @@
 # Change Log
 
+## v1.2.0
+---
+Release Date: **15.01.2018**
+
+- Added preview for text and XML
+- Code cleanup
+- Fixed typos
+
 ## v1.1.0
 ---
 Release Date: **13.01.2018**

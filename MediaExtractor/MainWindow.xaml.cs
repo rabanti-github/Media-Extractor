@@ -117,7 +117,7 @@ namespace MediaExtractor
             }
             else
             {
-                reference.CurrentExtractor.Extract(Extractor.ImageFormat.all);
+                reference.CurrentExtractor.Extract(Extractor.EmbeddedFormat.All); // All includes images, xml and text
                 if (reference.CurrentExtractor.HasErrors == true)
                 {
                     reference.CurrentModel.StatusText = "The file could not be displayed: " + reference.CurrentExtractor.LastError;
@@ -143,11 +143,20 @@ namespace MediaExtractor
                     {
                         int i = 0;
                         reference.CurrentModel.ClearListView();
-                        foreach (Extractor.ExtractorItem item in reference.CurrentExtractor.Images)
+                        ListViewItem lItem;
+                        foreach (ExtractorItem item in reference.CurrentExtractor.EmbeddedFiles)
                         {
                             if ((item.IsImage == true && reference.imageFilterMenuItem.IsChecked == true) || (item.IsImage == false && reference.otherFilterMenuItem.IsChecked == true))
                             {
-                                reference.CurrentModel.ListViewItems.Add(new ListViewItem() { FileName = item.FileName, FileExtension = item.FileExtension, FileReference = item });
+                                lItem = new ListViewItem()
+                                {
+                                    FileName = item.FileName,
+                                    FileExtension = item.FileExtension,
+                                    Path = item.Path,
+                                    FileReference = item
+                                };
+                                lItem.SetType();
+                                reference.CurrentModel.ListViewItems.Add(lItem);
                                 i++;
                             }
                         }
@@ -168,6 +177,24 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Sets the image preview visible
+        /// </summary>
+        public void SetImagePreviewVisible()
+        {
+            imageBox.Visibility = Visibility.Visible;
+            textBox.Visibility = Visibility.Hidden;
+        }
+
+        /// <summary>
+        /// Sets the text preview visible
+        /// </summary>
+        public void SetTextPreviewVisible()
+        {
+            textBox.Visibility = Visibility.Visible;
+            imageBox.Visibility = Visibility.Hidden;
+        }
+
+        /// <summary>
         /// Event Method to handle a changed ListView item
         /// </summary>
         /// <param name="sender">Sender object</param>
@@ -175,24 +202,50 @@ namespace MediaExtractor
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Cursor c = this.Cursor;
-            this.CurrentModel.StatusText = "Loading image... Please wait";
+            this.CurrentModel.StatusText = "Loading embedded file... Please wait";
             this.Cursor = Cursors.Wait;
             try
             {
                 ListViewItem item = (ListViewItem)this.imagesListView.SelectedItem;
-                BitmapImage img;
-                CurrentExtractor.GetImageSourceByName(item.FileName, out img);
-
-                if (CurrentExtractor.HasErrors == true)
+                if (item.Type == ListViewItem.FileType.image)
                 {
-                    this.CurrentModel.StatusText = "Image could not be loaded: " + this.CurrentExtractor.LastError;
-                    this.imageBox.Source = null;
-                    this.CurrentExtractor.ResetErrors();
+                    BitmapImage img;
+                    CurrentExtractor.GetImageSourceByName(item.FileName, out img);
+                    this.SetImagePreviewVisible();
+                    if (CurrentExtractor.HasErrors == true)
+                    {
+                        this.CurrentModel.StatusText = "Embedded file could not be loaded: " + this.CurrentExtractor.LastError;
+                        this.imageBox.Source = null;
+                        this.CurrentExtractor.ResetErrors();
+                    }
+                    else
+                    {
+                        this.imageBox.Source = img;
+                        this.CurrentModel.StatusText = item.FileName + " loaded";
+                    }
+                }
+                else if (item.Type == ListViewItem.FileType.xml || item.Type == ListViewItem.FileType.text)
+                {
+                    string text;
+                    CurrentExtractor.GetGenericTextByName(item.FileName, out text);
+                    this.SetTextPreviewVisible();
+                    if (CurrentExtractor.HasErrors == true)
+                    {
+                        this.CurrentModel.StatusText = "Text / XML file could not be loaded: " + this.CurrentExtractor.LastError;
+                        this.textBox.Text = string.Empty;
+                        this.CurrentExtractor.ResetErrors();
+                    }
+                    else
+                    {
+                        this.textBox.Text = text;
+                        this.CurrentModel.StatusText = item.FileName + " loaded";
+                    }
                 }
                 else
                 {
-                    this.imageBox.Source = img;
-                    this.CurrentModel.StatusText = item.FileName + " loaded";
+                    this.SetTextPreviewVisible();
+                    this.textBox.Text = string.Empty;
+                    // Fallback
                 }
             }
             catch(Exception ex)
@@ -344,7 +397,7 @@ namespace MediaExtractor
                 CommonFileDialogResult res = ofd.ShowDialog();
                 if (res == CommonFileDialogResult.Ok)
                 {
-                    List<Extractor.ExtractorItem> items = new List<Extractor.ExtractorItem>();
+                    List<ExtractorItem> items = new List<ExtractorItem>();
                     bool duplicatesFound = false;
                     bool overwriteFiles = false;
                     string fileName;
@@ -375,7 +428,7 @@ namespace MediaExtractor
                     bool check;
                     FileInfo fi;
                     MessageBoxResult res3;
-                    foreach (Extractor.ExtractorItem item in items)
+                    foreach (ExtractorItem item in items)
                     {
                         
                         if (CheckFileExists(ofd.FileName, item, this.CurrentModel.KeepFolderStructure, out fileName) == true && overwriteFiles == false)
@@ -432,7 +485,7 @@ namespace MediaExtractor
         /// <param name="fileName">Determined file name as output parameter</param>
         /// <param name="keepFolderStructure">If true, the relative folder of the item will be added to the root folder</param>
         /// <returns>True if he file exists</returns>
-        private bool CheckFileExists(string folder, Extractor.ExtractorItem item, bool keepFolderStructure, out string fileName)
+        private bool CheckFileExists(string folder, ExtractorItem item, bool keepFolderStructure, out string fileName)
         {
             string separator = Path.DirectorySeparatorChar.ToString();
             char[] chars = new char[] { '/', '\\' };
@@ -480,7 +533,7 @@ namespace MediaExtractor
         /// <param name="filename">file name for the target file</param>
         /// <param name="writeStatus">If true, the status of the operation will be stated</param>
         /// <returns>True if the file could be saved</returns>
-        private bool Save(Extractor.ExtractorItem item, string filename, bool writeStatus)
+        private bool Save(ExtractorItem item, string filename, bool writeStatus)
         {
             try
             {
