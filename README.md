@@ -1,13 +1,14 @@
 # Media-Extractor
-Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
+Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents), as well as in common archive files (e.g. zip, 7z, tar)
 
 ## Current State
 
 * Supports most of the new Office formats (e.g. docx, xlsx, pptx)
 * Supports archive formats (e.g. zip, tar, 7z)
 * Creates previews of the most common image formats used in Office (e.g. png, jpg, emf)
-* Supports export of all media files at once or individual
-* Supports export of other embedded Office data (e.g. xml files in xlsx or docx)
+* Creates previews of text and XML files
+* Supports export of all image files at once or individualy
+* Supports export of other embedded data (e.g. xml files in xlsx or docx)
 
 
 ## Requirements / Dependencies
