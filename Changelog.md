@@ -4,7 +4,7 @@
 ---
 Release Date: **15.01.2018**
 
-- Added option to open save location in Explorer after extraction (default: enabled)
+- Added option to open the target folder in the Explorer after extraction (default: enabled)
 - Fixed error when file is already opened by another application
 - Code cleanup
 - Improved status and error messages
