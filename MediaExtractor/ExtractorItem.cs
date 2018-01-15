@@ -176,7 +176,6 @@ namespace MediaExtractor
             {
                 StreamReader sr = new StreamReader(this.Stream);
                 this.genericText = sr.ReadToEnd();
-                sr.Close();
                 ValidGenericText = true;
                 this.ErrorMessage = String.Empty;
             }

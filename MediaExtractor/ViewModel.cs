@@ -24,6 +24,7 @@ namespace MediaExtractor
         private string statusText;
         private bool saveAllStatus;
         private bool keepFolderStructure = true;
+        private bool showInExplorer = true;
         private float numberOfFiles;
         private float currentFile;
         private int progress;
@@ -95,6 +96,16 @@ namespace MediaExtractor
             }
         }
 
+        public bool ShowInExplorer
+        {
+            get { return showInExplorer; }
+            set
+            {
+                showInExplorer = value;
+                NotifyPropertyChanged("ShowInExplorer");
+            }
+        }
+
         /// <summary>
         /// Enabled / Disabled State of the button to save a single files
         /// </summary>
@@ -159,7 +170,9 @@ namespace MediaExtractor
                 NotifyPropertyChanged("ListViewItems");
             }
         }
-      
+
+
+
         /// <summary>
         /// Default constructor
         /// </summary>

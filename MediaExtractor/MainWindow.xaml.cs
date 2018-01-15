@@ -77,8 +77,6 @@ namespace MediaExtractor
             {
                 this.CurrentModel.FileName = ofd.FileName;
                 this.CurrentModel.StatusText = "File loaded: " + this.CurrentModel.FileName;
-                
-                
                 this.CurrentModel.StatusText = "Loading file... Please wait";
                 Thread t = new Thread(MainWindow.LoadFile);
                 t.Start(this);
@@ -120,7 +118,10 @@ namespace MediaExtractor
                 reference.CurrentExtractor.Extract(Extractor.EmbeddedFormat.All); // All includes images, xml and text
                 if (reference.CurrentExtractor.HasErrors == true)
                 {
-                    reference.CurrentModel.StatusText = "The file could not be displayed: " + reference.CurrentExtractor.LastError;
+                    reference.CurrentModel.StatusText = "The file could not be loaded: " + reference.CurrentExtractor.LastError;
+                    MessageBox.Show("The file could not be loaded.\nPlease make sure that the file is not open in another application.\nError Message:\n" + reference.CurrentExtractor.LastError, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    reference.CurrentModel.Progress = 0;
+                    reference.ChangeCursor(c);
                     reference.CurrentExtractor.ResetErrors();
                     return;
                 }
@@ -462,11 +463,19 @@ namespace MediaExtractor
                         if (errorsFound == true)
                         {
                             this.CurrentModel.StatusText = "Errors occurred during saving";
-                            MessageBox.Show("Errors occurred during saving", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Errors occurred during saving", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
                         else
                         {
                             this.CurrentModel.StatusText = "All files were saved successfully";
+                            if (this.CurrentModel.ShowInExplorer)
+                            {
+                                bool open = Utils.ShowInExplorer(ofd.FileName);
+                                if (open == false)
+                                {
+                                    MessageBox.Show("The path '" + ofd.FileName + "' could not be opened", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                }
+                            }
                         }
                     }
                 }
@@ -518,6 +527,15 @@ namespace MediaExtractor
                 if (result == true)
                 {
                     Save(item.FileReference, sfd.FileName, true);
+                }
+                if (this.CurrentModel.ShowInExplorer)
+                {
+                    FileInfo fi = new FileInfo(sfd.FileName);
+                    bool open = Utils.ShowInExplorer(fi.DirectoryName);
+                    if (open == false)
+                    {
+                        MessageBox.Show("The path '" + fi.DirectoryName + "' could not be opened", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
                 }
             }
             catch

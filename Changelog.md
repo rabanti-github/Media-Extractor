@@ -1,5 +1,15 @@
 # Change Log
 
+## v1.3.0
+---
+Release Date: **15.01.2018**
+
+- Added option to open save location in Explorer after extraction (default: enabled)
+- Fixed error when file is already opened by another application
+- Code cleanup
+- Improved status and error messages
+- Fixed typos
+
 ## v1.2.0
 ---
 Release Date: **15.01.2018**
