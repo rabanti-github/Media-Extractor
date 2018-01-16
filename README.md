@@ -1,13 +1,13 @@
 # Media-Extractor
-Media-Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents), as well as in common archive files (e.g. zip, 7z, tar). Media-Extractor was written in C# and uses the 7zip library as archive processor, as well as WPF as GUI toolkit.
+Media-Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents), as well as in common archive files (e.g. zip, 7z, tar). Media-Extractor was written in C# and uses the 7zip library as archive processor, as well as WPF as GUI framework.
 
-## Current State
+## Features
 
 * Supports most of the new Office formats (e.g. docx, xlsx, pptx)
-* Supports archive formats (e.g. zip, tar, 7z)
-* Creates previews of the most common image formats used in Office (e.g. png, jpg, emf)
-* Creates previews of text and XML files
-* Supports export of all image files at once or individually
+* Supports a variety of archive formats (e.g. zip, tar, 7z)
+* Creates previews of the most commonly used image formats used in Office (e.g. png, jpg, emf) which can be embedded
+* Creates previews of embedded text and XML files
+* Supports export of all embedded files at once or individually
 * Supports export of other embedded data (e.g. xml files in xlsx or docx)
 
 
@@ -22,3 +22,4 @@ Media-Extractor is an application to preview and extract packed media in Microso
 ## Known Issues / ToDo
 
 * The overwrite files dialog is broken at the moment
+* Other, incompatible files than archives and Office files in the new format (e.g. xlsx, docx) lead to the same error message like in case of an opened / locked file
