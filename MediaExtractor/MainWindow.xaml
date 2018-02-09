@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MediaExtractor"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="620" MinHeight="300">
+        Title="MainWindow" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300">
     <Grid UseLayoutRounding="False" Margin="0,26,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335*"/>
@@ -32,11 +32,10 @@
                 <MenuItem x:Name="aboutMenuItem" Header="About" Click="aboutMenuItem_Click"/>
             </MenuItem>
         </Menu>
-        <Grid Margin="0,0,0,35
-              " Grid.ColumnSpan="3">
+        <Grid Margin="0,0,0,35" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="340"/>
-                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="340" MinWidth="110"/>
+                <ColumnDefinition Width="5" MinWidth="5" />
                 <ColumnDefinition Width="*" MinWidth="300"/>
             </Grid.ColumnDefinitions>
 
@@ -59,7 +58,7 @@
 
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
-            <Grid Grid.Column="2" MinWidth="300">
+            <Grid Grid.Column="2" MinWidth="270">
                 <Border  Margin="0,37,0,0" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
                     <Viewbox x:Name="imageBoxContainer" Margin="10" ClipToBounds="True">
                         <Image x:Name="imageBox" />
@@ -68,7 +67,7 @@
                 <TextBox x:Name="textBox" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Hidden" Padding="5,5,3,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
                 <Button x:Name="saveFileButton" Content="Save File" Margin="0,10,10,0" VerticalAlignment="Top" Width="103" IsEnabled="{Binding Path=SaveStatus}" HorizontalAlignment="Right" Click="saveFileButton_Click"/>
                 <Button x:Name="saveAllFilesButton" Content="Save all Files" Margin="0,10,123,0" VerticalAlignment="Top" Width="100" IsEnabled="{Binding Path=SaveAllStatus}" HorizontalAlignment="Right" Click="saveAllFilesButton_Click"/>
-                <Label Content="Preview" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="59" FontWeight="Bold"/>
+                <Label Content="Preview" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="50" FontWeight="Bold" Padding="5,5,0,5"/>
                 
             </Grid>
         </Grid>

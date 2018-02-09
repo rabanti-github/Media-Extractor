@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 
 namespace MediaExtractor
@@ -118,8 +119,26 @@ namespace MediaExtractor
                 reference.CurrentExtractor.Extract(Extractor.EmbeddedFormat.All); // All includes images, xml and text
                 if (reference.CurrentExtractor.HasErrors == true)
                 {
-                    reference.CurrentModel.StatusText = "The file could not be loaded: " + reference.CurrentExtractor.LastError;
-                    MessageBox.Show("The file could not be loaded.\nPlease make sure that the file is not open in another application.\nError Message:\n" + reference.CurrentExtractor.LastError, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    string message;
+                    string[] ext = new []{".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm",".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".zip", ".7z", ".rar", ".bzip2",".gz", ".tar", ".cab", ".chm", ".lzh", ".iso"};
+                    try
+                    {
+                        FileInfo fi = new FileInfo(reference.CurrentModel.FileName);
+                        if (ext.Contains(fi.Extension.ToLower()) == true)
+                        {
+                            message = "Please make sure that the file is not open in another application.";
+                        }
+                        else
+                        {
+                            message = "The file may be not a valid Office file or archive.";
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        message = "It looks like the filename is not valid. Please check the file path.";
+                    }
+                    
+                    MessageBox.Show("The file could not be loaded.\n" + message + "\nError Message: " + reference.CurrentExtractor.LastError, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     reference.CurrentModel.Progress = 0;
                     reference.ChangeCursor(c);
                     reference.CurrentExtractor.ResetErrors();
