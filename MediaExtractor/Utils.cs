@@ -5,14 +5,9 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace MediaExtractor
 {
@@ -56,6 +51,11 @@ namespace MediaExtractor
             return String.Format("{0:0.##} {1}", size, new string[] {"B", "KB", "MB", "GB", "TB"}[index]);
         }
 
+        /// <summary>
+        /// Gets the next available file name. Each iteration will count one number up (e.g. "file(2).txt" if "file(1).txt" is already existing)
+        /// </summary>
+        /// <param name="fullPath">Initial file name (full path)</param>
+        /// <returns>New file name (full path)</returns>
         public static string GetNextFileName(string fullPath)
         {
             FileInfo fi;
@@ -105,6 +105,11 @@ namespace MediaExtractor
         private static uint[] crcTable;
 
 
+        /// <summary>
+        /// Gets the CRC32 hash of a file
+        /// </summary>
+        /// <param name="fileName">Full path of the file to calculate</param>
+        /// <returns>CRC32 hash</returns>
         public static uint GetCrc(string fileName)
         {
             uint number;
@@ -122,6 +127,11 @@ namespace MediaExtractor
             return number;
         }
 
+        /// <summary>
+        /// Gets the CRC32 hash of a stream
+        /// </summary>
+        /// <param name="stream">Byte stream to calculate</param>
+        /// <returns>CRC32 hash</returns>
         public static uint GetCrc(Stream stream)
         {
             if (inizialized == false) // InitializeCrc
@@ -153,6 +163,9 @@ namespace MediaExtractor
             return BitConverter.ToUInt32(hash, 0);
         }
 
+        /// <summary>
+        /// Singleton initial method for the CRC calculation
+        /// </summary>
         private static void InitializeCrc()
         {
             crcTable = new uint[256];

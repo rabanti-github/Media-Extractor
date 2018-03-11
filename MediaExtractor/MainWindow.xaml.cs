@@ -6,7 +6,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows;
@@ -520,90 +519,7 @@ namespace MediaExtractor
                         {
                             MessageBox.Show("The path '" + ofd.FileName + "' could not be opened", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
-                    }                    
-
-                    //  List<ExtractorItem> items = new List<ExtractorItem>();
-              //  bool duplicatesFound = false;
-              //  bool overwriteFiles = false;
-               // 
-                    /*
-                foreach (MediaExtractor.ListViewItem item in this.CurrentModel.ListViewItems)
-                {
-                    items.Add(item.FileReference);
-                    if (CheckFileExists(ofd.FileName, item.FileReference, this.CurrentModel.KeepFolderStructure, out fileName) == true && duplicatesFound == false)
-                    {
-                        MessageBoxResult res2 = MessageBox.Show("At least one existing file was found in the folder.\nShall  all files be overwritten (yes) or a dialog for each file be displayed (no)?", "Existing files", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                        if (res2 == MessageBoxResult.Yes)
-                        {
-                            overwriteFiles = true;
-                        }
-                        else if (res2 == MessageBoxResult.No)
-                        {
-                            overwriteFiles = false;
-                        }
-                        else
-                        {
-                            this.CurrentModel.StatusText = "The save process was canceled";
-                            return;
-                        }
-                        duplicatesFound = true;
-                    }
-                }
-                 */
-                    /*
-                    bool errorsFound = false;
-                    bool check;
-                    FileInfo fi;
-                    MessageBoxResult res3;
-                    foreach (ExtractorItem item in items)
-                    {
-                        
-                        if (CheckFileExists(ofd.FileName, item, this.CurrentModel.KeepFolderStructure, out fileName) == true && overwriteFiles == false)
-                        {
-                           res3 = MessageBox.Show("The file " + item.FileName + " already exists.\nOverwrite (Yes), rename (no) or ?", "Existing file", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                            if (res3 == MessageBoxResult.No)  // rename -- TODO
-                            {
-                                continue;
-                            }
-                            else if (res3 == MessageBoxResult.Cancel)
-                            {
-                                this.CurrentModel.StatusText = "The save process was canceled";
-                                return;
-                            }
-                        }
-                        if (this.CurrentModel.KeepFolderStructure == true)
-                        {
-                            fi = new FileInfo(fileName);
-                            if (Directory.Exists(fi.DirectoryName) == false)
-                            {
-                                Directory.CreateDirectory(fi.DirectoryName);
-                            }
-                            check = Save(item, fileName, false);
-                        }
-                        else
-                        {
-                            check = Save(item, fileName, false);                            
-                        }
-                        if (check == false) { errorsFound = true; }
-
-                        if (errorsFound == true)
-                        {
-                            this.CurrentModel.StatusText = "Errors occurred during saving";
-                            MessageBox.Show("Errors occurred during saving", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                        }
-                        else
-                        {
-                            this.CurrentModel.StatusText = "All files were saved successfully";
-                            if (this.CurrentModel.ShowInExplorer)
-                            {
-                                bool open = Utils.ShowInExplorer(ofd.FileName);
-                                if (open == false)
-                                {
-                                    MessageBox.Show("The path '" + ofd.FileName + "' could not be opened", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                                }
-                            }
-                        }
-                    */
+                    }                                     
                 }
             }
             catch(Exception ex)
