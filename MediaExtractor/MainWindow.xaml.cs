@@ -18,6 +18,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace MediaExtractor
 {
@@ -135,9 +136,10 @@ namespace MediaExtractor
                     }
                     catch (Exception e)
                     {
-                        message = "It looks like the filename is not valid. Please check the file path.";
+                        message = "It looks like the filename is not valid. Please check the file name and path.";
                     }
-                    
+
+                    reference.CurrentModel.StatusText = "The file could not be loaded";
                     MessageBox.Show("The file could not be loaded.\n" + message + "\nError Message: " + reference.CurrentExtractor.LastError, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     reference.CurrentModel.Progress = 0;
                     reference.ChangeCursor(c);
@@ -414,36 +416,141 @@ namespace MediaExtractor
                 CommonOpenFileDialog ofd = new CommonOpenFileDialog();
                 ofd.IsFolderPicker = true;
                 ofd.Title = "Select a Folder to save all Files...";
-                CommonFileDialogResult res = ofd.ShowDialog();
+                CommonFileDialogResult res = ofd.ShowDialog();            
                 if (res == CommonFileDialogResult.Ok)
                 {
-                    List<ExtractorItem> items = new List<ExtractorItem>();
-                    bool duplicatesFound = false;
-                    bool overwriteFiles = false;
+                    
                     string fileName;
+                    bool fileExists, check;
+                    int errors = 0;
+                    int skipped = 0;
+                    int extracted = 0;
+                    int renamed = 0;
+                    int overwritten = 0;
+                    FileInfo fi;
+                    ExistingFileDialog.ResetDialog();
                     foreach (MediaExtractor.ListViewItem item in this.CurrentModel.ListViewItems)
                     {
-                        items.Add(item.FileReference);
-                        if (CheckFileExists(ofd.FileName, item.FileReference, this.CurrentModel.KeepFolderStructure, out fileName) == true && duplicatesFound == false)
+                        fileExists = CheckFileExists(ofd.FileName, item.FileReference, this.CurrentModel.KeepFolderStructure, out fileName);
+                        if (fileExists == true)
                         {
-                            MessageBoxResult res2 = MessageBox.Show("At least one existing file was found in the folder.\nShall a dialog for each file be displayed (yes) or all files be overwritten (no)?", "Existing files", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                            if (res2 == MessageBoxResult.No)
+                            if (ExistingFileDialog.RemeberDecision == null || ExistingFileDialog.RemeberDecision.Value != true)
                             {
-                                overwriteFiles = true;
+                                fi = new FileInfo(fileName);
+                                uint crc = Utils.GetCrc(fileName);
+                                ExistingFileDialog efd = new ExistingFileDialog(fi.Name, fi.LastWriteTime, fi.Length, crc, item.FileName, item.FileReference.LastChange, item.FileReference.FileSize, item.FileReference.Crc32);
+                                efd.ShowDialog();
                             }
-                            else if (res2 == MessageBoxResult.Yes)
+                        }
+
+                        if (fileExists)
+                        {
+                            if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Cancel) // Cancel extractor
                             {
-                                overwriteFiles = false;
+                                this.CurrentModel.StatusText = "The save process was canceled";
+                                MessageBox.Show("The save process was canceled", "Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
+                                return;
+                            }
+                            else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Overwrite) // Overwrite existing
+                            {
+                                check = Save(item.FileReference, fileName, false);
+                                if (check == false) { errors++; }
+                                else
+                                {
+                                    extracted++;
+                                    overwritten++;
+                                }
+                            }
+                            else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Rename) // Rename new
+                            {
+                                fileName = Utils.GetNextFileName(fileName);
+                                check = Save(item.FileReference, fileName, false);
+                                if (check == false) { errors++; }
+                                else
+                                {
+                                    extracted++;
+                                    renamed++;
+                                }
+                            }
+                            else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Skip) // Skipp file
+                            {
+                                skipped++;
                             }
                             else
                             {
-                                this.CurrentModel.StatusText = "The save process was canceled";
-                                return;
+                                errors++;
                             }
-                            duplicatesFound = false;
-
+                        }
+                        else
+                        {
+                            check = Save(item.FileReference, fileName, false);
+                            if (check == false) { errors++; }
+                            else { extracted++; }                            
                         }
                     }
+
+                    if (errors > 0 || skipped > 0)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        if (errors == 1) { sb.Append("One file could not be extracted.");  }
+                        else if (errors > 1) { sb.Append(errors + " files could not be extracted."); }
+                        sb.Append("\n");
+                        if (skipped == 1) { sb.Append("One file was skipped."); }
+                        else if (skipped > 1) { sb.Append(skipped + " files were skipped."); }
+                        string message;
+                        if (sb[0] == '\n')
+                        {
+                            message = sb.ToString(1,sb.Length - 1);
+                        }
+                        else
+                        {
+                            message = sb.ToString();
+                        }
+                        this.CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped, " + errors + " not extracted (errors)";
+                        MessageBox.Show(message, "Not all files were extracted", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    else
+                    {
+                        this.CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped";
+                    }
+                    if (this.CurrentModel.ShowInExplorer)
+                    {
+                        bool open = Utils.ShowInExplorer(ofd.FileName);
+                        if (open == false)
+                        {
+                            MessageBox.Show("The path '" + ofd.FileName + "' could not be opened", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
+                    }                    
+
+                    //  List<ExtractorItem> items = new List<ExtractorItem>();
+              //  bool duplicatesFound = false;
+              //  bool overwriteFiles = false;
+               // 
+                    /*
+                foreach (MediaExtractor.ListViewItem item in this.CurrentModel.ListViewItems)
+                {
+                    items.Add(item.FileReference);
+                    if (CheckFileExists(ofd.FileName, item.FileReference, this.CurrentModel.KeepFolderStructure, out fileName) == true && duplicatesFound == false)
+                    {
+                        MessageBoxResult res2 = MessageBox.Show("At least one existing file was found in the folder.\nShall  all files be overwritten (yes) or a dialog for each file be displayed (no)?", "Existing files", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        if (res2 == MessageBoxResult.Yes)
+                        {
+                            overwriteFiles = true;
+                        }
+                        else if (res2 == MessageBoxResult.No)
+                        {
+                            overwriteFiles = false;
+                        }
+                        else
+                        {
+                            this.CurrentModel.StatusText = "The save process was canceled";
+                            return;
+                        }
+                        duplicatesFound = true;
+                    }
+                }
+                 */
+                    /*
                     bool errorsFound = false;
                     bool check;
                     FileInfo fi;
@@ -454,7 +561,7 @@ namespace MediaExtractor
                         if (CheckFileExists(ofd.FileName, item, this.CurrentModel.KeepFolderStructure, out fileName) == true && overwriteFiles == false)
                         {
                            res3 = MessageBox.Show("The file " + item.FileName + " already exists.\nOverwrite (Yes), rename (no) or ?", "Existing file", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                            if (res3 == MessageBoxResult.No)
+                            if (res3 == MessageBoxResult.No)  // rename -- TODO
                             {
                                 continue;
                             }
@@ -496,11 +603,12 @@ namespace MediaExtractor
                                 }
                             }
                         }
-                    }
+                    */
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show("There was an unexpected error during the extraction:\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
@@ -510,9 +618,9 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="folder">Folder</param>
         /// <param name="item">Extractor Item</param>
-        /// <param name="fileName">Determined file name as output parameter</param>
+        /// <param name="fileName">Determined name and path of the existing file as output parameter</param>
         /// <param name="keepFolderStructure">If true, the relative folder of the item will be added to the root folder</param>
-        /// <returns>True if he file exists</returns>
+        /// <returns>True if the file exists</returns>
         private bool CheckFileExists(string folder, ExtractorItem item, bool keepFolderStructure, out string fileName)
         {
             string separator = Path.DirectorySeparatorChar.ToString();
@@ -574,6 +682,12 @@ namespace MediaExtractor
         {
             try
             {
+                FileInfo fi = new FileInfo(filename);
+                if (Directory.Exists(fi.DirectoryName) == false)
+                {
+                    Directory.CreateDirectory(fi.DirectoryName);
+                }
+
                 FileStream fs = new FileStream(filename, FileMode.Create);
                 item.Stream.Position = 0;
                 fs.Write(item.Stream.GetBuffer(), 0, (int)item.Stream.Length);

@@ -293,6 +293,7 @@ namespace MediaExtractor
             string[] split;
             char[] delimiter = new char[] { '\\', '/' };
             string file, path;
+            ExtractorItem item;
             for(int i = 0; i < archive.Entries.Count; i++)
             {
                 if ((archive.Entries[i].IsFolder == false && archive.Entries[i].FileName.ToLower().EndsWith(extension)) || allFiles == true)
@@ -304,7 +305,12 @@ namespace MediaExtractor
                     split = archive.Entries[i].FileName.Split(delimiter);
                     file = split[split.Length - 1];
                     path = archive.Entries[i].FileName.Substring(0, archive.Entries[i].FileName.Length - file.Length);
-                    list.Add(new ExtractorItem(file, ms, false, path));
+
+                    item = new ExtractorItem(file, ms, false, path);
+                    item.Crc32 = archive.Entries[i].CRC;
+                    item.FileSize = (long)archive.Entries[i].Size;
+                    item.LastChange = archive.Entries[i].LastWriteTime;
+                    list.Add(item);
                 }
             }
             return list;

@@ -1,5 +1,15 @@
 # Change Log
 
+## v1.4.0
+---
+Release Date: **11.03.2018**
+
+- Introduced a new dialog to handle existing files
+- Added CRC32 comparison (existing files)
+- Improved status and error messages
+- Fixed typos
+- Added new icons
+
 ## v1.3.0
 ---
 Release Date: **15.01.2018**

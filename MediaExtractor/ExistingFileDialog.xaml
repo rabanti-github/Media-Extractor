@@ -1,0 +1,66 @@
+﻿<Window x:Class="MediaExtractor.ExistingFileDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaExtractor"
+        mc:Ignorable="d"
+        Title="File already exists..." Height="197.49" Width="528.796" ResizeMode="NoResize" Icon="media/media_extractor.ico" WindowStartupLocation="CenterOwner" Topmost="True" Closing="Window_Closing">
+    <Grid>
+        <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="80" Margin="67,89,0,0" TextWrapping="Wrap" Text="CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are the same and no malicious tampering is to be expected." VerticalAlignment="Top" Width="417" Panel.ZIndex="99" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Visibility="Hidden"/>
+        <Grid HorizontalAlignment="Left" Height="69" Margin="0,100,0,0" VerticalAlignment="Top" Width="523" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Button x:Name="overwriteButton" Content="Overwrite" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top" Width="75" ToolTip="Overwrite existing File" Click="overwriteButton_Click"/>
+            <Button x:Name="skipButton" Content="Skip" HorizontalAlignment="Left" Margin="92,10,0,0" VerticalAlignment="Top" Width="75" ToolTip=" Skip Extraction of the new File" Click="skipButton_Click"/>
+            <Button x:Name="renameButton" Content="Rename new File" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="100" ToolTip="Rename new File" Click="renameButton_Click"/>
+            <Button x:Name="cancelButton" Content="Cancel Extraction " HorizontalAlignment="Left" Margin="277,10,0,0" VerticalAlignment="Top" Width="104" ToolTip="Camcel Extraction" Click="cancelButton_Click"/>
+            <CheckBox x:Name="rememberCheckbox" Content="Remember Decision" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="100
+              " VerticalAlignment="Top" Width="523">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.RowSpan="2"/>
+            <Grid Grid.Column="3" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.RowSpan="2"/>
+            <Grid Grid.Column="2" Grid.ColumnSpan="2">
+                <Label HorizontalContentAlignment="Center" Padding="5,2" FontWeight="Bold">Existing File</Label>
+            </Grid>
+            <Grid Grid.Column="3" Grid.ColumnSpan="2">
+                <Label HorizontalContentAlignment="Center" Padding="5,2" FontWeight="Bold">New File to Extract</Label>
+            </Grid>
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <Label Padding="5,1">Name:</Label>
+                <Label Padding="5,1">Date:</Label>
+                <Label Padding="5,1">Size:</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label Padding="5,1">CRC32:</Label>
+                    <Image x:Name="infoImage" Source="media/infoIcon.png" Width="15" MouseEnter="infoImage_MouseEnter" MouseLeave="infoImage_MouseLeave"  />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="1">
+                <Label x:Name="existingNameLabel" Padding="5,1"></Label>
+                <Label x:Name="existingDateLabel" Padding="5,1"></Label>
+                <Label x:Name="exisitingSizeLabel" Padding="5,1"></Label>
+                <Label x:Name="exisitingCrcLabel" Padding="5,1"></Label>
+            </StackPanel>
+            <StackPanel Grid.Column="4" Grid.Row="1">
+                <Label x:Name="archiveNameLabel" Padding="5,1"></Label>
+                <Label x:Name="archiveDateLabel" Padding="5,1"></Label>
+                <Label x:Name="archiveSizeLabel" Padding="5,1"></Label>
+                <Label x:Name="archiveCrcLabel" Padding="5,1"></Label>
+            </StackPanel>
+        </Grid>
+
+
+    </Grid>
+</Window>

@@ -17,9 +17,3 @@ Media-Extractor is an application to preview and extract packed media in Microso
 * SevenZipExtractor (maintained by NuGet)
 * WindowsAPICodePack-Core (maintained by NuGet)
 * WindowsAPICodePack-Shell (maintained by NuGet)
-
-
-## Known Issues / ToDo
-
-* The overwrite files dialog is broken at the moment
-* Other, incompatible files than archives and Office files in the new format (e.g. xlsx, docx) lead to the same error message like in case of an opened / locked file

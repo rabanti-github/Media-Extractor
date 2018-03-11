@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MediaExtractor"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300">
+        Title="MainWindow" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300" Icon="media/media_extractor.ico">
     <Grid UseLayoutRounding="False" Margin="0,26,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335*"/>

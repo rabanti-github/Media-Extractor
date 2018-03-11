@@ -54,6 +54,18 @@ namespace MediaExtractor
         /// </summary>
         public bool IsText { get; set; }
         /// <summary>
+        /// CRC32 hash of the file
+        /// </summary>
+        public uint Crc32 { get; set; }
+        /// <summary>
+        /// Size of the file in bytes
+        /// </summary>
+        public long FileSize { get; set; }
+        /// <summary>
+        /// Date and time of the last write access of the file
+        /// </summary>
+        public DateTime LastChange { get; set; }
+        /// <summary>
         /// Gets the Image object if the item is a valid image
         /// </summary>
         public BitmapImage Image
