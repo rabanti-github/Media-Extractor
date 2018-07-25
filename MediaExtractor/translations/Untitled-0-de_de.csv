@@ -1,0 +1,43 @@
+Id;Original string;Translation
+1;File already exists...;Die Datei existiert bereits…
+2;CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are the same and no malicious tampering is to be expected.;CRC32 (Cyclic Redundancy Check) ist eine einfache Hashing-Methode zum Überprüfen, ob Datensätze identisch sind. Der CRC-Vergleich kann allerdings nicht zu 100% sicherstellen, dass zwei Dateien wirklich identisch sind. Die Wahrscheinlichkeit ist jedoch sehr hoch, wenn beide Dateien dieselbe Dateigröße haben und nicht von böswilliger Manipulation auszugehen ist. 
+3;Overwrite;Überschreiben
+4;Overwrite existing File;Existierende Datei überschreiben
+5;Skip;Überspringen
+6; Skip Extraction of the new File;Entpacken von existierender Datei überspringen
+7;Rename new File;Neue Datei umbenennen
+8;Rename new File;Neue Datei umbenennen
+9;Cancel Extraction ;Entpacken abbrechen
+10;Cancel Extraction;Entpacken abbrechen
+11;Remember Decision;Entscheidung merken
+12;Existing File;Existierende Datei
+13;New File to Extract;Neue Datei zum Entpacken
+14;Name:;Name:
+15;Date:;Datum:
+16;Size:;Größe:
+17;CRC32:;CRC32:
+18;Media-Extractor;Media-Extractor
+19;"#MenuItem_1;#MenuItem_2;#MenuItem_3;";"#MenuItem_1;#MenuItem_2;#MenuItem_3;"
+20;"#openFileMenuItem;#saveFileMenuItem;#saveAllFilesMenuItem;#Separator_1;#quitMenuItem;";"#openFileMenuItem;#saveFileMenuItem;#saveAllFilesMenuItem;#Separator_1;#quitMenuItem;"
+21;File;Datei
+22;Open File;Datei öffnen
+23;Save File;Datei speichern
+24;Save all Files;Alle Dateien speichern
+25;Quit;Beenden
+26;"#imageFilterMenuItem;#otherFilterMenuItem;#Separator_2;#keepFolderStructureMenuItem;#showInExplorarMenuItem;";"#imageFilterMenuItem;#otherFilterMenuItem;#Separator_2;#keepFolderStructureMenuItem;#showInExplorarMenuItem;"
+27;Options;Einstellungen
+28;Show Embedded Image Files;Eingebettete Bilder anzeigen
+29;Show Other Embedded Files;Andere eingebettet Dateien anzeigen
+30;Keep Folder Structure when Extracting;Ordnerstruktur beim Entpacken beibehalten
+31;Show in Explorer after Extracting;Zeige in Explorer nach Entpacken
+32;"#aboutMenuItem;";"#aboutMenuItem;"
+33;Help;Hilfe
+34;About;Über…
+35;Open File;Datei öffnen
+36;Source File Path;Quell-Datei-Pfad
+37;Embedded Files;Eingebettete Dateien
+38;Auto;Automatisch
+39;Auto;Automatisch
+40;Save File;Datei speichern
+41;Save all Files;Alle Dateien speichern
+42;Preview;Vorschau

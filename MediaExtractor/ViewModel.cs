@@ -5,15 +5,21 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Text;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Xml.Serialization;
 
 namespace MediaExtractor
 {
     /// <summary>
     /// Class for data binding
     /// </summary>
+    
     public class ViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<ListViewItem> listViewItems;
@@ -27,6 +33,64 @@ namespace MediaExtractor
         private float numberOfFiles;
         private float currentFile;
         private int progress;
+        private bool languageSystem = true;
+        private bool languageEnglish;
+        private bool languageGerman;
+        //public Window WindowInstance { get; set; }
+
+        public bool LanguageSystem
+        {
+            get { return languageSystem; }
+            set
+            {
+                languageSystem = value; 
+                LanguageNotify(I18N.AvailableCultures.system);
+            }
+        }
+
+        public bool LanguageEnglish
+        {
+            get { return languageEnglish; }
+            set
+            {
+                languageEnglish = value;
+                LanguageNotify(I18N.AvailableCultures.en_US);
+            }
+        }
+
+        public bool LanguageGerman
+        {
+            get { return languageGerman; }
+            set
+            {
+                languageGerman = value;
+                LanguageNotify(I18N.AvailableCultures.de_DE);
+            }
+        }
+
+        private void LanguageNotify(I18N.AvailableCultures code)
+        {
+            languageEnglish = false;
+            languageGerman = false;
+            languageSystem = false;
+            if (code == I18N.AvailableCultures.en_US)
+            {
+                languageEnglish = true;
+            }
+            else if (code == I18N.AvailableCultures.de_DE)
+            {
+                languageGerman = true;
+            }
+            else
+            {
+                languageSystem = true;
+            }
+            NotifyPropertyChanged("LanguageSystem");
+            NotifyPropertyChanged("LanguageEnglish");
+            NotifyPropertyChanged("LanguageGerman");
+            //I18N.Current.SetLanguage(code, this.WindowInstance);
+            App.Restart(code.ToString());
+        }
 
         /// <summary>
         /// The current progress of extraction or rendering (progress bar from 0 to 100 %)
@@ -40,6 +104,7 @@ namespace MediaExtractor
                 NotifyPropertyChanged("Progress");
             }
         }
+
         
         /// <summary>
         /// Current file index as float (to avoid multiple casting when calculating the progress)
@@ -147,6 +212,7 @@ namespace MediaExtractor
         /// <summary>
         /// Currently displayed preview image
         /// </summary>
+        [XmlIgnore]
         public BitmapImage Image
         {
             get { return image; }
@@ -171,10 +237,19 @@ namespace MediaExtractor
         }
 
 
-
+/*
         /// <summary>
         /// Default constructor
         /// </summary>
+        public ViewModel(Window windowInstance)
+        {
+            this.ListViewItems = new ObservableCollection<ListViewItem>();
+            this.SaveStatus = false;
+            this.FileName = string.Empty;
+            this.StatusText = "Ready";
+            //this.WindowInstance = windowInstance;
+        }
+*/
         public ViewModel()
         {
             this.ListViewItems = new ObservableCollection<ListViewItem>();
@@ -210,6 +285,59 @@ namespace MediaExtractor
             this.SaveStatus = false;
         }
 
+        public string Serialize()
+        {
+            try
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(ViewModel));
+                MemoryStream ms = new MemoryStream();
+                ser.Serialize(ms, this);
+                ms.Flush();
+                ms.Position = 0;
+                StreamReader sr = new StreamReader(ms);
+                string xml = sr.ReadToEnd();
+                ms.Close();
+                byte[] bytes = Encoding.Default.GetBytes(xml);
+                string hex = Convert.ToBase64String(bytes);
+                //string hex = BitConverter.ToString(bytes);
+                //hex = hex.Replace("-", "");
+                return hex;
+            }
+            catch (Exception e)
+            {
+                return "null";
+            }
+
+        }
+
+        public static ViewModel Deserialize(string hex)
+        {
+            if (hex == "null")
+            {
+                return null;
+            }
+
+            try
+            {
+                byte[] bytes = Convert.FromBase64String(hex);
+                string xml = Encoding.Default.GetString(bytes);
+                MemoryStream ms = new MemoryStream();
+                StreamWriter sw = new StreamWriter(ms);
+                sw.Write(xml);
+                sw.Flush();
+                ms.Position = 0;
+                XmlSerializer ser = new XmlSerializer(typeof(ViewModel));
+                object o = ser.Deserialize(ms);
+                ms.Close();
+                return (ViewModel)o;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+
         /// <summary>
         /// Method to propagate changes for the data binding
         /// </summary>
@@ -221,5 +349,6 @@ namespace MediaExtractor
                     PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
     }
 }

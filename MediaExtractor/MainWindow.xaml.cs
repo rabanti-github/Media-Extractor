@@ -36,11 +36,19 @@ namespace MediaExtractor
         public MainWindow()
         {
             InitializeComponent();
-            this.CurrentModel = new ViewModel();
-            this.DataContext = this.CurrentModel;
+            SetDataContext(new ViewModel());
+            //this.CurrentModel = new ViewModel(this);
+            //this.DataContext = this.CurrentModel;
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             this.Title = versionInfo.ProductName;
             HandleArguments();
+        }
+
+        public void SetDataContext(ViewModel model)
+        {
+            this.CurrentModel = model;
+           // model.WindowInstance = this;
+            this.DataContext = this.CurrentModel;
         }
 
         /// <summary>
@@ -49,9 +57,20 @@ namespace MediaExtractor
         private void HandleArguments()
         {
             string[] args = Environment.GetCommandLineArgs();
+
+             /*
+            string x = "";
+            for (int i = 0; i < args.Length; i++)
+            {
+                x = x + "[" + i + "]" + args[i] + "\n";
+            }
+            MessageBox.Show(x);
+            */
+
             if (args != null && args.Length > 1)
             {
                 string fileName = args[1];
+                if (fileName.ToLower() == "null") { return; } // Dummy argument
                 if (File.Exists(fileName) == false) { return; }
                 else
                 {

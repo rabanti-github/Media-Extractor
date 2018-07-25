@@ -95,6 +95,23 @@ namespace MediaExtractor
             }
         }
 
+        public static string PrepareArgument(string rawArgument, string defaultToken)
+        {
+            if (string.IsNullOrEmpty(rawArgument)) { return defaultToken; }
+
+            string arg = rawArgument;
+            if (rawArgument[0] == '"' && rawArgument[rawArgument.Length - 1] == '"')
+            {
+                arg = rawArgument.Substring(1, rawArgument.Length - 2);
+            }
+            if (arg.Contains(" "))
+            {
+                arg = "\"" + arg + "\"";
+            }
+
+            return arg;
+        }
+
 
 #region CRC
 
