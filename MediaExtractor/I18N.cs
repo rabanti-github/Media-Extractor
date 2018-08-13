@@ -32,6 +32,26 @@ namespace MediaExtractor
             de_DE
         }
 
+        public static AvailableCultures GetCultureByString(string culture)
+        {
+            if (string.IsNullOrEmpty(culture))
+            {
+                return AvailableCultures.system;
+            }
+            string equalized = culture.ToLower().Replace("-","_");
+            if (equalized == AvailableCultures.de_DE.ToString().ToLower())
+            {
+                return AvailableCultures.de_DE;
+            }
+            else if (equalized == AvailableCultures.en_US.ToString().ToLower())
+            {
+                return AvailableCultures.en_US;
+            }
+            else
+            {
+                return AvailableCultures.system;
+            }
+        }
         
 
         public I18N()

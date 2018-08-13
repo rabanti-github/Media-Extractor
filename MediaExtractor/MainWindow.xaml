@@ -23,10 +23,10 @@
             </MenuItem>
             <MenuItem x:Uid="MenuItem_2" Header="Options">
                 <MenuItem x:Uid="languageMenuItem" x:Name="languageMenuItem" Header="Language">
-                    <MenuItem x:Uid="systemLanguageMenuItem" x:Name="systemLanguageMenuItem" Header="Use System Language" IsChecked="{Binding Path=LanguageSystem}" IsCheckable="True" />
+                    <MenuItem x:Uid="systemLanguageMenuItem" x:Name="systemLanguageMenuItem" Header="Use System Language" IsChecked="{Binding Path=LanguageSystem}" IsCheckable="True" Checked="systemLanguageMenuItem_Checked" />
                     <Separator x:Uid="Separator_3"/>
-                    <MenuItem x:Uid="lnguage_en_us_MenuItem" x:Name="lnguage_en_us_MenuItem" Header="English" IsChecked="{Binding Path=LanguageEnglish}" IsCheckable="True" />
-                    <MenuItem x:Uid="lnguage_de_de_MenuItem" x:Name="lnguage_de_de_MenuItem" Header="German" IsChecked="{Binding Path=LanguageGerman}" IsCheckable="True" />
+                    <MenuItem x:Uid="lnguage_en_us_MenuItem" x:Name="lnguage_en_us_MenuItem" Header="English" IsChecked="{Binding Path=LanguageEnglish}" IsCheckable="True" Checked="lnguage_en_us_MenuItem_Checked" />
+                    <MenuItem x:Uid="lnguage_de_de_MenuItem" x:Name="lnguage_de_de_MenuItem" Header="German" IsChecked="{Binding Path=LanguageGerman}" IsCheckable="True" Checked="lnguage_de_de_MenuItem_Checked" />
                 </MenuItem>
                 <MenuItem x:Uid="imageFilterMenuItem" x:Name="imageFilterMenuItem" Header="Show Embedded Image Files" IsChecked="True" IsCheckable="True" Checked="imageFilterMenuItem_Checked" Unchecked="imageFilterMenuItem_Unchecked" />
                 <MenuItem x:Uid="otherFilterMenuItem" x:Name="otherFilterMenuItem" Header="Show Other Embedded Files" IsCheckable="True" Checked="otherFilterMenuItem_Checked" Unchecked="otherFilterMenuItem_Unchecked" />

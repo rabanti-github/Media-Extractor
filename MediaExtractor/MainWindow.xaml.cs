@@ -70,7 +70,12 @@ namespace MediaExtractor
             if (args != null && args.Length > 1)
             {
                 string fileName = args[1];
-                if (fileName.ToLower() == "null") { return; } // Dummy argument
+                if (fileName.ToLower() == "null" && args.Length > 2) // Language set
+                {
+                    I18N.AvailableCultures culture = I18N.GetCultureByString(args[2]);
+                    this.CurrentModel.SetLanguage(culture);
+                    return;
+                } 
                 if (File.Exists(fileName) == false) { return; }
                 else
                 {
@@ -645,6 +650,19 @@ namespace MediaExtractor
             return true;
         }
 
+        private void systemLanguageMenuItem_Checked(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void lnguage_en_us_MenuItem_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lnguage_de_de_MenuItem_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

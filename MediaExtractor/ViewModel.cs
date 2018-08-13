@@ -38,6 +38,32 @@ namespace MediaExtractor
         private bool languageGerman;
         //public Window WindowInstance { get; set; }
 
+
+        public void SetLanguage(I18N.AvailableCultures culture)
+        {
+            if (culture == I18N.AvailableCultures.de_DE)
+            {
+                languageEnglish = false;
+                languageGerman = true;
+                languageSystem = false;
+            }
+            else if (culture == I18N.AvailableCultures.en_US)
+            {
+                languageEnglish = true;
+                languageGerman = false;
+                languageSystem = false;
+            }
+            else
+            {
+                languageEnglish = false;
+                languageGerman = false;
+                languageSystem = true;
+            }
+            NotifyPropertyChanged("LanguageSystem");
+            NotifyPropertyChanged("LanguageEnglish");
+            NotifyPropertyChanged("LanguageGerman");
+        }
+
         public bool LanguageSystem
         {
             get { return languageSystem; }
