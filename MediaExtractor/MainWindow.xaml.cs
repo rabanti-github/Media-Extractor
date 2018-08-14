@@ -5,26 +5,25 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace MediaExtractor
 {
     /// <summary>
     /// Logic of the MainWindow Class
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
 
         private ViewModel CurrentModel { get; set; }
@@ -36,10 +35,10 @@ namespace MediaExtractor
         public MainWindow()
         {
             InitializeComponent();
-            this.CurrentModel = new ViewModel();
-            this.DataContext = this.CurrentModel;
+            CurrentModel = new ViewModel();
+            DataContext = CurrentModel;
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-            this.Title = versionInfo.ProductName;
+            Title = versionInfo.ProductName;
             HandleArguments();
         }
 
@@ -49,15 +48,15 @@ namespace MediaExtractor
         private void HandleArguments()
         {
             string[] args = Environment.GetCommandLineArgs();
-            if (args != null && args.Length > 1)
+            if (args.Length > 1)
             {
                 string fileName = args[1];
                 if (File.Exists(fileName) == false) { return; }
                 else
                 {
-                    this.CurrentModel.FileName = args[1];
-                    this.CurrentModel.StatusText = "Loading file... Please wait";
-                    Thread t = new Thread(MainWindow.LoadFile);
+                    CurrentModel.FileName = args[1];
+                    CurrentModel.StatusText = "Loading file... Please wait";
+                    Thread t = new Thread(LoadFile);
                     t.Start(this);
                 }
             }
@@ -75,11 +74,13 @@ namespace MediaExtractor
             ofd.Filter = "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*";
             Nullable<bool> result = ofd.ShowDialog();
             if (result == true)
-            {
-                this.CurrentModel.FileName = ofd.FileName;
-                this.CurrentModel.StatusText = "File loaded: " + this.CurrentModel.FileName;
-                this.CurrentModel.StatusText = "Loading file... Please wait";
-                Thread t = new Thread(MainWindow.LoadFile);
+            { 
+                TextBox.Text = string.Empty;
+                ImageBox.Source = null;
+                CurrentModel.FileName = ofd.FileName;
+                CurrentModel.StatusText = "File loaded: " + CurrentModel.FileName;
+                CurrentModel.StatusText = "Loading file... Please wait";
+                Thread t = new Thread(LoadFile);
                 t.Start(this);
             }
         }
@@ -91,10 +92,10 @@ namespace MediaExtractor
         /// <param name="cursor">Cursor to show</param>
         public void ChangeCursor(Cursor cursor)
         {
-            this.Dispatcher.Invoke
+            Dispatcher.Invoke
                 (
                 System.Windows.Threading.DispatcherPriority.Normal,
-                new Action(()=> this.Cursor = cursor)
+                new Action(()=> Cursor = cursor)
                 );
         }
 
@@ -133,7 +134,7 @@ namespace MediaExtractor
                             message = "The file may be not a valid Office file or archive.";
                         }
                     }
-                    catch (Exception e)
+                    catch
                     {
                         message = "It looks like the filename is not valid. Please check the file name and path.";
                     }
@@ -158,7 +159,7 @@ namespace MediaExtractor
         /// <param name="reference">Reference to the currently active window</param>
         private static void RecalculateListViwItems(MainWindow reference)
         {
-                Application.Current.Dispatcher.Invoke((Action)(delegate
+                Application.Current.Dispatcher.Invoke(delegate
                 {
                     try
                     {
@@ -167,7 +168,7 @@ namespace MediaExtractor
                         ListViewItem lItem;
                         foreach (ExtractorItem item in reference.CurrentExtractor.EmbeddedFiles)
                         {
-                            if ((item.IsImage == true && reference.imageFilterMenuItem.IsChecked == true) || (item.IsImage == false && reference.otherFilterMenuItem.IsChecked == true))
+                            if ((item.IsImage == true && reference.ImageFilterMenuItem.IsChecked == true) || (item.IsImage == false && reference.OtherFilterMenuItem.IsChecked == true))
                             {
                                 lItem = new ListViewItem()
                                 {
@@ -194,7 +195,7 @@ namespace MediaExtractor
                     {
                         Console.WriteLine("error: " + e.Message);
                     }
-                }));
+                });
         }
 
         /// <summary>
@@ -202,8 +203,8 @@ namespace MediaExtractor
         /// </summary>
         public void SetImagePreviewVisible()
         {
-            imageBox.Visibility = Visibility.Visible;
-            textBox.Visibility = Visibility.Hidden;
+            ImageBox.Visibility = Visibility.Visible;
+            TextBox.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -211,8 +212,8 @@ namespace MediaExtractor
         /// </summary>
         public void SetTextPreviewVisible()
         {
-            textBox.Visibility = Visibility.Visible;
-            imageBox.Visibility = Visibility.Hidden;
+            TextBox.Visibility = Visibility.Visible;
+            ImageBox.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -222,63 +223,64 @@ namespace MediaExtractor
         /// <param name="e">Event arguments</param>
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Cursor c = this.Cursor;
-            this.CurrentModel.StatusText = "Loading embedded file... Please wait";
-            this.Cursor = Cursors.Wait;
+            Cursor c = Cursor;
+            CurrentModel.StatusText = "Loading embedded file... Please wait";
+            Cursor = Cursors.Wait;
             try
             {
-                ListViewItem item = (ListViewItem)this.imagesListView.SelectedItem;
-                if (item.Type == ListViewItem.FileType.image)
+                ListViewItem item = (ListViewItem)ImagesListView.SelectedItem;
+                if (item.Type == ListViewItem.FileType.Image)
                 {
-                    BitmapImage img;
-                    CurrentExtractor.GetImageSourceByName(item.FileName, out img);
-                    this.SetImagePreviewVisible();
+                    CurrentExtractor.GetImageSourceByName(item.FileName, out var img);
+                    SetImagePreviewVisible();
                     if (CurrentExtractor.HasErrors == true)
                     {
-                        this.CurrentModel.StatusText = "Embedded file could not be loaded: " + this.CurrentExtractor.LastError;
-                        this.imageBox.Source = null;
-                        this.CurrentExtractor.ResetErrors();
+                        CurrentModel.StatusText = "Embedded file could not be loaded: " + CurrentExtractor.LastError;
+                        ImageBox.Source = null;
+                        CurrentExtractor.ResetErrors();
                     }
                     else
                     {
-                        this.imageBox.Source = img;
-                        this.CurrentModel.StatusText = item.FileName + " loaded";
+                        ImageBox.Source = img;
+                        CurrentModel.StatusText = item.FileName + " loaded";
                     }
                 }
-                else if (item.Type == ListViewItem.FileType.xml || item.Type == ListViewItem.FileType.text)
+                else if (item.Type == ListViewItem.FileType.Xml || item.Type == ListViewItem.FileType.Text)
                 {
-                    string text;
-                    CurrentExtractor.GetGenericTextByName(item.FileName, out text);
-                    this.SetTextPreviewVisible();
+                    CurrentExtractor.GetGenericTextByName(item.FileName, out var text);
+                    SetTextPreviewVisible();
                     if (CurrentExtractor.HasErrors == true)
                     {
-                        this.CurrentModel.StatusText = "Text / XML file could not be loaded: " + this.CurrentExtractor.LastError;
-                        this.textBox.Text = string.Empty;
-                        this.CurrentExtractor.ResetErrors();
+                        CurrentModel.StatusText = "Text / XML file could not be loaded: " + CurrentExtractor.LastError;
+                        TextBox.Text = string.Empty;
+                        CurrentExtractor.ResetErrors();
                     }
                     else
                     {
-                        this.textBox.Text = text;
-                        this.CurrentModel.StatusText = item.FileName + " loaded";
+                        TextBox.Text = text;
+                        CurrentModel.StatusText = item.FileName + " loaded";
                     }
                 }
                 else
                 {
-                    this.SetTextPreviewVisible();
-                    this.textBox.Text = string.Empty;
-                    // Fallback
+                    SetTextPreviewVisible();
+                    TextBox.Text = string.Empty;
+                    // Fall-back
                 }
             }
-            catch(Exception ex)
-            { }
-            this.Cursor = c;
-            if (this.imagesListView.Items.Count == 0)
+            catch
             {
-                this.CurrentModel.SaveStatus = false;
+                // ignore
+            }
+
+            Cursor = c;
+            if (ImagesListView.Items.Count == 0)
+            {
+                CurrentModel.SaveStatus = false;
             }
             else
             {
-                this.CurrentModel.SaveStatus = true;
+                CurrentModel.SaveStatus = true;
             }
         }
 
@@ -287,9 +289,9 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void imageFilterMenuItem_Checked(object sender, RoutedEventArgs e)
+        private void ImageFilterMenuItem_Checked(object sender, RoutedEventArgs e)
         {
-            MainWindow.RecalculateListViwItems(this);
+            RecalculateListViwItems(this);
         }
 
         /// <summary>
@@ -297,9 +299,9 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void otherFilterMenuItem_Checked(object sender, RoutedEventArgs e)
+        private void OtherFilterMenuItem_Checked(object sender, RoutedEventArgs e)
         {
-            MainWindow.RecalculateListViwItems(this);
+            RecalculateListViwItems(this);
         }
 
         /// <summary>
@@ -307,9 +309,9 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void imageFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
+        private void ImageFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
         {
-            MainWindow.RecalculateListViwItems(this);
+            RecalculateListViwItems(this);
         }
 
         /// <summary>
@@ -317,9 +319,9 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void otherFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
+        private void OtherFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
         {
-            MainWindow.RecalculateListViwItems(this);
+            RecalculateListViwItems(this);
         }
 
         /// <summary>
@@ -327,7 +329,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void quitMenuItem_Click(object sender, RoutedEventArgs e)
+        private void QuitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
@@ -337,7 +339,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void openFileMenuItem_Click(object sender, RoutedEventArgs e)
+        private void OpenFileMenuItem_Click(object sender, RoutedEventArgs e)
         {
             OpenFile();
         }
@@ -347,7 +349,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void saveAllFilesMenuItem_Click(object sender, RoutedEventArgs e)
+        private void SaveAllFilesMenuItem_Click(object sender, RoutedEventArgs e)
         {
             SaveAllFiles();
         }
@@ -357,7 +359,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void saveFileMenuItem_Click(object sender, RoutedEventArgs e)
+        private void SaveFileMenuItem_Click(object sender, RoutedEventArgs e)
         {
             SaveFile();
         }
@@ -367,12 +369,14 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-            string name = versionInfo.ProductName;
-            string version = versionInfo.ProductVersion.ToString();
-            MessageBox.Show(name + " v" + version + "\n--------------------------\nAuthor: Raphael Stoeckli\nLicense: MIT", "About", MessageBoxButton.OK, MessageBoxImage.Information);
+            //FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+            //string name = versionInfo.ProductName;
+            //string version = versionInfo.ProductVersion.ToString();
+            //MessageBox.Show(name + " v" + version + "\n--------------------------\nAuthor: Raphael Stoeckli\nLicense: MIT", "About", MessageBoxButton.OK, MessageBoxImage.Information);
+            About about = new About();
+            about.ShowDialog();
         }
 
         /// <summary>
@@ -390,7 +394,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void saveFileButton_Click(object sender, RoutedEventArgs e)
+        private void SaveFileButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFile();
         }
@@ -400,7 +404,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void saveAllFilesButton_Click(object sender, RoutedEventArgs e)
+        private void SaveAllFilesButton_Click(object sender, RoutedEventArgs e)
         {
             SaveAllFiles();
         }
@@ -418,8 +422,6 @@ namespace MediaExtractor
                 CommonFileDialogResult res = ofd.ShowDialog();            
                 if (res == CommonFileDialogResult.Ok)
                 {
-                    
-                    string fileName;
                     bool fileExists, check;
                     int errors = 0;
                     int skipped = 0;
@@ -428,9 +430,9 @@ namespace MediaExtractor
                     int overwritten = 0;
                     FileInfo fi;
                     ExistingFileDialog.ResetDialog();
-                    foreach (MediaExtractor.ListViewItem item in this.CurrentModel.ListViewItems)
+                    foreach (ListViewItem item in CurrentModel.ListViewItems)
                     {
-                        fileExists = CheckFileExists(ofd.FileName, item.FileReference, this.CurrentModel.KeepFolderStructure, out fileName);
+                        fileExists = CheckFileExists(ofd.FileName, item.FileReference, CurrentModel.KeepFolderStructure, out var fileName);
                         if (fileExists == true)
                         {
                             if (ExistingFileDialog.RemeberDecision == null || ExistingFileDialog.RemeberDecision.Value != true)
@@ -446,7 +448,7 @@ namespace MediaExtractor
                         {
                             if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Cancel) // Cancel extractor
                             {
-                                this.CurrentModel.StatusText = "The save process was canceled";
+                                CurrentModel.StatusText = "The save process was canceled";
                                 MessageBox.Show("The save process was canceled", "Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
                                 return;
                             }
@@ -505,14 +507,14 @@ namespace MediaExtractor
                         {
                             message = sb.ToString();
                         }
-                        this.CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped, " + errors + " not extracted (errors)";
+                        CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped, " + errors + " not extracted (errors)";
                         MessageBox.Show(message, "Not all files were extracted", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                     else
                     {
-                        this.CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped";
+                        CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped";
                     }
-                    if (this.CurrentModel.ShowInExplorer)
+                    if (CurrentModel.ShowInExplorer)
                     {
                         bool open = Utils.ShowInExplorer(ofd.FileName);
                         if (open == false)
@@ -561,7 +563,7 @@ namespace MediaExtractor
         {
             try
             {
-                MediaExtractor.ListViewItem item = (MediaExtractor.ListViewItem)this.imagesListView.SelectedItem;
+                ListViewItem item = (ListViewItem)ImagesListView.SelectedItem;
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Title = "Save current File as...";
                 sfd.Filter = "All files|*.*";
@@ -571,7 +573,7 @@ namespace MediaExtractor
                 {
                     Save(item.FileReference, sfd.FileName, true);
                 }
-                if (this.CurrentModel.ShowInExplorer)
+                if (CurrentModel.ShowInExplorer)
                 {
                     FileInfo fi = new FileInfo(sfd.FileName);
                     bool open = Utils.ShowInExplorer(fi.DirectoryName);
@@ -583,7 +585,7 @@ namespace MediaExtractor
             }
             catch
             {
-                return;
+                // ignore
             }
         }
 
@@ -611,14 +613,14 @@ namespace MediaExtractor
                 fs.Close();
                 if (writeStatus == true)
                 {
-                    this.CurrentModel.StatusText = "The file was saved as: " + filename;
+                    CurrentModel.StatusText = "The file was saved as: " + filename;
                 }
             }
             catch (Exception e)
             {
                 if (writeStatus == true)
                 {
-                    this.CurrentModel.StatusText = "Could not save the file: " + e.Message;
+                    CurrentModel.StatusText = "Could not save the file: " + e.Message;
                     MessageBox.Show("The file could not be saved", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
                     return false;
                 }
@@ -626,6 +628,58 @@ namespace MediaExtractor
             return true;
         }
 
+        /// <summary>
+        /// Opens the project website
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start(Properties.Settings.Default.Website);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+        }
 
+        /// <summary>
+        /// Opens the license file
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void LicenseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start("license.txt");
+            }
+            catch
+            {
+                MessageBox.Show("The license file 'license.txt' was not found.", "License could not be found",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Opens the change log
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void ChangeLogMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start("changelog.txt");
+            }
+            catch
+            {
+                MessageBox.Show("The change log 'changelog.txt' was not found.", "Change log could not be found",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

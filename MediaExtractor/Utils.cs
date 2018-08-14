@@ -28,7 +28,7 @@ namespace MediaExtractor
                 Process.Start(location);
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -48,7 +48,7 @@ namespace MediaExtractor
                 index++;
                 size = size / 1024;
             }
-            return String.Format("{0:0.##} {1}", size, new string[] {"B", "KB", "MB", "GB", "TB"}[index]);
+            return String.Format("{0:0.##} {1}", size, new[] {"B", "KB", "MB", "GB", "TB"}[index]);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace MediaExtractor
                     if (match.Groups.Count > 3)
                     {
                         numberString = match.Groups[2].Value;
-                        int.TryParse(numberString, out number);
+                        Int32.TryParse(numberString, out number);
                         number++;
                         path = fi.DirectoryName + d + match.Groups[1].Value + number + match.Groups[3].Value + fi.Extension;
                     }
@@ -89,14 +89,33 @@ namespace MediaExtractor
                     }
                 }
             }
-            catch (Exception e)
+            catch 
             {
                 return fullPath + "(error).tmp";
             }
         }
 
+        /// <summary>
+        /// Function to retrieve the time stamp of the linker / assembly
+        /// </summary>
+        /// <param name="path">File path of the assembly</param>
+        /// <returns>Date of the assembly</returns>
+        /// <remarks>http://www.codinghorror.com/blog/2005/04/determining-build-date-the-hard-way.html</remarks>
+        public static DateTime RetrieveLinkerTimestamp(string path)
+        {
+            const int peHeaderOffset = 60;
+            const int linkerTimestampOffset = 8;
+            byte[] b = new byte[2048];
+            using (FileStream s = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                s.Read(b, 0, 2048);
+            }
+            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(BitConverter.ToInt32(b, BitConverter.ToInt32(b, peHeaderOffset) + linkerTimestampOffset));
+            return dt.AddHours(TimeZone.CurrentTimeZone.GetUtcOffset(dt).Hours);
+        }
 
-#region CRC
+
+        #region CRC
 
         private const int bufferSize = 4096;
         private const uint polynome = 0xEDB88320;
@@ -120,7 +139,7 @@ namespace MediaExtractor
                     number = GetCrc(fs);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 number = 0;
             }
@@ -185,6 +204,7 @@ namespace MediaExtractor
             inizialized = true;
         }
 #endregion
+
 
     }
 }

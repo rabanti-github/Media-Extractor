@@ -18,15 +18,15 @@ namespace MediaExtractor
         public enum FileType
         {
             /// <summary>Entry is an image</summary>
-            image,
+            Image,
             /// <summary>Entry is an XML file</summary>
-            xml,
+            Xml,
             /// <summary>Entry is a text file</summary>
-            text,
+            Text,
             /// <summary>Entry is not an image</summary>
-            other,
+            Other,
             /// <summary>Entry no file at all / error</summary>
-            none,
+            None,
         }
 
         /// <summary>
@@ -53,33 +53,25 @@ namespace MediaExtractor
         public ExtractorItem FileReference { get; set; }
 
         /// <summary>
-        /// Default constructor
-        /// </summary>
-        public ListViewItem()
-        {
-
-        }
-
-        /// <summary>
         /// Method to determine the type of the item
         /// </summary>
         public void SetType()
         {
-            if (this.FileReference.IsXml)
+            if (FileReference.IsXml)
             {
-                this.Type = FileType.xml;
+                Type = FileType.Xml;
             }
-            else if (this.FileReference.IsImage)
+            else if (FileReference.IsImage)
             {
-                this.Type = FileType.image;
+                Type = FileType.Image;
             }
-            else if (this.FileReference.IsText)
+            else if (FileReference.IsText)
             {
-                this.Type = FileType.text;
+                Type = FileType.Text;
             }
             else
             {
-                this.Type = FileType.other;
+                Type = FileType.Other;
             }
         }
 

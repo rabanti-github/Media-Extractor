@@ -16,7 +16,7 @@ namespace MediaExtractor
     /// <summary>
     /// Class for extraction and rendering of embedded files in an opened file or archive
     /// </summary>
-    public partial class Extractor
+    public class Extractor
     {
         /// <summary>
         /// Enum for the source format of the processed file or archive
@@ -64,7 +64,7 @@ namespace MediaExtractor
         /// </summary>
         public List<ExtractorItem> EmbeddedFiles
         {
-            get { return this.embeddedFiles; }
+            get { return embeddedFiles; }
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace MediaExtractor
         {
             get
             {
-                if (this.embeddedFiles == null) { return 0; }
-                else { return this.embeddedFiles.Count;  }
+                if (embeddedFiles == null) { return 0; }
+                else { return embeddedFiles.Count;  }
             }
         }
 
@@ -152,7 +152,7 @@ namespace MediaExtractor
             try
             {
                 MemoryStream ms = GetFileStream();
-                SevenZipExtractor.ArchiveFile ex = new ArchiveFile(ms, SevenZipFormat.Zip);
+                ArchiveFile ex = new ArchiveFile(ms, SevenZipFormat.Zip);
                 embeddedFiles = GetEntries(format, ref ex);
                 currentModel.NumberOfFiles = embeddedFiles.Count;
                 for(int i = 0; i < currentModel.NumberOfFiles; i++)
@@ -285,8 +285,6 @@ namespace MediaExtractor
                 case EmbeddedFormat.All:
                     allFiles = true;
                     break;
-                default:
-                    break;
             }
             List<ExtractorItem> list = new List<ExtractorItem>();
             MemoryStream ms;
@@ -324,7 +322,7 @@ namespace MediaExtractor
         {
             try
             {
-                FileStream fs = new FileStream(this.FileName, FileMode.Open);
+                FileStream fs = new FileStream(FileName, FileMode.Open);
                 MemoryStream ms = new MemoryStream((int)fs.Length);
                 fs.CopyTo(ms);
                 fs.Flush();
@@ -334,8 +332,8 @@ namespace MediaExtractor
             }
             catch (Exception e)
             {
-                this.hasErrors = true;
-                this.lastError = e.Message;
+                hasErrors = true;
+                lastError = e.Message;
                 return new MemoryStream();
             }
         }

@@ -7,7 +7,7 @@ namespace MediaExtractor
     /// <summary>
     /// Logic of the ExistingFileDialog Class
     /// </summary>
-    public partial class ExistingFileDialog : Window
+    public partial class ExistingFileDialog
     {
         /// <summary>
         /// Enum of possible dialog results
@@ -39,19 +39,19 @@ namespace MediaExtractor
         /// <summary>
         /// Static dialog result
         /// </summary>
-        public static Result DialogResult = Result.None;
+        public new static Result DialogResult = Result.None;
         /// <summary>
         /// Boolean indicates whether the dialog shall be reoccurring (false) or be skipped with the last decision as default result (true)
         /// </summary>
         public static bool? RemeberDecision;
 
         /// <summary>
-        /// Resets the dialog (dialog result and remeber decision)
+        /// Resets the dialog (dialog result and remember decision)
         /// </summary>
         public static void ResetDialog()
         {
-            ExistingFileDialog.DialogResult = Result.None;
-            ExistingFileDialog.RemeberDecision = null;
+            DialogResult = Result.None;
+            RemeberDecision = null;
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace MediaExtractor
         public ExistingFileDialog()
         {
             InitializeComponent();
-            ExistingFileDialog.ResetDialog();
-            this.cancelButton.Focus();
+            ResetDialog();
+            CancelButton.Focus();
         }
 
         /// <summary>
@@ -120,8 +120,8 @@ namespace MediaExtractor
             NewSize = nSize;
             NewCrc = nCrc;
             SetValues();
-            ExistingFileDialog.ResetDialog();
-            this.cancelButton.Focus();
+            ResetDialog();
+            CancelButton.Focus();
         }
 
         /// <summary>
@@ -129,14 +129,14 @@ namespace MediaExtractor
         /// </summary>
         private void SetValues()
         {
-            this.existingNameLabel.Content = ExisitingName;
-            this.exisitingSizeLabel.Content = Utils.ConvertFileSize(ExistingSize);
-            this.existingDateLabel.Content = ExistingDate.ToString("G");
-            this.exisitingCrcLabel.Content = ExistingCrc.ToString("X");
-            this.archiveNameLabel.Content = NewName;
-            this.archiveSizeLabel.Content = Utils.ConvertFileSize(NewSize);
-            this.archiveDateLabel.Content = NewDate.ToString("G");
-            this.archiveCrcLabel.Content = NewCrc.ToString("X");
+            ExistingNameLabel.Content = ExisitingName;
+            ExisitingSizeLabel.Content = Utils.ConvertFileSize(ExistingSize);
+            ExistingDateLabel.Content = ExistingDate.ToString("G");
+            ExisitingCrcLabel.Content = ExistingCrc.ToString("X");
+            ArchiveNameLabel.Content = NewName;
+            ArchiveSizeLabel.Content = Utils.ConvertFileSize(NewSize);
+            ArchiveDateLabel.Content = NewDate.ToString("G");
+            ArchiveCrcLabel.Content = NewCrc.ToString("X");
         }
         
         /// <summary>
@@ -145,14 +145,16 @@ namespace MediaExtractor
         /// <param name="result">Dialog result to set</param>
         private void CloseDialog(Result result)
         {
-            ExistingFileDialog.DialogResult = result;
-            ExistingFileDialog.RemeberDecision = this.rememberCheckbox.IsChecked;
+            DialogResult = result;
+            RemeberDecision = RememberCheckbox.IsChecked;
             try
             {
-                this.Close();
+                Close();
             }
-            catch {}
-            
+            catch
+            {
+                // ignored
+            }
         }
 
         /// <summary>
@@ -160,7 +162,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender of the button</param>
         /// <param name="e">Button arguments</param>
-        private void overwriteButton_Click(object sender, RoutedEventArgs e)
+        private void OverwriteButton_Click(object sender, RoutedEventArgs e)
         {
            CloseDialog(Result.Overwrite);            
         }
@@ -170,11 +172,11 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender of the button</param>
         /// <param name="e">Button arguments</param>
-        private void skipButton_Click(object sender, RoutedEventArgs e)
+        private void SkipButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = Result.Skip;
-            RemeberDecision = this.rememberCheckbox.IsChecked;
-            this.Close();
+            RemeberDecision = RememberCheckbox.IsChecked;
+            Close();
         }
 
         /// <summary>
@@ -182,7 +184,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender of the button</param>
         /// <param name="e">Button arguments</param>
-        private void renameButton_Click(object sender, RoutedEventArgs e)
+        private void RenameButton_Click(object sender, RoutedEventArgs e)
         {
             CloseDialog(Result.Rename);          
         }
@@ -192,7 +194,7 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender of the button</param>
         /// <param name="e">Button arguments</param>
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             CloseDialog(Result.Cancel);          
         }
@@ -215,9 +217,9 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender of the event</param>
         /// <param name="e">Event arguments</param>
-        private void infoImage_MouseEnter(object sender, MouseEventArgs e)
+        private void InfoImage_MouseEnter(object sender, MouseEventArgs e)
         {
-            infoBox.Visibility = Visibility.Visible;
+            InfoBox.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -225,9 +227,9 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="sender">Sender of the event</param>
         /// <param name="e">Event arguments</param>
-        private void infoImage_MouseLeave(object sender, MouseEventArgs e)
+        private void InfoImage_MouseLeave(object sender, MouseEventArgs e)
         {
-            infoBox.Visibility = Visibility.Hidden;
+            InfoBox.Visibility = Visibility.Hidden;
         }
 
     }

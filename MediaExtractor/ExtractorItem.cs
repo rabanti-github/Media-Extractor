@@ -15,7 +15,7 @@ namespace MediaExtractor
     {
         private BitmapImage image;
         private string genericText;
-        private bool initialized = false;
+        private bool initialized;
         
         /// <summary>
         /// Relative path of the item within the archive / file
@@ -186,16 +186,16 @@ namespace MediaExtractor
         {
             try
             {
-                StreamReader sr = new StreamReader(this.Stream);
-                this.genericText = sr.ReadToEnd();
+                StreamReader sr = new StreamReader(Stream);
+                genericText = sr.ReadToEnd();
                 ValidGenericText = true;
-                this.ErrorMessage = String.Empty;
+                ErrorMessage = String.Empty;
             }
             catch (Exception e)
             {
-                this.ErrorMessage = e.Message;
-                this.ValidGenericText = false;
-                this.genericText = string.Empty;
+                ErrorMessage = e.Message;
+                ValidGenericText = false;
+                genericText = string.Empty;
             }
             
         }
@@ -206,7 +206,7 @@ namespace MediaExtractor
         public void CreateXml()
         {
             CreateText();
-            if (this.ValidGenericText == false)
+            if (ValidGenericText == false)
             {
                 return;
             }
@@ -214,7 +214,7 @@ namespace MediaExtractor
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.LoadXml(this.genericText);
+                doc.LoadXml(genericText);
                 StringBuilder sb = new StringBuilder();
                 TextWriter tw = new StringWriter(sb);
                 XmlTextWriter xtw = new XmlTextWriter(tw);
@@ -222,13 +222,13 @@ namespace MediaExtractor
                 doc.Save(xtw);
                 xtw.Flush();
                 xtw.Close();
-                this.genericText = sb.ToString();
+                genericText = sb.ToString();
             }
             catch (Exception e)
             {
-                this.ErrorMessage = e.Message;
-                this.ValidGenericText = false;
-                this.genericText = string.Empty;
+                ErrorMessage = e.Message;
+                ValidGenericText = false;
+                genericText = string.Empty;
             }
         }
 
@@ -238,29 +238,29 @@ namespace MediaExtractor
         /// <param name="retry">If false, only an attempt as png file will be performed. If true, all formats (jpg, emf, bmp, gif and wmf) will be tried after a fail of a png conversion</param>
         public void CreateImage(bool retry)
         {
-            List<System.Drawing.Imaging.ImageFormat> formats = new List<System.Drawing.Imaging.ImageFormat>();
-            formats.Add(System.Drawing.Imaging.ImageFormat.Png);
+            List<ImageFormat> formats = new List<ImageFormat>();
+            formats.Add(ImageFormat.Png);
             if (retry == true)
             {
-                formats.Add(System.Drawing.Imaging.ImageFormat.Jpeg);
-                formats.Add(System.Drawing.Imaging.ImageFormat.Emf);
-                formats.Add(System.Drawing.Imaging.ImageFormat.Bmp);
-                formats.Add(System.Drawing.Imaging.ImageFormat.Gif);
-                formats.Add(System.Drawing.Imaging.ImageFormat.Wmf);
+                formats.Add(ImageFormat.Jpeg);
+                formats.Add(ImageFormat.Emf);
+                formats.Add(ImageFormat.Bmp);
+                formats.Add(ImageFormat.Gif);
+                formats.Add(ImageFormat.Wmf);
             }
-            foreach (System.Drawing.Imaging.ImageFormat format in formats)
+            foreach (ImageFormat format in formats)
             {
                 try
                 {  
                     MemoryStream ms2 = new MemoryStream();
-                    if (format == System.Drawing.Imaging.ImageFormat.Emf || format == System.Drawing.Imaging.ImageFormat.Wmf)
+                    if (format == ImageFormat.Emf || format == ImageFormat.Wmf)
                     {
-                        Metafile mf = new Metafile(this.Stream);
+                        Metafile mf = new Metafile(Stream);
                         mf.Save(ms2, format);
                     }
                     else
                     {
-                        System.Drawing.Image img = System.Drawing.Image.FromStream(this.Stream);
+                        System.Drawing.Image img = System.Drawing.Image.FromStream(Stream);
                         img.Save(ms2, format);
                     }
                         
@@ -272,16 +272,16 @@ namespace MediaExtractor
                     ims.StreamSource = ms2;
                     ims.EndInit();
                     ims.Freeze();
-                    this.image = ims;
+                    image = ims;
                     ValidImage = true;
-                    this.ErrorMessage = String.Empty;
+                    ErrorMessage = String.Empty;
                     return;
                 }
                 catch (Exception e)
                 {
-                    this.ValidImage = false;
-                    this.ErrorMessage = e.Message;
-                    this.image = null;
+                    ValidImage = false;
+                    ErrorMessage = e.Message;
+                    image = null;
                 }
             }
         }

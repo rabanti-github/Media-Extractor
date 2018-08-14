@@ -5,6 +5,7 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Media.Imaging;
@@ -27,6 +28,7 @@ namespace MediaExtractor
         private float numberOfFiles;
         private float currentFile;
         private int progress;
+        private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
 
         /// <summary>
         /// The current progress of extraction or rendering (progress bar from 0 to 100 %)
@@ -95,6 +97,12 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// If true, Windows Explorer will be opened at the selected location after the extraction
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the Explorer shall be opened, otherwise, <c>false</c>.
+        /// </value>
         public bool ShowInExplorer
         {
             get { return showInExplorer; }
@@ -177,10 +185,10 @@ namespace MediaExtractor
         /// </summary>
         public ViewModel()
         {
-            this.ListViewItems = new ObservableCollection<ListViewItem>();
-            this.SaveStatus = false;
-            this.FileName = string.Empty;
-            this.StatusText = "Ready";
+            ListViewItems = new ObservableCollection<ListViewItem>();
+            SaveStatus = false;
+            FileName = string.Empty;
+            StatusText = "Ready";
         }
 
         /// <summary>
@@ -188,14 +196,14 @@ namespace MediaExtractor
         /// </summary>
         public void CalculateProgress()
         {
-            if (this.numberOfFiles == 0)
+            if (Math.Abs(numberOfFiles) < FLOATING_POINT_TOLERANCE)
             {
-                this.Progress = 0;
+                Progress = 0;
             }
             else
             {
-                float p = this.currentFile / this.numberOfFiles * 100;
-                this.Progress = (int)p;
+                float p = currentFile / numberOfFiles * 100;
+                Progress = (int)p;
             }
         }
 
@@ -204,16 +212,21 @@ namespace MediaExtractor
         /// </summary>
         public void ClearListView()
         {
-            this.ListViewItems.Clear();
+            ListViewItems.Clear();
             NotifyPropertyChanged("ListViewItems");
-            this.SaveAllStatus = false;
-            this.SaveStatus = false;
+            SaveAllStatus = false;
+            SaveStatus = false;
         }
 
         /// <summary>
         /// Method to propagate changes for the data binding
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Notifies a property change
+        /// </summary>
+        /// <param name="propertyName">Name of the property</param>
         public void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

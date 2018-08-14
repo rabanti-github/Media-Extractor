@@ -10,10 +10,21 @@ Media-Extractor is an application to preview and extract packed media in Microso
 * Supports export of all embedded files at once or individually
 * Supports export of other embedded data (e.g. xml files in xlsx or docx)
 
+## Requirements
 
-## Requirements / Dependencies
-
+* Microsoft Windows 7, 8.x, 10
 * .NET 4.5 or higher
-* SevenZipExtractor (maintained by NuGet)
-* WindowsAPICodePack-Core (maintained by NuGet)
-* WindowsAPICodePack-Shell (maintained by NuGet)
+
+Media-Extractor does not need an installation. It can be executed by:
+
+* Double-clicking on the exe file
+* Dragging a supported media file into the exe file
+* Using the option in Windows Explorer "Open with..."
+
+## Development Dependencies
+
+The following libraries / dependencies are necessary for the development of Media-Extractor. All of them are maintained by NuGet:
+
+* SevenZipExtractor
+* WindowsAPICodePack-Core
+* WindowsAPICodePack-Shell

@@ -1,5 +1,15 @@
 # Change Log
 
+## v1.4.1
+---
+Release Date: **14.08.2018**
+
+- Minor bug fixes
+- Improved About dialog
+- Added link to project website, license text and change log (this file)
+- Fixed typos
+- Code cleanup
+
 ## v1.4.0
 ---
 Release Date: **11.03.2018**
