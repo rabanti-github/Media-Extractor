@@ -653,12 +653,8 @@ namespace MediaExtractor
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void LicenseMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Process.Start("license.txt");
-            }
-            catch
-            {
+            if (Utils.ShowInExplorer("license.txt") == false)
+            { 
                 MessageBox.Show("The license file 'license.txt' was not found.", "License could not be found",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -671,11 +667,7 @@ namespace MediaExtractor
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ChangeLogMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Process.Start("changelog.txt");
-            }
-            catch
+            if (Utils.ShowInExplorer("changelog.txt") == false)
             {
                 MessageBox.Show("The change log 'changelog.txt' was not found.", "Change log could not be found",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
