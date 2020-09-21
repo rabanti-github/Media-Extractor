@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300" Icon="media/media_extractor.ico">
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}" />
+    </Window.Style>
     <Grid UseLayoutRounding="False" Margin="0,26,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335*"/>
@@ -19,12 +22,15 @@
                 <Separator/>
                 <MenuItem x:Name="QuitMenuItem" Header="Quit" Click="QuitMenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="Options">
+            <MenuItem Header="Document">
                 <MenuItem x:Name="ImageFilterMenuItem" Header="Show Embedded Image Files" IsChecked="True" IsCheckable="True" Checked="ImageFilterMenuItem_Checked" Unchecked="ImageFilterMenuItem_Unchecked" />
                 <MenuItem x:Name="OtherFilterMenuItem" Header="Show Other Embedded Files" IsCheckable="True" Checked="OtherFilterMenuItem_Checked" Unchecked="OtherFilterMenuItem_Unchecked" />
                 <Separator/>
                 <MenuItem x:Name="KeepFolderStructureMenuItem" IsChecked="{Binding Path=KeepFolderStructure}" Header="Keep Folder Structure when Extracting" IsCheckable="True" />
                 <MenuItem x:Name="ShowInExplorarMenuItem" IsChecked="{Binding Path=ShowInExplorer}" Header="Show in Explorer after Extracting" IsCheckable="True" />
+            </MenuItem>
+            <MenuItem Header="Appearance">
+                <MenuItem x:Name="DarkModeMenuItem" IsChecked="{Binding Path=UseDarkMode}" Header="Dark Mode" IsCheckable="True" Click="DarkModeMenuItem_Click" />
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem x:Name="AboutMenuItem" Header="About" Click="AboutMenuItem_Click"/>
@@ -41,8 +47,8 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Button x:Name="OpenFileButton" Content="Open File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="94" Click="OpenFileButton_Click"/>
-                <Label Content="Source File Path" Margin="10,37,2,0" VerticalAlignment="Top"/>
+                <Button x:Name="OpenFileButton" Content="Open Document" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" Click="OpenFileButton_Click"/>
+                <Label Content="Source Document Path" Margin="10,37,2,0" VerticalAlignment="Top"/>
                 <TextBox Text="{Binding Path=FileName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" x:Name="PathField" Height="23" Margin="10,63,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
                 <Label Content="Embedded Files" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top"/>
                 <ListView x:Name="ImagesListView" Margin="10,122,10,10" ItemsSource="{Binding Path=ListViewItems}" SelectionChanged="ListView_SelectionChanged">

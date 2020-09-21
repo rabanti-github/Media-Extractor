@@ -5,6 +5,7 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+using AdonisUI;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
@@ -159,6 +160,10 @@ namespace MediaExtractor
         /// <param name="reference">Reference to the currently active window</param>
         private static void RecalculateListViwItems(MainWindow reference)
         {
+            if (reference.CurrentModel == null)
+            {
+                return;
+            }
                 Application.Current.Dispatcher.Invoke(delegate
                 {
                     try
@@ -671,6 +676,23 @@ namespace MediaExtractor
             {
                 MessageBox.Show("The change log 'changelog.txt' was not found.", "Change log could not be found",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables the Dark Mode theme
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void DarkModeMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentModel.UseDarkMode)
+            {
+                AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.DarkColorScheme);
+            }
+            else
+            {
+                AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.LightColorScheme);
             }
         }
     }

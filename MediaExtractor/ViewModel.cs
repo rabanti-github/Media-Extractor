@@ -25,6 +25,7 @@ namespace MediaExtractor
         private bool saveAllStatus;
         private bool keepFolderStructure = true;
         private bool showInExplorer = true;
+        private bool useDarkMode = false;
         private float numberOfFiles;
         private float currentFile;
         private int progress;
@@ -112,6 +113,24 @@ namespace MediaExtractor
                 NotifyPropertyChanged("ShowInExplorer");
             }
         }
+
+
+        /// <summary>
+        /// If true, the Application will be rendered in Dark Mode
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if dark Mode is used, otherwise, <c>false</c> (use Light Mode).
+        /// </value>
+        public bool UseDarkMode
+        {
+            get { return useDarkMode; }
+            set
+            {
+                useDarkMode = value;
+                NotifyPropertyChanged("UseDarkMode");
+            }
+        }
+
 
         /// <summary>
         /// Enabled / Disabled State of the button to save a single files
