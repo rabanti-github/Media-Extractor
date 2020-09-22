@@ -1,4 +1,7 @@
-﻿<Window x:Class="MediaExtractor.ExistingFileDialog"
+﻿<adonisControls:AdonisWindow 
+        x:Class="MediaExtractor.ExistingFileDialog"
+        xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+        xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -50,8 +53,8 @@
             <StackPanel Grid.Column="2" Grid.Row="1">
                 <Label x:Name="ExistingNameLabel" Padding="5,1"></Label>
                 <Label x:Name="ExistingDateLabel" Padding="5,1"></Label>
-                <Label x:Name="ExisitingSizeLabel" Padding="5,1"></Label>
-                <Label x:Name="ExisitingCrcLabel" Padding="5,1"></Label>
+                <Label x:Name="ExistingSizeLabel" Padding="5,1"></Label>
+                <Label x:Name="ExistingCrcLabel" Padding="5,1"></Label>
             </StackPanel>
             <StackPanel Grid.Column="4" Grid.Row="1">
                 <Label x:Name="ArchiveNameLabel" Padding="5,1"></Label>
@@ -63,4 +66,4 @@
 
 
     </Grid>
-</Window>
+</adonisControls:AdonisWindow>

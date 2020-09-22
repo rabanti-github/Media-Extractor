@@ -32,7 +32,7 @@ namespace MediaExtractor
         {
             try
             {
-               System.Diagnostics.Process.Start(Properties.Settings.Default.Website);
+                System.Diagnostics.Process.Start(Properties.Settings.Default.Website);
             }
             catch (Exception exception)
             {
@@ -42,7 +42,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// CLoses the about window
+        /// Closes the about window
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>

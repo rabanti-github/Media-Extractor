@@ -1,4 +1,5 @@
 # Media-Extractor
+
 ![license](https://img.shields.io/github/license/rabanti-github/media-extractor.svg)
 ![GitHub Releases](https://img.shields.io/github/downloads/rabanti-github/media-extractor/latest/total.svg)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor?ref=badge_shield)
@@ -30,9 +31,9 @@ Media-Extractor does not need an installation. It can be executed by:
 The following libraries / dependencies are necessary for the development of Media-Extractor. All of them are maintained by NuGet:
 
 * SevenZipExtractor
-* WindowsAPICodePack-Core
-* WindowsAPICodePack-Shell
-
+* WindowsAPICodePack-Core and WindowsAPICodePack-Shell
+* AdonisUI and AdonisUI.ClassicTheme
 
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor?ref=badge_large)

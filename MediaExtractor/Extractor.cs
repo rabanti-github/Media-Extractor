@@ -209,7 +209,7 @@ namespace MediaExtractor
                 if (item.FileName == filename && item.IsImage)
                 {
                     image = item.Image;
-                    if (item.ValidImage == false)
+                    if (!item.ValidImage)
                     {
                         lastError = item.ErrorMessage;
                         hasErrors = true;
@@ -240,7 +240,7 @@ namespace MediaExtractor
                 if (item.FileName == filename && (item.IsText || item.IsXml))
                 {
                     genericText = item.GenericText;
-                    if (item.ValidGenericText == false)
+                    if (!item.ValidGenericText)
                     {
                         lastError = item.ErrorMessage;
                         hasErrors = true;
@@ -294,7 +294,7 @@ namespace MediaExtractor
             ExtractorItem item;
             for(int i = 0; i < archive.Entries.Count; i++)
             {
-                if ((archive.Entries[i].IsFolder == false && archive.Entries[i].FileName.ToLower().EndsWith(extension)) || allFiles == true)
+                if ((!archive.Entries[i].IsFolder && archive.Entries[i].FileName.ToLower().EndsWith(extension)) || allFiles == true)
                 {
                     ms = new MemoryStream();
                     archive.Entries[i].Extract(ms);

@@ -440,7 +440,7 @@ namespace MediaExtractor
                         fileExists = CheckFileExists(ofd.FileName, item.FileReference, CurrentModel.KeepFolderStructure, out var fileName);
                         if (fileExists == true)
                         {
-                            if (ExistingFileDialog.RemeberDecision == null || ExistingFileDialog.RemeberDecision.Value != true)
+                            if (ExistingFileDialog.RememberDecision == null || ExistingFileDialog.RememberDecision.Value != true)
                             {
                                 fi = new FileInfo(fileName);
                                 uint crc = Utils.GetCrc(fileName);
@@ -478,7 +478,7 @@ namespace MediaExtractor
                                     renamed++;
                                 }
                             }
-                            else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Skip) // Skipp file
+                            else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Skip) // Skip file
                             {
                                 skipped++;
                             }
@@ -689,6 +689,7 @@ namespace MediaExtractor
             if (CurrentModel.UseDarkMode)
             {
                 AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.DarkColorScheme);
+                
             }
             else
             {

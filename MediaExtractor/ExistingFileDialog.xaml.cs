@@ -43,7 +43,7 @@ namespace MediaExtractor
         /// <summary>
         /// Boolean indicates whether the dialog shall be reoccurring (false) or be skipped with the last decision as default result (true)
         /// </summary>
-        public static bool? RemeberDecision;
+        public static bool? RememberDecision;
 
         /// <summary>
         /// Resets the dialog (dialog result and remember decision)
@@ -51,13 +51,13 @@ namespace MediaExtractor
         public static void ResetDialog()
         {
             DialogResult = Result.None;
-            RemeberDecision = null;
+            RememberDecision = null;
         }
 
         /// <summary>
         /// Name of the existing file
         /// </summary>
-        public string ExisitingName { get; set; }
+        public string ExistingName { get; set; }
         /// <summary>
         /// Name of the new file (in archive)
         /// </summary>
@@ -111,7 +111,7 @@ namespace MediaExtractor
         public ExistingFileDialog(string eName, DateTime eDate, long eSize, uint eCrc, string nName, DateTime nDate, long nSize, uint nCrc)
         {
             InitializeComponent();
-            ExisitingName = eName;
+            ExistingName = eName;
             ExistingDate = eDate;
             ExistingSize = eSize;
             ExistingCrc = eCrc;
@@ -129,16 +129,16 @@ namespace MediaExtractor
         /// </summary>
         private void SetValues()
         {
-            ExistingNameLabel.Content = ExisitingName;
-            ExisitingSizeLabel.Content = Utils.ConvertFileSize(ExistingSize);
+            ExistingNameLabel.Content = ExistingName;
+            ExistingSizeLabel.Content = Utils.ConvertFileSize(ExistingSize);
             ExistingDateLabel.Content = ExistingDate.ToString("G");
-            ExisitingCrcLabel.Content = ExistingCrc.ToString("X");
+            ExistingCrcLabel.Content = ExistingCrc.ToString("X");
             ArchiveNameLabel.Content = NewName;
             ArchiveSizeLabel.Content = Utils.ConvertFileSize(NewSize);
             ArchiveDateLabel.Content = NewDate.ToString("G");
             ArchiveCrcLabel.Content = NewCrc.ToString("X");
         }
-        
+
         /// <summary>
         /// Prepares the closing of the dialog
         /// </summary>
@@ -146,7 +146,7 @@ namespace MediaExtractor
         private void CloseDialog(Result result)
         {
             DialogResult = result;
-            RemeberDecision = RememberCheckbox.IsChecked;
+            RememberDecision = RememberCheckbox.IsChecked;
             try
             {
                 Close();
@@ -164,7 +164,7 @@ namespace MediaExtractor
         /// <param name="e">Button arguments</param>
         private void OverwriteButton_Click(object sender, RoutedEventArgs e)
         {
-           CloseDialog(Result.Overwrite);            
+            CloseDialog(Result.Overwrite);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace MediaExtractor
         private void SkipButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = Result.Skip;
-            RemeberDecision = RememberCheckbox.IsChecked;
+            RememberDecision = RememberCheckbox.IsChecked;
             Close();
         }
 
@@ -186,7 +186,7 @@ namespace MediaExtractor
         /// <param name="e">Button arguments</param>
         private void RenameButton_Click(object sender, RoutedEventArgs e)
         {
-            CloseDialog(Result.Rename);          
+            CloseDialog(Result.Rename);
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace MediaExtractor
         /// <param name="e">Button arguments</param>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            CloseDialog(Result.Cancel);          
+            CloseDialog(Result.Cancel);
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace MediaExtractor
         {
             if (DialogResult == Result.None)
             {
-                CloseDialog(Result.Cancel);          
+                CloseDialog(Result.Cancel);
             }
         }
 

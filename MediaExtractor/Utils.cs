@@ -69,7 +69,7 @@ namespace MediaExtractor
             {
                 while (true)
                 {
-                    if (File.Exists(path) == false)
+                    if (!File.Exists(path))
                     {
                         return path;
                     }
@@ -119,7 +119,7 @@ namespace MediaExtractor
 
         private const int bufferSize = 4096;
         private const uint polynome = 0xEDB88320;
-        private static bool inizialized = false;
+        private static bool initialized = false;
         private static uint startValue = 0xffffffff;
         private static uint[] crcTable;
 
@@ -153,7 +153,7 @@ namespace MediaExtractor
         /// <returns>CRC32 hash</returns>
         public static uint GetCrc(Stream stream)
         {
-            if (inizialized == false) // InitializeCrc
+            if (!initialized) // InitializeCrc
             { InitializeCrc(); }
             byte[] streambuffer = new byte[bufferSize];
             byte[] hash = new byte[4];
@@ -201,7 +201,7 @@ namespace MediaExtractor
                 }
                 crcTable[i] = temp;
             }
-            inizialized = true;
+            initialized = true;
         }
 #endregion
 
