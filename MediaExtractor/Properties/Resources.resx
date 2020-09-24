@@ -121,4 +121,112 @@
     <value>File</value>
     <comment/>
   </data>
+  <data name="MenuFileOpen" xml:space="preserve">
+    <value>Open File</value>
+    <comment/>
+  </data>
+  <data name="MenuFileSave" xml:space="preserve">
+    <value>Save File</value>
+    <comment/>
+  </data>
+  <data name="MenuFileSaveAll" xml:space="preserve">
+    <value>Save all Files</value>
+    <comment/>
+  </data>
+  <data name="MenuFileQuit" xml:space="preserve">
+    <value>Quit</value>
+    <comment/>
+  </data>
+  <data name="MenuDocument" xml:space="preserve">
+    <value>Document</value>
+    <comment/>
+  </data>
+  <data name="MenuDocumentShowImages" xml:space="preserve">
+    <value>Show Embedded Image Files</value>
+    <comment/>
+  </data>
+  <data name="MenuDocumentShowOther" xml:space="preserve">
+    <value>Show Other Embedded Files</value>
+    <comment/>
+  </data>
+  <data name="MenuDocumentKeepStructure" xml:space="preserve">
+    <value>Keep Folder Structure when Extracting</value>
+    <comment/>
+  </data>
+  <data name="MenuDocumentOpenExplorer" xml:space="preserve">
+    <value>Show in Explorer after Extracting</value>
+    <comment/>
+  </data>
+  <data name="MenuAppearance" xml:space="preserve">
+    <value>Appearance</value>
+    <comment/>
+  </data>
+  <data name="MenuAppearanceDarkmode" xml:space="preserve">
+    <value>Dark Mode</value>
+    <comment/>
+  </data>
+  <data name="MenuAppearanceLanguage" xml:space="preserve">
+    <value>Language</value>
+    <comment/>
+  </data>
+  <data name="MenuAppearanceLanguageEnglish" xml:space="preserve">
+    <value>English</value>
+    <comment/>
+  </data>
+  <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
+    <value>Deutsch (German)</value>
+    <comment/>
+  </data>
+  <data name="MenuHelp" xml:space="preserve">
+    <value>Help</value>
+    <comment/>
+  </data>
+  <data name="MenuHelpAbout" xml:space="preserve">
+    <value>About</value>
+    <comment/>
+  </data>
+  <data name="MenuHelpWebsite" xml:space="preserve">
+    <value>Project Website</value>
+    <comment/>
+  </data>
+  <data name="MenuHelpChangeLog" xml:space="preserve">
+    <value>Change Log</value>
+    <comment/>
+  </data>
+  <data name="MenuHelpLicense" xml:space="preserve">
+    <value>License</value>
+    <comment/>
+  </data>
+  <data name="ButtonOpen" xml:space="preserve">
+    <value>Open Document</value>
+    <comment/>
+  </data>
+  <data name="LabelListview" xml:space="preserve">
+    <value>Embedded Files</value>
+    <comment/>
+  </data>
+  <data name="ListViewColumnName" xml:space="preserve">
+    <value>Filename (Embedded)</value>
+    <comment/>
+  </data>
+  <data name="ListViewColumnExtension" xml:space="preserve">
+    <value>Ext.</value>
+    <comment/>
+  </data>
+  <data name="ListViewColumnPath" xml:space="preserve">
+    <value>Relative Path</value>
+    <comment/>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Save File</value>
+    <comment/>
+  </data>
+  <data name="ButtonSaveAll" xml:space="preserve">
+    <value>Save all Files</value>
+    <comment/>
+  </data>
+  <data name="LabelPreview" xml:space="preserve">
+    <value>Preview</value>
+    <comment/>
+  </data>
 </root>
