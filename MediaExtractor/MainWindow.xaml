@@ -4,15 +4,44 @@
         xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local = "clr-namespace:WPFLocalization"
-        xmlns:p = "clr-namespace:WPFLocalization.Properties"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300" Icon="media/media_extractor.ico">
+        xmlns:p = "clr-namespace:MediaExtractor.Properties"
+        Title="{Binding Path=WindowTitle}" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300" Icon="media/media_extractor.ico" Closing="Window_Closing">
     <Window.Style>
         <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}" />
     </Window.Style>
+    <Window.Resources>
+        <Style x:Key="roundedBorder" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border
+            SnapsToDevicePixels="true" 
+            CornerRadius="3">
+                            <Grid>
+                                <Rectangle StrokeDashArray="2.0 2.0" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" RadiusX="3" RadiusY="3"/>
+
+                                <ContentPresenter HorizontalAlignment="Center" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                            </Grid>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <adonisControls:AdonisWindow.TitleBarContent>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="?"  Style="{DynamicResource {x:Static adonisUi:Styles.WindowButton}}"
+                    FontFamily="Segoe UI"
+                    FontSize="14"/>
+        </StackPanel>
+    </adonisControls:AdonisWindow.TitleBarContent>
+
     <Grid UseLayoutRounding="False" Margin="0,26,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335*"/>
@@ -21,42 +50,46 @@
         </Grid.ColumnDefinitions>
         <Menu Height="26" Margin="0,-26,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3">
             <MenuItem Header="{x:Static p:Resources.MenuFile}">
-                <MenuItem x:Name="OpenFileMenuItem" Header="Open File" Click="OpenFileMenuItem_Click" />
-                <MenuItem x:Name="SaveFileMenuItem" Header="Save File" Click="SaveFileMenuItem_Click" IsEnabled="{Binding IsEnabled, ElementName=SaveFileButton}" />
-                <MenuItem x:Name="SaveAllFilesMenuItem" Header="Save all Files" Click="SaveAllFilesMenuItem_Click" IsEnabled="{Binding IsEnabled, ElementName=SaveAllFilesButton}" />
+                <MenuItem x:Name="OpenFileMenuItem" Header="{x:Static p:Resources.MenuFileOpen}" Click="OpenFileMenuItem_Click" />
+                <MenuItem x:Name="SaveFileMenuItem" Header="{x:Static p:Resources.MenuFileSave}" Click="SaveFileMenuItem_Click" IsEnabled="{Binding IsEnabled, ElementName=SaveFileButton}" />
+                <MenuItem x:Name="SaveAllFilesMenuItem" Header="{x:Static p:Resources.MenuFileSaveAll}" Click="SaveAllFilesMenuItem_Click" IsEnabled="{Binding IsEnabled, ElementName=SaveAllFilesButton}" />
                 <Separator/>
-                <MenuItem x:Name="QuitMenuItem" Header="Quit" Click="QuitMenuItem_Click"/>
+                <MenuItem x:Name="QuitMenuItem" Header="{x:Static p:Resources.MenuFileQuit}" Click="QuitMenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="Document">
-                <MenuItem x:Name="ImageFilterMenuItem" Header="Show Embedded Image Files" IsChecked="True" IsCheckable="True" Checked="ImageFilterMenuItem_Checked" Unchecked="ImageFilterMenuItem_Unchecked" />
-                <MenuItem x:Name="OtherFilterMenuItem" Header="Show Other Embedded Files" IsCheckable="True" Checked="OtherFilterMenuItem_Checked" Unchecked="OtherFilterMenuItem_Unchecked" />
+            <MenuItem Header="{x:Static p:Resources.MenuDocument}">
+                <MenuItem x:Name="ImageFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowImages}" IsChecked="True" IsCheckable="True" Checked="ImageFilterMenuItem_Checked" Unchecked="ImageFilterMenuItem_Unchecked" />
+                <MenuItem x:Name="OtherFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowOther}" IsCheckable="True" Checked="OtherFilterMenuItem_Checked" Unchecked="OtherFilterMenuItem_Unchecked" />
                 <Separator/>
-                <MenuItem x:Name="KeepFolderStructureMenuItem" IsChecked="{Binding Path=KeepFolderStructure}" Header="Keep Folder Structure when Extracting" IsCheckable="True" />
-                <MenuItem x:Name="ShowInExplorarMenuItem" IsChecked="{Binding Path=ShowInExplorer}" Header="Show in Explorer after Extracting" IsCheckable="True" />
+                <MenuItem x:Name="KeepFolderStructureMenuItem" IsChecked="{Binding Path=KeepFolderStructure}" Header="{x:Static p:Resources.MenuDocumentKeepStructure}" IsCheckable="True" />
+                <MenuItem x:Name="ShowInExplorarMenuItem" IsChecked="{Binding Path=ShowInExplorer}" Header="{x:Static p:Resources.MenuDocumentOpenExplorer}" IsCheckable="True" />
             </MenuItem>
             <MenuItem Header="Appearance">
-                <MenuItem x:Name="DarkModeMenuItem" IsChecked="{Binding Path=UseDarkMode}" Header="Dark Mode" IsCheckable="True" Click="DarkModeMenuItem_Click" />
+                <MenuItem x:Name="DarkModeMenuItem" IsChecked="{Binding Path=UseDarkMode}" Header="{x:Static p:Resources.MenuAppearanceDarkmode}" IsCheckable="True" Click="DarkModeMenuItem_Click" />
+                <MenuItem x:Name="LanguageMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguage}" >
+                    <MenuItem x:Name="EnglishMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageEnglish}" IsCheckable="True" IsChecked="{Binding Path=UseEnglishLocale}" Click="EnglishMenuItem_Click" />
+                    <MenuItem x:Name="GermanhMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageGerman}" IsCheckable="True" IsChecked="{Binding Path=UseGermanLocale}" Click="GermanhMenuItem_Click" />
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem x:Name="AboutMenuItem" Header="About" Click="AboutMenuItem_Click"/>
-                <MenuItem x:Name="WebsiteMenuItem" Header="Project Website" Click="WebsiteMenuItem_Click"/>
-                <MenuItem x:Name="ChangeLogMenuItem" Header="Change Log" Click="ChangeLogMenuItem_Click"/>
-                <MenuItem x:Name="LicenseMenuItem" Header="License" Click="LicenseMenuItem_Click"/>
+            <MenuItem Header="{x:Static p:Resources.MenuHelp}">
+                <MenuItem x:Name="AboutMenuItem" Header="{x:Static p:Resources.MenuHelpAbout}" Click="AboutMenuItem_Click"/>
+                <MenuItem x:Name="WebsiteMenuItem" Header="{x:Static p:Resources.MenuHelpWebsite}" Click="WebsiteMenuItem_Click"/>
+                <MenuItem x:Name="ChangeLogMenuItem" Header="{x:Static p:Resources.MenuHelpChangeLog}" Click="ChangeLogMenuItem_Click"/>
+                <MenuItem x:Name="LicenseMenuItem" Header="{x:Static p:Resources.MenuHelpLicense}" Click="LicenseMenuItem_Click"/>
             </MenuItem>
         </Menu>
         <Grid Margin="0,0,0,35" Grid.ColumnSpan="3" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="340" MinWidth="110"/>
+                <ColumnDefinition Width="340" MinWidth="250"/>
                 <ColumnDefinition Width="5" MinWidth="5" />
                 <ColumnDefinition Width="*" MinWidth="300"/>
             </Grid.ColumnDefinitions>
-
             <Grid Grid.Column="0">
-                <Button x:Name="OpenFileButton" Content="Open Document" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" Click="OpenFileButton_Click"/>
-                <Label Content="Source Document Path" Margin="10,37,2,0" VerticalAlignment="Top"/>
-                <TextBox Text="{Binding Path=FileName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" x:Name="PathField" Height="23" Margin="10,63,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                <Label Content="Embedded Files" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top"/>
-                <ListView x:Name="ImagesListView" Margin="10,122,10,10" ItemsSource="{Binding Path=ListViewItems}" SelectionChanged="ListView_SelectionChanged">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="OpenFileButton" Content="Open Document" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" Click="OpenFileButton_Click"/>
+                    <Label x:Name="DragField" Style="{StaticResource roundedBorder}" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" Height="24" Content="Drop File here" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Drop="DragField_Drop" AllowDrop="True" />
+                </StackPanel>
+                <Label Content="Embedded Files" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
+                <ListView x:Name="ImagesListView" Margin="10,77,10,10" ItemsSource="{Binding Path=ListViewItems}" SelectionChanged="ListView_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
@@ -67,20 +100,22 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
             <Grid Grid.Column="2" MinWidth="270">
-                <Border  Margin="0,37,0,0" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                <Border Margin="0,37,0,0" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
                     <Viewbox x:Name="ImageBoxContainer" Margin="10" ClipToBounds="True">
                         <Image x:Name="ImageBox" />
                     </Viewbox>
                 </Border>
                 <TextBox x:Name="TextBox" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Hidden" Padding="5,5,3,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+
+                <TextBox x:Name="NoPreviewBox"  Text="{x:Static p:Resources.TextNoPreview}" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Visible" Padding="5,5,3,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" IsReadOnlyCaretVisible="False" FontWeight="Bold" FontSize="24" FontStyle="Italic" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+
                 <Button x:Name="SaveFileButton" Content="Save File" Margin="0,10,10,0" VerticalAlignment="Top" Width="103" IsEnabled="{Binding Path=SaveStatus}" HorizontalAlignment="Right" Click="SaveFileButton_Click"/>
                 <Button x:Name="SaveAllFilesButton" Content="Save all Files" Margin="0,10,123,0" VerticalAlignment="Top" Width="100" IsEnabled="{Binding Path=SaveAllStatus}" HorizontalAlignment="Right" Click="SaveAllFilesButton_Click"/>
                 <Label Content="Preview" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="50" FontWeight="Bold" Padding="5,5,0,5"/>
-                
+
             </Grid>
         </Grid>
         <StatusBar Height="35" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Grid.Column="0">

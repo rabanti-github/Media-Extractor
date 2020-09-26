@@ -10,6 +10,7 @@ using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -24,11 +25,17 @@ namespace MediaExtractor
     /// <summary>
     /// Logic of the MainWindow Class
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : AdonisUI.Controls.AdonisWindow
     {
+
+        public string CurrentLocale { get; private set; } = null;
+        public bool HandleLocaleChange { get; set; }
+
 
         private ViewModel CurrentModel { get; set; }
         private Extractor CurrentExtractor{ get; set; }
+
+        private string ProductName { get; set; }
 
         /// <summary>
         /// Default constructor
@@ -39,7 +46,10 @@ namespace MediaExtractor
             CurrentModel = new ViewModel();
             DataContext = CurrentModel;
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-            Title = versionInfo.ProductName;
+            ProductName = versionInfo.ProductName;
+           // Title = versionInfo.ProductName;
+           CurrentModel.WindowTitle = versionInfo.ProductName;
+            CurrentModel.UseEnglishLocale = true; // TODO: Get from settings
             HandleArguments();
         }
 
@@ -75,7 +85,9 @@ namespace MediaExtractor
             ofd.Filter = "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*";
             Nullable<bool> result = ofd.ShowDialog();
             if (result == true)
-            { 
+            {
+                LoadFile(ofd.FileName);
+                /*
                 TextBox.Text = string.Empty;
                 ImageBox.Source = null;
                 CurrentModel.FileName = ofd.FileName;
@@ -83,7 +95,23 @@ namespace MediaExtractor
                 CurrentModel.StatusText = "Loading file... Please wait";
                 Thread t = new Thread(LoadFile);
                 t.Start(this);
+                */
             }
+        }
+
+        /// <summary>
+        /// Method to actually load a file, based on its path
+        /// </summary>
+        /// <param name="path">File path</param>
+        private void LoadFile(string path)
+        {
+            TextBox.Text = string.Empty;
+            ImageBox.Source = null;
+            CurrentModel.FileName = path;
+            CurrentModel.StatusText = "File loaded: " + CurrentModel.FileName;
+            CurrentModel.StatusText = "Loading file... Please wait";
+            Thread t = new Thread(LoadFile);
+            t.Start(this);
         }
 
 
@@ -113,6 +141,7 @@ namespace MediaExtractor
             if (reference.CurrentExtractor.HasErrors)
             {
                 reference.CurrentModel.StatusText = "The file could not be loaded (no suitable format)";
+                reference.CurrentModel.WindowTitle = reference.ProductName;
                 reference.CurrentExtractor.ResetErrors();
                 return;
             }
@@ -142,14 +171,17 @@ namespace MediaExtractor
 
                     reference.CurrentModel.StatusText = "The file could not be loaded";
                     MessageBox.Show("The file could not be loaded.\n" + message + "\nError Message: " + reference.CurrentExtractor.LastError, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    reference.CurrentModel.WindowTitle = reference.ProductName;
                     reference.CurrentModel.Progress = 0;
                     reference.ChangeCursor(c);
                     reference.CurrentExtractor.ResetErrors();
+                    RecalculateListViwItems(reference);
                     return;
                 }
                 RecalculateListViwItems(reference);
             }
-            reference.CurrentModel.StatusText = "File was loaded";
+            reference.CurrentModel.StatusText = "File loaded: " + reference.CurrentModel.FileName;
+            reference.CurrentModel.WindowTitle = reference.ProductName + " - " + reference.CurrentModel.FileName;
             reference.CurrentModel.Progress = 0;
             reference.ChangeCursor(c);
         }
@@ -210,15 +242,25 @@ namespace MediaExtractor
         {
             ImageBox.Visibility = Visibility.Visible;
             TextBox.Visibility = Visibility.Hidden;
+            NoPreviewBox.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
         /// Sets the text preview visible
         /// </summary>
-        public void SetTextPreviewVisible()
+        public void SetTextPreviewVisible(bool noPreview = false)
         {
-            TextBox.Visibility = Visibility.Visible;
             ImageBox.Visibility = Visibility.Hidden;
+            if (noPreview)
+            {
+                TextBox.Visibility = Visibility.Hidden;
+                NoPreviewBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TextBox.Visibility = Visibility.Visible;
+                NoPreviewBox.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -268,8 +310,10 @@ namespace MediaExtractor
                 }
                 else
                 {
-                    SetTextPreviewVisible();
+                    SetTextPreviewVisible(true);
+                    CurrentModel.StatusText = "Preview not possible for " + item.FileName;
                     TextBox.Text = string.Empty;
+                    
                     // Fall-back
                 }
             }
@@ -696,5 +740,50 @@ namespace MediaExtractor
                 AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.LightColorScheme);
             }
         }
+
+        private void EnglishMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeLocale(I18n.ENGLISH);
+        }
+
+        private void GermanhMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeLocale(I18n.GERMAN);
+        }
+
+        private void ChangeLocale(string locale)
+        {
+            HandleLocaleChange = true;
+            CurrentLocale = locale;
+            Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.CurrentLocale) && HandleLocaleChange)
+            {
+                string locale = this.CurrentLocale;
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(locale);
+                MainWindow window = new MainWindow();
+                window.Show();
+                window.Left = this.Left;
+                window.Top = this.Top;
+                I18n.MatchLocale(window.CurrentModel, locale);
+            }
+            else
+            {
+                App.Current.Shutdown();
+            }
+        }
+
+        private void DragField_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                LoadFile(files[0]);
+            }
+        }
+
     }
 }

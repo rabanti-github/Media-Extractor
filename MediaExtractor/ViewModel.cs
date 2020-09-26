@@ -17,6 +17,7 @@ namespace MediaExtractor
     /// </summary>
     public class ViewModel : INotifyPropertyChanged
     {
+        private string windowTitle;
         private ObservableCollection<ListViewItem> listViewItems;
         private BitmapImage image;
         private bool saveStatus;
@@ -26,10 +27,25 @@ namespace MediaExtractor
         private bool keepFolderStructure = true;
         private bool showInExplorer = true;
         private bool useDarkMode = false;
+        private bool useEnglishLocale = false;
+        private bool useGermanLocale = false;
         private float numberOfFiles;
         private float currentFile;
         private int progress;
         private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
+
+        /// <summary>
+        /// The text of the main window
+        /// </summary>
+        public string WindowTitle
+        {
+            get { return windowTitle; }
+            set
+            {
+                windowTitle = value;
+                NotifyPropertyChanged("WindowTitle");
+            }
+        }
 
         /// <summary>
         /// The current progress of extraction or rendering (progress bar from 0 to 100 %)
@@ -128,6 +144,47 @@ namespace MediaExtractor
             {
                 useDarkMode = value;
                 NotifyPropertyChanged("UseDarkMode");
+            }
+        }
+
+
+        /// <summary>
+        /// If true, the Application will be using English (en) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if English is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseEnglishLocale
+        {
+            get { return useEnglishLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseGermanLocale = false;
+                }
+                useEnglishLocale = value;
+                NotifyPropertyChanged("UseEnglishLocale");
+            }
+        }
+
+        /// <summary>
+        /// If true, the Application will be using German (de-DE) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if German is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseGermanLocale
+        {
+            get { return useGermanLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                }
+                useGermanLocale = value;
+                NotifyPropertyChanged("UseGermanLocale");
             }
         }
 

@@ -22,7 +22,7 @@ namespace MediaExtractor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MediaExtractor.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MediaExtractor.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,273 @@ namespace MediaExtractor.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open Document ähnelt.
+        /// </summary>
+        public static string ButtonOpen {
+            get {
+                return ResourceManager.GetString("ButtonOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save File ähnelt.
+        /// </summary>
+        public static string ButtonSave {
+            get {
+                return ResourceManager.GetString("ButtonSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save all Files ähnelt.
+        /// </summary>
+        public static string ButtonSaveAll {
+            get {
+                return ResourceManager.GetString("ButtonSaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Embedded Files ähnelt.
+        /// </summary>
+        public static string LabelListview {
+            get {
+                return ResourceManager.GetString("LabelListview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Preview ähnelt.
+        /// </summary>
+        public static string LabelPreview {
+            get {
+                return ResourceManager.GetString("LabelPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ext. ähnelt.
+        /// </summary>
+        public static string ListViewColumnExtension {
+            get {
+                return ResourceManager.GetString("ListViewColumnExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filename (Embedded) ähnelt.
+        /// </summary>
+        public static string ListViewColumnName {
+            get {
+                return ResourceManager.GetString("ListViewColumnName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Relative Path ähnelt.
+        /// </summary>
+        public static string ListViewColumnPath {
+            get {
+                return ResourceManager.GetString("ListViewColumnPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Appearance ähnelt.
+        /// </summary>
+        public static string MenuAppearance {
+            get {
+                return ResourceManager.GetString("MenuAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dark Mode ähnelt.
+        /// </summary>
+        public static string MenuAppearanceDarkmode {
+            get {
+                return ResourceManager.GetString("MenuAppearanceDarkmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Language ähnelt.
+        /// </summary>
+        public static string MenuAppearanceLanguage {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die English ähnelt.
+        /// </summary>
+        public static string MenuAppearanceLanguageEnglish {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguageEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deutsch (German) ähnelt.
+        /// </summary>
+        public static string MenuAppearanceLanguageGerman {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguageGerman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Document ähnelt.
+        /// </summary>
+        public static string MenuDocument {
+            get {
+                return ResourceManager.GetString("MenuDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Keep Folder Structure when Extracting ähnelt.
+        /// </summary>
+        public static string MenuDocumentKeepStructure {
+            get {
+                return ResourceManager.GetString("MenuDocumentKeepStructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show in Explorer after Extracting ähnelt.
+        /// </summary>
+        public static string MenuDocumentOpenExplorer {
+            get {
+                return ResourceManager.GetString("MenuDocumentOpenExplorer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show Embedded Image Files ähnelt.
+        /// </summary>
+        public static string MenuDocumentShowImages {
+            get {
+                return ResourceManager.GetString("MenuDocumentShowImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show Other Embedded Files ähnelt.
+        /// </summary>
+        public static string MenuDocumentShowOther {
+            get {
+                return ResourceManager.GetString("MenuDocumentShowOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File ähnelt.
+        /// </summary>
+        public static string MenuFile {
+            get {
+                return ResourceManager.GetString("MenuFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open File ähnelt.
+        /// </summary>
+        public static string MenuFileOpen {
+            get {
+                return ResourceManager.GetString("MenuFileOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Quit ähnelt.
+        /// </summary>
+        public static string MenuFileQuit {
+            get {
+                return ResourceManager.GetString("MenuFileQuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save File ähnelt.
+        /// </summary>
+        public static string MenuFileSave {
+            get {
+                return ResourceManager.GetString("MenuFileSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save all Files ähnelt.
+        /// </summary>
+        public static string MenuFileSaveAll {
+            get {
+                return ResourceManager.GetString("MenuFileSaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Help ähnelt.
+        /// </summary>
+        public static string MenuHelp {
+            get {
+                return ResourceManager.GetString("MenuHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About ähnelt.
+        /// </summary>
+        public static string MenuHelpAbout {
+            get {
+                return ResourceManager.GetString("MenuHelpAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Change Log ähnelt.
+        /// </summary>
+        public static string MenuHelpChangeLog {
+            get {
+                return ResourceManager.GetString("MenuHelpChangeLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die License ähnelt.
+        /// </summary>
+        public static string MenuHelpLicense {
+            get {
+                return ResourceManager.GetString("MenuHelpLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Project Website ähnelt.
+        /// </summary>
+        public static string MenuHelpWebsite {
+            get {
+                return ResourceManager.GetString("MenuHelpWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Preview ähnelt.
+        /// </summary>
+        public static string TextNoPreview {
+            get {
+                return ResourceManager.GetString("TextNoPreview", resourceCulture);
             }
         }
     }
