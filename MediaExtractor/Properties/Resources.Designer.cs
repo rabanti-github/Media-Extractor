@@ -70,7 +70,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Save File ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save File(s) ähnelt.
         /// </summary>
         public static string ButtonSave {
             get {
@@ -84,6 +84,24 @@ namespace MediaExtractor.Properties {
         public static string ButtonSaveAll {
             get {
                 return ResourceManager.GetString("ButtonSaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save selected File(s) ähnelt.
+        /// </summary>
+        public static string ButtonSaveSelected {
+            get {
+                return ResourceManager.GetString("ButtonSaveSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Drop File here ähnelt.
+        /// </summary>
+        public static string DropAreaWatermark {
+            get {
+                return ResourceManager.GetString("DropAreaWatermark", resourceCulture);
             }
         }
         
@@ -250,20 +268,20 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Save File ähnelt.
-        /// </summary>
-        public static string MenuFileSave {
-            get {
-                return ResourceManager.GetString("MenuFileSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save all Files ähnelt.
         /// </summary>
         public static string MenuFileSaveAll {
             get {
                 return ResourceManager.GetString("MenuFileSaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save selected File(s) ähnelt.
+        /// </summary>
+        public static string MenuFileSaveSelected {
+            get {
+                return ResourceManager.GetString("MenuFileSaveSelected", resourceCulture);
             }
         }
         

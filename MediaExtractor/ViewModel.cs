@@ -6,8 +6,10 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace MediaExtractor
@@ -17,6 +19,7 @@ namespace MediaExtractor
     /// </summary>
     public class ViewModel : INotifyPropertyChanged
     {
+        
         private string windowTitle;
         private ObservableCollection<ListViewItem> listViewItems;
         private BitmapImage image;
@@ -29,10 +32,71 @@ namespace MediaExtractor
         private bool useDarkMode = false;
         private bool useEnglishLocale = false;
         private bool useGermanLocale = false;
+        private bool saveSelectedIsDefault;
+        private bool saveAllIsDefault;
         private float numberOfFiles;
         private float currentFile;
         private int progress;
         private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
+
+        public SaveFileHandler CurrentSaveFileHandler { get; set; }
+
+
+        public bool SaveSelectedIsDefault
+        {
+            get { return saveSelectedIsDefault; }
+            set 
+            { 
+                if (value)
+                {
+                    SaveAllIsDefault = false;
+                }
+                CurrentSaveFileHandler.DefaultMethod = SaveFileHandler.DefaultSaveMethod.Selected;
+                saveSelectedIsDefault = value;
+                NotifyPropertyChanged("SaveSelectedIsDefault");
+            }
+        }
+
+        
+
+        public bool SaveAllIsDefault
+        {
+            get { return saveAllIsDefault; }
+            set
+            { 
+                if (value)
+                {
+                    SaveSelectedIsDefault = false;
+                }
+                CurrentSaveFileHandler.DefaultMethod = SaveFileHandler.DefaultSaveMethod.All;
+                saveAllIsDefault = value;
+                NotifyPropertyChanged("SaveAllIsDefault");
+            }
+        }
+
+        private ICommand saveDefaultCommand;
+        public ICommand SaveDefaultCommand
+        {
+            get 
+            {
+                return saveDefaultCommand ?? (saveDefaultCommand = new CommandHandler(() => SaveDefault(), () => CanExecute));
+            }
+        }
+
+        public bool CanExecute 
+        { get
+            {
+                return true;
+            }
+        }
+
+        private void SaveDefault()
+        {
+            CurrentSaveFileHandler.SaveDefault();
+        }
+
+        public ListViewItem[] SelectedItems { get; set; } = new ListViewItem[0];
+
 
         /// <summary>
         /// The text of the main window
@@ -190,15 +254,15 @@ namespace MediaExtractor
 
 
         /// <summary>
-        /// Enabled / Disabled State of the button to save a single files
+        /// Enabled / Disabled State of the button to the selected file(s)
         /// </summary>
-        public bool SaveStatus
+        public bool SaveSelectedStatus
         {
             get { return saveStatus; }
             set
             {
                 saveStatus = value;
-                NotifyPropertyChanged("SaveStatus");
+                NotifyPropertyChanged("SaveSelectedStatus");
             }
         }
 
@@ -262,7 +326,7 @@ namespace MediaExtractor
         public ViewModel()
         {
             ListViewItems = new ObservableCollection<ListViewItem>();
-            SaveStatus = false;
+            SaveSelectedStatus = false;
             FileName = string.Empty;
             StatusText = "Ready";
         }
@@ -291,7 +355,7 @@ namespace MediaExtractor
             ListViewItems.Clear();
             NotifyPropertyChanged("ListViewItems");
             SaveAllStatus = false;
-            SaveStatus = false;
+            SaveSelectedStatus = false;
         }
 
         /// <summary>

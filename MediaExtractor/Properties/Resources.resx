@@ -123,8 +123,8 @@
   <data name="MenuFileOpen" xml:space="preserve">
     <value>Open File</value>
   </data>
-  <data name="MenuFileSave" xml:space="preserve">
-    <value>Save File</value>
+  <data name="MenuFileSaveSelected" xml:space="preserve">
+    <value>Save selected File(s)</value>
   </data>
   <data name="MenuFileSaveAll" xml:space="preserve">
     <value>Save all Files</value>
@@ -193,13 +193,19 @@
     <value>Relative Path</value>
   </data>
   <data name="ButtonSave" xml:space="preserve">
-    <value>Save File</value>
+    <value>Save File(s)</value>
   </data>
   <data name="ButtonSaveAll" xml:space="preserve">
     <value>Save all Files</value>
   </data>
   <data name="LabelPreview" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>Save selected File(s)</value>
+  </data>
+  <data name="DropAreaWatermark" xml:space="preserve">
+    <value>Drop File here</value>
   </data>
   <data name="TextNoPreview" xml:space="preserve">
     <value>No Preview</value>

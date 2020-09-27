@@ -102,6 +102,7 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="ExistingFileDialog.xaml.cs">
       <DependentUpon>ExistingFileDialog.xaml</DependentUpon>
     </Compile>
@@ -122,6 +123,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="SaveFileHandler.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="About.xaml">

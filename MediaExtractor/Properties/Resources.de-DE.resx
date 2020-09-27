@@ -123,8 +123,8 @@
   <data name="MenuFileOpen" xml:space="preserve">
     <value>Datei öffnen</value>
   </data>
-  <data name="MenuFileSave" xml:space="preserve">
-    <value>Datei speichern</value>
+  <data name="MenuFileSaveSelected" xml:space="preserve">
+    <value>Ausgewählte Datei(en) speichern</value>
   </data>
   <data name="MenuFileSaveAll" xml:space="preserve">
     <value>Alle Dateien speichern</value>
@@ -136,69 +136,78 @@
     <value>Dokument</value>
   </data>
   <data name="MenuDocumentShowImages" xml:space="preserve">
-    <value>Show Embedded Image Files</value>
+    <value>Enthaltene Bilder anzeigen</value>
   </data>
   <data name="MenuDocumentShowOther" xml:space="preserve">
-    <value>Show Other Embedded Files</value>
+    <value>Andere enthaltene Dateien anzeigen</value>
   </data>
   <data name="MenuDocumentKeepStructure" xml:space="preserve">
-    <value>Keep Folder Structure when Extracting</value>
+    <value>Ordnerstruktur beim Entpacken erhalten</value>
   </data>
   <data name="MenuDocumentOpenExplorer" xml:space="preserve">
-    <value>Show in Explorer after Extracting</value>
+    <value>Nach dem Entpacken in Explorer zeiegen</value>
   </data>
   <data name="MenuAppearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Ansicht</value>
   </data>
   <data name="MenuAppearanceDarkmode" xml:space="preserve">
-    <value>Dark Mode</value>
+    <value>Dunkler Modus</value>
   </data>
   <data name="MenuAppearanceLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprache</value>
   </data>
   <data name="MenuAppearanceLanguageEnglish" xml:space="preserve">
-    <value>English</value>
+    <value>Englisch (English)</value>
   </data>
   <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
-    <value>Deutsch (German)</value>
+    <value>Deutsch</value>
   </data>
   <data name="MenuHelp" xml:space="preserve">
-    <value>Help</value>
+    <value>Hilfe</value>
   </data>
   <data name="MenuHelpAbout" xml:space="preserve">
-    <value>About</value>
+    <value>Über</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Project Website</value>
+    <value>Projekt-Webseite</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
-    <value>Change Log</value>
+    <value>Änderungsprotokoll</value>
   </data>
   <data name="MenuHelpLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Softwarelizenz</value>
   </data>
   <data name="ButtonOpen" xml:space="preserve">
-    <value>Dokument öffnen</value>
+    <value>Datei öffnen</value>
   </data>
   <data name="LabelListview" xml:space="preserve">
-    <value>Embedded Files</value>
+    <value>Enthaltene Dateien</value>
   </data>
   <data name="ListViewColumnName" xml:space="preserve">
-    <value>Filename (Embedded)</value>
+    <value>Dateiname (in Dokument)</value>
   </data>
   <data name="ListViewColumnExtension" xml:space="preserve">
-    <value>Ext.</value>
+    <value>Typ</value>
   </data>
   <data name="ListViewColumnPath" xml:space="preserve">
-    <value>Relative Path</value>
+    <value>Relativer Pfad</value>
   </data>
   <data name="ButtonSave" xml:space="preserve">
-    <value>Save File</value>
+    <value>Datei(en) speichern</value>
   </data>
   <data name="ButtonSaveAll" xml:space="preserve">
-    <value>Save all Files</value>
+    <value>Alle Dateien speichern</value>
   </data>
   <data name="LabelPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Vorschau</value>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>Ausgewählte Datei(en) speichern</value>
+  </data>
+  <data name="DropAreaWatermark" xml:space="preserve">
+    <value>Datei hierhin ziehen</value>
+  </data>
+  <data name="TextNoPreview" xml:space="preserve">
+    <value>Keine Vorschau</value>
   </data>
 </root>
