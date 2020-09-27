@@ -121,7 +121,7 @@
     <value>File</value>
   </data>
   <data name="MenuFileOpen" xml:space="preserve">
-    <value>Open File</value>
+    <value>Open Document</value>
   </data>
   <data name="MenuFileSaveSelected" xml:space="preserve">
     <value>Save selected File(s)</value>
@@ -201,13 +201,148 @@
   <data name="LabelPreview" xml:space="preserve">
     <value>Preview</value>
   </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="AboutCloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="AboutDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar)</value>
+  </data>
+  <data name="AboutHeader" xml:space="preserve">
+    <value>About Media-Extractor</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="AboutWebsite" xml:space="preserve">
+    <value>Webseite</value>
+  </data>
   <data name="ButtonSaveSelected" xml:space="preserve">
     <value>Save selected File(s)</value>
   </data>
+  <data name="CrcDescription" xml:space="preserve">
+    <value>CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected.</value>
+  </data>
+  <data name="DialogButtonCancel" xml:space="preserve">
+    <value>Cancel Extraction</value>
+  </data>
+  <data name="DialogButtonCancelTooltip" xml:space="preserve">
+    <value>Canel the extraction</value>
+  </data>
+  <data name="DialogButtonOverwrite" xml:space="preserve">
+    <value>Overwrite</value>
+  </data>
+  <data name="DialogButtonOverwriteTooltip" xml:space="preserve">
+    <value>Replace the existing file</value>
+  </data>
+  <data name="DialogButtonRename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="DialogButtonRenameTooltip" xml:space="preserve">
+    <value>Rename the new file</value>
+  </data>
+  <data name="DialogButtonSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="DialogButtonSkipTooltip" xml:space="preserve">
+    <value>Skip the extraction of the file</value>
+  </data>
+  <data name="DialogCancelTitle" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="DialogExplorerError" xml:space="preserve">
+    <value>The path '{0}' could not be opened</value>
+  </data>
+  <data name="DialogHeader" xml:space="preserve">
+    <value>File already exists...</value>
+  </data>
+  <data name="DialogLabelCrc" xml:space="preserve">
+    <value>CRC32:</value>
+  </data>
+  <data name="DialogLabelDate" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="DialogLabelExisting" xml:space="preserve">
+    <value>Existing File</value>
+  </data>
+  <data name="DialogLabelName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="DialogLabelNew" xml:space="preserve">
+    <value>New File to Extract</value>
+  </data>
+  <data name="DialogLabelSize" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="DialogRememberCheckbox" xml:space="preserve">
+    <value>Remember Decision</value>
+  </data>
+  <data name="DialogSaveAllTitle" xml:space="preserve">
+    <value>Select a Folder to save all Files...</value>
+  </data>
+  <data name="DialogSaveCurrentTitle" xml:space="preserve">
+    <value>Save current File as...</value>
+  </data>
+  <data name="DialogSaveErrors" xml:space="preserve">
+    <value>Not all files were extracted</value>
+  </data>
+  <data name="DialogSaveFailure" xml:space="preserve">
+    <value>The file could not be saved</value>
+  </data>
+  <data name="DialogSaveFilter" xml:space="preserve">
+    <value>All files|*.*</value>
+  </data>
+  <data name="DialogSaveSelectedTitle" xml:space="preserve">
+    <value>Select a Folder to save the selected Files...</value>
+  </data>
+  <data name="DialogUnexpectedError" xml:space="preserve">
+    <value>There was an unexpected error during the extraction:</value>
+  </data>
   <data name="DropAreaWatermark" xml:space="preserve">
-    <value>Drop File here</value>
+    <value>Drop Document here</value>
+  </data>
+  <data name="StatusSaveCanceled" xml:space="preserve">
+    <value>The save process was canceled</value>
+  </data>
+  <data name="StatusSaveErrorSummary" xml:space="preserve">
+    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped, {4} not extracted (errors)</value>
+  </data>
+  <data name="StatusSaveFailure" xml:space="preserve">
+    <value>Could not save the file: {0}</value>
+  </data>
+  <data name="StatusSaveSuccess" xml:space="preserve">
+    <value>The file was saved as: {0}</value>
+  </data>
+  <data name="StatusSaveSummary" xml:space="preserve">
+    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped</value>
+  </data>
+  <data name="TextErrorMultipleFiles" xml:space="preserve">
+    <value>{0} files could not be extracted.</value>
+  </data>
+  <data name="TextErrorOneFile" xml:space="preserve">
+    <value>One file could not be extracted.</value>
   </data>
   <data name="TextNoPreview" xml:space="preserve">
     <value>No Preview</value>
+  </data>
+  <data name="TextSaveError" xml:space="preserve">
+    <value>The path '{0}' could not be opened</value>
+  </data>
+  <data name="TextSkippedMultipleFiles" xml:space="preserve">
+    <value>{0} files were skipped.</value>
+  </data>
+  <data name="TextSkippedOneFile" xml:space="preserve">
+    <value>One file was skipped.</value>
   </data>
 </root>

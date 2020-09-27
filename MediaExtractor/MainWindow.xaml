@@ -85,10 +85,11 @@
             <Grid Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="OpenFileButton" Content="{x:Static p:Resources.ButtonOpen}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="115" Click="OpenFileButton_Click"/>
-                    <Label x:Name="DragField" Style="{StaticResource roundedBorder}" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" Height="54" Content="{x:Static p:Resources.DropAreaWatermark}" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Drop="DragField_Drop" AllowDrop="True">
+                    <Label x:Name="DragField" Style="{StaticResource roundedBorder}" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" Height="54"  Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Drop="DragField_Drop" AllowDrop="True">
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{x:Static p:Resources.DropAreaWatermark}" />
                     </Label>
                 </StackPanel>
-                <Label Content="Embedded Files" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
+                <Label Content="{x:Static p:Resources.LabelListview}" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
                 <ListView x:Name="ImagesListView" Margin="10,77,10,10" ItemsSource="{Binding Path=ListViewItems}" SelectionChanged="ListView_SelectionChanged">
                     <ListView.View>
                         <GridView>
@@ -109,7 +110,7 @@
                     </Viewbox>
                 </Border>
                 <TextBox x:Name="TextBox" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Hidden" Padding="5,5,3,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
-                <TextBox x:Name="NoPreviewBox"  Text="{x:Static p:Resources.TextNoPreview}" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Visible" Padding="5,5,3,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" IsReadOnlyCaretVisible="False" FontWeight="Bold" FontSize="24" FontStyle="Italic" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+                <TextBox x:Name="NoPreviewBox"  Text="{x:Static p:Resources.TextNoPreview}" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Visible" Padding="5,5,3,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" IsReadOnlyCaretVisible="False" FontWeight="Bold" FontSize="24" FontStyle="Italic" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
                 <adonisControls:SplitButton Command="{Binding SaveDefaultCommand}"  Content="{x:Static p:Resources.ButtonSave}" Margin="0,10,10,0" VerticalAlignment="Top" Width="150" IsEnabled="{Binding Path=SaveAllStatus}" HorizontalAlignment="Right">
                     <adonisControls:SplitButton.SplitMenu>
                         <ContextMenu MinWidth="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
@@ -118,7 +119,7 @@
                         </ContextMenu>
                     </adonisControls:SplitButton.SplitMenu>
                 </adonisControls:SplitButton>
-                <Label Content="Preview" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="50" FontWeight="Bold" Padding="5,5,0,5"/>
+                <Label Content="{x:Static p:Resources.LabelPreview}" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="100" FontWeight="Bold" Padding="5,5,0,5"/>
 
             </Grid>
         </Grid>

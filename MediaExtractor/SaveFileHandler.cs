@@ -61,7 +61,8 @@ namespace MediaExtractor
         public void SaveAllFiles()
         {
             ListViewItem[] items = CurrentModel.ListViewItems.ToArray();
-            SaveFileRange(items, "Select a Folder to save all Files...");
+            SaveFileRange(items, I18n.T("TextSaveAllDialogTitle"));
+            
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace MediaExtractor
             }
             else
             {
-                SaveFileRange(CurrentModel.SelectedItems, "Select a Folder to save the selected Files...");
+                SaveFileRange(CurrentModel.SelectedItems, I18n.T("TextSaveSelectedDialogTitle"));
             }
             
         }
@@ -88,8 +89,8 @@ namespace MediaExtractor
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Title = "Save current File as...";
-                sfd.Filter = "All files|*.*";
+                sfd.Title = I18n.T("TextSaveCurrentDialogTitle");
+                sfd.Filter = I18n.T("TextSaveDialogFilter"); // All files|*.*
                 sfd.FileName = item.FileName;
                 Nullable<bool> result = sfd.ShowDialog();
                 if (result == true)
@@ -102,7 +103,7 @@ namespace MediaExtractor
                     bool open = Utils.ShowInExplorer(fi.DirectoryName);
                     if (open == false)
                     {
-                        MessageBox.Show("The path '" + fi.DirectoryName + "' could not be opened", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show(I18n.R("TextSaveError", fi.DirectoryName), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }
             }
@@ -133,7 +134,6 @@ namespace MediaExtractor
                     int overwritten = 0;
                     FileInfo fi;
                     ExistingFileDialog.ResetDialog();
-                    //foreach (ListViewItem item in CurrentModel.ListViewItems)
                     foreach(ListViewItem item in items)
                     {
                         fileExists = CheckFileExists(ofd.FileName, item.FileReference, CurrentModel.KeepFolderStructure, out var fileName);
@@ -152,8 +152,8 @@ namespace MediaExtractor
                         {
                             if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Cancel) // Cancel extractor
                             {
-                                CurrentModel.StatusText = "The save process was canceled";
-                                MessageBox.Show("The save process was canceled", "Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
+                                CurrentModel.StatusText = I18n.T("StatusSaveCanceled");
+                                MessageBox.Show(I18n.T("StatusSaveCanceled"), I18n.T("DialogCancelTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
                                 return;
                             }
                             else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Overwrite) // Overwrite existing
@@ -197,11 +197,11 @@ namespace MediaExtractor
                     if (errors > 0 || skipped > 0)
                     {
                         StringBuilder sb = new StringBuilder();
-                        if (errors == 1) { sb.Append("One file could not be extracted."); }
-                        else if (errors > 1) { sb.Append(errors + " files could not be extracted."); }
+                        if (errors == 1) { sb.Append(I18n.T("TextErrorOneFile")); }
+                        else if (errors > 1) { sb.Append(I18n.R("TextErrorMultipleFiles", errors)); }
                         sb.Append("\n");
-                        if (skipped == 1) { sb.Append("One file was skipped."); }
-                        else if (skipped > 1) { sb.Append(skipped + " files were skipped."); }
+                        if (skipped == 1) { sb.Append(I18n.T("TextSkippedOneFile")); }
+                        else if (skipped > 1) { sb.Append(I18n.R("TextSkippedMultipleFiles", skipped)); }
                         string message;
                         if (sb[0] == '\n')
                         {
@@ -211,26 +211,26 @@ namespace MediaExtractor
                         {
                             message = sb.ToString();
                         }
-                        CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped, " + errors + " not extracted (errors)";
-                        MessageBox.Show(message, "Not all files were extracted", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        CurrentModel.StatusText = I18n.R("StatusSaveErrorSummary", extracted, overwritten, renamed, skipped, errors);
+                        MessageBox.Show(message, I18n.T("DialogSaveErrors"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                     else
                     {
-                        CurrentModel.StatusText = extracted + " files extracted (" + overwritten + " overwritten, " + renamed + " renamed), " + skipped + " skipped";
+                        CurrentModel.StatusText = I18n.R("StatusSaveSummary", extracted, overwritten, renamed, skipped, errors);
                     }
                     if (CurrentModel.ShowInExplorer)
                     {
                         bool open = Utils.ShowInExplorer(ofd.FileName);
                         if (open == false)
                         {
-                            MessageBox.Show("The path '" + ofd.FileName + "' could not be opened", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            MessageBox.Show(I18n.R("DialogExplorerError", ofd.FileName), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was an unexpected error during the extraction:\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(I18n.T("DialogUnexpectedError") + "\n" + ex.Message, I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
@@ -259,15 +259,15 @@ namespace MediaExtractor
                 fs.Close();
                 if (writeStatus == true)
                 {
-                    CurrentModel.StatusText = "The file was saved as: " + filename;
+                    CurrentModel.StatusText = I18n.R("StatusSaveSuccess", filename);
                 }
             }
             catch (Exception e)
             {
                 if (writeStatus == true)
                 {
-                    CurrentModel.StatusText = "Could not save the file: " + e.Message;
-                    MessageBox.Show("The file could not be saved", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                    CurrentModel.StatusText = I18n.R("StatusSaveFailure", e.Message);
+                    MessageBox.Show(I18n.T("DialogSaveFailure"), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
                     return false;
                 }
             }

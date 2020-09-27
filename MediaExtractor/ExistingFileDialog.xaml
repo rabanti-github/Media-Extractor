@@ -6,47 +6,49 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:p = "clr-namespace:MediaExtractor.Properties"
         mc:Ignorable="d"
-        Title="File already exists..." Height="197.49" Width="528.796" ResizeMode="NoResize" Icon="media/media_extractor.ico" WindowStartupLocation="CenterOwner" Topmost="True" Closing="Window_Closing">
+        Title="{x:Static p:Resources.DialogHeader}" Height="197.49" Width="550" ResizeMode="NoResize" Icon="media/media_extractor.ico" WindowStartupLocation="CenterOwner" Topmost="True" Closing="Window_Closing">
     <Grid>
-        <TextBox x:Name="InfoBox" HorizontalAlignment="Left" Height="80" Margin="67,89,0,0" TextWrapping="Wrap" Text="CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected." VerticalAlignment="Top" Width="417" Panel.ZIndex="99" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Visibility="Hidden"/>
-        <Grid HorizontalAlignment="Left" Height="69" Margin="0,100,0,0" VerticalAlignment="Top" Width="523" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <Button x:Name="OverwriteButton" Content="Overwrite" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top" Width="75" ToolTip="Overwrite existing File" Click="OverwriteButton_Click"/>
-            <Button x:Name="SkipButton" Content="Skip" HorizontalAlignment="Left" Margin="92,10,0,0" VerticalAlignment="Top" Width="75" ToolTip=" Skip Extraction of the new File" Click="SkipButton_Click"/>
-            <Button x:Name="RenameButton" Content="Rename new File" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="100" ToolTip="Rename new File" Click="RenameButton_Click"/>
-            <Button x:Name="CancelButton" Content="Cancel Extraction " HorizontalAlignment="Left" Margin="277,10,0,0" VerticalAlignment="Top" Width="104" ToolTip="Cancel Extraction" Click="CancelButton_Click"/>
-            <CheckBox x:Name="RememberCheckbox" Content="Remember Decision" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="InfoBox" HorizontalAlignment="Left" Height="80" Margin="67,89,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.CrcDescription}" VerticalAlignment="Top" Width="417" Panel.ZIndex="99" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Visibility="Hidden"/>
+        <Grid HorizontalAlignment="Left" Height="69" Margin="0,100,0,-1" VerticalAlignment="Top" Width="544" Background="{DynamicResource {x:Static adonisUi:Brushes.Layer2BackgroundBrush}}">
+            <Button x:Name="OverwriteButton" Content="{x:Static p:Resources.DialogButtonOverwrite}" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top" Width="122" ToolTip="{x:Static p:Resources.DialogButtonOverwriteTooltip}" Click="OverwriteButton_Click"/>
+            <Button x:Name="SkipButton" Content="{x:Static p:Resources.DialogButtonSkip}" HorizontalAlignment="Left" Margin="139,10,0,0" VerticalAlignment="Top" Width="122" ToolTip="{x:Static p:Resources.DialogButtonSkipTooltip}" Click="SkipButton_Click"/>
+            <Button x:Name="RenameButton" Content="{x:Static p:Resources.DialogButtonRename}" HorizontalAlignment="Left" Margin="266,10,0,0" VerticalAlignment="Top" Width="122" ToolTip="{x:Static p:Resources.DialogButtonRenameTooltip}" Click="RenameButton_Click"/>
+            <Button x:Name="CancelButton" Content="{x:Static p:Resources.DialogButtonCancel}" HorizontalAlignment="Left" Margin="393,10,0,0" VerticalAlignment="Top" Width="132" ToolTip="{x:Static p:Resources.DialogButtonCancelTooltip}" Click="CancelButton_Click"/>
+            <CheckBox x:Name="RememberCheckbox" Content="{x:Static p:Resources.DialogRememberCheckbox}" HorizontalAlignment="Left" Margin="12,39,0,0" VerticalAlignment="Top" Width="513"/>
 
         </Grid>
         <Grid HorizontalAlignment="Left" Height="100
-              " VerticalAlignment="Top" Width="523">
+              " VerticalAlignment="Top" Width="544">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="3"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="224*"/>
                 <ColumnDefinition Width="3"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="217*"/>
+                <ColumnDefinition Width="6*"/>
 
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.RowSpan="2"/>
-            <Grid Grid.Column="3" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="0"
+            <Grid Grid.Column="1" Background="{DynamicResource {x:Static adonisUi:Brushes.Layer2BackgroundBrush}}" Grid.RowSpan="2"/>
+            <Grid Grid.Column="3" Background="{DynamicResource {x:Static adonisUi:Brushes.Layer2BackgroundBrush}}" Grid.Row="0"
                   Grid.RowSpan="2"/>
             <Grid Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2">
-                <Label HorizontalContentAlignment="Center" Padding="5,2" FontWeight="Bold">Existing File</Label>
+                <Label HorizontalContentAlignment="Center" Padding="5,2" FontWeight="Bold" Content="{x:Static p:Resources.DialogLabelExisting}"/>
             </Grid>
-            <Grid Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2">
-                <Label HorizontalContentAlignment="Center" Padding="5,2" FontWeight="Bold">New File to Extract</Label>
+            <Grid Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3">
+                <Label HorizontalContentAlignment="Center" Padding="5,2" FontWeight="Bold" Content="{x:Static p:Resources.DialogLabelNew}"/>
             </Grid>
             <StackPanel Grid.Column="0" Grid.Row="1">
-                <Label Padding="5,1">Name:</Label>
-                <Label Padding="5,1">Date:</Label>
-                <Label Padding="5,1">Size:</Label>
+                <Label Padding="5,1" Content="{x:Static p:Resources.DialogLabelName}"/>
+                <Label Padding="5,1" Content="{x:Static p:Resources.DialogLabelDate}"/>
+                <Label Padding="5,1" Content="{x:Static p:Resources.DialogLabelSize}" />
                 <StackPanel Orientation="Horizontal">
-                    <Label Padding="5,1">CRC32:</Label>
+                    <Label Padding="5,1" Content="{x:Static p:Resources.DialogLabelCrc}"/>
                     <Image x:Name="InfoImage" Source="media/infoIcon.png" Width="15" MouseEnter="InfoImage_MouseEnter" MouseLeave="InfoImage_MouseLeave"  />
                 </StackPanel>
             </StackPanel>
@@ -56,7 +58,7 @@
                 <Label x:Name="ExistingSizeLabel" Padding="5,1"></Label>
                 <Label x:Name="ExistingCrcLabel" Padding="5,1"></Label>
             </StackPanel>
-            <StackPanel Grid.Column="4" Grid.Row="1">
+            <StackPanel Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2">
                 <Label x:Name="ArchiveNameLabel" Padding="5,1"></Label>
                 <Label x:Name="ArchiveDateLabel" Padding="5,1"></Label>
                 <Label x:Name="ArchiveSizeLabel" Padding="5,1"></Label>

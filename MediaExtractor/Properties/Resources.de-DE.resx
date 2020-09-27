@@ -121,7 +121,7 @@
     <value>Datei</value>
   </data>
   <data name="MenuFileOpen" xml:space="preserve">
-    <value>Datei öffnen</value>
+    <value>Dokument öffnen</value>
   </data>
   <data name="MenuFileSaveSelected" xml:space="preserve">
     <value>Ausgewählte Datei(en) speichern</value>
@@ -178,7 +178,7 @@
     <value>Softwarelizenz</value>
   </data>
   <data name="ButtonOpen" xml:space="preserve">
-    <value>Datei öffnen</value>
+    <value>Dokument öffnen</value>
   </data>
   <data name="LabelListview" xml:space="preserve">
     <value>Enthaltene Dateien</value>
@@ -204,10 +204,145 @@
   <data name="ButtonSaveSelected" xml:space="preserve">
     <value>Ausgewählte Datei(en) speichern</value>
   </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="AboutCloseButton" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="AboutDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Media Extractor ist ein Programm für die Vorschau und das Entpacken von eingebetteten Dateien in Microsoft Office Dokumenten (z.B. Word, PowerPoint oder Excel), beziehungsweise Archiv-Dateien (z.B. zip, 7z oder tar)</value>
+  </data>
+  <data name="AboutHeader" xml:space="preserve">
+    <value>Über Media-Extractor</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>Lizenz</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="AboutWebsite" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="CrcDescription" xml:space="preserve">
+    <value>CRC32 (cyclic redundancy check) ist eine einfache Hashing-Methode um Daten oder Dateien auf Übereinstimmung zu prüfen. CRC bietet allerdings keinen 100%ige Garantie, daß zwei Dateien identisch sind.  Es ist jedoch ein sehr starkes Indiz, wenn nicht von bewusster Manipulation der Dateien ausgegangen wird.</value>
+  </data>
+  <data name="DialogButtonCancel" xml:space="preserve">
+    <value>Speichern abbrechen</value>
+  </data>
+  <data name="DialogButtonCancelTooltip" xml:space="preserve">
+    <value>Das Entpacken abbrechen</value>
+  </data>
+  <data name="DialogButtonOverwrite" xml:space="preserve">
+    <value>Ersetzen</value>
+  </data>
+  <data name="DialogButtonOverwriteTooltip" xml:space="preserve">
+    <value>Die bestehende Datei überschreiben</value>
+  </data>
+  <data name="DialogButtonRename" xml:space="preserve">
+    <value>Umbenennen</value>
+  </data>
+  <data name="DialogButtonRenameTooltip" xml:space="preserve">
+    <value>Die neue Datei umbenennen</value>
+  </data>
+  <data name="DialogButtonSkip" xml:space="preserve">
+    <value>Überspringen</value>
+  </data>
+  <data name="DialogButtonSkipTooltip" xml:space="preserve">
+    <value>Das Entpacken der neuen Datei überspringen</value>
+  </data>
+  <data name="DialogCancelTitle" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="DialogExplorerError" xml:space="preserve">
+    <value>Der Pfad '{0}' konnte nicht geöffnet werden</value>
+  </data>
+  <data name="DialogHeader" xml:space="preserve">
+    <value>Datei existiert bereits...</value>
+  </data>
+  <data name="DialogLabelCrc" xml:space="preserve">
+    <value>CRC32:</value>
+  </data>
+  <data name="DialogLabelDate" xml:space="preserve">
+    <value>Datum:</value>
+  </data>
+  <data name="DialogLabelExisting" xml:space="preserve">
+    <value>Bestehende Datei</value>
+  </data>
+  <data name="DialogLabelName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="DialogLabelNew" xml:space="preserve">
+    <value>Neue Datei zum Entpacken</value>
+  </data>
+  <data name="DialogLabelSize" xml:space="preserve">
+    <value>Größe:</value>
+  </data>
+  <data name="DialogRememberCheckbox" xml:space="preserve">
+    <value>Entscheidung merken</value>
+  </data>
+  <data name="DialogSaveAllTitle" xml:space="preserve">
+    <value>Ordner zum Speichern aller Dateien auswählen...</value>
+  </data>
+  <data name="DialogSaveCurrentTitle" xml:space="preserve">
+    <value>Ausgewählte Datei speichern unter...</value>
+  </data>
+  <data name="DialogSaveErrors" xml:space="preserve">
+    <value>Nicht alle Dateien wurden entpackt</value>
+  </data>
+  <data name="DialogSaveFailure" xml:space="preserve">
+    <value>Die Datei konnte nicht gespeichert werden</value>
+  </data>
+  <data name="DialogSaveFilter" xml:space="preserve">
+    <value>Alle Dateien|*.*</value>
+  </data>
+  <data name="DialogSaveSelectedTitle" xml:space="preserve">
+    <value>Ordner zum Speichern ausgewählter Dateien auswählen...</value>
+  </data>
+  <data name="DialogUnexpectedError" xml:space="preserve">
+    <value>Beim Entpacken ist ein unerwarteter Fehler aufgetreten:</value>
+  </data>
   <data name="DropAreaWatermark" xml:space="preserve">
-    <value>Datei hierhin ziehen</value>
+    <value>Dokument hierher ziehen</value>
+  </data>
+  <data name="StatusSaveCanceled" xml:space="preserve">
+    <value>Der Speichervorgang wurde abgebrochen</value>
+  </data>
+  <data name="StatusSaveErrorSummary" xml:space="preserve">
+    <value>{0} Dateien entpackt ({1} ersetzt, {2} umbenannt), {3} übersprungen, {4} nicht entpackt (Fehler)</value>
+  </data>
+  <data name="StatusSaveFailure" xml:space="preserve">
+    <value>Die Datei konnte nicht gespeichert werden: {0}</value>
+  </data>
+  <data name="StatusSaveSuccess" xml:space="preserve">
+    <value>Die Datei wurde gespeichert als: {0}</value>
+  </data>
+  <data name="StatusSaveSummary" xml:space="preserve">
+    <value>{0} Dateien entpackt ({1} ersetzt, {2} umbenannt), {3} übersprungen</value>
+  </data>
+  <data name="TextErrorMultipleFiles" xml:space="preserve">
+    <value>{0} Dateien konnten nicht entpackt werden.</value>
+  </data>
+  <data name="TextErrorOneFile" xml:space="preserve">
+    <value>Eine Datei konnte nicht entpackt werden.</value>
   </data>
   <data name="TextNoPreview" xml:space="preserve">
     <value>Keine Vorschau</value>
+  </data>
+  <data name="TextSaveError" xml:space="preserve">
+    <value>Der Pfad '{0}' konnte nicht geöffnet werden</value>
+  </data>
+  <data name="TextSkippedMultipleFiles" xml:space="preserve">
+    <value>{0} wurder übersprungen.</value>
+  </data>
+  <data name="TextSkippedOneFile" xml:space="preserve">
+    <value>Eine Datei wurde übersprungen.</value>
   </data>
 </root>

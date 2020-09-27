@@ -61,6 +61,78 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Author ähnelt.
+        /// </summary>
+        public static string AboutAuthor {
+            get {
+                return ResourceManager.GetString("AboutAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
+        /// </summary>
+        public static string AboutCloseButton {
+            get {
+                return ResourceManager.GetString("AboutCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Date ähnelt.
+        /// </summary>
+        public static string AboutDate {
+            get {
+                return ResourceManager.GetString("AboutDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar) ähnelt.
+        /// </summary>
+        public static string AboutDescription {
+            get {
+                return ResourceManager.GetString("AboutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About Media-Extractor ähnelt.
+        /// </summary>
+        public static string AboutHeader {
+            get {
+                return ResourceManager.GetString("AboutHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die License ähnelt.
+        /// </summary>
+        public static string AboutLicense {
+            get {
+                return ResourceManager.GetString("AboutLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Version ähnelt.
+        /// </summary>
+        public static string AboutVersion {
+            get {
+                return ResourceManager.GetString("AboutVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Webseite ähnelt.
+        /// </summary>
+        public static string AboutWebsite {
+            get {
+                return ResourceManager.GetString("AboutWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Open Document ähnelt.
         /// </summary>
         public static string ButtonOpen {
@@ -97,7 +169,250 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Drop File here ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected. ähnelt.
+        /// </summary>
+        public static string CrcDescription {
+            get {
+                return ResourceManager.GetString("CrcDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel Extraction ähnelt.
+        /// </summary>
+        public static string DialogButtonCancel {
+            get {
+                return ResourceManager.GetString("DialogButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Canel the extraction ähnelt.
+        /// </summary>
+        public static string DialogButtonCancelTooltip {
+            get {
+                return ResourceManager.GetString("DialogButtonCancelTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Overwrite ähnelt.
+        /// </summary>
+        public static string DialogButtonOverwrite {
+            get {
+                return ResourceManager.GetString("DialogButtonOverwrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Replace the existing file ähnelt.
+        /// </summary>
+        public static string DialogButtonOverwriteTooltip {
+            get {
+                return ResourceManager.GetString("DialogButtonOverwriteTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rename ähnelt.
+        /// </summary>
+        public static string DialogButtonRename {
+            get {
+                return ResourceManager.GetString("DialogButtonRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rename the new file ähnelt.
+        /// </summary>
+        public static string DialogButtonRenameTooltip {
+            get {
+                return ResourceManager.GetString("DialogButtonRenameTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Skip ähnelt.
+        /// </summary>
+        public static string DialogButtonSkip {
+            get {
+                return ResourceManager.GetString("DialogButtonSkip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Skip the extraction of the file ähnelt.
+        /// </summary>
+        public static string DialogButtonSkipTooltip {
+            get {
+                return ResourceManager.GetString("DialogButtonSkipTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Canceled ähnelt.
+        /// </summary>
+        public static string DialogCancelTitle {
+            get {
+                return ResourceManager.GetString("DialogCancelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        public static string DialogErrorTitle {
+            get {
+                return ResourceManager.GetString("DialogErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The path &apos;{0}&apos; could not be opened ähnelt.
+        /// </summary>
+        public static string DialogExplorerError {
+            get {
+                return ResourceManager.GetString("DialogExplorerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File already exists... ähnelt.
+        /// </summary>
+        public static string DialogHeader {
+            get {
+                return ResourceManager.GetString("DialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die CRC32: ähnelt.
+        /// </summary>
+        public static string DialogLabelCrc {
+            get {
+                return ResourceManager.GetString("DialogLabelCrc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Date: ähnelt.
+        /// </summary>
+        public static string DialogLabelDate {
+            get {
+                return ResourceManager.GetString("DialogLabelDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Existing File ähnelt.
+        /// </summary>
+        public static string DialogLabelExisting {
+            get {
+                return ResourceManager.GetString("DialogLabelExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name: ähnelt.
+        /// </summary>
+        public static string DialogLabelName {
+            get {
+                return ResourceManager.GetString("DialogLabelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New File to Extract ähnelt.
+        /// </summary>
+        public static string DialogLabelNew {
+            get {
+                return ResourceManager.GetString("DialogLabelNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Size: ähnelt.
+        /// </summary>
+        public static string DialogLabelSize {
+            get {
+                return ResourceManager.GetString("DialogLabelSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remember Decision ähnelt.
+        /// </summary>
+        public static string DialogRememberCheckbox {
+            get {
+                return ResourceManager.GetString("DialogRememberCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select a Folder to save all Files... ähnelt.
+        /// </summary>
+        public static string DialogSaveAllTitle {
+            get {
+                return ResourceManager.GetString("DialogSaveAllTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save current File as... ähnelt.
+        /// </summary>
+        public static string DialogSaveCurrentTitle {
+            get {
+                return ResourceManager.GetString("DialogSaveCurrentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Not all files were extracted ähnelt.
+        /// </summary>
+        public static string DialogSaveErrors {
+            get {
+                return ResourceManager.GetString("DialogSaveErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file could not be saved ähnelt.
+        /// </summary>
+        public static string DialogSaveFailure {
+            get {
+                return ResourceManager.GetString("DialogSaveFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All files|*.* ähnelt.
+        /// </summary>
+        public static string DialogSaveFilter {
+            get {
+                return ResourceManager.GetString("DialogSaveFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select a Folder to save the selected Files... ähnelt.
+        /// </summary>
+        public static string DialogSaveSelectedTitle {
+            get {
+                return ResourceManager.GetString("DialogSaveSelectedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There was an unexpected error during the extraction: ähnelt.
+        /// </summary>
+        public static string DialogUnexpectedError {
+            get {
+                return ResourceManager.GetString("DialogUnexpectedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Drop Document here ähnelt.
         /// </summary>
         public static string DropAreaWatermark {
             get {
@@ -250,7 +565,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Open File ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open Document ähnelt.
         /// </summary>
         public static string MenuFileOpen {
             get {
@@ -331,11 +646,101 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The save process was canceled ähnelt.
+        /// </summary>
+        public static string StatusSaveCanceled {
+            get {
+                return ResourceManager.GetString("StatusSaveCanceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} files extracted ({1} overwritten, {2} renamed), {3} skipped, {4} not extracted (errors) ähnelt.
+        /// </summary>
+        public static string StatusSaveErrorSummary {
+            get {
+                return ResourceManager.GetString("StatusSaveErrorSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Could not save the file: {0} ähnelt.
+        /// </summary>
+        public static string StatusSaveFailure {
+            get {
+                return ResourceManager.GetString("StatusSaveFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file was saved as: {0} ähnelt.
+        /// </summary>
+        public static string StatusSaveSuccess {
+            get {
+                return ResourceManager.GetString("StatusSaveSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} files extracted ({1} overwritten, {2} renamed), {3} skipped ähnelt.
+        /// </summary>
+        public static string StatusSaveSummary {
+            get {
+                return ResourceManager.GetString("StatusSaveSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} files could not be extracted. ähnelt.
+        /// </summary>
+        public static string TextErrorMultipleFiles {
+            get {
+                return ResourceManager.GetString("TextErrorMultipleFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die One file could not be extracted. ähnelt.
+        /// </summary>
+        public static string TextErrorOneFile {
+            get {
+                return ResourceManager.GetString("TextErrorOneFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No Preview ähnelt.
         /// </summary>
         public static string TextNoPreview {
             get {
                 return ResourceManager.GetString("TextNoPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The path &apos;{0}&apos; could not be opened ähnelt.
+        /// </summary>
+        public static string TextSaveError {
+            get {
+                return ResourceManager.GetString("TextSaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} files were skipped. ähnelt.
+        /// </summary>
+        public static string TextSkippedMultipleFiles {
+            get {
+                return ResourceManager.GetString("TextSkippedMultipleFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die One file was skipped. ähnelt.
+        /// </summary>
+        public static string TextSkippedOneFile {
+            get {
+                return ResourceManager.GetString("TextSkippedOneFile", resourceCulture);
             }
         }
     }
