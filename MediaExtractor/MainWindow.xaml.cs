@@ -72,7 +72,7 @@ namespace MediaExtractor
                 else
                 {
                     CurrentModel.FileName = args[1];
-                    CurrentModel.StatusText = I18n.T("StatusLoading");
+                    CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoading);
                     Thread t = new Thread(LoadFile);
                     t.Start(this);
                 }
@@ -86,9 +86,9 @@ namespace MediaExtractor
         private void OpenFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = I18n.T("DialogLoadTitle");
+            ofd.Title = I18n.T(I18n.Key.DialogLoadTitle);
             ofd.DefaultExt = ".docx";
-            ofd.Filter = I18n.T("DialogLoadFilter"); // "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*
+            ofd.Filter = I18n.T(I18n.Key.DialogLoadFilter); // "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*
             Nullable<bool> result = ofd.ShowDialog();
             if (result == true)
             {
@@ -105,7 +105,7 @@ namespace MediaExtractor
             TextBox.Text = string.Empty;
             ImageBox.Source = null;
             CurrentModel.FileName = path;
-            CurrentModel.StatusText = I18n.T("StatusLoading");
+            CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoading);
             Thread t = new Thread(LoadFile);
             t.Start(this);
         }
@@ -136,7 +136,7 @@ namespace MediaExtractor
             reference.CurrentExtractor = new Extractor(reference.CurrentModel.FileName, reference.CurrentModel);
             if (reference.CurrentExtractor.HasErrors)
             {
-                reference.CurrentModel.StatusText = I18n.T("StatusNotLoaded");
+                reference.CurrentModel.StatusText = I18n.T(I18n.Key.StatusNotLoaded);
                 reference.CurrentModel.WindowTitle = reference.ProductName;
                 reference.CurrentExtractor.ResetErrors();
                 return;
@@ -153,20 +153,20 @@ namespace MediaExtractor
                         FileInfo fi = new FileInfo(reference.CurrentModel.FileName);
                         if (ext.Contains(fi.Extension.ToLower()) == true)
                         {
-                            message = I18n.T("TextLockedFile");
+                            message = I18n.T(I18n.Key.TextLockedFile);
                         }
                         else
                         {
-                            message = I18n.T("TextInvalidFormat");
+                            message = I18n.T(I18n.Key.TextInvalidFormat);
                         }
                     }
                     catch
                     {
-                        message = I18n.T("TextInvalidPath");
+                        message = I18n.T(I18n.Key.TextInvalidPath);
                     }
 
-                    reference.CurrentModel.StatusText = I18n.T("StatusLoadFailure");
-                    MessageBox.Show(I18n.R("DialogLoadFailure", message, reference.CurrentExtractor.LastError), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    reference.CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoadFailure);
+                    MessageBox.Show(I18n.R(I18n.Key.DialogLoadFailure, message, reference.CurrentExtractor.LastError), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     reference.CurrentModel.WindowTitle = reference.ProductName;
                     reference.CurrentModel.Progress = 0;
                     reference.ChangeCursor(c);
@@ -176,7 +176,7 @@ namespace MediaExtractor
                 }
                 RecalculateListViwItems(reference);
             }
-            reference.CurrentModel.StatusText = I18n.R("StatusLoaded", reference.CurrentModel.FileName);
+            reference.CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoaded, reference.CurrentModel.FileName);
             reference.CurrentModel.WindowTitle = reference.ProductName + " - " + reference.CurrentModel.FileName;
             reference.CurrentModel.Progress = 0;
             reference.ChangeCursor(c);
@@ -226,7 +226,7 @@ namespace MediaExtractor
                     }
                     catch(Exception e)
                     {
-                        Console.WriteLine("error: " + e.Message);
+                        //Console.WriteLine("error: " + e.Message);
                     }
                 });
         }
@@ -267,7 +267,7 @@ namespace MediaExtractor
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Cursor c = Cursor;
-            CurrentModel.StatusText = "Loading embedded file... Please wait";
+            CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoadingEmbedded);
             Cursor = Cursors.Wait;
             try
             {
@@ -283,14 +283,14 @@ namespace MediaExtractor
                     SetImagePreviewVisible();
                     if (CurrentExtractor.HasErrors == true)
                     {
-                        CurrentModel.StatusText = "Embedded file could not be loaded: " + CurrentExtractor.LastError;
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedImageFailure, CurrentExtractor.LastError);
                         ImageBox.Source = null;
                         CurrentExtractor.ResetErrors();
                     }
                     else
                     {
                         ImageBox.Source = img;
-                        CurrentModel.StatusText = item.FileName + " loaded";
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusEmbeddedLoaded, item.FileName);
                     }
                 }
                 else if (item.Type == ListViewItem.FileType.Xml || item.Type == ListViewItem.FileType.Text)
@@ -299,20 +299,20 @@ namespace MediaExtractor
                     SetTextPreviewVisible();
                     if (CurrentExtractor.HasErrors == true)
                     {
-                        CurrentModel.StatusText = "Text / XML file could not be loaded: " + CurrentExtractor.LastError;
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedTextFailure, CurrentExtractor.LastError);
                         TextBox.Text = string.Empty;
                         CurrentExtractor.ResetErrors();
                     }
                     else
                     {
                         TextBox.Text = text;
-                        CurrentModel.StatusText = item.FileName + " loaded";
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusEmbeddedLoaded, item.FileName);
                     }
                 }
                 else
                 {
                     SetTextPreviewVisible(true);
-                    CurrentModel.StatusText = "Preview not possible for " + item.FileName;
+                    CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedOtherFailure, item.FileName);
                     TextBox.Text = string.Empty;
                     
                     // Fall-back
@@ -422,10 +422,6 @@ namespace MediaExtractor
         /// <param name="e">Event arguments</param>
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-            //string name = versionInfo.ProductName;
-            //string version = versionInfo.ProductVersion.ToString();
-            //MessageBox.Show(name + " v" + version + "\n--------------------------\nAuthor: Raphael Stoeckli\nLicense: MIT", "About", MessageBoxButton.OK, MessageBoxImage.Information);
             About about = new About();
             about.ShowDialog();
         }
@@ -476,7 +472,7 @@ namespace MediaExtractor
         {
             if (Utils.ShowInExplorer("license.txt") == false)
             { 
-                MessageBox.Show("The license file 'license.txt' was not found.", "License could not be found",
+                MessageBox.Show(I18n.R(I18n.Key.DialogMissingLicense, "license.txt"), I18n.T(I18n.Key.DialogMissingLicenseTitle),
                     MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
@@ -490,7 +486,7 @@ namespace MediaExtractor
         {
             if (Utils.ShowInExplorer("changelog.txt") == false)
             {
-                MessageBox.Show("The change log 'changelog.txt' was not found.", "Change log could not be found",
+                MessageBox.Show(I18n.R(I18n.Key.DialogMissingChangelog, "changelog.txt"), I18n.T(I18n.Key.DialogMissingChangelogTitle),
                     MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }

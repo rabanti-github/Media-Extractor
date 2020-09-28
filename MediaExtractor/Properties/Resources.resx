@@ -375,4 +375,31 @@
   <data name="TextLockedFile" xml:space="preserve">
     <value>Please make sure that the file is not open in another application.</value>
   </data>
+  <data name="DialogMissingChangelog" xml:space="preserve">
+    <value>The change log '{0}' was not found.</value>
+  </data>
+  <data name="DialogMissingChangelogTitle" xml:space="preserve">
+    <value>Changelog not found</value>
+  </data>
+  <data name="DialogMissingLicense" xml:space="preserve">
+    <value>The license file '{0}' was not found.</value>
+  </data>
+  <data name="DialogMissingLicenseTitle" xml:space="preserve">
+    <value>License could not be found</value>
+  </data>
+  <data name="StatusEmbeddedLoaded" xml:space="preserve">
+    <value>{0} loaded</value>
+  </data>
+  <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
+    <value>Embedded file could not be loaded: {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedOtherFailure" xml:space="preserve">
+    <value>Preview not possible for {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedTextFailure" xml:space="preserve">
+    <value>Text / XML file could not be loaded: {0}</value>
+  </data>
+  <data name="StatusLoadingEmbedded" xml:space="preserve">
+    <value>Loading embedded file... Please wait</value>
+  </data>
 </root>

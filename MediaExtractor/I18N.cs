@@ -5,6 +5,7 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+using System;
 using System.Linq;
 
 namespace MediaExtractor
@@ -14,6 +15,108 @@ namespace MediaExtractor
     /// </summary>
     public class I18n
     {
+        /// <summary>
+        /// Keys of the I18n resources. The keys must EXACTLY math with the names in the resx files 
+        /// </summary>
+        public enum Key
+        {
+            AboutAuthor,
+            AboutCloseButton,
+            AboutDate,
+            AboutDescription,
+            AboutHeader,
+            AboutLicense,
+            AboutVersion,
+            AboutWebsite,
+            ButtonOpen,
+            ButtonSave,
+            ButtonSaveAll,
+            ButtonSaveSelected,
+            CrcDescription,
+            DialogButtonCancel,
+            DialogButtonCancelTooltip,
+            DialogButtonOverwrite,
+            DialogButtonOverwriteTooltip,
+            DialogButtonRename,
+            DialogButtonRenameTooltip,
+            DialogButtonSkip,
+            DialogButtonSkipTooltip,
+            DialogCancelTitle,
+            DialogErrorTitle,
+            DialogExplorerError,
+            DialogHeader,
+            DialogLabelCrc,
+            DialogLabelDate,
+            DialogLabelExisting,
+            DialogLabelName,
+            DialogLabelNew,
+            DialogLabelSize,
+            DialogLoadFailure,
+            DialogLoadFilter,
+            DialogLoadTitle,
+            DialogMissingChangelog,
+            DialogMissingChangelogTitle,
+            DialogMissingLicense,
+            DialogMissingLicenseTitle,
+            DialogRememberCheckbox,
+            DialogSaveAllTitle,
+            DialogSaveCurrentTitle,
+            DialogSaveErrors,
+            DialogSaveFailure,
+            DialogSaveFilter,
+            DialogSaveSelectedTitle,
+            DialogUnexpectedError,
+            DropAreaWatermark,
+            LabelListview,
+            LabelPreview,
+            ListViewColumnExtension,
+            ListViewColumnName,
+            ListViewColumnPath,
+            MenuAppearance,
+            MenuAppearanceDarkmode,
+            MenuAppearanceLanguage,
+            MenuAppearanceLanguageEnglish,
+            MenuAppearanceLanguageGerman,
+            MenuDocument,
+            MenuDocumentKeepStructure,
+            MenuDocumentOpenExplorer,
+            MenuDocumentShowImages,
+            MenuDocumentShowOther,
+            MenuFile,
+            MenuFileOpen,
+            MenuFileQuit,
+            MenuFileSaveAll,
+            MenuFileSaveSelected,
+            MenuHelp,
+            MenuHelpAbout,
+            MenuHelpChangeLog,
+            MenuHelpLicense,
+            MenuHelpWebsite,
+            StatusEmbeddedLoaded,
+            StatusLoaded,
+            StatusLoadEmbeddedImageFailure,
+            StatusLoadEmbeddedOtherFailure,
+            StatusLoadEmbeddedTextFailure,
+            StatusLoadFailure,
+            StatusLoading,
+            StatusLoadingEmbedded,
+            StatusNotLoaded,
+            StatusSaveCanceled,
+            StatusSaveErrorSummary,
+            StatusSaveFailure,
+            StatusSaveSuccess,
+            StatusSaveSummary,
+            TextErrorMultipleFiles,
+            TextErrorOneFile,
+            TextInvalidFormat,
+            TextInvalidPath,
+            TextLockedFile,
+            TextNoPreview,
+            TextSaveError,
+            TextSkippedMultipleFiles,
+            TextSkippedOneFile,
+        }
+
 
         /// <summary>
         /// Locale identifier for English (en-US)
@@ -53,9 +156,10 @@ namespace MediaExtractor
         /// </summary>
         /// <param name="key">Resource name of the translation</param>
         /// <returns>Translated term</returns>
-        public static string T(string key)
+        public static string T(Key key)
         {
-            return Properties.Resources.ResourceManager.GetString(key);
+            string keyString = Enum.GetName(typeof(Key), key);
+            return Properties.Resources.ResourceManager.GetString(keyString);
         }
 
         /// <summary>
@@ -64,9 +168,9 @@ namespace MediaExtractor
         /// <param name="key">Resource name of the translation</param>
         /// <param name="parameters">Params string array</param>
         /// <returns>Translated term with replaced text</returns>
-        public static string R(string key, params string[] parameters)
+        public static string R(Key key, params string[] parameters)
         {
-            string localized = T(key);
+            string localized = T(key).Replace("\\n", Environment.NewLine);
             return string.Format(localized, parameters);
         }
 
@@ -76,7 +180,7 @@ namespace MediaExtractor
         /// <param name="key">Resource name of the translation</param>
         /// <param name="parameters">Params int array</param>
         /// <returns>Translated term with replaced text</returns>
-        public static string R(string key, params int[] parameters)
+        public static string R(Key key, params int[] parameters)
         {
             string localized = T(key);
             string[] numbers = parameters.Select(x => x.ToString()).ToArray();

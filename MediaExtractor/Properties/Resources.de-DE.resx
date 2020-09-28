@@ -346,7 +346,7 @@
     <value>Eine Datei wurde übersprungen.</value>
   </data>
   <data name="DialogLoadFailure" xml:space="preserve">
-    <value>Die Datei konnte nicht geladen werden.\n{0}\nFehlermeldung: {1}"</value>
+    <value>Die Datei konnte nicht geladen werden.\n{0}\nFehlermeldung: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
     <value>Alle Office-Formate|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word-Dokumente|*.docx;*.dotx;*.docm;*.dotm|Excel-Dokumente|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint-Dokumente|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Gängige Archiv-Formate|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Alle Dateien|*.*</value>
@@ -374,5 +374,32 @@
   </data>
   <data name="TextLockedFile" xml:space="preserve">
     <value>Bitte stellen Sie sicher, daß die Datei nicht in einem anderen Programm geöffnet ist.</value>
+  </data>
+  <data name="DialogMissingChangelog" xml:space="preserve">
+    <value>Das Änderungsprotokoll '{0}' wurde nicht gefunden.</value>
+  </data>
+  <data name="DialogMissingChangelogTitle" xml:space="preserve">
+    <value>Änderungsprotokoll nicht gefunden</value>
+  </data>
+  <data name="DialogMissingLicense" xml:space="preserve">
+    <value>Die Lizenz-Datei '{0}' ist nicht vorhanden.</value>
+  </data>
+  <data name="DialogMissingLicenseTitle" xml:space="preserve">
+    <value>Lizenzdatei nicht vorhanden</value>
+  </data>
+  <data name="StatusEmbeddedLoaded" xml:space="preserve">
+    <value>{0} geladen</value>
+  </data>
+  <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
+    <value>Eingebettete Datei konnte nicht geladen werden: {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedOtherFailure" xml:space="preserve">
+    <value>Keine Vorschau möglich für {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedTextFailure" xml:space="preserve">
+    <value>Text / XML-Datei konnte nicht geladen werden: {0}</value>
+  </data>
+  <data name="StatusLoadingEmbedded" xml:space="preserve">
+    <value>Lade eingebettete Datei... Bitte warten</value>
   </data>
 </root>

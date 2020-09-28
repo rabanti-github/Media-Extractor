@@ -367,6 +367,42 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The change log &apos;{0}&apos; was not found. ähnelt.
+        /// </summary>
+        public static string DialogMissingChangelog {
+            get {
+                return ResourceManager.GetString("DialogMissingChangelog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Changelog not found ähnelt.
+        /// </summary>
+        public static string DialogMissingChangelogTitle {
+            get {
+                return ResourceManager.GetString("DialogMissingChangelogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The license file &apos;{0}&apos; was not found. ähnelt.
+        /// </summary>
+        public static string DialogMissingLicense {
+            get {
+                return ResourceManager.GetString("DialogMissingLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die License could not be found ähnelt.
+        /// </summary>
+        public static string DialogMissingLicenseTitle {
+            get {
+                return ResourceManager.GetString("DialogMissingLicenseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remember Decision ähnelt.
         /// </summary>
         public static string DialogRememberCheckbox {
@@ -673,11 +709,47 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} loaded ähnelt.
+        /// </summary>
+        public static string StatusEmbeddedLoaded {
+            get {
+                return ResourceManager.GetString("StatusEmbeddedLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die File loaded: {0} ähnelt.
         /// </summary>
         public static string StatusLoaded {
             get {
                 return ResourceManager.GetString("StatusLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Embedded file could not be loaded: {0} ähnelt.
+        /// </summary>
+        public static string StatusLoadEmbeddedImageFailure {
+            get {
+                return ResourceManager.GetString("StatusLoadEmbeddedImageFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Preview not possible for {0} ähnelt.
+        /// </summary>
+        public static string StatusLoadEmbeddedOtherFailure {
+            get {
+                return ResourceManager.GetString("StatusLoadEmbeddedOtherFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Text / XML file could not be loaded: {0} ähnelt.
+        /// </summary>
+        public static string StatusLoadEmbeddedTextFailure {
+            get {
+                return ResourceManager.GetString("StatusLoadEmbeddedTextFailure", resourceCulture);
             }
         }
         
@@ -696,6 +768,15 @@ namespace MediaExtractor.Properties {
         public static string StatusLoading {
             get {
                 return ResourceManager.GetString("StatusLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading embedded file... Please wait ähnelt.
+        /// </summary>
+        public static string StatusLoadingEmbedded {
+            get {
+                return ResourceManager.GetString("StatusLoadingEmbedded", resourceCulture);
             }
         }
         

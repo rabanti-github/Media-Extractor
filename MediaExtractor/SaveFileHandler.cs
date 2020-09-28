@@ -66,7 +66,7 @@ namespace MediaExtractor
         public void SaveAllFiles()
         {
             ListViewItem[] items = CurrentModel.ListViewItems.ToArray();
-            SaveFileRange(items, I18n.T("TextSaveAllDialogTitle"));
+            SaveFileRange(items, I18n.T(I18n.Key.DialogSaveAllTitle));
             
         }
 
@@ -81,7 +81,7 @@ namespace MediaExtractor
             }
             else
             {
-                SaveFileRange(CurrentModel.SelectedItems, I18n.T("TextSaveSelectedDialogTitle"));
+                SaveFileRange(CurrentModel.SelectedItems, I18n.T(I18n.Key.DialogSaveSelectedTitle));
             }
             
         }
@@ -94,8 +94,8 @@ namespace MediaExtractor
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Title = I18n.T("TextSaveCurrentDialogTitle");
-                sfd.Filter = I18n.T("TextSaveDialogFilter"); // All files|*.*
+                sfd.Title = I18n.T(I18n.Key.DialogSaveCurrentTitle);
+                sfd.Filter = I18n.T(I18n.Key.DialogSaveFilter); // All files|*.*
                 sfd.FileName = item.FileName;
                 Nullable<bool> result = sfd.ShowDialog();
                 if (result == true)
@@ -108,7 +108,7 @@ namespace MediaExtractor
                     bool open = Utils.ShowInExplorer(fi.DirectoryName);
                     if (!open)
                     {
-                        MessageBox.Show(I18n.R("TextSaveError", fi.DirectoryName), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show(I18n.R(I18n.Key.TextSaveError, fi.DirectoryName), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }
             }
@@ -157,8 +157,8 @@ namespace MediaExtractor
                         {
                             if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Cancel) // Cancel extractor
                             {
-                                CurrentModel.StatusText = I18n.T("StatusSaveCanceled");
-                                MessageBox.Show(I18n.T("StatusSaveCanceled"), I18n.T("DialogCancelTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+                                CurrentModel.StatusText = I18n.T(I18n.Key.StatusSaveCanceled);
+                                MessageBox.Show(I18n.T(I18n.Key.StatusSaveCanceled), I18n.T(I18n.Key.DialogCancelTitle), MessageBoxButton.OK, MessageBoxImage.Information);
                                 return;
                             }
                             else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Overwrite) // Overwrite existing
@@ -202,11 +202,11 @@ namespace MediaExtractor
                     if (errors > 0 || skipped > 0)
                     {
                         StringBuilder sb = new StringBuilder();
-                        if (errors == 1) { sb.Append(I18n.T("TextErrorOneFile")); }
-                        else if (errors > 1) { sb.Append(I18n.R("TextErrorMultipleFiles", errors)); }
+                        if (errors == 1) { sb.Append(I18n.T(I18n.Key.TextErrorOneFile)); }
+                        else if (errors > 1) { sb.Append(I18n.R(I18n.Key.TextErrorMultipleFiles, errors)); }
                         sb.Append("\n");
-                        if (skipped == 1) { sb.Append(I18n.T("TextSkippedOneFile")); }
-                        else if (skipped > 1) { sb.Append(I18n.R("TextSkippedMultipleFiles", skipped)); }
+                        if (skipped == 1) { sb.Append(I18n.T(I18n.Key.TextSkippedOneFile)); }
+                        else if (skipped > 1) { sb.Append(I18n.R(I18n.Key.TextSkippedMultipleFiles, skipped)); }
                         string message;
                         if (sb[0] == '\n')
                         {
@@ -216,26 +216,26 @@ namespace MediaExtractor
                         {
                             message = sb.ToString();
                         }
-                        CurrentModel.StatusText = I18n.R("StatusSaveErrorSummary", extracted, overwritten, renamed, skipped, errors);
-                        MessageBox.Show(message, I18n.T("DialogSaveErrors"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusSaveErrorSummary, extracted, overwritten, renamed, skipped, errors);
+                        MessageBox.Show(message, I18n.T(I18n.Key.DialogSaveErrors), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                     else
                     {
-                        CurrentModel.StatusText = I18n.R("StatusSaveSummary", extracted, overwritten, renamed, skipped);
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusSaveSummary, extracted, overwritten, renamed, skipped);
                     }
                     if (CurrentModel.ShowInExplorer)
                     {
                         bool open = Utils.ShowInExplorer(ofd.FileName);
                         if (open == false)
                         {
-                            MessageBox.Show(I18n.R("DialogExplorerError", ofd.FileName), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            MessageBox.Show(I18n.R(I18n.Key.DialogExplorerError, ofd.FileName), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(I18n.T("DialogUnexpectedError") + "\n" + ex.Message, I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(I18n.T(I18n.Key.DialogUnexpectedError) + "\n" + ex.Message, I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -263,15 +263,15 @@ namespace MediaExtractor
                 fs.Close();
                 if (writeStatus == true)
                 {
-                    CurrentModel.StatusText = I18n.R("StatusSaveSuccess", filename);
+                    CurrentModel.StatusText = I18n.R(I18n.Key.StatusSaveSuccess, filename);
                 }
             }
             catch (Exception e)
             {
                 if (writeStatus == true)
                 {
-                    CurrentModel.StatusText = I18n.R("StatusSaveFailure", e.Message);
-                    MessageBox.Show(I18n.T("DialogSaveFailure"), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+                    CurrentModel.StatusText = I18n.R(I18n.Key.StatusSaveFailure, e.Message);
+                    MessageBox.Show(I18n.T(I18n.Key.DialogSaveFailure), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Information);
                     return false;
                 }
             }

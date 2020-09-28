@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="{x:Static p:Resources.DialogHeader}" Height="197.49" Width="550" ResizeMode="NoResize" Icon="media/media_extractor.ico" WindowStartupLocation="CenterOwner" Topmost="True" Closing="Window_Closing">
     <Grid>
-        <TextBox x:Name="InfoBox" HorizontalAlignment="Left" Height="80" Margin="67,89,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.CrcDescription}" VerticalAlignment="Top" Width="417" Panel.ZIndex="99" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Visibility="Hidden"/>
+        <TextBox x:Name="InfoBox" HorizontalAlignment="Left" Height="100" Margin="67,49,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.CrcDescription}" VerticalAlignment="Top" Width="417" Panel.ZIndex="99" Background="{DynamicResource {x:Static adonisUi:Brushes.Layer1IntenseHighlightBrush}}" Visibility="Hidden"/>
         <Grid HorizontalAlignment="Left" Height="69" Margin="0,100,0,-1" VerticalAlignment="Top" Width="544" Background="{DynamicResource {x:Static adonisUi:Brushes.Layer2BackgroundBrush}}">
             <Button x:Name="OverwriteButton" Content="{x:Static p:Resources.DialogButtonOverwrite}" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top" Width="122" ToolTip="{x:Static p:Resources.DialogButtonOverwriteTooltip}" Click="OverwriteButton_Click"/>
             <Button x:Name="SkipButton" Content="{x:Static p:Resources.DialogButtonSkip}" HorizontalAlignment="Left" Margin="139,10,0,0" VerticalAlignment="Top" Width="122" ToolTip="{x:Static p:Resources.DialogButtonSkipTooltip}" Click="SkipButton_Click"/>
