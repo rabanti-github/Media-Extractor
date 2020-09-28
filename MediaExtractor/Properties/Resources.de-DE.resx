@@ -340,9 +340,39 @@
     <value>Der Pfad '{0}' konnte nicht geöffnet werden</value>
   </data>
   <data name="TextSkippedMultipleFiles" xml:space="preserve">
-    <value>{0} wurder übersprungen.</value>
+    <value>{0} Dateien wurden übersprungen.</value>
   </data>
   <data name="TextSkippedOneFile" xml:space="preserve">
     <value>Eine Datei wurde übersprungen.</value>
+  </data>
+  <data name="DialogLoadFailure" xml:space="preserve">
+    <value>Die Datei konnte nicht geladen werden.\n{0}\nFehlermeldung: {1}"</value>
+  </data>
+  <data name="DialogLoadFilter" xml:space="preserve">
+    <value>Alle Office-Formate|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word-Dokumente|*.docx;*.dotx;*.docm;*.dotm|Excel-Dokumente|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint-Dokumente|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Gängige Archiv-Formate|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Alle Dateien|*.*</value>
+  </data>
+  <data name="DialogLoadTitle" xml:space="preserve">
+    <value>Office-Dokument auswählen...</value>
+  </data>
+  <data name="StatusLoaded" xml:space="preserve">
+    <value>Datei geladen: {0}</value>
+  </data>
+  <data name="StatusLoadFailure" xml:space="preserve">
+    <value>Die Datei konnte nicht geladen werden</value>
+  </data>
+  <data name="StatusLoading" xml:space="preserve">
+    <value>Datei wird geladen... Bitte warten</value>
+  </data>
+  <data name="StatusNotLoaded" xml:space="preserve">
+    <value>Die Datei konnte nicht geladen werden (kein unterstütztes Format)</value>
+  </data>
+  <data name="TextInvalidFormat" xml:space="preserve">
+    <value>Die Datei ist scheinbar kein gültiges Office-Dokument oder Archiv.</value>
+  </data>
+  <data name="TextInvalidPath" xml:space="preserve">
+    <value>Scheinbar ist der Dateiname ungültig. Bitte überprüfen Sie den Namen und den Pfad zur Datei.</value>
+  </data>
+  <data name="TextLockedFile" xml:space="preserve">
+    <value>Bitte stellen Sie sicher, daß die Datei nicht in einem anderen Programm geöffnet ist.</value>
   </data>
 </root>

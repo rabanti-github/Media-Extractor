@@ -340,6 +340,33 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file could not be loaded.\n{0}\nError Message: {1} ähnelt.
+        /// </summary>
+        public static string DialogLoadFailure {
+            get {
+                return ResourceManager.GetString("DialogLoadFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.* ähnelt.
+        /// </summary>
+        public static string DialogLoadFilter {
+            get {
+                return ResourceManager.GetString("DialogLoadFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select Office Document... ähnelt.
+        /// </summary>
+        public static string DialogLoadTitle {
+            get {
+                return ResourceManager.GetString("DialogLoadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remember Decision ähnelt.
         /// </summary>
         public static string DialogRememberCheckbox {
@@ -646,6 +673,42 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File loaded: {0} ähnelt.
+        /// </summary>
+        public static string StatusLoaded {
+            get {
+                return ResourceManager.GetString("StatusLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file could not be loaded ähnelt.
+        /// </summary>
+        public static string StatusLoadFailure {
+            get {
+                return ResourceManager.GetString("StatusLoadFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading file... Please wait ähnelt.
+        /// </summary>
+        public static string StatusLoading {
+            get {
+                return ResourceManager.GetString("StatusLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file could not be loaded (no supported format) ähnelt.
+        /// </summary>
+        public static string StatusNotLoaded {
+            get {
+                return ResourceManager.GetString("StatusNotLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The save process was canceled ähnelt.
         /// </summary>
         public static string StatusSaveCanceled {
@@ -705,6 +768,33 @@ namespace MediaExtractor.Properties {
         public static string TextErrorOneFile {
             get {
                 return ResourceManager.GetString("TextErrorOneFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file may be not a valid Office file or archive. ähnelt.
+        /// </summary>
+        public static string TextInvalidFormat {
+            get {
+                return ResourceManager.GetString("TextInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die It looks like the filename is not valid. Please check the file name and path. ähnelt.
+        /// </summary>
+        public static string TextInvalidPath {
+            get {
+                return ResourceManager.GetString("TextInvalidPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please make sure that the file is not open in another application. ähnelt.
+        /// </summary>
+        public static string TextLockedFile {
+            get {
+                return ResourceManager.GetString("TextLockedFile", resourceCulture);
             }
         }
         

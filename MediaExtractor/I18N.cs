@@ -5,6 +5,8 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+using System.Linq;
+
 namespace MediaExtractor
 {
     /// <summary>
@@ -57,21 +59,28 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Method to translate a string, using parameters, to be replaces inb 
+        /// Method to translate a string, using parameters, to be replaced in the translated text 
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="key">Resource name of the translation</param>
+        /// <param name="parameters">Params string array</param>
+        /// <returns>Translated term with replaced text</returns>
         public static string R(string key, params string[] parameters)
         {
             string localized = T(key);
             return string.Format(localized, parameters);
         }
 
+        /// <summary>
+        /// Method to translate a string, using integer parameters, to be replaced in the translated text 
+        /// </summary>
+        /// <param name="key">Resource name of the translation</param>
+        /// <param name="parameters">Params int array</param>
+        /// <returns>Translated term with replaced text</returns>
         public static string R(string key, params int[] parameters)
         {
             string localized = T(key);
-            return string.Format(localized, parameters);
+            string[] numbers = parameters.Select(x => x.ToString()).ToArray();
+            return R(key, numbers);
         }
 
     }

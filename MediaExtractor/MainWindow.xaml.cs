@@ -72,7 +72,7 @@ namespace MediaExtractor
                 else
                 {
                     CurrentModel.FileName = args[1];
-                    CurrentModel.StatusText = "Loading file... Please wait";
+                    CurrentModel.StatusText = I18n.T("StatusLoading");
                     Thread t = new Thread(LoadFile);
                     t.Start(this);
                 }
@@ -86,22 +86,13 @@ namespace MediaExtractor
         private void OpenFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Select Office File...";
+            ofd.Title = I18n.T("DialogLoadTitle");
             ofd.DefaultExt = ".docx";
-            ofd.Filter = "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*";
+            ofd.Filter = I18n.T("DialogLoadFilter"); // "All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*
             Nullable<bool> result = ofd.ShowDialog();
             if (result == true)
             {
                 LoadFile(ofd.FileName);
-                /*
-                TextBox.Text = string.Empty;
-                ImageBox.Source = null;
-                CurrentModel.FileName = ofd.FileName;
-                CurrentModel.StatusText = "File loaded: " + CurrentModel.FileName;
-                CurrentModel.StatusText = "Loading file... Please wait";
-                Thread t = new Thread(LoadFile);
-                t.Start(this);
-                */
             }
         }
 
@@ -114,8 +105,7 @@ namespace MediaExtractor
             TextBox.Text = string.Empty;
             ImageBox.Source = null;
             CurrentModel.FileName = path;
-            CurrentModel.StatusText = "File loaded: " + CurrentModel.FileName;
-            CurrentModel.StatusText = "Loading file... Please wait";
+            CurrentModel.StatusText = I18n.T("StatusLoading");
             Thread t = new Thread(LoadFile);
             t.Start(this);
         }
@@ -146,7 +136,7 @@ namespace MediaExtractor
             reference.CurrentExtractor = new Extractor(reference.CurrentModel.FileName, reference.CurrentModel);
             if (reference.CurrentExtractor.HasErrors)
             {
-                reference.CurrentModel.StatusText = "The file could not be loaded (no suitable format)";
+                reference.CurrentModel.StatusText = I18n.T("StatusNotLoaded");
                 reference.CurrentModel.WindowTitle = reference.ProductName;
                 reference.CurrentExtractor.ResetErrors();
                 return;
@@ -163,20 +153,20 @@ namespace MediaExtractor
                         FileInfo fi = new FileInfo(reference.CurrentModel.FileName);
                         if (ext.Contains(fi.Extension.ToLower()) == true)
                         {
-                            message = "Please make sure that the file is not open in another application.";
+                            message = I18n.T("TextLockedFile");
                         }
                         else
                         {
-                            message = "The file may be not a valid Office file or archive.";
+                            message = I18n.T("TextInvalidFormat");
                         }
                     }
                     catch
                     {
-                        message = "It looks like the filename is not valid. Please check the file name and path.";
+                        message = I18n.T("TextInvalidPath");
                     }
 
-                    reference.CurrentModel.StatusText = "The file could not be loaded";
-                    MessageBox.Show("The file could not be loaded.\n" + message + "\nError Message: " + reference.CurrentExtractor.LastError, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    reference.CurrentModel.StatusText = I18n.T("StatusLoadFailure");
+                    MessageBox.Show(I18n.R("DialogLoadFailure", message, reference.CurrentExtractor.LastError), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     reference.CurrentModel.WindowTitle = reference.ProductName;
                     reference.CurrentModel.Progress = 0;
                     reference.ChangeCursor(c);
@@ -186,7 +176,7 @@ namespace MediaExtractor
                 }
                 RecalculateListViwItems(reference);
             }
-            reference.CurrentModel.StatusText = "File loaded: " + reference.CurrentModel.FileName;
+            reference.CurrentModel.StatusText = I18n.R("StatusLoaded", reference.CurrentModel.FileName);
             reference.CurrentModel.WindowTitle = reference.ProductName + " - " + reference.CurrentModel.FileName;
             reference.CurrentModel.Progress = 0;
             reference.ChangeCursor(c);

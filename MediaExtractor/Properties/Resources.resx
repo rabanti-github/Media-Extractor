@@ -345,4 +345,34 @@
   <data name="TextSkippedOneFile" xml:space="preserve">
     <value>One file was skipped.</value>
   </data>
+  <data name="DialogLoadFailure" xml:space="preserve">
+    <value>The file could not be loaded.\n{0}\nError Message: {1}</value>
+  </data>
+  <data name="DialogLoadFilter" xml:space="preserve">
+    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
+  </data>
+  <data name="DialogLoadTitle" xml:space="preserve">
+    <value>Select Office Document...</value>
+  </data>
+  <data name="StatusLoaded" xml:space="preserve">
+    <value>File loaded: {0}</value>
+  </data>
+  <data name="StatusLoadFailure" xml:space="preserve">
+    <value>The file could not be loaded</value>
+  </data>
+  <data name="StatusLoading" xml:space="preserve">
+    <value>Loading file... Please wait</value>
+  </data>
+  <data name="StatusNotLoaded" xml:space="preserve">
+    <value>The file could not be loaded (no supported format)</value>
+  </data>
+  <data name="TextInvalidFormat" xml:space="preserve">
+    <value>The file may be not a valid Office file or archive.</value>
+  </data>
+  <data name="TextInvalidPath" xml:space="preserve">
+    <value>It looks like the filename is not valid. Please check the file name and path.</value>
+  </data>
+  <data name="TextLockedFile" xml:space="preserve">
+    <value>Please make sure that the file is not open in another application.</value>
+  </data>
 </root>

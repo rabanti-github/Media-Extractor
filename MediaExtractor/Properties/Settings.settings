@@ -2,13 +2,13 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MediaExtractor.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Author" Type="System.String" Scope="User">
+    <Setting Name="Author" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Raphael Stoeckli</Value>
     </Setting>
-    <Setting Name="Website" Type="System.String" Scope="User">
+    <Setting Name="Website" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://github.com/rabanti-github/Media-Extractor</Value>
     </Setting>
-    <Setting Name="License" Type="System.String" Scope="User">
+    <Setting Name="License" Type="System.String" Scope="Application">
       <Value Profile="(Default)">MIT</Value>
     </Setting>
   </Settings>

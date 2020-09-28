@@ -106,7 +106,7 @@ namespace MediaExtractor
                 {
                     FileInfo fi = new FileInfo(sfd.FileName);
                     bool open = Utils.ShowInExplorer(fi.DirectoryName);
-                    if (open == false)
+                    if (!open)
                     {
                         MessageBox.Show(I18n.R("TextSaveError", fi.DirectoryName), I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
@@ -221,7 +221,7 @@ namespace MediaExtractor
                     }
                     else
                     {
-                        CurrentModel.StatusText = I18n.R("StatusSaveSummary", extracted, overwritten, renamed, skipped, errors);
+                        CurrentModel.StatusText = I18n.R("StatusSaveSummary", extracted, overwritten, renamed, skipped);
                     }
                     if (CurrentModel.ShowInExplorer)
                     {
@@ -236,7 +236,6 @@ namespace MediaExtractor
             catch (Exception ex)
             {
                 MessageBox.Show(I18n.T("DialogUnexpectedError") + "\n" + ex.Message, I18n.T("DialogErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
             }
         }
 
