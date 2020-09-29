@@ -402,4 +402,19 @@
   <data name="StatusLoadingEmbedded" xml:space="preserve">
     <value>Loading embedded file... Please wait</value>
   </data>
+  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
+    <value>System Language (Default)</value>
+  </data>
+  <data name="DialogMissingWebsite" xml:space="preserve">
+    <value>The project website could not be loaded</value>
+  </data>
+  <data name="DialogMissingWebsiteTitle" xml:space="preserve">
+    <value>Project website not loaded</value>
+  </data>
+  <data name="TextErrorInvalidImage" xml:space="preserve">
+    <value>Image preview could not be created</value>
+  </data>
+  <data name="TextErrorInvalidText" xml:space="preserve">
+    <value>Text preview could not be created</value>
+  </data>
 </root>

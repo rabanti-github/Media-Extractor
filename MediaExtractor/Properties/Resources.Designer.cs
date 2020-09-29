@@ -403,6 +403,24 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The project website could not be loaded ähnelt.
+        /// </summary>
+        public static string DialogMissingWebsite {
+            get {
+                return ResourceManager.GetString("DialogMissingWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Project website not loaded ähnelt.
+        /// </summary>
+        public static string DialogMissingWebsiteTitle {
+            get {
+                return ResourceManager.GetString("DialogMissingWebsiteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remember Decision ähnelt.
         /// </summary>
         public static string DialogRememberCheckbox {
@@ -552,6 +570,15 @@ namespace MediaExtractor.Properties {
         public static string MenuAppearanceLanguage {
             get {
                 return ResourceManager.GetString("MenuAppearanceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die System Language (Default) ähnelt.
+        /// </summary>
+        public static string MenuAppearanceLanguageDefault {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguageDefault", resourceCulture);
             }
         }
         
@@ -831,6 +858,24 @@ namespace MediaExtractor.Properties {
         public static string StatusSaveSummary {
             get {
                 return ResourceManager.GetString("StatusSaveSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Image preview could not be created ähnelt.
+        /// </summary>
+        public static string TextErrorInvalidImage {
+            get {
+                return ResourceManager.GetString("TextErrorInvalidImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Text preview could not be created ähnelt.
+        /// </summary>
+        public static string TextErrorInvalidText {
+            get {
+                return ResourceManager.GetString("TextErrorInvalidText", resourceCulture);
             }
         }
         

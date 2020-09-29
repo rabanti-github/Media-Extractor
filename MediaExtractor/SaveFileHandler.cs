@@ -97,18 +97,18 @@ namespace MediaExtractor
                 sfd.Title = I18n.T(I18n.Key.DialogSaveCurrentTitle);
                 sfd.Filter = I18n.T(I18n.Key.DialogSaveFilter); // All files|*.*
                 sfd.FileName = item.FileName;
-                Nullable<bool> result = sfd.ShowDialog();
+                bool? result = sfd.ShowDialog();
                 if (result == true)
                 {
                     Save(item.FileReference, sfd.FileName, true);
-                }
-                if (CurrentModel.ShowInExplorer)
-                {
-                    FileInfo fi = new FileInfo(sfd.FileName);
-                    bool open = Utils.ShowInExplorer(fi.DirectoryName);
-                    if (!open)
+                    if (CurrentModel.ShowInExplorer)
                     {
-                        MessageBox.Show(I18n.R(I18n.Key.TextSaveError, fi.DirectoryName), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        FileInfo fi = new FileInfo(sfd.FileName);
+                        bool open = Utils.ShowInExplorer(fi.DirectoryName);
+                        if (!open)
+                        {
+                            MessageBox.Show(I18n.R(I18n.Key.TextSaveError, fi.DirectoryName), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
                     }
                 }
             }

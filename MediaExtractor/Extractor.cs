@@ -46,6 +46,12 @@ namespace MediaExtractor
             Png,
             /// <summary>Image is a JPEG File</summary>
             Jpg,
+            /// <summary>Image is a BMP File</summary>
+            Bmp,
+            /// <summary>Image is a GIF File</summary>
+            Gif,
+            /// <summary>Image is a ICO File</summary>
+            Ico,
             /// <summary>File is a text file</summary>
             Txt,
             /// <summary>File is a XML file</summary>
@@ -157,17 +163,17 @@ namespace MediaExtractor
                 currentModel.NumberOfFiles = embeddedFiles.Count;
                 for(int i = 0; i < currentModel.NumberOfFiles; i++)
                 {
-                    if (embeddedFiles[i].IsImage)
+                    switch (embeddedFiles[i].ItemType)
                     {
-                        embeddedFiles[i].CreateImage(true);
-                    }
-                    else if (embeddedFiles[i].IsXml)
-                    {
-                        embeddedFiles[i].CreateXml();
-                    }
-                    else if (embeddedFiles[i].IsText)
-                    {
-                        embeddedFiles[i].CreateText();
+                        case ExtractorItem.Type.Image:
+                            embeddedFiles[i].CreateImage(true);
+                            break;
+                        case ExtractorItem.Type.Xml:
+                            embeddedFiles[i].CreateXml();
+                            break;
+                        case ExtractorItem.Type.Text:
+                            embeddedFiles[i].CreateText();
+                            break;
                     }
                     currentModel.CurrentFile = i + 1;
                 }
@@ -206,7 +212,7 @@ namespace MediaExtractor
         {
             foreach (ExtractorItem item in embeddedFiles)
             {
-                if (item.FileName == filename && item.IsImage)
+                if (item.FileName == filename && item.ItemType == ExtractorItem.Type.Image)
                 {
                     image = item.Image;
                     if (!item.ValidImage)
@@ -222,7 +228,7 @@ namespace MediaExtractor
                 }
             }
             image = null;
-            lastError = "Image could not be created";
+            lastError = I18n.T(I18n.Key.TextErrorInvalidImage);
             hasErrors = true;
             return false;
         }
@@ -237,7 +243,7 @@ namespace MediaExtractor
         {
             foreach (ExtractorItem item in embeddedFiles)
             {
-                if (item.FileName == filename && (item.IsText || item.IsXml))
+                if (item.FileName == filename && (item.ItemType == ExtractorItem.Type.Text || item.ItemType == ExtractorItem.Type.Xml))
                 {
                     genericText = item.GenericText;
                     if (!item.ValidGenericText)
@@ -253,7 +259,7 @@ namespace MediaExtractor
                 }
             }
             genericText = string.Empty;
-            lastError = "Text preview could not be created";
+            lastError = I18n.T(I18n.Key.TextErrorInvalidText);
             hasErrors = true;
             return false;
         }
@@ -282,6 +288,15 @@ namespace MediaExtractor
                 case EmbeddedFormat.Jpg:
                     extension = ".jpg";
                     break;
+                case EmbeddedFormat.Bmp:
+                    extension = ".bmp";
+                    break;
+                case EmbeddedFormat.Gif:
+                    extension = ".gif";
+                    break;
+                case EmbeddedFormat.Ico:
+                    extension = ".ico";
+                    break;
                 case EmbeddedFormat.All:
                     allFiles = true;
                     break;
@@ -294,7 +309,11 @@ namespace MediaExtractor
             ExtractorItem item;
             for(int i = 0; i < archive.Entries.Count; i++)
             {
-                if ((!archive.Entries[i].IsFolder && archive.Entries[i].FileName.ToLower().EndsWith(extension)) || allFiles == true)
+                if (archive.Entries[i].IsFolder)
+                {
+                    continue; // Skip folders as entries
+                }
+                if (archive.Entries[i].FileName.ToLower().EndsWith(extension) || allFiles == true)
                 {
                     ms = new MemoryStream();
                     archive.Entries[i].Extract(ms);

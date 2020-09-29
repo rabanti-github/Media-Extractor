@@ -13,6 +13,23 @@ namespace MediaExtractor
     /// </summary>
     public class ExtractorItem
     {
+        /// <summary>
+        /// Enum to define the coarse file type of the entry
+        /// </summary>
+        public enum Type 
+        {
+            /// <summary>Entry is an image</summary>
+            Image,
+            /// <summary>Entry is an XML file</summary>
+            Xml,
+            /// <summary>Entry is a text file</summary>
+            Text,
+            /// <summary>Entry is not an image</summary>
+            Other,
+            /// <summary>Entry no file at all / error</summary>
+            None,
+        }
+
         private BitmapImage image;
         private string genericText;
         private bool initialized;
@@ -42,17 +59,9 @@ namespace MediaExtractor
         /// </summary>
         public bool ValidGenericText { get; set; }
         /// <summary>
-        /// If true, the item is described as image file (by its file extension)
+        /// Generic type of the item
         /// </summary>
-        public bool IsImage { get; set; }
-        /// <summary>
-        /// If true, the item is described as XML file (by its file extension)
-        /// </summary>
-        public bool IsXml { get; set; }
-        /// <summary>
-        /// If true, the item is described as text file (by its file extension)
-        /// </summary>
-        public bool IsText { get; set; }
+        public Type ItemType { get; set; }
         /// <summary>
         /// CRC32 hash of the file
         /// </summary>
@@ -90,13 +99,12 @@ namespace MediaExtractor
             {
                 if (genericText == null && initialized == false)
                 {
-                
-                    if (IsText)
+                    if (ItemType == Type.Text)
                     {
                         CreateText();
                         initialized = true;
                     }
-                    else if (IsXml)
+                    else if (ItemType == Type.Xml)
                     {
                         CreateXml();
                         initialized = true;
@@ -135,48 +143,85 @@ namespace MediaExtractor
             string[] tokens = fileName.Split('.');
             if (tokens.Length > 1)
             {
-                FileExtension = tokens[tokens.Length - 1].ToUpper();
-                if (FileExtension == "JPG" || FileExtension == "JPEG" || FileExtension == "PNG" || FileExtension == "WMF" || FileExtension == "EMF"  || FileExtension == "GIF" || FileExtension == "BMP" || FileExtension == "ICO")
-                {
-                    IsImage = true;
-                }
-                else if (FileExtension == "TXT" || FileExtension == "MD" || FileExtension == "LOG" || FileExtension == "ME" || FileExtension == "README")
-                {
-                    IsText = true;
-                }
-                else if (FileExtension == "XML" || FileExtension == "RELS")
-                {
-                    IsXml = true;
-                }
+                FileExtension = tokens[tokens.Length - 1];
+                ItemType = GetExtensionType(FileExtension);
             }
             else
             {
                 FileExtension = "";
-                IsImage = false;
+                ItemType = Type.Other;
             }
 
             FileName = fileName;
             Path = path;
             Stream = stream;
             ErrorMessage = String.Empty;
-            IsImage = IsImage;
+
             if (createFile == true)
             {
-                if (IsImage == true)
+                switch (ItemType)
                 {
-                    CreateImage(true);
-                }
-                else if (IsXml == true)
-                {
-                    CreateXml();
-                }
-                else if (IsText == true)
-                {
-                    CreateText();
+                    case Type.Image:
+                        CreateImage(true);
+                        break;
+                    case Type.Xml:
+                        CreateXml();
+                        break;
+                    case Type.Text:
+                        CreateText();
+                        break;
                 }
                 initialized = true;
             }
             
+        }
+
+        private static Type GetExtensionType(string extension)
+        {
+            //else if (FileExtension == "TXT" || FileExtension == "MD" || FileExtension == "LOG" || FileExtension == "ME" || FileExtension == "README")
+            string ext = extension.ToLower();
+            switch (ext)
+            {
+                case "txt":
+                case "md":
+                case "mf":
+                case "log":
+                case "me":
+                case "readme":
+                case "rst":
+                case "asc":
+                case "latex":
+                case "lst":
+                case "sty":
+                case "tex":
+                case "text":
+                    return Type.Text;
+            }
+            switch (ext)
+            {
+                case "jpg":
+                case "jpeg":
+                case "png":
+                case "wmf":
+                case "emf":
+                case "gif":
+                case "bmp":
+                case "ico":
+                    return Type.Image;
+            }
+            switch (ext)
+            {
+                case "xml":
+                case "rels":
+                case "xhtml":
+                case "svg":
+                case "x3d":
+                case "collada":
+                case "graphml":
+                    return Type.Text;
+                default:
+                    return Type.Other;
+            }
         }
 
         /// <summary>

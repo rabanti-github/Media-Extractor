@@ -226,7 +226,7 @@
     <value>Version</value>
   </data>
   <data name="AboutWebsite" xml:space="preserve">
-    <value>Website</value>
+    <value>Webseite</value>
   </data>
   <data name="CrcDescription" xml:space="preserve">
     <value>CRC32 (cyclic redundancy check) ist eine einfache Hashing-Methode um Daten oder Dateien auf Übereinstimmung zu prüfen. CRC bietet allerdings keinen 100%ige Garantie, daß zwei Dateien identisch sind.  Es ist jedoch ein sehr starkes Indiz, wenn nicht von bewusster Manipulation der Dateien ausgegangen wird.</value>
@@ -401,5 +401,20 @@
   </data>
   <data name="StatusLoadingEmbedded" xml:space="preserve">
     <value>Lade eingebettete Datei... Bitte warten</value>
+  </data>
+  <data name="DialogMissingWebsite" xml:space="preserve">
+    <value>Die Projekt-Webseite konnte nicht geladen werden</value>
+  </data>
+  <data name="DialogMissingWebsiteTitle" xml:space="preserve">
+    <value>Projekt-Webseite nicht geladen</value>
+  </data>
+  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
+    <value>Systemsprache (automatisch)</value>
+  </data>
+  <data name="TextErrorInvalidImage" xml:space="preserve">
+    <value>Vorschaubild konnte nicht erstellt werden</value>
+  </data>
+  <data name="TextErrorInvalidText" xml:space="preserve">
+    <value>Textvorschau konnte nicht erstellt werden</value>
   </data>
 </root>

@@ -34,10 +34,9 @@ namespace MediaExtractor
             {
                 System.Diagnostics.Process.Start(Properties.Settings.Default.Website);
             }
-            catch (Exception exception)
+            catch
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(I18n.T(I18n.Key.DialogMissingWebsite), I18n.T(I18n.Key.DialogMissingWebsiteTitle), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

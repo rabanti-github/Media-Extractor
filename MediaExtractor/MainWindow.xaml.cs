@@ -55,7 +55,7 @@ namespace MediaExtractor
             ProductName = versionInfo.ProductName;
            // Title = versionInfo.ProductName;
            CurrentModel.WindowTitle = versionInfo.ProductName;
-            CurrentModel.UseEnglishLocale = true; // TODO: Get from settings
+            //CurrentModel.UseEnglishLocale = true; // TODO: Get from settings
             HandleArguments();
         }
 
@@ -188,7 +188,7 @@ namespace MediaExtractor
         /// <param name="reference">Reference to the currently active window</param>
         private static void RecalculateListViwItems(MainWindow reference)
         {
-            if (reference.CurrentModel == null)
+            if (reference.CurrentModel == null || reference.CurrentExtractor == null)
             {
                 return;
             }
@@ -201,7 +201,7 @@ namespace MediaExtractor
                         ListViewItem lItem;
                         foreach (ExtractorItem item in reference.CurrentExtractor.EmbeddedFiles)
                         {
-                            if ((item.IsImage == true && reference.ImageFilterMenuItem.IsChecked == true) || (item.IsImage == false && reference.OtherFilterMenuItem.IsChecked == true))
+                            if ((item.ItemType == ExtractorItem.Type.Image && reference.ImageFilterMenuItem.IsChecked) || (item.ItemType != ExtractorItem.Type.Image && reference.OtherFilterMenuItem.IsChecked))
                             {
                                 lItem = new ListViewItem()
                                 {
@@ -210,7 +210,7 @@ namespace MediaExtractor
                                     Path = item.Path,
                                     FileReference = item
                                 };
-                                lItem.SetType();
+                                lItem.Type = item.ItemType;
                                 reference.CurrentModel.ListViewItems.Add(lItem);
                                 i++;
                             }
@@ -277,7 +277,7 @@ namespace MediaExtractor
 
                 ListViewItem item = selected.Last();
 
-                if (item.Type == ListViewItem.FileType.Image)
+                if (item.Type == ExtractorItem.Type.Image)
                 {
                     CurrentExtractor.GetImageSourceByName(item.FileName, out var img);
                     SetImagePreviewVisible();
@@ -293,7 +293,7 @@ namespace MediaExtractor
                         CurrentModel.StatusText = I18n.R(I18n.Key.StatusEmbeddedLoaded, item.FileName);
                     }
                 }
-                else if (item.Type == ListViewItem.FileType.Xml || item.Type == ListViewItem.FileType.Text)
+                else if (item.Type == ExtractorItem.Type.Xml || item.Type == ExtractorItem.Type.Text)
                 {
                     CurrentExtractor.GetGenericTextByName(item.FileName, out var text);
                     SetTextPreviewVisible();
@@ -456,10 +456,9 @@ namespace MediaExtractor
             {
                 Process.Start(Properties.Settings.Default.Website);
             }
-            catch (Exception exception)
+            catch
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(I18n.T(I18n.Key.DialogMissingWebsite), I18n.T(I18n.Key.DialogMissingWebsiteTitle), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -514,9 +513,14 @@ namespace MediaExtractor
             ChangeLocale(I18n.ENGLISH);
         }
 
-        private void GermanhMenuItem_Click(object sender, RoutedEventArgs e)
+        private void GermanMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ChangeLocale(I18n.GERMAN);
+        }
+
+        private void SystemLocaleMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeLocale(I18n.GetSystemLocale());
         }
 
         private void ChangeLocale(string locale)
@@ -544,9 +548,6 @@ namespace MediaExtractor
             }
         }
 
-
-        //public static class
-
         private void DragField_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -554,18 +555,6 @@ namespace MediaExtractor
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 LoadFile(files[0]);
             }
-        }
-
-        public RoutedUICommand SaveDefaultCommand = new RoutedUICommand("Save", "SaveDefault", typeof(MainWindow));
-
-        public void SaveDefaultCommand_Execute(object sender, CanExecuteRoutedEventArgs e)
-        {
-
-        }
-
-        public void SaveDefaultCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-
         }
 
     }

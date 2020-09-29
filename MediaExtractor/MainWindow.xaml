@@ -65,8 +65,10 @@
             <MenuItem Header="{x:Static p:Resources.MenuAppearance}">
                 <MenuItem x:Name="DarkModeMenuItem" IsChecked="{Binding Path=UseDarkMode}" Header="{x:Static p:Resources.MenuAppearanceDarkmode}" IsCheckable="True" Click="DarkModeMenuItem_Click" />
                 <MenuItem x:Name="LanguageMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguage}" >
+                    <MenuItem x:Name="SystemLocaleMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageDefault}" IsCheckable="True" IsChecked="{Binding Path=UseSystemLocale}" Click="SystemLocaleMenuItem_Click" />
+                    <Separator/>
                     <MenuItem x:Name="EnglishMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageEnglish}" IsCheckable="True" IsChecked="{Binding Path=UseEnglishLocale}" Click="EnglishMenuItem_Click" />
-                    <MenuItem x:Name="GermanhMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageGerman}" IsCheckable="True" IsChecked="{Binding Path=UseGermanLocale}" Click="GermanhMenuItem_Click" />
+                    <MenuItem x:Name="GermanhMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageGerman}" IsCheckable="True" IsChecked="{Binding Path=UseGermanLocale}" Click="GermanMenuItem_Click" />
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.MenuHelp}">

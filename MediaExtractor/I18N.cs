@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace MediaExtractor
@@ -58,6 +59,8 @@ namespace MediaExtractor
             DialogMissingChangelogTitle,
             DialogMissingLicense,
             DialogMissingLicenseTitle,
+            DialogMissingWebsite,
+            DialogMissingWebsiteTitle,
             DialogRememberCheckbox,
             DialogSaveAllTitle,
             DialogSaveCurrentTitle,
@@ -75,6 +78,7 @@ namespace MediaExtractor
             MenuAppearance,
             MenuAppearanceDarkmode,
             MenuAppearanceLanguage,
+            MenuAppearanceLanguageDefault,
             MenuAppearanceLanguageEnglish,
             MenuAppearanceLanguageGerman,
             MenuDocument,
@@ -106,6 +110,8 @@ namespace MediaExtractor
             StatusSaveFailure,
             StatusSaveSuccess,
             StatusSaveSummary,
+            TextErrorInvalidImage,
+            TextErrorInvalidText,
             TextErrorMultipleFiles,
             TextErrorOneFile,
             TextInvalidFormat,
@@ -134,21 +140,41 @@ namespace MediaExtractor
         /// <param name="currentLocale">Current locale as string</param>
         public static void MatchLocale(ViewModel viewModel, string currentLocale)
         {
+            string systemLocale = GetSystemLocale();
+            if (currentLocale == systemLocale)
+            {
+                SetSystemLocale(viewModel);
+                return;
+            }
             switch (currentLocale)
             {
                 case ENGLISH:
                     viewModel.UseEnglishLocale = true;
                     viewModel.UseGermanLocale = false;
+                    viewModel.UseSystemLocale = false;
                     break;
                 case GERMAN:
                     viewModel.UseEnglishLocale = false;
                     viewModel.UseGermanLocale = true;
+                    viewModel.UseSystemLocale = false;
                     break;
                 default:
-                    viewModel.UseEnglishLocale = true;
-                    viewModel.UseGermanLocale = false;
+                    SetSystemLocale(viewModel);
                     break;
             }
+        }
+
+        private static void SetSystemLocale(ViewModel viewModel)
+        {
+            viewModel.UseEnglishLocale = false;
+            viewModel.UseGermanLocale = false;
+            viewModel.UseSystemLocale = true;
+        }
+
+        public static string GetSystemLocale() 
+        {
+            CultureInfo ci = CultureInfo.InstalledUICulture;
+            return ci.Name;
         }
 
         /// <summary>

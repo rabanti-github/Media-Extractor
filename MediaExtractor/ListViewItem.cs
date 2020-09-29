@@ -12,22 +12,6 @@ namespace MediaExtractor
     /// </summary>
     public class ListViewItem
     {
-        /// <summary>
-        /// Enum to define the coarse file type of the entry
-        /// </summary>
-        public enum FileType
-        {
-            /// <summary>Entry is an image</summary>
-            Image,
-            /// <summary>Entry is an XML file</summary>
-            Xml,
-            /// <summary>Entry is a text file</summary>
-            Text,
-            /// <summary>Entry is not an image</summary>
-            Other,
-            /// <summary>Entry no file at all / error</summary>
-            None,
-        }
 
         /// <summary>
         /// File name of the entry
@@ -46,34 +30,11 @@ namespace MediaExtractor
         /// <summary>
         /// Coarse file type of the entry
         /// </summary>
-        public FileType Type { get; set; }
+        public ExtractorItem.Type Type { get; set; }
         /// <summary>
         /// Reference to the ExtractorItem of the entry
         /// </summary>
         public ExtractorItem FileReference { get; set; }
-
-        /// <summary>
-        /// Method to determine the type of the item
-        /// </summary>
-        public void SetType()
-        {
-            if (FileReference.IsXml)
-            {
-                Type = FileType.Xml;
-            }
-            else if (FileReference.IsImage)
-            {
-                Type = FileType.Image;
-            }
-            else if (FileReference.IsText)
-            {
-                Type = FileType.Text;
-            }
-            else
-            {
-                Type = FileType.Other;
-            }
-        }
 
     }
 }

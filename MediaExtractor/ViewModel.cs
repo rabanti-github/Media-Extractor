@@ -19,7 +19,6 @@ namespace MediaExtractor
     /// </summary>
     public class ViewModel : INotifyPropertyChanged
     {
-        
         private string windowTitle;
         private ObservableCollection<ListViewItem> listViewItems;
         private BitmapImage image;
@@ -30,6 +29,7 @@ namespace MediaExtractor
         private bool keepFolderStructure = true;
         private bool showInExplorer = true;
         private bool useDarkMode = false;
+        private bool useSystemLocale = true;
         private bool useEnglishLocale = false;
         private bool useGermanLocale = false;
         private bool saveSelectedIsDefault;
@@ -40,7 +40,6 @@ namespace MediaExtractor
         private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
 
         public SaveFileHandler CurrentSaveFileHandler { get; set; }
-
 
         public bool SaveSelectedIsDefault
         {
@@ -56,8 +55,6 @@ namespace MediaExtractor
                 NotifyPropertyChanged("SaveSelectedIsDefault");
             }
         }
-
-        
 
         public bool SaveAllIsDefault
         {
@@ -96,7 +93,6 @@ namespace MediaExtractor
         }
 
         public ListViewItem[] SelectedItems { get; set; } = new ListViewItem[0];
-
 
         /// <summary>
         /// The text of the main window
@@ -194,7 +190,6 @@ namespace MediaExtractor
             }
         }
 
-
         /// <summary>
         /// If true, the Application will be rendered in Dark Mode
         /// </summary>
@@ -211,6 +206,26 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// If true, the Application will be using the system default locale (if available)
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the system defines the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseSystemLocale
+        {
+            get { return useSystemLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseGermanLocale = false;
+                    UseEnglishLocale = false;
+                }
+                useSystemLocale = value;
+                NotifyPropertyChanged("UseSystemLocale");
+            }
+        }
 
         /// <summary>
         /// If true, the Application will be using English (en) as locale
@@ -226,6 +241,7 @@ namespace MediaExtractor
                 if (value)
                 {
                     UseGermanLocale = false;
+                    UseSystemLocale = false;
                 }
                 useEnglishLocale = value;
                 NotifyPropertyChanged("UseEnglishLocale");
@@ -246,12 +262,12 @@ namespace MediaExtractor
                 if (value)
                 {
                     UseEnglishLocale = false;
+                    UseSystemLocale = false;
                 }
                 useGermanLocale = value;
                 NotifyPropertyChanged("UseGermanLocale");
             }
         }
-
 
         /// <summary>
         /// Enabled / Disabled State of the button to the selected file(s)
@@ -317,8 +333,6 @@ namespace MediaExtractor
                 NotifyPropertyChanged("ListViewItems");
             }
         }
-
-
 
         /// <summary>
         /// Default constructor
