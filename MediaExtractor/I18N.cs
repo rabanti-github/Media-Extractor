@@ -123,7 +123,6 @@ namespace MediaExtractor
             TextSkippedOneFile,
         }
 
-
         /// <summary>
         /// Locale identifier for English (en-US)
         /// </summary>
@@ -164,14 +163,11 @@ namespace MediaExtractor
             }
         }
 
-        private static void SetSystemLocale(ViewModel viewModel)
-        {
-            viewModel.UseEnglishLocale = false;
-            viewModel.UseGermanLocale = false;
-            viewModel.UseSystemLocale = true;
-        }
-
-        public static string GetSystemLocale() 
+        /// <summary>
+        /// Method to determine the system locale
+        /// </summary>
+        /// <returns>System locale as string</returns>
+        public static string GetSystemLocale()
         {
             CultureInfo ci = CultureInfo.InstalledUICulture;
             return ci.Name;
@@ -211,6 +207,17 @@ namespace MediaExtractor
             string localized = T(key);
             string[] numbers = parameters.Select(x => x.ToString()).ToArray();
             return R(key, numbers);
+        }
+
+        /// <summary>
+        /// Method to set the system locale as application language
+        /// </summary>
+        /// <param name="viewModel">View model of the application</param>
+        private static void SetSystemLocale(ViewModel viewModel)
+        {
+            viewModel.UseEnglishLocale = false;
+            viewModel.UseGermanLocale = false;
+            viewModel.UseSystemLocale = true;
         }
 
     }

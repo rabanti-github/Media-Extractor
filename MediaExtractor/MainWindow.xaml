@@ -56,8 +56,8 @@
                 <MenuItem x:Name="QuitMenuItem" Header="{x:Static p:Resources.MenuFileQuit}" Click="QuitMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.MenuDocument}">
-                <MenuItem x:Name="ImageFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowImages}" IsChecked="True" IsCheckable="True" Checked="ImageFilterMenuItem_Checked" Unchecked="ImageFilterMenuItem_Unchecked" />
-                <MenuItem x:Name="OtherFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowOther}" IsCheckable="True" Checked="OtherFilterMenuItem_Checked" Unchecked="OtherFilterMenuItem_Unchecked" />
+                <MenuItem x:Name="ImageFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowImages}" IsChecked="{Binding Path=ShowEmbeddedImages}" IsCheckable="True" Checked="ImageFilterMenuItem_Checked" Unchecked="ImageFilterMenuItem_Unchecked" />
+                <MenuItem x:Name="OtherFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowOther}" IsChecked="{Binding Path=ShowEmbeddedOther}" IsCheckable="True" Checked="OtherFilterMenuItem_Checked" Unchecked="OtherFilterMenuItem_Unchecked" />
                 <Separator/>
                 <MenuItem x:Name="KeepFolderStructureMenuItem" IsChecked="{Binding Path=KeepFolderStructure}" Header="{x:Static p:Resources.MenuDocumentKeepStructure}" IsCheckable="True" />
                 <MenuItem x:Name="ShowInExplorarMenuItem" IsChecked="{Binding Path=ShowInExplorer}" Header="{x:Static p:Resources.MenuDocumentOpenExplorer}" IsCheckable="True" />

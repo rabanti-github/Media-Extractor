@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2018
+ * Copyright Raphael Stoeckli © 2020
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -85,7 +85,7 @@ namespace MediaExtractor
                 ArchiveFile ex = new ArchiveFile(ms, SevenZipFormat.Zip);
                 embeddedFiles = GetEntries(ref ex);
                 currentModel.NumberOfFiles = embeddedFiles.Count;
-                for(int i = 0; i < currentModel.NumberOfFiles; i++)
+                for (int i = 0; i < currentModel.NumberOfFiles; i++)
                 {
                     switch (embeddedFiles[i].ItemType)
                     {
@@ -102,7 +102,7 @@ namespace MediaExtractor
                     currentModel.CurrentFile = i + 1;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 hasErrors = true;
                 lastError = e.Message;
@@ -131,7 +131,7 @@ namespace MediaExtractor
                     {
                         return true;
                     }
-                    
+
                 }
             }
             image = null;
@@ -184,7 +184,7 @@ namespace MediaExtractor
             char[] delimiter = new char[] { '\\', '/' };
             string file, path;
             ExtractorItem item;
-            for(int i = 0; i < archive.Entries.Count; i++)
+            for (int i = 0; i < archive.Entries.Count; i++)
             {
                 if (archive.Entries[i].IsFolder)
                 {

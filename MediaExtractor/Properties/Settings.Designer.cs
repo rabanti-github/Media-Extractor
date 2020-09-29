@@ -49,5 +49,77 @@ namespace MediaExtractor.Properties {
                 return ((string)(this["License"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DocumentShowImages {
+            get {
+                return ((bool)(this["DocumentShowImages"]));
+            }
+            set {
+                this["DocumentShowImages"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DocumentShowOther {
+            get {
+                return ((bool)(this["DocumentShowOther"]));
+            }
+            set {
+                this["DocumentShowOther"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DocumentPreserveStructure {
+            get {
+                return ((bool)(this["DocumentPreserveStructure"]));
+            }
+            set {
+                this["DocumentPreserveStructure"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DocumentShowExplorer {
+            get {
+                return ((bool)(this["DocumentShowExplorer"]));
+            }
+            set {
+                this["DocumentShowExplorer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AppearanceDarkMode {
+            get {
+                return ((bool)(this["AppearanceDarkMode"]));
+            }
+            set {
+                this["AppearanceDarkMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Locale {
+            get {
+                return ((string)(this["Locale"]));
+            }
+            set {
+                this["Locale"] = value;
+            }
+        }
     }
 }

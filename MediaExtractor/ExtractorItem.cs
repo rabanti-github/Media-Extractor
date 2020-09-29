@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
+ * Copyright Raphael Stoeckli © 2020
+ * This program is licensed under the MIT License.
+ * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
@@ -16,7 +23,7 @@ namespace MediaExtractor
         /// <summary>
         /// Enum to define the coarse file type of the entry
         /// </summary>
-        public enum Type 
+        public enum Type
         {
             /// <summary>Entry is an image</summary>
             Image,
@@ -33,7 +40,7 @@ namespace MediaExtractor
         private BitmapImage image;
         private string genericText;
         private bool initialized;
-        
+
         /// <summary>
         /// Relative path of the item within the archive / file
         /// </summary>
@@ -79,14 +86,14 @@ namespace MediaExtractor
         /// </summary>
         public BitmapImage Image
         {
-            get 
+            get
             {
                 if (image == null && initialized == false)
                 {
                     CreateImage(true);
                     initialized = true;
                 }
-                return image; 
+                return image;
             }
         }
 
@@ -112,12 +119,12 @@ namespace MediaExtractor
                     else
                     {
                         genericText = "";
-                    } 
+                    }
                 }
                 return genericText;
             }
         }
-            
+
         /// <summary>
         /// Message of the last occurred error when processing the item
         /// </summary>
@@ -173,28 +180,74 @@ namespace MediaExtractor
                 }
                 initialized = true;
             }
-            
+
         }
 
+        /// <summary>
+        /// Gets the appropriate, generic type of the file
+        /// </summary>
+        /// <param name="extension">Extension of the file</param>
+        /// <returns>Generic file type</returns>
         private static Type GetExtensionType(string extension)
         {
-            //else if (FileExtension == "TXT" || FileExtension == "MD" || FileExtension == "LOG" || FileExtension == "ME" || FileExtension == "README")
             string ext = extension.ToLower();
             switch (ext)
             {
-                case "txt":
-                case "md":
-                case "mf":
-                case "log":
-                case "me":
-                case "readme":
-                case "rst":
                 case "asc":
+                case "bas":
+                case "bat":
+                case "c":
+                case "cmd":
+                case "config":
+                case "cpp":
+                case "cs":
+                case "css":
+                case "h":
+                case "hex":
+                case "htm":
+                case "html":
+                case "inc":
+                case "ini":
+                case "java":
+                case "js":
+                case "json":
+                case "kt":
+                case "ktm":
+                case "kts":
                 case "latex":
+                case "lisp":
+                case "log":
                 case "lst":
+                case "lua":
+                case "md":
+                case "me":
+                case "mf":
+                case "p":
+                case "pas":
+                case "php":
+                case "pl":
+                case "pp":
+                case "ps":
+                case "py":
+                case "r":
+                case "rb":
+                case "readme":
+                case "reg":
+                case "rs":
+                case "rst":
+                case "sh":
+                case "sql":
                 case "sty":
+                case "tcl":
                 case "tex":
-                case "text":
+                case "ts":
+                case "tsx":
+                case "txt":
+                case "vb":
+                case "vba":
+                case "vbs":
+                case "yaml":
+                case "yml":
                     return Type.Text;
             }
             switch (ext)
@@ -242,7 +295,7 @@ namespace MediaExtractor
                 ValidGenericText = false;
                 genericText = string.Empty;
             }
-            
+
         }
 
         /// <summary>
@@ -255,7 +308,6 @@ namespace MediaExtractor
             {
                 return;
             }
-
             try
             {
                 XmlDocument doc = new XmlDocument();
@@ -296,7 +348,7 @@ namespace MediaExtractor
             foreach (ImageFormat format in formats)
             {
                 try
-                {  
+                {
                     MemoryStream ms2 = new MemoryStream();
                     if (format == ImageFormat.Emf || format == ImageFormat.Wmf)
                     {
@@ -308,7 +360,7 @@ namespace MediaExtractor
                         System.Drawing.Image img = System.Drawing.Image.FromStream(Stream);
                         img.Save(ms2, format);
                     }
-                        
+
                     ms2.Flush();
                     ms2.Position = 0;
                     BitmapImage ims = new BitmapImage();

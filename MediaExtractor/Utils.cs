@@ -32,7 +32,7 @@ namespace MediaExtractor
             {
                 return false;
             }
-            
+
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace MediaExtractor
                 index++;
                 size = size / 1024;
             }
-            return String.Format("{0:0.##} {1}", size, new[] {"B", "KB", "MB", "GB", "TB"}[index]);
+            return String.Format("{0:0.##} {1}", size, new[] { "B", "KB", "MB", "GB", "TB" }[index]);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace MediaExtractor
                     }
                 }
             }
-            catch 
+            catch
             {
                 return fullPath + "(error).tmp";
             }
@@ -114,7 +114,6 @@ namespace MediaExtractor
             return dt.AddHours(TimeZone.CurrentTimeZone.GetUtcOffset(dt).Hours);
         }
 
-
         #region CRC
 
         private const int bufferSize = 4096;
@@ -122,7 +121,6 @@ namespace MediaExtractor
         private static bool initialized = false;
         private static uint startValue = 0xffffffff;
         private static uint[] crcTable;
-
 
         /// <summary>
         /// Gets the CRC32 hash of a file
@@ -203,8 +201,7 @@ namespace MediaExtractor
             }
             initialized = true;
         }
-#endregion
-
+        #endregion
 
     }
 }

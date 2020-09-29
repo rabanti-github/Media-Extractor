@@ -17,27 +17,49 @@ namespace MediaExtractor
 {
     public class SaveFileHandler
     {
-
+        /// <summary>
+        /// Enum to define the default method for saving multiple files
+        /// </summary>
         public enum DefaultSaveMethod
         {
+            /// <summary>
+            /// All files are saved
+            /// </summary>
             All,
+            /// <summary>
+            /// Only the selected files are saves
+            /// </summary>
             Selected
         }
 
-        public DefaultSaveMethod DefaultMethod { get; set; } = DefaultSaveMethod.All;
+        /// <summary>
+        /// Current view model
+        /// </summary>
         private ViewModel CurrentModel { get; set; }
 
+        /// <summary>
+        /// Default save method
+        /// </summary>
+        public DefaultSaveMethod DefaultMethod { get; set; } = DefaultSaveMethod.All;
+
+        /// <summary>
+        /// Constructor with parameter
+        /// </summary>
+        /// <param name="currentModel">View model to apply</param>
         public SaveFileHandler(ViewModel currentModel)
         {
             this.CurrentModel = currentModel;
             this.CurrentModel.CurrentSaveFileHandler = this;
         }
 
+        /// <summary>
+        /// Method to perform the default save action
+        /// </summary>
         public void SaveDefault()
         {
             if (!CurrentModel.SaveAllIsDefault && !CurrentModel.SaveSelectedIsDefault)
             {
-                if(CurrentModel.SelectedItems.Length > 0)
+                if (CurrentModel.SelectedItems.Length > 0)
                 {
                     SaveSelectedFiles();
                 }
@@ -59,7 +81,6 @@ namespace MediaExtractor
             }
         }
 
-
         /// <summary>
         /// Method to save all files
         /// </summary>
@@ -67,7 +88,7 @@ namespace MediaExtractor
         {
             ListViewItem[] items = CurrentModel.ListViewItems.ToArray();
             SaveFileRange(items, I18n.T(I18n.Key.DialogSaveAllTitle));
-            
+
         }
 
         /// <summary>
@@ -83,7 +104,7 @@ namespace MediaExtractor
             {
                 SaveFileRange(CurrentModel.SelectedItems, I18n.T(I18n.Key.DialogSaveSelectedTitle));
             }
-            
+
         }
 
         /// <summary>
@@ -139,7 +160,7 @@ namespace MediaExtractor
                     int overwritten = 0;
                     FileInfo fi;
                     ExistingFileDialog.ResetDialog();
-                    foreach(ListViewItem item in items)
+                    foreach (ListViewItem item in items)
                     {
                         fileExists = CheckFileExists(ofd.FileName, item.FileReference, CurrentModel.KeepFolderStructure, out var fileName);
                         if (fileExists == true)
@@ -302,8 +323,5 @@ namespace MediaExtractor
             fileName = folder + separator + item.FileName;
             return File.Exists(fileName);
         }
-
-
-
     }
 }

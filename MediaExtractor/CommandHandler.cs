@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace MediaExtractor
 {
-    
+
     /// <summary>
     /// Class to handle command, sent by WPF controls
     /// </summary>
@@ -22,25 +22,37 @@ namespace MediaExtractor
         /// <summary>
         /// Constructor with parameters
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="canExecute"></param>
+        /// <param name="action">Action object</param>
+        /// <param name="canExecute">Function reference to determine whether the action can be executed</param>
         public CommandHandler(Action action, Func<bool> canExecute)
         {
             this.action = action;
             this.canExecute = canExecute;
         }
 
+        /// <summary>
+        /// Handles changing of the method for determination of the execution 
+        /// </summary>
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        /// <summary>
+        /// gets whether the command can be executed
+        /// </summary>
+        /// <param name="parameter">parameter object</param>
+        /// <returns>True if command can be executed, otherwise false</returns>
         public bool CanExecute(object parameter)
         {
             return canExecute.Invoke();
         }
 
+        /// <summary>
+        /// Method to perform the defined action
+        /// </summary>
+        /// <param name="parameter">Parameter object</param>
         public void Execute(object parameter)
         {
             action();

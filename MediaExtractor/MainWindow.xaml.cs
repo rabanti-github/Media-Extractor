@@ -1,21 +1,18 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2018
+ * Copyright Raphael Stoeckli © 2020
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
 using AdonisUI;
 using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,20 +25,34 @@ namespace MediaExtractor
     /// </summary>
     public partial class MainWindow
     {
-
-        
-
-        public string CurrentLocale { get; private set; } = null;
-        public bool HandleLocaleChange { get; set; }
-
-
-        private SaveFileHandler saveFileHandler { get; set; }
-
-        private ViewModel CurrentModel { get; set; }
-        private Extractor CurrentExtractor{ get; set; }
-
+        #region properties
+        /// <summary>
+        /// Extractor instance
+        /// </summary>
+        private Extractor CurrentExtractor { get; set; }
+        /// <summary>
+        /// Application name
+        /// </summary>
         private string ProductName { get; set; }
+        /// <summary>
+        /// Save file handler instance
+        /// </summary>
+        private SaveFileHandler saveFileHandler { get; set; }
+        /// <summary>
+        /// If true, a change of the locale is performed when the window is closed, otherwise it's a normal shutdown
+        /// </summary>
+        public bool HandleLocaleChange { get; set; }
+        /// <summary>
+        /// View model instance
+        /// </summary>
+        public ViewModel CurrentModel { get; set; }
+        /// <summary>
+        /// Current locale string
+        /// </summary>
+        public string CurrentLocale { get; set; } = null;
+        #endregion
 
+        #region constructors
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -53,11 +64,72 @@ namespace MediaExtractor
             saveFileHandler = new SaveFileHandler(CurrentModel);
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             ProductName = versionInfo.ProductName;
-           // Title = versionInfo.ProductName;
-           CurrentModel.WindowTitle = versionInfo.ProductName;
+            // Title = versionInfo.ProductName;
+            CurrentModel.WindowTitle = versionInfo.ProductName;
             //CurrentModel.UseEnglishLocale = true; // TODO: Get from settings
             HandleArguments();
         }
+        #endregion
+
+
+        #region publicMethods
+        /// <summary>
+        /// Method to change the currently displayed cursor
+        /// </summary>
+        /// <param name="cursor">Cursor to show</param>
+        public void ChangeCursor(Cursor cursor)
+        {
+            Dispatcher.Invoke
+                (
+                System.Windows.Threading.DispatcherPriority.Normal,
+                new Action(() => Cursor = cursor)
+                );
+        }
+
+        /// <summary>
+        /// Restores the user settings
+        /// </summary>
+        public void RestoreSettings()
+        {
+            CurrentModel.ShowEmbeddedImages = Properties.Settings.Default.DocumentShowImages;
+            CurrentModel.ShowEmbeddedOther = Properties.Settings.Default.DocumentShowOther;
+            CurrentModel.KeepFolderStructure = Properties.Settings.Default.DocumentPreserveStructure;
+            CurrentModel.ShowInExplorer = Properties.Settings.Default.DocumentShowExplorer;
+            CurrentModel.UseDarkMode = Properties.Settings.Default.AppearanceDarkMode;
+            HandleDarkMode();
+        }
+
+        /// <summary>
+        /// Sets the image preview visible
+        /// </summary>
+        public void SetImagePreviewVisible()
+        {
+            ImageBox.Visibility = Visibility.Visible;
+            TextBox.Visibility = Visibility.Hidden;
+            NoPreviewBox.Visibility = Visibility.Hidden;
+        }
+
+        /// <summary>
+        /// Sets the text preview visible
+        /// </summary>
+        public void SetTextPreviewVisible(bool noPreview = false)
+        {
+            ImageBox.Visibility = Visibility.Hidden;
+            if (noPreview)
+            {
+                TextBox.Visibility = Visibility.Hidden;
+                NoPreviewBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TextBox.Visibility = Visibility.Visible;
+                NoPreviewBox.Visibility = Visibility.Hidden;
+            }
+        }
+
+        #endregion
+
+        #region privateMethods
 
         /// <summary>
         /// Method to handle command line arguments (open file as...)
@@ -78,7 +150,6 @@ namespace MediaExtractor
                 }
             }
         }
-
 
         /// <summary>
         /// Method to open a file or archive
@@ -110,19 +181,59 @@ namespace MediaExtractor
             t.Start(this);
         }
 
+        /// <summary>
+        /// Method to save the currently selected entry or entries as file(s)
+        /// </summary>
+        private void SaveSelectedFile()
+        {
+            this.saveFileHandler.SaveSelectedFiles();
+        }
 
         /// <summary>
-        /// Method to change the currently displayed cursor
+        /// Sets either Dark or Light Mode
         /// </summary>
-        /// <param name="cursor">Cursor to show</param>
-        public void ChangeCursor(Cursor cursor)
+        private void HandleDarkMode()
         {
-            Dispatcher.Invoke
-                (
-                System.Windows.Threading.DispatcherPriority.Normal,
-                new Action(()=> Cursor = cursor)
-                );
+            if (CurrentModel.UseDarkMode)
+            {
+                AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.DarkColorScheme);
+
+            }
+            else
+            {
+                AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.LightColorScheme);
+            }
         }
+
+        /// <summary>
+        /// Method to handle changing the locale
+        /// </summary>
+        /// <param name="locale">Locale as string</param>
+        private void ChangeLocale(string locale)
+        {
+            HandleLocaleChange = true;
+            CurrentLocale = locale;
+            Close();
+        }
+
+        /// <summary>
+        /// Stores the user settings
+        /// </summary>
+        private void StoreSettings()
+        {
+            Properties.Settings.Default.DocumentShowImages = CurrentModel.ShowEmbeddedImages;
+            Properties.Settings.Default.DocumentShowOther = CurrentModel.ShowEmbeddedOther;
+            Properties.Settings.Default.DocumentPreserveStructure = CurrentModel.KeepFolderStructure;
+            Properties.Settings.Default.DocumentShowExplorer = CurrentModel.ShowInExplorer;
+            Properties.Settings.Default.AppearanceDarkMode = CurrentModel.UseDarkMode;
+            Properties.Settings.Default.Locale = CurrentLocale;
+            Properties.Settings.Default.Save();
+        }
+
+
+        #endregion
+
+        #region publicStaticMethods
 
         /// <summary>
         /// Method to load a file. Method will called in a new tread
@@ -147,7 +258,7 @@ namespace MediaExtractor
                 if (reference.CurrentExtractor.HasErrors == true)
                 {
                     string message;
-                    string[] ext = new []{".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm",".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".zip", ".7z", ".rar", ".bzip2",".gz", ".tar", ".cab", ".chm", ".lzh", ".iso"};
+                    string[] ext = new[] { ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".zip", ".7z", ".rar", ".bzip2", ".gz", ".tar", ".cab", ".chm", ".lzh", ".iso" };
                     try
                     {
                         FileInfo fi = new FileInfo(reference.CurrentModel.FileName);
@@ -182,6 +293,10 @@ namespace MediaExtractor
             reference.ChangeCursor(c);
         }
 
+        #endregion
+
+        #region privateStaticMethods
+
         /// <summary>
         /// Method to recalculate the listView items 
         /// </summary>
@@ -192,72 +307,48 @@ namespace MediaExtractor
             {
                 return;
             }
-                Application.Current.Dispatcher.Invoke(delegate
+            Application.Current.Dispatcher.Invoke(delegate
+            {
+                try
                 {
-                    try
+                    int i = 0;
+                    reference.CurrentModel.ClearListView();
+                    ListViewItem lItem;
+                    foreach (ExtractorItem item in reference.CurrentExtractor.EmbeddedFiles)
                     {
-                        int i = 0;
-                        reference.CurrentModel.ClearListView();
-                        ListViewItem lItem;
-                        foreach (ExtractorItem item in reference.CurrentExtractor.EmbeddedFiles)
+                        if ((item.ItemType == ExtractorItem.Type.Image && reference.CurrentModel.ShowEmbeddedImages) || (item.ItemType != ExtractorItem.Type.Image && reference.CurrentModel.ShowEmbeddedOther))
                         {
-                            if ((item.ItemType == ExtractorItem.Type.Image && reference.ImageFilterMenuItem.IsChecked) || (item.ItemType != ExtractorItem.Type.Image && reference.OtherFilterMenuItem.IsChecked))
+                            lItem = new ListViewItem()
                             {
-                                lItem = new ListViewItem()
-                                {
-                                    FileName = item.FileName,
-                                    FileExtension = item.FileExtension,
-                                    Path = item.Path,
-                                    FileReference = item
-                                };
-                                lItem.Type = item.ItemType;
-                                reference.CurrentModel.ListViewItems.Add(lItem);
-                                i++;
-                            }
-                        }
-                        if (i > 0)
-                        {
-                            reference.CurrentModel.SaveAllStatus = true;
-                        }
-                        else
-                        {
-                            reference.CurrentModel.SaveAllStatus = false;
+                                FileName = item.FileName,
+                                FileExtension = item.FileExtension,
+                                Path = item.Path,
+                                FileReference = item
+                            };
+                            lItem.Type = item.ItemType;
+                            reference.CurrentModel.ListViewItems.Add(lItem);
+                            i++;
                         }
                     }
-                    catch(Exception e)
+                    if (i > 0)
                     {
-                        //Console.WriteLine("error: " + e.Message);
+                        reference.CurrentModel.SaveAllStatus = true;
                     }
-                });
+                    else
+                    {
+                        reference.CurrentModel.SaveAllStatus = false;
+                    }
+                }
+                catch
+                {
+                    // Ignore
+                }
+            });
         }
 
-        /// <summary>
-        /// Sets the image preview visible
-        /// </summary>
-        public void SetImagePreviewVisible()
-        {
-            ImageBox.Visibility = Visibility.Visible;
-            TextBox.Visibility = Visibility.Hidden;
-            NoPreviewBox.Visibility = Visibility.Hidden;
-        }
+        #endregion
 
-        /// <summary>
-        /// Sets the text preview visible
-        /// </summary>
-        public void SetTextPreviewVisible(bool noPreview = false)
-        {
-            ImageBox.Visibility = Visibility.Hidden;
-            if (noPreview)
-            {
-                TextBox.Visibility = Visibility.Hidden;
-                NoPreviewBox.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                TextBox.Visibility = Visibility.Visible;
-                NoPreviewBox.Visibility = Visibility.Hidden;
-            }
-        }
+        #region uiEvent
 
         /// <summary>
         /// Event Method to handle a changed ListView item
@@ -314,7 +405,7 @@ namespace MediaExtractor
                     SetTextPreviewVisible(true);
                     CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedOtherFailure, item.FileName);
                     TextBox.Text = string.Empty;
-                    
+
                     // Fall-back
                 }
             }
@@ -437,15 +528,6 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Method to save the currently selected entry or entries as file(s)
-        /// </summary>
-        private void SaveSelectedFile()
-        {
-           this.saveFileHandler.SaveSelectedFiles();
-        }
-
-
-        /// <summary>
         /// Opens the project website
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -470,7 +552,7 @@ namespace MediaExtractor
         private void LicenseMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (Utils.ShowInExplorer("license.txt") == false)
-            { 
+            {
                 MessageBox.Show(I18n.R(I18n.Key.DialogMissingLicense, "license.txt"), I18n.T(I18n.Key.DialogMissingLicenseTitle),
                     MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -491,52 +573,59 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Enables or disables the Dark Mode theme
+        /// Enables the Dark Mode theme
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void DarkModeMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentModel.UseDarkMode)
-            {
-                AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.DarkColorScheme);
-                
-            }
-            else
-            {
-                AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.LightColorScheme);
-            }
+            HandleDarkMode();
         }
 
+        /// <summary>
+        /// Enables English locale as application language
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void EnglishMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ChangeLocale(I18n.ENGLISH);
         }
 
+        /// <summary>
+        /// Enables German as application language
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void GermanMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ChangeLocale(I18n.GERMAN);
         }
 
+        /// <summary>
+        /// Enables the system locale as application language
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void SystemLocaleMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ChangeLocale(I18n.GetSystemLocale());
         }
 
-        private void ChangeLocale(string locale)
-        {
-            HandleLocaleChange = true;
-            CurrentLocale = locale;
-            Close();
-        }
-
+        /// <summary>
+        /// Handles the window closing event
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="CancelEventArgs"/> instance containing the event data.</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            StoreSettings();
             if (!string.IsNullOrEmpty(this.CurrentLocale) && HandleLocaleChange)
             {
                 string locale = this.CurrentLocale;
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(locale);
                 MainWindow window = new MainWindow();
+                window.CurrentLocale = locale;
                 window.Show();
                 window.Left = this.Left;
                 window.Top = this.Top;
@@ -548,6 +637,11 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// Handles the drag & drop of files to open them
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DragEventArgs"/> instance containing the event data.</param>
         private void DragField_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -556,6 +650,8 @@ namespace MediaExtractor
                 LoadFile(files[0]);
             }
         }
+
+        #endregion
 
     }
 }

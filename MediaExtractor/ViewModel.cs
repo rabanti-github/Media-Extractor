@@ -21,11 +21,14 @@ namespace MediaExtractor
     {
         private string windowTitle;
         private ObservableCollection<ListViewItem> listViewItems;
+        private ICommand saveDefaultCommand;
         private BitmapImage image;
         private bool saveStatus;
         private string fileName;
         private string statusText;
         private bool saveAllStatus;
+        private bool showEmbeddedImages;
+        private bool showEmbeddedOther;
         private bool keepFolderStructure = true;
         private bool showInExplorer = true;
         private bool useDarkMode = false;
@@ -39,13 +42,30 @@ namespace MediaExtractor
         private int progress;
         private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
 
+        /// <summary>
+        /// Handler for the combined save button
+        /// </summary>
         public SaveFileHandler CurrentSaveFileHandler { get; set; }
 
+        /// <summary>
+        /// Command to handle the combined save button
+        /// </summary>
+        public ICommand SaveDefaultCommand
+        {
+            get
+            {
+                return saveDefaultCommand ?? (saveDefaultCommand = new CommandHandler(() => SaveDefault(), () => true));
+            }
+        }
+
+        /// <summary>
+        /// Indicated whether selected files is the default for saving multiple files
+        /// </summary>
         public bool SaveSelectedIsDefault
         {
             get { return saveSelectedIsDefault; }
-            set 
-            { 
+            set
+            {
                 if (value)
                 {
                     SaveAllIsDefault = false;
@@ -56,11 +76,14 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// Indicated whether all files is the default for saving multiple files
+        /// </summary>
         public bool SaveAllIsDefault
         {
             get { return saveAllIsDefault; }
             set
-            { 
+            {
                 if (value)
                 {
                     SaveSelectedIsDefault = false;
@@ -70,23 +93,9 @@ namespace MediaExtractor
                 NotifyPropertyChanged("SaveAllIsDefault");
             }
         }
-
-        private ICommand saveDefaultCommand;
-        public ICommand SaveDefaultCommand
-        {
-            get 
-            {
-                return saveDefaultCommand ?? (saveDefaultCommand = new CommandHandler(() => SaveDefault(), () => CanExecute));
-            }
-        }
-
-        public bool CanExecute 
-        { get
-            {
-                return true;
-            }
-        }
-
+        /// <summary>
+        /// Executes the default save method in the save handler
+        /// </summary>
         private void SaveDefault()
         {
             CurrentSaveFileHandler.SaveDefault();
@@ -113,20 +122,20 @@ namespace MediaExtractor
         public int Progress
         {
             get { return progress; }
-            set 
+            set
             {
                 progress = value;
                 NotifyPropertyChanged("Progress");
             }
         }
-        
+
         /// <summary>
         /// Current file index as float (to avoid multiple casting when calculating the progress)
         /// </summary>
         public float CurrentFile
         {
             get { return currentFile; }
-            set 
+            set
             {
                 currentFile = value;
                 NotifyPropertyChanged("CurrentFile");
@@ -140,27 +149,27 @@ namespace MediaExtractor
         public float NumberOfFiles
         {
             get { return numberOfFiles; }
-            set 
+            set
             {
                 numberOfFiles = value;
                 NotifyPropertyChanged("NumberOfFiles");
                 CalculateProgress();
             }
         }
-        
+
         /// <summary>
         /// Enabled / Disabled State of the button to save all files
         /// </summary>
         public bool SaveAllStatus
         {
             get { return saveAllStatus; }
-            set 
+            set
             {
                 saveAllStatus = value;
                 NotifyPropertyChanged("SaveAllStatus");
             }
         }
-        
+
         /// <summary>
         /// If true, the folder structure of the file / archive will be kept when extracted (save all files)
         /// </summary>
@@ -194,7 +203,7 @@ namespace MediaExtractor
         /// If true, the Application will be rendered in Dark Mode
         /// </summary>
         /// <value>
-        ///   <c>true</c> if dark Mode is used, otherwise, <c>false</c> (use Light Mode).
+        ///   <c>true</c> if Dark Mode is used, otherwise, <c>false</c> (use Light Mode).
         /// </value>
         public bool UseDarkMode
         {
@@ -203,6 +212,38 @@ namespace MediaExtractor
             {
                 useDarkMode = value;
                 NotifyPropertyChanged("UseDarkMode");
+            }
+        }
+
+        /// <summary>
+        /// If true, embedded Images will be shown
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if embedded images are shown, otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowEmbeddedImages
+        {
+            get { return showEmbeddedImages; }
+            set
+            {
+                showEmbeddedImages = value;
+                NotifyPropertyChanged("ShowEmbeddedImages");
+            }
+        }
+
+        /// <summary>
+        /// If true, other embedded files will be shown
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if other, embedded files are shown, otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowEmbeddedOther
+        {
+            get { return showEmbeddedOther; }
+            set
+            {
+                showEmbeddedOther = value;
+                NotifyPropertyChanged("ShowEmbeddedOther");
             }
         }
 
@@ -288,26 +329,26 @@ namespace MediaExtractor
         public string StatusText
         {
             get { return statusText; }
-            set 
-            { 
+            set
+            {
                 statusText = value;
                 NotifyPropertyChanged("StatusText");
             }
         }
-        
+
         /// <summary>
         /// The name / full path of the currently loaded file
         /// </summary>
         public string FileName
         {
             get { return fileName; }
-            set 
-            { 
+            set
+            {
                 fileName = value;
                 NotifyPropertyChanged("FileName");
             }
         }
-        
+
         /// <summary>
         /// Currently displayed preview image
         /// </summary>
@@ -320,7 +361,7 @@ namespace MediaExtractor
                 NotifyPropertyChanged("Image");
             }
         }
-        
+
         /// <summary>
         /// Items of the listview (file overview)
         /// </summary>
@@ -328,7 +369,7 @@ namespace MediaExtractor
         {
             get { return listViewItems; }
             set
-            { 
+            {
                 listViewItems = value;
                 NotifyPropertyChanged("ListViewItems");
             }
@@ -385,7 +426,7 @@ namespace MediaExtractor
         {
             if (PropertyChanged != null)
             {
-                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

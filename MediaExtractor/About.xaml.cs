@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
+ * Copyright Raphael Stoeckli © 2020
+ * This program is licensed under the MIT License.
+ * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
+ */
+
+using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
