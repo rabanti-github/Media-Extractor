@@ -143,7 +143,7 @@ namespace MediaExtractor
             }
             else
             {
-                reference.CurrentExtractor.Extract(Extractor.EmbeddedFormat.All); // All includes images, xml and text
+                reference.CurrentExtractor.Extract(); // All includes images, xml and text
                 if (reference.CurrentExtractor.HasErrors == true)
                 {
                     string message;

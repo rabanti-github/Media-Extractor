@@ -18,48 +18,6 @@ namespace MediaExtractor
     /// </summary>
     public class Extractor
     {
-        /// <summary>
-        /// Enum for the source format of the processed file or archive
-        /// </summary>
-        public enum SourceFormat
-        {
-            /// <summary>File is a Microsoft Word file (e.g. docx, dotx)</summary>
-            Word,
-            /// <summary>File is a Microsoft Excel file (e.g. xlsx, xltx)</summary>
-            Excel,
-            /// <summary>File is a Microsoft PowerPoint file (e.g. pptx, potx)</summary>
-            PowerPoint,
-            /// <summary>File is in an unspecified, other format</summary>
-            Other,
-        }
-
-        /// <summary>
-        /// Enum for the format of embedded embeddedFiles / file
-        /// </summary>
-        public enum EmbeddedFormat
-        {
-            /// <summary>Image is a Enhanced Meta File</summary>
-            Emf,
-            /// <summary>Image is a Windows Meta File</summary>
-            Wmf,
-            /// <summary>Image is a Portable Network Graphic</summary>
-            Png,
-            /// <summary>Image is a JPEG File</summary>
-            Jpg,
-            /// <summary>Image is a BMP File</summary>
-            Bmp,
-            /// <summary>Image is a GIF File</summary>
-            Gif,
-            /// <summary>Image is a ICO File</summary>
-            Ico,
-            /// <summary>File is a text file</summary>
-            Txt,
-            /// <summary>File is a XML file</summary>
-            Xml,
-            /// <summary>Image / File is in an unspecified / generic format</summary>
-            All,
-        }
-
         private string lastError;
         private bool hasErrors;
         private List<ExtractorItem> embeddedFiles;
@@ -95,23 +53,6 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Gets the number of embedded items (usually embeddedFiles)
-        /// </summary>
-        public int NumberOfImages
-        {
-            get
-            {
-                if (embeddedFiles == null) { return 0; }
-                else { return embeddedFiles.Count;  }
-            }
-        }
-
-        /// <summary>
-        /// Source format of the archive or file
-        /// </summary>
-        public SourceFormat DocumentFormat { get; set; }
-
-        /// <summary>
         /// Constructor with parameters
         /// </summary>
         /// <param name="file">name of the archive or file</param>
@@ -120,22 +61,6 @@ namespace MediaExtractor
         {
             FileName = file;
             lastError = "";
-            DocumentFormat =  SourceFormat.Other;
-            embeddedFiles = new List<ExtractorItem>();
-            currentModel = model;
-        }
-
-        /// <summary>
-        /// Constructor with parameters
-        /// </summary>
-        /// <param name="file">name of the archive or file</param>
-        /// <param name="format">Format of the archive or file</param>
-        /// <param name="model">ViewModel for data binding</param>
-        public Extractor(string file, SourceFormat format, ViewModel model)
-        {
-            FileName = file;
-            lastError = "";
-            DocumentFormat = format;
             embeddedFiles = new List<ExtractorItem>();
             currentModel = model;
         }
@@ -152,14 +77,13 @@ namespace MediaExtractor
         /// <summary>
         /// Method to extract an embedded file
         /// </summary>
-        /// <param name="format">Format of the embedded file</param>
-        public void Extract(EmbeddedFormat format)
+        public void Extract()
         {
             try
             {
                 MemoryStream ms = GetFileStream();
                 ArchiveFile ex = new ArchiveFile(ms, SevenZipFormat.Zip);
-                embeddedFiles = GetEntries(format, ref ex);
+                embeddedFiles = GetEntries(ref ex);
                 currentModel.NumberOfFiles = embeddedFiles.Count;
                 for(int i = 0; i < currentModel.NumberOfFiles; i++)
                 {
@@ -183,23 +107,6 @@ namespace MediaExtractor
                 hasErrors = true;
                 lastError = e.Message;
             }
-        }
-
-        /// <summary>
-        /// Method to get the names of all embedded files as list
-        /// </summary>
-        /// <returns>List of file names</returns>
-        public List<string> GetFileNames()
-        {
-            List<string> output = new List<string>();
-            if (embeddedFiles != null)
-            {
-                foreach (ExtractorItem item in embeddedFiles)
-                {
-                    output.Add(item.FileName);
-                }
-            }
-            return output;
         }
 
         /// <summary>
@@ -267,40 +174,10 @@ namespace MediaExtractor
         /// <summary>
         /// Method to get all embedded files as list according to the target image / file (format) type
         /// </summary>
-        /// <param name="format">Target format</param>
         /// <param name="archive">Reference to the opened file (handled as archive)</param>
         /// <returns>A list of items</returns>
-        private List<ExtractorItem> GetEntries(EmbeddedFormat format, ref ArchiveFile archive)
+        private List<ExtractorItem> GetEntries(ref ArchiveFile archive)
         {
-            string extension = "";
-            bool allFiles = false;
-            switch (format)
-            {
-                case EmbeddedFormat.Emf:
-                    extension = ".emf";
-                    break;
-                case EmbeddedFormat.Wmf:
-                    extension = ".wmf";
-                    break; 
-                case EmbeddedFormat.Png:
-                    extension = ".png";
-                    break;
-                case EmbeddedFormat.Jpg:
-                    extension = ".jpg";
-                    break;
-                case EmbeddedFormat.Bmp:
-                    extension = ".bmp";
-                    break;
-                case EmbeddedFormat.Gif:
-                    extension = ".gif";
-                    break;
-                case EmbeddedFormat.Ico:
-                    extension = ".ico";
-                    break;
-                case EmbeddedFormat.All:
-                    allFiles = true;
-                    break;
-            }
             List<ExtractorItem> list = new List<ExtractorItem>();
             MemoryStream ms;
             string[] split;
@@ -313,22 +190,19 @@ namespace MediaExtractor
                 {
                     continue; // Skip folders as entries
                 }
-                if (archive.Entries[i].FileName.ToLower().EndsWith(extension) || allFiles == true)
-                {
-                    ms = new MemoryStream();
-                    archive.Entries[i].Extract(ms);
-                    ms.Flush();
-                    ms.Position = 0;
-                    split = archive.Entries[i].FileName.Split(delimiter);
-                    file = split[split.Length - 1];
-                    path = archive.Entries[i].FileName.Substring(0, archive.Entries[i].FileName.Length - file.Length);
+                ms = new MemoryStream();
+                archive.Entries[i].Extract(ms);
+                ms.Flush();
+                ms.Position = 0;
+                split = archive.Entries[i].FileName.Split(delimiter);
+                file = split[split.Length - 1];
+                path = archive.Entries[i].FileName.Substring(0, archive.Entries[i].FileName.Length - file.Length);
 
-                    item = new ExtractorItem(file, ms, false, path);
-                    item.Crc32 = archive.Entries[i].CRC;
-                    item.FileSize = (long)archive.Entries[i].Size;
-                    item.LastChange = archive.Entries[i].LastWriteTime;
-                    list.Add(item);
-                }
+                item = new ExtractorItem(file, ms, false, path);
+                item.Crc32 = archive.Entries[i].CRC;
+                item.FileSize = (long)archive.Entries[i].Size;
+                item.LastChange = archive.Entries[i].LastWriteTime;
+                list.Add(item);
             }
             return list;
         }
