@@ -124,7 +124,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Webseite ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Website ähnelt.
         /// </summary>
         public static string AboutWebsite {
             get {
@@ -187,7 +187,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Canel the extraction ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel the extraction ähnelt.
         /// </summary>
         public static string DialogButtonCancelTooltip {
             get {
@@ -282,6 +282,15 @@ namespace MediaExtractor.Properties {
         public static string DialogHeader {
             get {
                 return ResourceManager.GetString("DialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An error occurred during the retrieval of the file extensions for the previews. The default values are restored ähnelt.
+        /// </summary>
+        public static string DialogInvalidExtensions {
+            get {
+                return ResourceManager.GetString("DialogInvalidExtensions", resourceCulture);
             }
         }
         

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
 using System.Xml;
@@ -20,6 +21,24 @@ namespace MediaExtractor
     /// </summary>
     public class ExtractorItem
     {
+        /// <summary>
+        /// Default file endings that are previewed as text
+        /// </summary>
+        public const string FALLBACK_TEXT_EXTENTIONS = "asc,bas,bat,c,cfg,cmd,cpp,cs,css,csv,h,hex,htm,html,inc,inf,info,ini,java,js,json,kt,ktm,kts,latex,less,lisp,log,lst,lua,markdown,md,me,meta,mf,p,pas,php,pl,pp,ps,ps1,psm1,py,r,rb,readme,reg,rs,rst,sh,sln,sql,sty,tcl,tex,ts,tsx,txt,vb,vba,vbs,yaml,yml";
+        /// <summary>
+        /// Default file endings that are previewed as image
+        /// </summary>
+        public const string FALLBACK_IMAGE_EXTENTIONS = "jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp";
+        /// <summary>
+        /// Default file endings that are previewed as XML
+        /// </summary>
+        public const string FALLBACK_XML_EXTENTIONS = "xml,manifest,rels,xhtml,xaml,svg,pom,dtd,xsd,x3d,collada,cdxml,config,nuspec,graphml";
+        private static readonly char[] EXT_SPLITTERS = new char[] { ',', ';', ' ', '.', '/', '\\', '|' };
+
+        private static List<string> imageExtensions;
+        private static List<string> textExtensions;
+        private static List<string> xmlExtensions;
+
         /// <summary>
         /// Enum to define the coarse file type of the entry
         /// </summary>
@@ -88,7 +107,7 @@ namespace MediaExtractor
         {
             get
             {
-                if (image == null && initialized == false)
+                if (image == null && !initialized)
                 {
                     CreateImage(true);
                     initialized = true;
@@ -104,7 +123,7 @@ namespace MediaExtractor
         {
             get
             {
-                if (genericText == null && initialized == false)
+                if (genericText == null && !initialized)
                 {
                     if (ItemType == Type.Text)
                     {
@@ -191,90 +210,19 @@ namespace MediaExtractor
         private static Type GetExtensionType(string extension)
         {
             string ext = extension.ToLower();
-            switch (ext)
+            if (textExtensions.Contains(ext))
             {
-                case "asc":
-                case "bas":
-                case "bat":
-                case "c":
-                case "cmd":
-                case "config":
-                case "cpp":
-                case "cs":
-                case "css":
-                case "h":
-                case "hex":
-                case "htm":
-                case "html":
-                case "inc":
-                case "ini":
-                case "java":
-                case "js":
-                case "json":
-                case "kt":
-                case "ktm":
-                case "kts":
-                case "latex":
-                case "lisp":
-                case "log":
-                case "lst":
-                case "lua":
-                case "md":
-                case "me":
-                case "mf":
-                case "p":
-                case "pas":
-                case "php":
-                case "pl":
-                case "pp":
-                case "ps":
-                case "py":
-                case "r":
-                case "rb":
-                case "readme":
-                case "reg":
-                case "rs":
-                case "rst":
-                case "sh":
-                case "sql":
-                case "sty":
-                case "tcl":
-                case "tex":
-                case "ts":
-                case "tsx":
-                case "txt":
-                case "vb":
-                case "vba":
-                case "vbs":
-                case "yaml":
-                case "yml":
-                    return Type.Text;
+                return Type.Text;
             }
-            switch (ext)
+            if (xmlExtensions.Contains(ext))
             {
-                case "jpg":
-                case "jpeg":
-                case "png":
-                case "wmf":
-                case "emf":
-                case "gif":
-                case "bmp":
-                case "ico":
-                    return Type.Image;
+                return Type.Xml;
             }
-            switch (ext)
+            if (imageExtensions.Contains(ext))
             {
-                case "xml":
-                case "rels":
-                case "xhtml":
-                case "svg":
-                case "x3d":
-                case "collada":
-                case "graphml":
-                    return Type.Text;
-                default:
-                    return Type.Other;
+                return Type.Image;
             }
+            return Type.Other;
         }
 
         /// <summary>
@@ -304,7 +252,7 @@ namespace MediaExtractor
         public void CreateXml()
         {
             CreateText();
-            if (ValidGenericText == false)
+            if (!ValidGenericText)
             {
                 return;
             }
@@ -381,6 +329,46 @@ namespace MediaExtractor
                     image = null;
                 }
             }
+        }
+
+        /// <summary>
+        /// Method to create valid extensions for the previews
+        /// </summary>
+        /// <param name="texts">Raw string of separated text extensions</param>
+        /// <param name="images">Raw string of separated image extensions</param>
+        /// <param name="xml">Raw string of separated XML extensions</param>
+        /// <returns>True if all extensions could be resolved, otherwise false</returns>
+        public static bool GetExtensions(string texts, string images, string xml)
+        {
+            try
+            {
+                textExtensions = SplitExtensions(texts);
+                imageExtensions = SplitExtensions(images);
+                xmlExtensions = SplitExtensions(xml);
+                return true;
+            }
+            catch
+            {
+                textExtensions = SplitExtensions(FALLBACK_TEXT_EXTENTIONS);
+                imageExtensions = SplitExtensions(FALLBACK_IMAGE_EXTENTIONS);
+                xmlExtensions = SplitExtensions(FALLBACK_XML_EXTENTIONS);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Method to split a raw string of file extensions into a list
+        /// </summary>
+        /// <param name="input">input string</param>
+        /// <returns>List of lowercase, distinct file extensions</returns>
+        private static List<string> SplitExtensions(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new ArgumentException();
+            }
+            string[] split = input.ToLower().Split(EXT_SPLITTERS, StringSplitOptions.RemoveEmptyEntries);
+            return split.Distinct().ToList();
         }
 
     }

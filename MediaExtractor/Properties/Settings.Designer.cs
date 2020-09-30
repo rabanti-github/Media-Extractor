@@ -121,5 +121,69 @@ namespace MediaExtractor.Properties {
                 this["Locale"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ExtractSaveAll {
+            get {
+                return ((bool)(this["ExtractSaveAll"]));
+            }
+            set {
+                this["ExtractSaveAll"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ExtractSaveSelected {
+            get {
+                return ((bool)(this["ExtractSaveSelected"]));
+            }
+            set {
+                this["ExtractSaveSelected"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp")]
+        public string ImageExtensions {
+            get {
+                return ((string)(this["ImageExtensions"]));
+            }
+            set {
+                this["ImageExtensions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("asc,bas,bat,c,cfg,cmd,cpp,cs,css,csv,h,hex,htm,html,inc,inf,info,ini,java,js,json" +
+            ",kt,ktm,kts,latex,less,lisp,log,lst,lua,markdown,md,me,meta,mf,p,pas,php,pl,pp,p" +
+            "s,ps1,psm1,py,r,rb,readme,reg,rs,rst,sh,sln,sql,sty,tcl,tex,ts,tsx,txt,vb,vba,vb" +
+            "s,yaml,yml")]
+        public string TextExtensions {
+            get {
+                return ((string)(this["TextExtensions"]));
+            }
+            set {
+                this["TextExtensions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("xml,manifest,rels,xhtml,xaml,svg,pom,dtd,xsd,x3d,collada,cdxml,config,nuspec,grap" +
+            "hml")]
+        public string XmlExtensions {
+            get {
+                return ((string)(this["XmlExtensions"]));
+            }
+            set {
+                this["XmlExtensions"] = value;
+            }
+        }
     }
 }

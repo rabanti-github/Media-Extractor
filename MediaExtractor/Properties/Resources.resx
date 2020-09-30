@@ -223,7 +223,7 @@
     <value>Version</value>
   </data>
   <data name="AboutWebsite" xml:space="preserve">
-    <value>Webseite</value>
+    <value>Website</value>
   </data>
   <data name="ButtonSaveSelected" xml:space="preserve">
     <value>Save selected File(s)</value>
@@ -235,7 +235,7 @@
     <value>Cancel Extraction</value>
   </data>
   <data name="DialogButtonCancelTooltip" xml:space="preserve">
-    <value>Canel the extraction</value>
+    <value>Cancel the extraction</value>
   </data>
   <data name="DialogButtonOverwrite" xml:space="preserve">
     <value>Overwrite</value>
@@ -416,5 +416,8 @@
   </data>
   <data name="TextErrorInvalidText" xml:space="preserve">
     <value>Text preview could not be created</value>
+  </data>
+  <data name="DialogInvalidExtensions" xml:space="preserve">
+    <value>An error occurred during the retrieval of the file extensions for the previews. The default values are restored</value>
   </data>
 </root>

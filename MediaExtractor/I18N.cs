@@ -46,6 +46,7 @@ namespace MediaExtractor
             DialogErrorTitle,
             DialogExplorerError,
             DialogHeader,
+            DialogInvalidExtensions,
             DialogLabelCrc,
             DialogLabelDate,
             DialogLabelExisting,

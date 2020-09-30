@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,79 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,6 +119,305 @@
   </resheader>
   <data name="MenuFile" xml:space="preserve">
     <value>File</value>
-    <comment/>
+  </data>
+  <data name="MenuFileOpen" xml:space="preserve">
+    <value>Open Document</value>
+  </data>
+  <data name="MenuFileSaveSelected" xml:space="preserve">
+    <value>Save selected File(s)</value>
+  </data>
+  <data name="MenuFileSaveAll" xml:space="preserve">
+    <value>Save all Files</value>
+  </data>
+  <data name="MenuFileQuit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="MenuDocument" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="MenuDocumentShowImages" xml:space="preserve">
+    <value>Show Embedded Image Files</value>
+  </data>
+  <data name="MenuDocumentShowOther" xml:space="preserve">
+    <value>Show Other Embedded Files</value>
+  </data>
+  <data name="MenuDocumentKeepStructure" xml:space="preserve">
+    <value>Keep Folder Structure when Extracting</value>
+  </data>
+  <data name="MenuDocumentOpenExplorer" xml:space="preserve">
+    <value>Show in Explorer after Extracting</value>
+  </data>
+  <data name="MenuAppearance" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="MenuAppearanceDarkmode" xml:space="preserve">
+    <value>Dark Mode</value>
+  </data>
+  <data name="MenuAppearanceLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MenuAppearanceLanguageEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
+    <value>Deutsch (German)</value>
+  </data>
+  <data name="MenuHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="MenuHelpAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="MenuHelpWebsite" xml:space="preserve">
+    <value>Project Website</value>
+  </data>
+  <data name="MenuHelpChangeLog" xml:space="preserve">
+    <value>Change Log</value>
+  </data>
+  <data name="MenuHelpLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="ButtonOpen" xml:space="preserve">
+    <value>Open Document</value>
+  </data>
+  <data name="LabelListview" xml:space="preserve">
+    <value>Embedded Files</value>
+  </data>
+  <data name="ListViewColumnName" xml:space="preserve">
+    <value>Filename (Embedded)</value>
+  </data>
+  <data name="ListViewColumnExtension" xml:space="preserve">
+    <value>Ext.</value>
+  </data>
+  <data name="ListViewColumnPath" xml:space="preserve">
+    <value>Relative Path</value>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Save File(s)</value>
+  </data>
+  <data name="ButtonSaveAll" xml:space="preserve">
+    <value>Save all Files</value>
+  </data>
+  <data name="LabelPreview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="AboutCloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="AboutDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar)</value>
+  </data>
+  <data name="AboutHeader" xml:space="preserve">
+    <value>About Media-Extractor</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="AboutWebsite" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>Save selected File(s)</value>
+  </data>
+  <data name="CrcDescription" xml:space="preserve">
+    <value>CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected.</value>
+  </data>
+  <data name="DialogButtonCancel" xml:space="preserve">
+    <value>Cancel Extraction</value>
+  </data>
+  <data name="DialogButtonCancelTooltip" xml:space="preserve">
+    <value>Cancel the extraction</value>
+  </data>
+  <data name="DialogButtonOverwrite" xml:space="preserve">
+    <value>Overwrite</value>
+  </data>
+  <data name="DialogButtonOverwriteTooltip" xml:space="preserve">
+    <value>Replace the existing file</value>
+  </data>
+  <data name="DialogButtonRename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="DialogButtonRenameTooltip" xml:space="preserve">
+    <value>Rename the new file</value>
+  </data>
+  <data name="DialogButtonSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="DialogButtonSkipTooltip" xml:space="preserve">
+    <value>Skip the extraction of the file</value>
+  </data>
+  <data name="DialogCancelTitle" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="DialogExplorerError" xml:space="preserve">
+    <value>The path '{0}' could not be opened</value>
+  </data>
+  <data name="DialogHeader" xml:space="preserve">
+    <value>File already exists...</value>
+  </data>
+  <data name="DialogLabelCrc" xml:space="preserve">
+    <value>CRC32:</value>
+  </data>
+  <data name="DialogLabelDate" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="DialogLabelExisting" xml:space="preserve">
+    <value>Existing File</value>
+  </data>
+  <data name="DialogLabelName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="DialogLabelNew" xml:space="preserve">
+    <value>New File to Extract</value>
+  </data>
+  <data name="DialogLabelSize" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="DialogRememberCheckbox" xml:space="preserve">
+    <value>Remember Decision</value>
+  </data>
+  <data name="DialogSaveAllTitle" xml:space="preserve">
+    <value>Select a Folder to save all Files...</value>
+  </data>
+  <data name="DialogSaveCurrentTitle" xml:space="preserve">
+    <value>Save current File as...</value>
+  </data>
+  <data name="DialogSaveErrors" xml:space="preserve">
+    <value>Not all files were extracted</value>
+  </data>
+  <data name="DialogSaveFailure" xml:space="preserve">
+    <value>The file could not be saved</value>
+  </data>
+  <data name="DialogSaveFilter" xml:space="preserve">
+    <value>All files|*.*</value>
+  </data>
+  <data name="DialogSaveSelectedTitle" xml:space="preserve">
+    <value>Select a Folder to save the selected Files...</value>
+  </data>
+  <data name="DialogUnexpectedError" xml:space="preserve">
+    <value>There was an unexpected error during the extraction:</value>
+  </data>
+  <data name="DropAreaWatermark" xml:space="preserve">
+    <value>Drop Document here</value>
+  </data>
+  <data name="StatusSaveCanceled" xml:space="preserve">
+    <value>The save process was canceled</value>
+  </data>
+  <data name="StatusSaveErrorSummary" xml:space="preserve">
+    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped, {4} not extracted (errors)</value>
+  </data>
+  <data name="StatusSaveFailure" xml:space="preserve">
+    <value>Could not save the file: {0}</value>
+  </data>
+  <data name="StatusSaveSuccess" xml:space="preserve">
+    <value>The file was saved as: {0}</value>
+  </data>
+  <data name="StatusSaveSummary" xml:space="preserve">
+    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped</value>
+  </data>
+  <data name="TextErrorMultipleFiles" xml:space="preserve">
+    <value>{0} files could not be extracted.</value>
+  </data>
+  <data name="TextErrorOneFile" xml:space="preserve">
+    <value>One file could not be extracted.</value>
+  </data>
+  <data name="TextNoPreview" xml:space="preserve">
+    <value>No Preview</value>
+  </data>
+  <data name="TextSaveError" xml:space="preserve">
+    <value>The path '{0}' could not be opened</value>
+  </data>
+  <data name="TextSkippedMultipleFiles" xml:space="preserve">
+    <value>{0} files were skipped.</value>
+  </data>
+  <data name="TextSkippedOneFile" xml:space="preserve">
+    <value>One file was skipped.</value>
+  </data>
+  <data name="DialogLoadFailure" xml:space="preserve">
+    <value>The file could not be loaded.\n{0}\nError Message: {1}</value>
+  </data>
+  <data name="DialogLoadFilter" xml:space="preserve">
+    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
+  </data>
+  <data name="DialogLoadTitle" xml:space="preserve">
+    <value>Select Office Document...</value>
+  </data>
+  <data name="StatusLoaded" xml:space="preserve">
+    <value>File loaded: {0}</value>
+  </data>
+  <data name="StatusLoadFailure" xml:space="preserve">
+    <value>The file could not be loaded</value>
+  </data>
+  <data name="StatusLoading" xml:space="preserve">
+    <value>Loading file... Please wait</value>
+  </data>
+  <data name="StatusNotLoaded" xml:space="preserve">
+    <value>The file could not be loaded (no supported format)</value>
+  </data>
+  <data name="TextInvalidFormat" xml:space="preserve">
+    <value>The file may be not a valid Office file or archive.</value>
+  </data>
+  <data name="TextInvalidPath" xml:space="preserve">
+    <value>It looks like the filename is not valid. Please check the file name and path.</value>
+  </data>
+  <data name="TextLockedFile" xml:space="preserve">
+    <value>Please make sure that the file is not open in another application.</value>
+  </data>
+  <data name="DialogMissingChangelog" xml:space="preserve">
+    <value>The change log '{0}' was not found.</value>
+  </data>
+  <data name="DialogMissingChangelogTitle" xml:space="preserve">
+    <value>Changelog not found</value>
+  </data>
+  <data name="DialogMissingLicense" xml:space="preserve">
+    <value>The license file '{0}' was not found.</value>
+  </data>
+  <data name="DialogMissingLicenseTitle" xml:space="preserve">
+    <value>License could not be found</value>
+  </data>
+  <data name="StatusEmbeddedLoaded" xml:space="preserve">
+    <value>{0} loaded</value>
+  </data>
+  <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
+    <value>Embedded file could not be loaded: {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedOtherFailure" xml:space="preserve">
+    <value>Preview not possible for {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedTextFailure" xml:space="preserve">
+    <value>Text / XML file could not be loaded: {0}</value>
+  </data>
+  <data name="StatusLoadingEmbedded" xml:space="preserve">
+    <value>Loading embedded file... Please wait</value>
+  </data>
+  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
+    <value>System Language (Default)</value>
+  </data>
+  <data name="DialogMissingWebsite" xml:space="preserve">
+    <value>The project website could not be loaded</value>
+  </data>
+  <data name="DialogMissingWebsiteTitle" xml:space="preserve">
+    <value>Project website not loaded</value>
+  </data>
+  <data name="TextErrorInvalidImage" xml:space="preserve">
+    <value>Image preview could not be created</value>
+  </data>
+  <data name="TextErrorInvalidText" xml:space="preserve">
+    <value>Text preview could not be created</value>
+  </data>
+  <data name="DialogInvalidExtensions" xml:space="preserve">
+    <value>An error occurred during the retrieval of the file extensions for the previews. The default values are restored</value>
   </data>
 </root>

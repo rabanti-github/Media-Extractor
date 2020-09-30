@@ -185,7 +185,7 @@ namespace MediaExtractor
                             else if (ExistingFileDialog.DialogResult == ExistingFileDialog.Result.Overwrite) // Overwrite existing
                             {
                                 check = Save(item.FileReference, fileName, false);
-                                if (check == false) { errors++; }
+                                if (!check) { errors++; }
                                 else
                                 {
                                     extracted++;
@@ -196,7 +196,7 @@ namespace MediaExtractor
                             {
                                 fileName = Utils.GetNextFileName(fileName);
                                 check = Save(item.FileReference, fileName, false);
-                                if (check == false) { errors++; }
+                                if (!check) { errors++; }
                                 else
                                 {
                                     extracted++;
@@ -215,7 +215,7 @@ namespace MediaExtractor
                         else
                         {
                             check = Save(item.FileReference, fileName, false);
-                            if (check == false) { errors++; }
+                            if (!check) { errors++; }
                             else { extracted++; }
                         }
                     }
@@ -247,7 +247,7 @@ namespace MediaExtractor
                     if (CurrentModel.ShowInExplorer)
                     {
                         bool open = Utils.ShowInExplorer(ofd.FileName);
-                        if (open == false)
+                        if (!open)
                         {
                             MessageBox.Show(I18n.R(I18n.Key.DialogExplorerError, ofd.FileName), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
@@ -272,7 +272,7 @@ namespace MediaExtractor
             try
             {
                 FileInfo fi = new FileInfo(filename);
-                if (Directory.Exists(fi.DirectoryName) == false)
+                if (!Directory.Exists(fi.DirectoryName))
                 {
                     Directory.CreateDirectory(fi.DirectoryName);
                 }

@@ -106,7 +106,7 @@
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
             <Grid Grid.Column="2" MinWidth="270">
-                <Border Margin="0,37,0,0" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                <Border Margin="0,37,0,0" Background="{DynamicResource {x:Static adonisUi:Brushes.Layer3BackgroundBrush}}">
                     <Viewbox x:Name="ImageBoxContainer" Margin="10" ClipToBounds="True">
                         <Image x:Name="ImageBox" />
                     </Viewbox>

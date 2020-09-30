@@ -66,11 +66,9 @@ namespace MediaExtractor
             ProductName = versionInfo.ProductName;
             // Title = versionInfo.ProductName;
             CurrentModel.WindowTitle = versionInfo.ProductName;
-            //CurrentModel.UseEnglishLocale = true; // TODO: Get from settings
             HandleArguments();
         }
         #endregion
-
 
         #region publicMethods
         /// <summary>
@@ -96,7 +94,25 @@ namespace MediaExtractor
             CurrentModel.KeepFolderStructure = Properties.Settings.Default.DocumentPreserveStructure;
             CurrentModel.ShowInExplorer = Properties.Settings.Default.DocumentShowExplorer;
             CurrentModel.UseDarkMode = Properties.Settings.Default.AppearanceDarkMode;
+            if (Properties.Settings.Default.ExtractSaveAll)
+            {
+                CurrentModel.SaveAllIsDefault = true; ;
+            }
+            else if (Properties.Settings.Default.ExtractSaveSelected)
+            {
+                CurrentModel.SaveSelectedIsDefault = true;
+            }
             HandleDarkMode();
+            string imageExts = Properties.Settings.Default.ImageExtensions;
+            string textExts = Properties.Settings.Default.TextExtensions;
+            string xmlExts = Properties.Settings.Default.XmlExtensions;
+            if (!ExtractorItem.GetExtensions(textExts, imageExts, xmlExts))
+            {
+                Properties.Settings.Default.ImageExtensions = ExtractorItem.FALLBACK_IMAGE_EXTENTIONS;
+                Properties.Settings.Default.TextExtensions = ExtractorItem.FALLBACK_TEXT_EXTENTIONS;
+                Properties.Settings.Default.XmlExtensions = ExtractorItem.FALLBACK_XML_EXTENTIONS;
+                MessageBox.Show(I18n.T(I18n.Key.DialogInvalidExtensions), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>
@@ -140,7 +156,7 @@ namespace MediaExtractor
             if (args.Length > 1)
             {
                 string fileName = args[1];
-                if (File.Exists(fileName) == false) { return; }
+                if (!File.Exists(fileName)) { return; }
                 else
                 {
                     CurrentModel.FileName = args[1];
@@ -197,7 +213,6 @@ namespace MediaExtractor
             if (CurrentModel.UseDarkMode)
             {
                 AdonisUI.ResourceLocator.SetColorScheme(Application.Current.Resources, ResourceLocator.DarkColorScheme);
-
             }
             else
             {
@@ -226,6 +241,8 @@ namespace MediaExtractor
             Properties.Settings.Default.DocumentPreserveStructure = CurrentModel.KeepFolderStructure;
             Properties.Settings.Default.DocumentShowExplorer = CurrentModel.ShowInExplorer;
             Properties.Settings.Default.AppearanceDarkMode = CurrentModel.UseDarkMode;
+            Properties.Settings.Default.ExtractSaveAll = CurrentModel.SaveAllIsDefault;
+            Properties.Settings.Default.ExtractSaveSelected = CurrentModel.SaveSelectedIsDefault;
             Properties.Settings.Default.Locale = CurrentLocale;
             Properties.Settings.Default.Save();
         }
@@ -551,10 +568,9 @@ namespace MediaExtractor
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void LicenseMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (Utils.ShowInExplorer("license.txt") == false)
+            if (!Utils.ShowInExplorer("license.txt"))
             {
-                MessageBox.Show(I18n.R(I18n.Key.DialogMissingLicense, "license.txt"), I18n.T(I18n.Key.DialogMissingLicenseTitle),
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(I18n.R(I18n.Key.DialogMissingLicense, "license.txt"), I18n.T(I18n.Key.DialogMissingLicenseTitle), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -565,7 +581,7 @@ namespace MediaExtractor
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ChangeLogMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (Utils.ShowInExplorer("changelog.txt") == false)
+            if (!Utils.ShowInExplorer("changelog.txt"))
             {
                 MessageBox.Show(I18n.R(I18n.Key.DialogMissingChangelog, "changelog.txt"), I18n.T(I18n.Key.DialogMissingChangelogTitle),
                     MessageBoxButton.OK, MessageBoxImage.Warning);

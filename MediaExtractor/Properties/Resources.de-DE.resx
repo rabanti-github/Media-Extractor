@@ -145,7 +145,7 @@
     <value>Ordnerstruktur beim Entpacken erhalten</value>
   </data>
   <data name="MenuDocumentOpenExplorer" xml:space="preserve">
-    <value>Nach dem Entpacken in Explorer zeiegen</value>
+    <value>Nach dem Entpacken in Explorer zeigen</value>
   </data>
   <data name="MenuAppearance" xml:space="preserve">
     <value>Ansicht</value>
@@ -416,5 +416,8 @@
   </data>
   <data name="TextErrorInvalidText" xml:space="preserve">
     <value>Textvorschau konnte nicht erstellt werden</value>
+  </data>
+  <data name="DialogInvalidExtensions" xml:space="preserve">
+    <value>Beim Ermitteln der Dateiendungen für die Vorschau ist ein Fehler aufgetreten. Die Standardwerte werden wiederhergestellt.</value>
   </data>
 </root>
