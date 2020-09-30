@@ -36,7 +36,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ImageExtensions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp</Value>
+      <Value Profile="(Default)">jpg,jpeg,png,wmf,emf,gif,bmp,ico</Value>
     </Setting>
     <Setting Name="TextExtensions" Type="System.String" Scope="User">
       <Value Profile="(Default)">asc,bas,bat,c,cfg,cmd,cpp,cs,css,csv,h,hex,htm,html,inc,inf,info,ini,java,js,json,kt,ktm,kts,latex,less,lisp,log,lst,lua,markdown,md,me,meta,mf,p,pas,php,pl,pp,ps,ps1,psm1,py,r,rb,readme,reg,rs,rst,sh,sln,sql,sty,tcl,tex,ts,tsx,txt,vb,vba,vbs,yaml,yml</Value>

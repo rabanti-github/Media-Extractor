@@ -33,13 +33,6 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <adonisControls:AdonisWindow.TitleBarContent>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="?"  Style="{DynamicResource {x:Static adonisUi:Styles.WindowButton}}"
-                    FontFamily="Segoe UI"
-                    FontSize="14"/>
-        </StackPanel>
-    </adonisControls:AdonisWindow.TitleBarContent>
 
     <Grid UseLayoutRounding="False" Margin="0,26,0,0">
         <Grid.ColumnDefinitions>

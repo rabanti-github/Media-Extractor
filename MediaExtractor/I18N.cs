@@ -106,6 +106,7 @@ namespace MediaExtractor
             StatusLoading,
             StatusLoadingEmbedded,
             StatusNotLoaded,
+            StatusReady,
             StatusSaveCanceled,
             StatusSaveErrorSummary,
             StatusSaveFailure,
@@ -205,7 +206,6 @@ namespace MediaExtractor
         /// <returns>Translated term with replaced text</returns>
         public static string R(Key key, params int[] parameters)
         {
-            string localized = T(key);
             string[] numbers = parameters.Select(x => x.ToString()).ToArray();
             return R(key, numbers);
         }

@@ -12,10 +12,25 @@ Media-Extractor is an application to preview and extract packed media in Microso
 * Supports a variety of archive formats (e.g. zip, tar, 7z)
 * Creates previews of the most commonly used image formats used in Office (e.g. png, jpg, emf) which can be embedded
 * Creates previews of embedded text and XML files
-* Supports export of all embedded files at once or individually
+* Supports export of all embedded files at once, selected ones or particular ones
 * Supports export of other embedded data (e.g. xml files in xlsx or docx)
+* Loading of files by menu, button, drag&drop or 'open with' (Windows Explorer)
+* Dark mode
+* Translations (see section 'Translations')
 
-## Requirements
+## Translations
+
+Currently, Media-Extractor is translated to the following Languages:
+
+| Language | Status    | Provided by        |
+| -------- | --------- | ------------------ |
+| **English**  | Completed | Application Author |
+| **German**   | Completed | Application Author |
+
+If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template).
+For a translation is just a copy of the whole table (with name and translation column necessary). Please don't hesitate to ask, if the context of a term is not clear.
+
+## System Requirements
 
 * Microsoft Windows 7, 8.x, 10
 * .NET 4.5 or higher
@@ -25,6 +40,7 @@ Media-Extractor does not need an installation. It can be executed by:
 * Double-clicking on the exe file
 * Dragging a supported media file into the exe file
 * Using the option in Windows Explorer "Open with..."
+* Dropping a file into the designated area (drag&drop)
 
 ## Development Dependencies
 

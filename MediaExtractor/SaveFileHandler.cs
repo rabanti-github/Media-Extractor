@@ -163,15 +163,12 @@ namespace MediaExtractor
                     foreach (ListViewItem item in items)
                     {
                         fileExists = CheckFileExists(ofd.FileName, item.FileReference, CurrentModel.KeepFolderStructure, out var fileName);
-                        if (fileExists == true)
+                        if (fileExists && (ExistingFileDialog.RememberDecision == null || !ExistingFileDialog.RememberDecision.Value))
                         {
-                            if (ExistingFileDialog.RememberDecision == null || ExistingFileDialog.RememberDecision.Value != true)
-                            {
-                                fi = new FileInfo(fileName);
-                                uint crc = Utils.GetCrc(fileName);
-                                ExistingFileDialog efd = new ExistingFileDialog(fi.Name, fi.LastWriteTime, fi.Length, crc, item.FileName, item.FileReference.LastChange, item.FileReference.FileSize, item.FileReference.Crc32);
-                                efd.ShowDialog();
-                            }
+                            fi = new FileInfo(fileName);
+                            uint crc = Utils.GetCrc(fileName);
+                            ExistingFileDialog efd = new ExistingFileDialog(fi.Name, fi.LastWriteTime, fi.Length, crc, item.FileName, item.FileReference.LastChange, item.FileReference.FileSize, item.FileReference.Crc32);
+                            efd.ShowDialog();
                         }
 
                         if (fileExists)
@@ -282,14 +279,14 @@ namespace MediaExtractor
                 fs.Write(item.Stream.GetBuffer(), 0, (int)item.Stream.Length);
                 fs.Flush();
                 fs.Close();
-                if (writeStatus == true)
+                if (writeStatus)
                 {
                     CurrentModel.StatusText = I18n.R(I18n.Key.StatusSaveSuccess, filename);
                 }
             }
             catch (Exception e)
             {
-                if (writeStatus == true)
+                if (writeStatus)
                 {
                     CurrentModel.StatusText = I18n.R(I18n.Key.StatusSaveFailure, e.Message);
                     MessageBox.Show(I18n.T(I18n.Key.DialogSaveFailure), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Information);
@@ -311,7 +308,7 @@ namespace MediaExtractor
         {
             string separator = Path.DirectorySeparatorChar.ToString();
             char[] chars = new char[] { '/', '\\' };
-            if (keepFolderStructure == true)
+            if (keepFolderStructure)
             {
                 folder = folder.TrimEnd(chars) + separator + item.Path.Trim(chars);
             }

@@ -6,7 +6,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -383,7 +382,7 @@ namespace MediaExtractor
             ListViewItems = new ObservableCollection<ListViewItem>();
             SaveSelectedStatus = false;
             FileName = string.Empty;
-            StatusText = "Ready";
+            StatusText = I18n.T(I18n.Key.StatusReady);
         }
 
         /// <summary>

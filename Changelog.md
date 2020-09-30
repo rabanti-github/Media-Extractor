@@ -1,5 +1,21 @@
 # Change Log
 
+## v1.5.0
+
+Release Date: **30.09.2020**
+
+- Introduced dark mode
+- Added language option
+- Translations: English and German
+- Renewed UI
+- Added drag&drop area to open files
+- Added option to save selected files (picked from list of embedded files)
+- Added more file types that are displayed as preview
+- Added user settings (application restores options on startup)
+- Code cleanup
+
+---
+
 ## v1.4.1
 
 Release Date: **14.08.2018**

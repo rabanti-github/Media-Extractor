@@ -28,7 +28,7 @@ namespace MediaExtractor
         /// <summary>
         /// Default file endings that are previewed as image
         /// </summary>
-        public const string FALLBACK_IMAGE_EXTENTIONS = "jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp";
+        public const string FALLBACK_IMAGE_EXTENTIONS = "jpg,jpeg,png,wmf,emf,gif,bmp,ico";
         /// <summary>
         /// Default file endings that are previewed as XML
         /// </summary>
@@ -183,7 +183,7 @@ namespace MediaExtractor
             Stream = stream;
             ErrorMessage = String.Empty;
 
-            if (createFile == true)
+            if (createFile)
             {
                 switch (ItemType)
                 {
@@ -285,7 +285,7 @@ namespace MediaExtractor
         {
             List<ImageFormat> formats = new List<ImageFormat>();
             formats.Add(ImageFormat.Png);
-            if (retry == true)
+            if (retry)
             {
                 formats.Add(ImageFormat.Jpeg);
                 formats.Add(ImageFormat.Emf);
@@ -305,8 +305,10 @@ namespace MediaExtractor
                     }
                     else
                     {
-                        System.Drawing.Image img = System.Drawing.Image.FromStream(Stream);
-                        img.Save(ms2, format);
+                        using (System.Drawing.Image img = System.Drawing.Image.FromStream(Stream))
+                        {
+                            img.Save(ms2, format);
+                        }                       
                     }
 
                     ms2.Flush();

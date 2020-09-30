@@ -21,7 +21,7 @@ namespace MediaExtractor
         private string lastError;
         private bool hasErrors;
         private List<ExtractorItem> embeddedFiles;
-        private ViewModel currentModel;
+        private readonly ViewModel currentModel;
 
         /// <summary>
         /// List of all embedded items (usually embeddedFiles)

@@ -46,7 +46,7 @@ namespace MediaExtractor
         /// <summary>
         /// Static dialog result
         /// </summary>
-        public new static Result DialogResult = Result.None;
+        public static new Result DialogResult = Result.None;
         /// <summary>
         /// Boolean indicates whether the dialog shall be reoccurring (false) or be skipped with the last decision as default result (true)
         /// </summary>

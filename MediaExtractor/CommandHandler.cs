@@ -16,8 +16,8 @@ namespace MediaExtractor
     /// </summary>
     public class CommandHandler : ICommand
     {
-        private Action action;
-        private Func<bool> canExecute;
+        private readonly Action action;
+        private readonly Func<bool> canExecute;
 
         /// <summary>
         /// Constructor with parameters
