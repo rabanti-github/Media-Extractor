@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -21,6 +22,14 @@ namespace MediaExtractor
     /// </summary>
     public class ExtractorItem
     {
+        private static Dictionary<string, Func<MemoryStream, MemoryStream>> imageConverters = null;
+        private static readonly char[] EXT_SPLITTERS = new char[] { ',', ';', ' ', '.', '/', '\\', '|' };
+
+        private static List<string> imageExtensions;
+        private static List<string> textExtensions;
+        private static List<string> xmlExtensions;
+
+
         /// <summary>
         /// Default file endings that are previewed as text
         /// </summary>
@@ -28,16 +37,33 @@ namespace MediaExtractor
         /// <summary>
         /// Default file endings that are previewed as image
         /// </summary>
-        public const string FALLBACK_IMAGE_EXTENTIONS = "jpg,jpeg,png,wmf,emf,gif,bmp,ico";
+        public const string FALLBACK_IMAGE_EXTENTIONS = "jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp";
         /// <summary>
         /// Default file endings that are previewed as XML
         /// </summary>
         public const string FALLBACK_XML_EXTENTIONS = "xml,manifest,rels,xhtml,xaml,svg,pom,dtd,xsd,x3d,collada,cdxml,config,nuspec,graphml";
-        private static readonly char[] EXT_SPLITTERS = new char[] { ',', ';', ' ', '.', '/', '\\', '|' };
 
-        private static List<string> imageExtensions;
-        private static List<string> textExtensions;
-        private static List<string> xmlExtensions;
+        /// <summary>
+        /// Singleton initializer for image converter functions
+        /// </summary>
+        public static Dictionary<string, Func<MemoryStream, MemoryStream>> ImageConverters
+        {
+            get
+            {
+                if (imageConverters == null)
+                {
+                    imageConverters = new Dictionary<string, Func<MemoryStream, MemoryStream>>();
+                    imageConverters.Add("jpg", GetJpeg);
+                    imageConverters.Add("png", GetPng);
+                    imageConverters.Add("bmp", GetBmp);
+                    imageConverters.Add("gif", GetGif);
+                    imageConverters.Add("emf", GetEmf);
+                    imageConverters.Add("wmf", GetWmf);
+                    imageConverters.Add("wdp", GetWdp);
+                }
+                return imageConverters;
+            }
+        }
 
         /// <summary>
         /// Enum to define the coarse file type of the entry
@@ -109,7 +135,7 @@ namespace MediaExtractor
             {
                 if (image == null && !initialized)
                 {
-                    CreateImage(true);
+                    CreateImage();
                     initialized = true;
                 }
                 return image;
@@ -188,7 +214,7 @@ namespace MediaExtractor
                 switch (ItemType)
                 {
                     case Type.Image:
-                        CreateImage(true);
+                        CreateImage();
                         break;
                     case Type.Xml:
                         CreateXml();
@@ -203,26 +229,34 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Gets the appropriate, generic type of the file
+        /// Method to try parsing an image, based on the passed function reference
         /// </summary>
-        /// <param name="extension">Extension of the file</param>
-        /// <returns>Generic file type</returns>
-        private static Type GetExtensionType(string extension)
+        /// <param name="func">Function reference</param>
+        /// <returns>True if the image could be created, otherwise false</returns>
+        private bool TryParseImage(Func<MemoryStream, MemoryStream> func)
         {
-            string ext = extension.ToLower();
-            if (textExtensions.Contains(ext))
+            try
             {
-                return Type.Text;
+                MemoryStream ms = func.Invoke(Stream);
+                BitmapImage ims = new BitmapImage();
+                ims.BeginInit();
+                ims.CacheOption = BitmapCacheOption.OnLoad;
+                ims.StreamSource = ms;
+                ims.EndInit();
+                ims.Freeze();
+                image = ims;
+                ValidImage = true;
+                ErrorMessage = String.Empty;
+                return true;
+
             }
-            if (xmlExtensions.Contains(ext))
+            catch (Exception ex)
             {
-                return Type.Xml;
+                ValidImage = false;
+                ErrorMessage = ex.Message;
+                image = null;
+                return false;
             }
-            if (imageExtensions.Contains(ext))
-            {
-                return Type.Image;
-            }
-            return Type.Other;
         }
 
         /// <summary>
@@ -280,55 +314,24 @@ namespace MediaExtractor
         /// <summary>
         /// Method to create an image object from the item
         /// </summary>
-        /// <param name="retry">If false, only an attempt as png file will be performed. If true, all formats (jpg, emf, bmp, gif and wmf) will be tried after a fail of a png conversion</param>
-        public void CreateImage(bool retry)
+        public void CreateImage()
         {
-            List<ImageFormat> formats = new List<ImageFormat>();
-            formats.Add(ImageFormat.Png);
-            if (retry)
+            MemoryStream ms2;
+            string ext = "png"; // Default if not defined
+            if (!string.IsNullOrEmpty(FileExtension))
             {
-                formats.Add(ImageFormat.Jpeg);
-                formats.Add(ImageFormat.Emf);
-                formats.Add(ImageFormat.Bmp);
-                formats.Add(ImageFormat.Gif);
-                formats.Add(ImageFormat.Wmf);
+                ext = FileExtension.ToLower();
             }
-            foreach (ImageFormat format in formats)
+            if (ImageConverters.ContainsKey(ext) && TryParseImage(ImageConverters[ext]))
             {
-                try
-                {
-                    MemoryStream ms2 = new MemoryStream();
-                    if (format == ImageFormat.Emf || format == ImageFormat.Wmf)
-                    {
-                        Metafile mf = new Metafile(Stream);
-                        mf.Save(ms2, format);
-                    }
-                    else
-                    {
-                        using (System.Drawing.Image img = System.Drawing.Image.FromStream(Stream))
-                        {
-                            img.Save(ms2, format);
-                        }                       
-                    }
+                return;
+            }
 
-                    ms2.Flush();
-                    ms2.Position = 0;
-                    BitmapImage ims = new BitmapImage();
-                    ims.BeginInit();
-                    ims.CacheOption = BitmapCacheOption.OnLoad;
-                    ims.StreamSource = ms2;
-                    ims.EndInit();
-                    ims.Freeze();
-                    image = ims;
-                    ValidImage = true;
-                    ErrorMessage = String.Empty;
-                    return;
-                }
-                catch (Exception e)
+            foreach (KeyValuePair<string, Func<MemoryStream, MemoryStream>> item in ImageConverters)
+            {
+                if (TryParseImage(item.Value))
                 {
-                    ValidImage = false;
-                    ErrorMessage = e.Message;
-                    image = null;
+                    return;
                 }
             }
         }
@@ -371,6 +374,140 @@ namespace MediaExtractor
             }
             string[] split = input.ToLower().Split(EXT_SPLITTERS, StringSplitOptions.RemoveEmptyEntries);
             return split.Distinct().ToList();
+        }
+
+        /// <summary>
+        /// Method, used as function reference to create a JPG
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetJpeg(MemoryStream input)
+        {
+            return GetBitmap(input, ImageFormat.Jpeg);
+        }
+
+        /// <summary>
+        /// Method, used as function reference to create a PNG
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetPng(MemoryStream input)
+        {
+            return GetBitmap(input, ImageFormat.Png);
+        }
+
+        /// <summary>
+        /// Method, used as function reference to create a BMP
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetBmp(MemoryStream input)
+        {
+            return GetBitmap(input, ImageFormat.Bmp);
+        }
+
+        /// <summary>
+        /// Method, used as function reference to create a GIF
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetGif(MemoryStream input)
+        {
+            return GetBitmap(input, ImageFormat.Gif);
+        }
+
+        /// <summary>
+        /// Method, used as function reference to create a WMF
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetWmf(MemoryStream input)
+        {
+            return GetMetaFile(input, ImageFormat.Wmf);
+        }
+
+        /// <summary>
+        /// Method, used as function reference to create a EMF
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetEmf(MemoryStream input)
+        {
+            return GetMetaFile(input, ImageFormat.Emf);
+        }
+
+        /// <summary>
+        /// Method, used as function reference to create a WDP
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetWdp(MemoryStream input)
+        {
+            MemoryStream ms = new MemoryStream();
+            WmpBitmapDecoder wmp = new WmpBitmapDecoder(input, BitmapCreateOptions.None, BitmapCacheOption.Default);
+            BitmapEncoder encoder = new BmpBitmapEncoder();
+            encoder.Frames.Add(wmp.Frames[0]);
+            encoder.Save(ms);
+            ms.Flush();
+            ms.Position = 0;
+            return ms;
+        }
+
+        /// <summary>
+        /// Generic method, used as function reference to create a metafile image
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <param name="format"Image format to apply during the creation</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetMetaFile(MemoryStream input, ImageFormat format)
+        {
+            MemoryStream ms = new MemoryStream();
+            Metafile mf = new Metafile(input);
+            mf.Save(ms, format);
+            ms.Flush();
+            ms.Position = 0;
+            return ms;
+        }
+
+        /// <summary>
+        /// Generic method, used as function reference to create a bitmap-like image
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <param name="format"Image format to apply during the creation</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetBitmap(MemoryStream input, ImageFormat format)
+        {
+            MemoryStream ms = new MemoryStream();
+            using (System.Drawing.Image img = System.Drawing.Image.FromStream(input))
+            {
+                img.Save(ms, format);
+            }
+            ms.Flush();
+            ms.Position = 0;
+            return ms;
+        }
+
+        /// <summary>
+        /// Gets the appropriate, generic type of the file
+        /// </summary>
+        /// <param name="extension">Extension of the file</param>
+        /// <returns>Generic file type</returns>
+        private static Type GetExtensionType(string extension)
+        {
+            string ext = extension.ToLower();
+            if (textExtensions.Contains(ext))
+            {
+                return Type.Text;
+            }
+            if (xmlExtensions.Contains(ext))
+            {
+                return Type.Xml;
+            }
+            if (imageExtensions.Contains(ext))
+            {
+                return Type.Image;
+            }
+            return Type.Other;
         }
 
     }

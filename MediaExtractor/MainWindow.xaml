@@ -73,7 +73,7 @@
         </Menu>
         <Grid Margin="0,0,0,35" Grid.ColumnSpan="3" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="340" MinWidth="250"/>
+                <ColumnDefinition Width="370" MinWidth="250"/>
                 <ColumnDefinition Width="5" MinWidth="5" />
                 <ColumnDefinition Width="*" MinWidth="300"/>
             </Grid.ColumnDefinitions>
@@ -92,6 +92,7 @@
                                 <GridViewColumn Header="{x:Static p:Resources.ListViewColumnName}" Width="160" DisplayMemberBinding="{Binding Path=FileName}"/>
                                 <GridViewColumn Header="{x:Static p:Resources.ListViewColumnPath}" Width="100" DisplayMemberBinding="{Binding Path=Path}"/>
                                 <GridViewColumn Header="{x:Static p:Resources.ListViewColumnExtension}" Width="40" DisplayMemberBinding="{Binding Path=FileExtension}"/>
+                                <GridViewColumn Header="{x:Static p:Resources.ListViewColumnSize}" Width="60" DisplayMemberBinding="{Binding Path=FileSize}"/>
                             </GridView.Columns>
                         </GridView>
                     </ListView.View>

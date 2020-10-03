@@ -108,6 +108,10 @@
     </Compile>
     <Compile Include="ExtractorItem.cs" />
     <Compile Include="I18N.cs" />
+    <Compile Include="preview\AbstractPreview.cs" />
+    <Compile Include="preview\ImagePreview.cs" />
+    <Compile Include="preview\TextPreview.cs" />
+    <Compile Include="preview\XmlPreview.cs" />
     <Compile Include="Properties\Resources.de-DE.Designer.cs">
       <DependentUpon>Resources.de-DE.resx</DependentUpon>
       <AutoGen>True</AutoGen>

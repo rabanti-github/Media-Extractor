@@ -423,4 +423,7 @@
   <data name="StatusReady" xml:space="preserve">
     <value>Bereit</value>
   </data>
+  <data name="ListViewColumnSize" xml:space="preserve">
+    <value>Größe</value>
+  </data>
 </root>

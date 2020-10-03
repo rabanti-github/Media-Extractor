@@ -90,7 +90,7 @@ namespace MediaExtractor
                     switch (embeddedFiles[i].ItemType)
                     {
                         case ExtractorItem.Type.Image:
-                            embeddedFiles[i].CreateImage(true);
+                            embeddedFiles[i].CreateImage();
                             break;
                         case ExtractorItem.Type.Xml:
                             embeddedFiles[i].CreateXml();

@@ -64,7 +64,6 @@ namespace MediaExtractor
             saveFileHandler = new SaveFileHandler(CurrentModel);
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             ProductName = versionInfo.ProductName;
-            // Title = versionInfo.ProductName;
             CurrentModel.WindowTitle = versionInfo.ProductName;
             HandleArguments();
         }
@@ -247,7 +246,6 @@ namespace MediaExtractor
             Properties.Settings.Default.Save();
         }
 
-
         #endregion
 
         #region publicStaticMethods
@@ -340,7 +338,8 @@ namespace MediaExtractor
                                 FileName = item.FileName,
                                 FileExtension = item.FileExtension,
                                 Path = item.Path,
-                                FileReference = item
+                                FileReference = item,
+                                FileSize = new ListViewItem.Size(item.FileSize)
                             };
                             lItem.Type = item.ItemType;
                             reference.CurrentModel.ListViewItems.Add(lItem);
@@ -389,9 +388,10 @@ namespace MediaExtractor
                 {
                     CurrentExtractor.GetImageSourceByName(item.FileName, out var img);
                     SetImagePreviewVisible();
-                    if (CurrentExtractor.HasErrors == true)
+                    if (CurrentExtractor.HasErrors)
                     {
                         CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedImageFailure, CurrentExtractor.LastError);
+                        SetTextPreviewVisible(true);
                         ImageBox.Source = null;
                         CurrentExtractor.ResetErrors();
                     }
@@ -405,10 +405,11 @@ namespace MediaExtractor
                 {
                     CurrentExtractor.GetGenericTextByName(item.FileName, out var text);
                     SetTextPreviewVisible();
-                    if (CurrentExtractor.HasErrors == true)
+                    if (CurrentExtractor.HasErrors)
                     {
                         CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedTextFailure, CurrentExtractor.LastError);
                         TextBox.Text = string.Empty;
+                        SetTextPreviewVisible(true);
                         CurrentExtractor.ResetErrors();
                     }
                     else

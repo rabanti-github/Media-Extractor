@@ -76,6 +76,7 @@ namespace MediaExtractor
             ListViewColumnExtension,
             ListViewColumnName,
             ListViewColumnPath,
+            ListViewColumnSize,
             MenuAppearance,
             MenuAppearanceDarkmode,
             MenuAppearanceLanguage,

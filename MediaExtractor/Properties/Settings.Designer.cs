@@ -148,7 +148,7 @@ namespace MediaExtractor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("jpg,jpeg,png,wmf,emf,gif,bmp,ico")]
+        [global::System.Configuration.DefaultSettingValueAttribute("jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp")]
         public string ImageExtensions {
             get {
                 return ((string)(this["ImageExtensions"]));

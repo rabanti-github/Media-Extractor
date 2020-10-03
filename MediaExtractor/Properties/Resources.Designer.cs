@@ -556,6 +556,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string ListViewColumnSize {
+            get {
+                return ResourceManager.GetString("ListViewColumnSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Appearance.
         /// </summary>
         public static string MenuAppearance {
