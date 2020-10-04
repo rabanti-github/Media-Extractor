@@ -7,13 +7,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Imaging;
-using System.Xml;
 
 namespace MediaExtractor
 {
@@ -22,13 +18,12 @@ namespace MediaExtractor
     /// </summary>
     public class ExtractorItem
     {
-        private static Dictionary<string, Func<MemoryStream, MemoryStream>> imageConverters = null;
+
         private static readonly char[] EXT_SPLITTERS = new char[] { ',', ';', ' ', '.', '/', '\\', '|' };
 
         private static List<string> imageExtensions;
         private static List<string> textExtensions;
         private static List<string> xmlExtensions;
-
 
         /// <summary>
         /// Default file endings that are previewed as text
@@ -42,28 +37,6 @@ namespace MediaExtractor
         /// Default file endings that are previewed as XML
         /// </summary>
         public const string FALLBACK_XML_EXTENTIONS = "xml,manifest,rels,xhtml,xaml,svg,pom,dtd,xsd,x3d,collada,cdxml,config,nuspec,graphml";
-
-        /// <summary>
-        /// Singleton initializer for image converter functions
-        /// </summary>
-        public static Dictionary<string, Func<MemoryStream, MemoryStream>> ImageConverters
-        {
-            get
-            {
-                if (imageConverters == null)
-                {
-                    imageConverters = new Dictionary<string, Func<MemoryStream, MemoryStream>>();
-                    imageConverters.Add("jpg", GetJpeg);
-                    imageConverters.Add("png", GetPng);
-                    imageConverters.Add("bmp", GetBmp);
-                    imageConverters.Add("gif", GetGif);
-                    imageConverters.Add("emf", GetEmf);
-                    imageConverters.Add("wmf", GetWmf);
-                    imageConverters.Add("wdp", GetWdp);
-                }
-                return imageConverters;
-            }
-        }
 
         /// <summary>
         /// Enum to define the coarse file type of the entry
@@ -82,6 +55,7 @@ namespace MediaExtractor
             None,
         }
 
+        private string errorMessage;
         private BitmapImage image;
         private string genericText;
         private bool initialized;
@@ -135,7 +109,7 @@ namespace MediaExtractor
             {
                 if (image == null && !initialized)
                 {
-                    CreateImage();
+                    ValidImage = Preview.CreateImage(FileExtension, Stream, out image, out errorMessage);
                     initialized = true;
                 }
                 return image;
@@ -153,12 +127,12 @@ namespace MediaExtractor
                 {
                     if (ItemType == Type.Text)
                     {
-                        CreateText();
+                        ValidGenericText = Preview.CreateText(Stream, out genericText, out errorMessage);
                         initialized = true;
                     }
                     else if (ItemType == Type.Xml)
                     {
-                        CreateXml();
+                        ValidGenericText = Preview.CreateXml(Stream, out genericText, out errorMessage);
                         initialized = true;
                     }
                     else
@@ -173,14 +147,10 @@ namespace MediaExtractor
         /// <summary>
         /// Message of the last occurred error when processing the item
         /// </summary>
-        public string ErrorMessage { get; set; }
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public ExtractorItem()
+        public string ErrorMessage
         {
-
+            get { return errorMessage; }
+            set { errorMessage = value; }
         }
 
         /// <summary>
@@ -208,132 +178,33 @@ namespace MediaExtractor
             Path = path;
             Stream = stream;
             ErrorMessage = String.Empty;
-
-            if (createFile)
-            {
-                switch (ItemType)
-                {
-                    case Type.Image:
-                        CreateImage();
-                        break;
-                    case Type.Xml:
-                        CreateXml();
-                        break;
-                    case Type.Text:
-                        CreateText();
-                        break;
-                }
-                initialized = true;
-            }
-
         }
 
         /// <summary>
-        /// Method to try parsing an image, based on the passed function reference
-        /// </summary>
-        /// <param name="func">Function reference</param>
-        /// <returns>True if the image could be created, otherwise false</returns>
-        private bool TryParseImage(Func<MemoryStream, MemoryStream> func)
-        {
-            try
-            {
-                MemoryStream ms = func.Invoke(Stream);
-                BitmapImage ims = new BitmapImage();
-                ims.BeginInit();
-                ims.CacheOption = BitmapCacheOption.OnLoad;
-                ims.StreamSource = ms;
-                ims.EndInit();
-                ims.Freeze();
-                image = ims;
-                ValidImage = true;
-                ErrorMessage = String.Empty;
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                ValidImage = false;
-                ErrorMessage = ex.Message;
-                image = null;
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Method to create plain text
-        /// </summary>
-        public void CreateText()
-        {
-            try
-            {
-                StreamReader sr = new StreamReader(Stream);
-                genericText = sr.ReadToEnd();
-                ValidGenericText = true;
-                ErrorMessage = String.Empty;
-            }
-            catch (Exception e)
-            {
-                ErrorMessage = e.Message;
-                ValidGenericText = false;
-                genericText = string.Empty;
-            }
-
-        }
-
-        /// <summary>
-        /// Method to create XML as text
-        /// </summary>
-        public void CreateXml()
-        {
-            CreateText();
-            if (!ValidGenericText)
-            {
-                return;
-            }
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.LoadXml(genericText);
-                StringBuilder sb = new StringBuilder();
-                TextWriter tw = new StringWriter(sb);
-                XmlTextWriter xtw = new XmlTextWriter(tw);
-                xtw.Formatting = Formatting.Indented;
-                doc.Save(xtw);
-                xtw.Flush();
-                xtw.Close();
-                genericText = sb.ToString();
-            }
-            catch (Exception e)
-            {
-                ErrorMessage = e.Message;
-                ValidGenericText = false;
-                genericText = string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Method to create an image object from the item
+        /// Meta method to create an image preview
         /// </summary>
         public void CreateImage()
         {
-            MemoryStream ms2;
-            string ext = "png"; // Default if not defined
-            if (!string.IsNullOrEmpty(FileExtension))
-            {
-                ext = FileExtension.ToLower();
-            }
-            if (ImageConverters.ContainsKey(ext) && TryParseImage(ImageConverters[ext]))
-            {
-                return;
-            }
+            ValidImage = Preview.CreateImage(FileExtension, Stream, out image, out errorMessage);
+            initialized = true;
+        }
 
-            foreach (KeyValuePair<string, Func<MemoryStream, MemoryStream>> item in ImageConverters)
-            {
-                if (TryParseImage(item.Value))
-                {
-                    return;
-                }
-            }
+        /// <summary>
+        /// Meta method to create a XML preview
+        /// </summary>
+        public void CreateXml()
+        {
+            ValidGenericText = Preview.CreateXml(Stream, out genericText, out errorMessage);
+            initialized = true;
+        }
+
+        /// <summary>
+        /// Meta method to create a text preview
+        /// </summary>
+        public void CreateText()
+        {
+            ValidImage = Preview.CreateText(Stream, out genericText, out errorMessage);
+            initialized = true;
         }
 
         /// <summary>
@@ -370,121 +241,10 @@ namespace MediaExtractor
         {
             if (string.IsNullOrEmpty(input))
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Undefined extension");
             }
             string[] split = input.ToLower().Split(EXT_SPLITTERS, StringSplitOptions.RemoveEmptyEntries);
             return split.Distinct().ToList();
-        }
-
-        /// <summary>
-        /// Method, used as function reference to create a JPG
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetJpeg(MemoryStream input)
-        {
-            return GetBitmap(input, ImageFormat.Jpeg);
-        }
-
-        /// <summary>
-        /// Method, used as function reference to create a PNG
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetPng(MemoryStream input)
-        {
-            return GetBitmap(input, ImageFormat.Png);
-        }
-
-        /// <summary>
-        /// Method, used as function reference to create a BMP
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetBmp(MemoryStream input)
-        {
-            return GetBitmap(input, ImageFormat.Bmp);
-        }
-
-        /// <summary>
-        /// Method, used as function reference to create a GIF
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetGif(MemoryStream input)
-        {
-            return GetBitmap(input, ImageFormat.Gif);
-        }
-
-        /// <summary>
-        /// Method, used as function reference to create a WMF
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetWmf(MemoryStream input)
-        {
-            return GetMetaFile(input, ImageFormat.Wmf);
-        }
-
-        /// <summary>
-        /// Method, used as function reference to create a EMF
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetEmf(MemoryStream input)
-        {
-            return GetMetaFile(input, ImageFormat.Emf);
-        }
-
-        /// <summary>
-        /// Method, used as function reference to create a WDP
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetWdp(MemoryStream input)
-        {
-            MemoryStream ms = new MemoryStream();
-            WmpBitmapDecoder wmp = new WmpBitmapDecoder(input, BitmapCreateOptions.None, BitmapCacheOption.Default);
-            BitmapEncoder encoder = new BmpBitmapEncoder();
-            encoder.Frames.Add(wmp.Frames[0]);
-            encoder.Save(ms);
-            ms.Flush();
-            ms.Position = 0;
-            return ms;
-        }
-
-        /// <summary>
-        /// Generic method, used as function reference to create a metafile image
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <param name="format"Image format to apply during the creation</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetMetaFile(MemoryStream input, ImageFormat format)
-        {
-            MemoryStream ms = new MemoryStream();
-            Metafile mf = new Metafile(input);
-            mf.Save(ms, format);
-            ms.Flush();
-            ms.Position = 0;
-            return ms;
-        }
-
-        /// <summary>
-        /// Generic method, used as function reference to create a bitmap-like image
-        /// </summary>
-        /// <param name="input">Input memory stream</param>
-        /// <param name="format"Image format to apply during the creation</param>
-        /// <returns>Output memory stream of a BitmapImage</returns>
-        private static MemoryStream GetBitmap(MemoryStream input, ImageFormat format)
-        {
-            MemoryStream ms = new MemoryStream();
-            using (System.Drawing.Image img = System.Drawing.Image.FromStream(input))
-            {
-                img.Save(ms, format);
-            }
-            ms.Flush();
-            ms.Position = 0;
-            return ms;
         }
 
         /// <summary>

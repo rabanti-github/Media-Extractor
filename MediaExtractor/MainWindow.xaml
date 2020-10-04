@@ -73,7 +73,7 @@
         </Menu>
         <Grid Margin="0,0,0,35" Grid.ColumnSpan="3" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="370" MinWidth="250"/>
+                <ColumnDefinition Width="370" MinWidth="260"/>
                 <ColumnDefinition Width="5" MinWidth="5" />
                 <ColumnDefinition Width="*" MinWidth="300"/>
             </Grid.ColumnDefinitions>

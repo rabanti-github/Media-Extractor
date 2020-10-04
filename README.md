@@ -30,6 +30,18 @@ Currently, Media-Extractor is translated to the following Languages:
 If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template).
 For a translation, just a copy of the whole table (with name and translation column necessary) or the file [Resources.resx](https://github.com/rabanti-github/Media-Extractor/blob/master/MediaExtractor/Properties/Resources.resx). Please don't hesitate to ask, if the context of a term is not clear.
 
+## SmartScreen Warning in Windows 8.1 and 10
+Windows 8.1 introduced a mechanism to protect users from phishing websites and malware, yet not known to Antivirus programs. This mechanism is called [SmartScreen](https://support.microsoft.com/en-us/help/17443/microsoft-edge-smartscreen-faq) and either blocks the access to a malicious website, or the execution of unknown apps.
+Unfortunately, it is possible that Media-Extractor is initially blocked by SmartScreen, since the mechanism don't know the app until 'some people' have downloaded and executed the app. The number of necessary downloads until the app is not seen as unknown (thus, not blocked by SmartScreen anymore) is not that clear.
+The second unfortunately fact is that SmartScreen will be triggered by each new version of the app.
+What you can do to execute Media-Extractor:
+
+* Tell SmartScreen that you trust the app (must only declared once)
+* Disable SmartScreen according to [this article](https://support.microsoft.com/en-us/help/17443/microsoft-edge-smartscreen-faq)
+* Wait until enough people have downloaded and executed Media-Extractor
+
+Note: Similar mechanisms may be also triggered by Browsers, like Edge, Chrome or Vivaldi
+
 ## System Requirements
 
 * Microsoft Windows 7, 8.x, 10

@@ -95,7 +95,7 @@ namespace MediaExtractor
             CurrentModel.UseDarkMode = Properties.Settings.Default.AppearanceDarkMode;
             if (Properties.Settings.Default.ExtractSaveAll)
             {
-                CurrentModel.SaveAllIsDefault = true; ;
+                CurrentModel.SaveAllIsDefault = true;
             }
             else if (Properties.Settings.Default.ExtractSaveSelected)
             {
@@ -155,8 +155,7 @@ namespace MediaExtractor
             if (args.Length > 1)
             {
                 string fileName = args[1];
-                if (!File.Exists(fileName)) { return; }
-                else
+                if (File.Exists(fileName))
                 {
                     CurrentModel.FileName = args[1];
                     CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoading);
@@ -269,15 +268,15 @@ namespace MediaExtractor
             }
             else
             {
-                reference.CurrentExtractor.Extract(); // All includes images, xml and text
-                if (reference.CurrentExtractor.HasErrors == true)
+                reference.CurrentExtractor.Extract(); // All includes images, XML and text
+                if (reference.CurrentExtractor.HasErrors)
                 {
                     string message;
                     string[] ext = new[] { ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".zip", ".7z", ".rar", ".bzip2", ".gz", ".tar", ".cab", ".chm", ".lzh", ".iso" };
                     try
                     {
                         FileInfo fi = new FileInfo(reference.CurrentModel.FileName);
-                        if (ext.Contains(fi.Extension.ToLower()) == true)
+                        if (ext.Contains(fi.Extension.ToLower()))
                         {
                             message = I18n.T(I18n.Key.TextLockedFile);
                         }

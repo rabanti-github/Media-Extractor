@@ -1,5 +1,17 @@
 # Change Log
 
+## v1.6.0
+
+Release Date: **04.10.2020**
+
+- Added file size of embedded files
+- Added support for wdp preview images
+- Improved the handling of invalid previews
+- Added a note in the readme about SmartScreen of Windows 8.1 and 10
+- Code cleanup
+
+---
+
 ## v1.5.0
 
 Release Date: **30.09.2020**

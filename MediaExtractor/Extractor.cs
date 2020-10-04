@@ -5,9 +5,9 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+using SevenZipExtractor;
 using System;
 using System.Collections.Generic;
-using SevenZipExtractor;
 using System.IO;
 using System.Windows.Media.Imaging;
 
