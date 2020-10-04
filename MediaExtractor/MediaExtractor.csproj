@@ -3,7 +3,6 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <UICulture>en-US</UICulture>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{863DFC29-45E2-4769-B980-51E3C635AFAB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -14,7 +13,8 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <NuGetPackageImportStamp>2bf5e654</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -41,7 +41,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DocumentationFile>
+    </DocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,7 +53,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>media_extractor.ico</ApplicationIcon>
@@ -59,22 +61,40 @@
   <PropertyGroup>
     <StartupObject>MediaExtractor.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdonisUI, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AdonisUI.1.16.0\lib\net45\AdonisUI.dll</HintPath>
+    </Reference>
+    <Reference Include="AdonisUI.ClassicTheme, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AdonisUI.ClassicTheme.1.16.0\lib\net45\AdonisUI.ClassicTheme.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
-    <Reference Include="SevenZipExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SevenZipExtractor.1.0.12\lib\net45\SevenZipExtractor.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SevenZipExtractor, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SevenZipExtractor.1.0.15\lib\net45\SevenZipExtractor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,25 +108,49 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WPFLocalizeExtension, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPFLocalizeExtension.3.1.2\lib\net35\WPFLocalizeExtension.dll</HintPath>
-    </Reference>
-    <Reference Include="XAMLMarkupExtensions, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XAMLMarkupExtensions.1.3.0\lib\net40\XAMLMarkupExtensions.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="ExistingFileDialog.xaml.cs">
       <DependentUpon>ExistingFileDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExtractorItem.cs" />
+    <Compile Include="ExtractorItem2.cs" />
     <Compile Include="I18N.cs" />
+    <Compile Include="preview\AbstractPreview.cs" />
+    <Compile Include="preview\ImagePreview.cs" />
+    <Compile Include="preview\TextPreview.cs" />
+    <Compile Include="preview\XmlPreview.cs" />
+    <Compile Include="ProgressIndicator.cs" />
+    <Compile Include="Properties\Resources.de-DE.Designer.cs">
+      <DependentUpon>Resources.de-DE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.en.Designer.cs">
+      <DependentUpon>Resources.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SaveFileHandler.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel.cs" />
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExistingFileDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,28 +174,30 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="media\media_extractor.ico" />
@@ -163,31 +209,27 @@
     <Resource Include="media_extractor.ico" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\SevenZipExtractor.1.0.12\build\SevenZipExtractor.targets" Condition="Exists('..\packages\SevenZipExtractor.1.0.12\build\SevenZipExtractor.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(SolutionDir)LICENSE" "$(TargetDir)" /Y
+del "$(TargetDir)license.txt"
+ren "$(TargetDir)LICENSE" license.txt
+xcopy "$(SolutionDir)Changelog.md" "$(TargetDir)" /Y
+del "$(TargetDir)changelog.txt"
+ren "$(TargetDir)Changelog.md" changelog.txt</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\SevenZipExtractor.1.0.15\build\SevenZipExtractor.targets" Condition="Exists('..\packages\SevenZipExtractor.1.0.15\build\SevenZipExtractor.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SevenZipExtractor.1.0.12\build\SevenZipExtractor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SevenZipExtractor.1.0.12\build\SevenZipExtractor.targets'))" />
+    <Error Condition="!Exists('..\packages\SevenZipExtractor.1.0.15\build\SevenZipExtractor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SevenZipExtractor.1.0.15\build\SevenZipExtractor.targets'))" />
   </Target>
-  <PropertyGroup>
-    <PostBuildEvent>"$(MSBuildBinPath)\msbuild.exe" "$(ProjectPath)" /t:updateuid /t:checkuid</PostBuildEvent>
-  </PropertyGroup>
 </Project>

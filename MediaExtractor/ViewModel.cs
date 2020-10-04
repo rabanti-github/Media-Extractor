@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2018
+ * Copyright Raphael Stoeckli © 2020
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -8,114 +8,111 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
-using System.Text;
-using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Xml.Serialization;
 
 namespace MediaExtractor
 {
     /// <summary>
     /// Class for data binding
     /// </summary>
-    
     public class ViewModel : INotifyPropertyChanged
     {
+        private string windowTitle;
         private ObservableCollection<ListViewItem> listViewItems;
+        private ICommand saveDefaultCommand;
         private BitmapImage image;
         private bool saveStatus;
         private string fileName;
         private string statusText;
         private bool saveAllStatus;
+        private bool showEmbeddedImages;
+        private bool showEmbeddedOther;
         private bool keepFolderStructure = true;
         private bool showInExplorer = true;
+        private bool useDarkMode = false;
+        private bool useSystemLocale = true;
+        private bool useEnglishLocale = false;
+        private bool useGermanLocale = false;
+        private bool saveSelectedIsDefault;
+        private bool saveAllIsDefault;
         private float numberOfFiles;
         private float currentFile;
         private int progress;
-        private bool languageSystem = true;
-        private bool languageEnglish;
-        private bool languageGerman;
-        //public Window WindowInstance { get; set; }
+        private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
 
+        /// <summary>
+        /// Handler for the combined save button
+        /// </summary>
+        public SaveFileHandler CurrentSaveFileHandler { get; set; }
 
-        public void SetLanguage(I18N.AvailableCultures culture)
+        /// <summary>
+        /// Command to handle the combined save button
+        /// </summary>
+        public ICommand SaveDefaultCommand
         {
-            if (culture == I18N.AvailableCultures.de_DE)
+            get
             {
-                languageEnglish = false;
-                languageGerman = true;
-                languageSystem = false;
+                return saveDefaultCommand ?? (saveDefaultCommand = new CommandHandler(() => SaveDefault(), () => true));
             }
-            else if (culture == I18N.AvailableCultures.en_US)
-            {
-                languageEnglish = true;
-                languageGerman = false;
-                languageSystem = false;
-            }
-            else
-            {
-                languageEnglish = false;
-                languageGerman = false;
-                languageSystem = true;
-            }
-            NotifyPropertyChanged("LanguageSystem");
-            NotifyPropertyChanged("LanguageEnglish");
-            NotifyPropertyChanged("LanguageGerman");
         }
 
-        public bool LanguageSystem
+        /// <summary>
+        /// Indicated whether selected files is the default for saving multiple files
+        /// </summary>
+        public bool SaveSelectedIsDefault
         {
-            get { return languageSystem; }
+            get { return saveSelectedIsDefault; }
             set
             {
-                languageSystem = value; 
-                LanguageNotify(I18N.AvailableCultures.system);
+                if (value)
+                {
+                    SaveAllIsDefault = false;
+                }
+                CurrentSaveFileHandler.DefaultMethod = SaveFileHandler.DefaultSaveMethod.Selected;
+                saveSelectedIsDefault = value;
+                NotifyPropertyChanged("SaveSelectedIsDefault");
             }
         }
 
-        public bool LanguageEnglish
+        /// <summary>
+        /// Indicated whether all files is the default for saving multiple files
+        /// </summary>
+        public bool SaveAllIsDefault
         {
-            get { return languageEnglish; }
+            get { return saveAllIsDefault; }
             set
             {
-                languageEnglish = value;
-                LanguageNotify(I18N.AvailableCultures.en_US);
+                if (value)
+                {
+                    SaveSelectedIsDefault = false;
+                }
+                CurrentSaveFileHandler.DefaultMethod = SaveFileHandler.DefaultSaveMethod.All;
+                saveAllIsDefault = value;
+                NotifyPropertyChanged("SaveAllIsDefault");
             }
         }
-
-        public bool LanguageGerman
+        /// <summary>
+        /// Executes the default save method in the save handler
+        /// </summary>
+        private void SaveDefault()
         {
-            get { return languageGerman; }
+            CurrentSaveFileHandler.SaveDefault();
+        }
+
+        public ListViewItem[] SelectedItems { get; set; } = new ListViewItem[0];
+
+        /// <summary>
+        /// The text of the main window
+        /// </summary>
+        public string WindowTitle
+        {
+            get { return windowTitle; }
             set
             {
-                languageGerman = value;
-                LanguageNotify(I18N.AvailableCultures.de_DE);
+                windowTitle = value;
+                NotifyPropertyChanged("WindowTitle");
             }
-        }
-
-        private void LanguageNotify(I18N.AvailableCultures code)
-        {
-            languageEnglish = false;
-            languageGerman = false;
-            languageSystem = false;
-            if (code == I18N.AvailableCultures.en_US)
-            {
-                languageEnglish = true;
-            }
-            else if (code == I18N.AvailableCultures.de_DE)
-            {
-                languageGerman = true;
-            }
-            else
-            {
-                languageSystem = true;
-            }
-            NotifyPropertyChanged("LanguageSystem");
-            NotifyPropertyChanged("LanguageEnglish");
-            NotifyPropertyChanged("LanguageGerman");
-            //I18N.Current.SetLanguage(code, this.WindowInstance);
-            App.Restart(code.ToString());
         }
 
         /// <summary>
@@ -124,21 +121,20 @@ namespace MediaExtractor
         public int Progress
         {
             get { return progress; }
-            set 
+            set
             {
                 progress = value;
                 NotifyPropertyChanged("Progress");
             }
         }
 
-        
         /// <summary>
         /// Current file index as float (to avoid multiple casting when calculating the progress)
         /// </summary>
         public float CurrentFile
         {
             get { return currentFile; }
-            set 
+            set
             {
                 currentFile = value;
                 NotifyPropertyChanged("CurrentFile");
@@ -152,27 +148,27 @@ namespace MediaExtractor
         public float NumberOfFiles
         {
             get { return numberOfFiles; }
-            set 
+            set
             {
                 numberOfFiles = value;
                 NotifyPropertyChanged("NumberOfFiles");
                 CalculateProgress();
             }
         }
-        
+
         /// <summary>
         /// Enabled / Disabled State of the button to save all files
         /// </summary>
         public bool SaveAllStatus
         {
             get { return saveAllStatus; }
-            set 
+            set
             {
                 saveAllStatus = value;
                 NotifyPropertyChanged("SaveAllStatus");
             }
         }
-        
+
         /// <summary>
         /// If true, the folder structure of the file / archive will be kept when extracted (save all files)
         /// </summary>
@@ -186,6 +182,12 @@ namespace MediaExtractor
             }
         }
 
+        /// <summary>
+        /// If true, Windows Explorer will be opened at the selected location after the extraction
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the Explorer shall be opened, otherwise, <c>false</c>.
+        /// </value>
         public bool ShowInExplorer
         {
             get { return showInExplorer; }
@@ -197,15 +199,126 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Enabled / Disabled State of the button to save a single files
+        /// If true, the Application will be rendered in Dark Mode
         /// </summary>
-        public bool SaveStatus
+        /// <value>
+        ///   <c>true</c> if Dark Mode is used, otherwise, <c>false</c> (use Light Mode).
+        /// </value>
+        public bool UseDarkMode
+        {
+            get { return useDarkMode; }
+            set
+            {
+                useDarkMode = value;
+                NotifyPropertyChanged("UseDarkMode");
+            }
+        }
+
+        /// <summary>
+        /// If true, embedded Images will be shown
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if embedded images are shown, otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowEmbeddedImages
+        {
+            get { return showEmbeddedImages; }
+            set
+            {
+                showEmbeddedImages = value;
+                NotifyPropertyChanged("ShowEmbeddedImages");
+            }
+        }
+
+        /// <summary>
+        /// If true, other embedded files will be shown
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if other, embedded files are shown, otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowEmbeddedOther
+        {
+            get { return showEmbeddedOther; }
+            set
+            {
+                showEmbeddedOther = value;
+                NotifyPropertyChanged("ShowEmbeddedOther");
+            }
+        }
+
+        /// <summary>
+        /// If true, the Application will be using the system default locale (if available)
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the system defines the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseSystemLocale
+        {
+            get { return useSystemLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseGermanLocale = false;
+                    UseEnglishLocale = false;
+                }
+                useSystemLocale = value;
+                NotifyPropertyChanged("UseSystemLocale");
+            }
+        }
+
+        /// <summary>
+        /// If true, the Application will be using English (en) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if English is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseEnglishLocale
+        {
+            get { return useEnglishLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseGermanLocale = false;
+                    UseSystemLocale = false;
+                }
+                useEnglishLocale = value;
+                NotifyPropertyChanged("UseEnglishLocale");
+            }
+        }
+
+        /// <summary>
+        /// If true, the Application will be using German (de-DE) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if German is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseGermanLocale
+        {
+            get { return useGermanLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                    UseSystemLocale = false;
+                }
+                useGermanLocale = value;
+                NotifyPropertyChanged("UseGermanLocale");
+            }
+        }
+
+        /// <summary>
+        /// Enabled / Disabled State of the button to the selected file(s)
+        /// </summary>
+        public bool SaveSelectedStatus
         {
             get { return saveStatus; }
             set
             {
                 saveStatus = value;
-                NotifyPropertyChanged("SaveStatus");
+                NotifyPropertyChanged("SaveSelectedStatus");
             }
         }
 
@@ -215,30 +328,29 @@ namespace MediaExtractor
         public string StatusText
         {
             get { return statusText; }
-            set 
-            { 
+            set
+            {
                 statusText = value;
                 NotifyPropertyChanged("StatusText");
             }
         }
-        
+
         /// <summary>
         /// The name / full path of the currently loaded file
         /// </summary>
         public string FileName
         {
             get { return fileName; }
-            set 
-            { 
+            set
+            {
                 fileName = value;
                 NotifyPropertyChanged("FileName");
             }
         }
-        
+
         /// <summary>
         /// Currently displayed preview image
         /// </summary>
-        [XmlIgnore]
         public BitmapImage Image
         {
             get { return image; }
@@ -248,7 +360,7 @@ namespace MediaExtractor
                 NotifyPropertyChanged("Image");
             }
         }
-        
+
         /// <summary>
         /// Items of the listview (file overview)
         /// </summary>
@@ -256,32 +368,21 @@ namespace MediaExtractor
         {
             get { return listViewItems; }
             set
-            { 
+            {
                 listViewItems = value;
                 NotifyPropertyChanged("ListViewItems");
             }
         }
 
-
-/*
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ViewModel(Window windowInstance)
-        {
-            this.ListViewItems = new ObservableCollection<ListViewItem>();
-            this.SaveStatus = false;
-            this.FileName = string.Empty;
-            this.StatusText = "Ready";
-            //this.WindowInstance = windowInstance;
-        }
-*/
         public ViewModel()
         {
-            this.ListViewItems = new ObservableCollection<ListViewItem>();
-            this.SaveStatus = false;
-            this.FileName = string.Empty;
-            this.StatusText = "Ready";
+            ListViewItems = new ObservableCollection<ListViewItem>();
+            SaveSelectedStatus = false;
+            FileName = string.Empty;
+            StatusText = I18n.T(I18n.Key.StatusReady);
         }
 
         /// <summary>
@@ -289,14 +390,14 @@ namespace MediaExtractor
         /// </summary>
         public void CalculateProgress()
         {
-            if (this.numberOfFiles == 0)
+            if (Math.Abs(numberOfFiles) < FLOATING_POINT_TOLERANCE)
             {
-                this.Progress = 0;
+                Progress = 0;
             }
             else
             {
-                float p = this.currentFile / this.numberOfFiles * 100;
-                this.Progress = (int)p;
+                float p = currentFile / numberOfFiles * 100;
+                Progress = (int)p;
             }
         }
 
@@ -305,76 +406,27 @@ namespace MediaExtractor
         /// </summary>
         public void ClearListView()
         {
-            this.ListViewItems.Clear();
+            ListViewItems.Clear();
             NotifyPropertyChanged("ListViewItems");
-            this.SaveAllStatus = false;
-            this.SaveStatus = false;
+            SaveAllStatus = false;
+            SaveSelectedStatus = false;
         }
-
-        public string Serialize()
-        {
-            try
-            {
-                XmlSerializer ser = new XmlSerializer(typeof(ViewModel));
-                MemoryStream ms = new MemoryStream();
-                ser.Serialize(ms, this);
-                ms.Flush();
-                ms.Position = 0;
-                StreamReader sr = new StreamReader(ms);
-                string xml = sr.ReadToEnd();
-                ms.Close();
-                byte[] bytes = Encoding.Default.GetBytes(xml);
-                string hex = Convert.ToBase64String(bytes);
-                //string hex = BitConverter.ToString(bytes);
-                //hex = hex.Replace("-", "");
-                return hex;
-            }
-            catch (Exception e)
-            {
-                return "null";
-            }
-
-        }
-
-        public static ViewModel Deserialize(string hex)
-        {
-            if (hex == "null")
-            {
-                return null;
-            }
-
-            try
-            {
-                byte[] bytes = Convert.FromBase64String(hex);
-                string xml = Encoding.Default.GetString(bytes);
-                MemoryStream ms = new MemoryStream();
-                StreamWriter sw = new StreamWriter(ms);
-                sw.Write(xml);
-                sw.Flush();
-                ms.Position = 0;
-                XmlSerializer ser = new XmlSerializer(typeof(ViewModel));
-                object o = ser.Deserialize(ms);
-                ms.Close();
-                return (ViewModel)o;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
 
         /// <summary>
         /// Method to propagate changes for the data binding
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Notifies a property change
+        /// </summary>
+        /// <param name="propertyName">Name of the property</param>
         public void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
             {
-                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
     }
 }

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
+ * Copyright Raphael Stoeckli © 2020
+ * This program is licensed under the MIT License.
+ * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
+ */
+
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 
 namespace MediaExtractor
@@ -6,32 +14,40 @@ namespace MediaExtractor
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
+
+        /// <summary>
+        /// Method executed on application startup
+        /// </summary>
+        /// <param name="e">Application arguments</param>
         protected override void OnStartup(StartupEventArgs e)
         {
-            if (e.Args != null && e.Args.Length > 2)
-            {
-                I18N.Current.SetLanguage(e.Args[2]);
-            }
-            base.OnStartup(e);
+            string locale = HandleStartupLocale();
+            MainWindow window = new MediaExtractor.MainWindow();
+            window.RestoreSettings();
+            I18n.MatchLocale(window.CurrentModel, locale);
+            window.CurrentLocale = locale;
+            window.Show();
         }
 
-        public static void Restart(string cultureInfoCode)
+
+        /// <summary>
+        /// Handles the locale of the application on startup
+        /// </summary>
+        /// <returns>Locale from settings if available, otherwise system default locale</returns>
+        private string HandleStartupLocale()
         {
-            string[] args = Environment.GetCommandLineArgs();
-            string argString = "";
-            if (args.Length == 1)
+            string locale = MediaExtractor.Properties.Settings.Default.Locale;
+            if (string.IsNullOrEmpty(locale))
             {
-                argString = "null " + cultureInfoCode;
+                locale = I18n.GetSystemLocale();
             }
-            else if (args.Length > 1)
-            {
-                argString = Utils.PrepareArgument(args[1], "null") + " " + cultureInfoCode;
-            }
-     
-            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, argString);
-            Application.Current.Shutdown();
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(locale);
+            return locale;
         }
+
+
     }
 }

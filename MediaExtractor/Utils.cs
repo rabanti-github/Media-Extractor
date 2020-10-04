@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2018
+ * Copyright Raphael Stoeckli © 2020
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -28,11 +28,11 @@ namespace MediaExtractor
                 Process.Start(location);
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
-            
+
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace MediaExtractor
                 index++;
                 size = size / 1024;
             }
-            return String.Format("{0:0.##} {1}", size, new string[] {"B", "KB", "MB", "GB", "TB"}[index]);
+            return String.Format("{0:0.##} {1}", size, new[] { "B", "KB", "MB", "GB", "TB" }[index]);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace MediaExtractor
             {
                 while (true)
                 {
-                    if (File.Exists(path) == false)
+                    if (!File.Exists(path))
                     {
                         return path;
                     }
@@ -79,7 +79,7 @@ namespace MediaExtractor
                     if (match.Groups.Count > 3)
                     {
                         numberString = match.Groups[2].Value;
-                        int.TryParse(numberString, out number);
+                        Int32.TryParse(numberString, out number);
                         number++;
                         path = fi.DirectoryName + d + match.Groups[1].Value + number + match.Groups[3].Value + fi.Extension;
                     }
@@ -89,38 +89,38 @@ namespace MediaExtractor
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
                 return fullPath + "(error).tmp";
             }
         }
 
-        public static string PrepareArgument(string rawArgument, string defaultToken)
+        /// <summary>
+        /// Function to retrieve the time stamp of the linker / assembly
+        /// </summary>
+        /// <param name="path">File path of the assembly</param>
+        /// <returns>Date of the assembly</returns>
+        /// <remarks>http://www.codinghorror.com/blog/2005/04/determining-build-date-the-hard-way.html</remarks>
+        public static DateTime RetrieveLinkerTimestamp(string path)
         {
-            if (string.IsNullOrEmpty(rawArgument)) { return defaultToken; }
-
-            string arg = rawArgument;
-            if (rawArgument[0] == '"' && rawArgument[rawArgument.Length - 1] == '"')
+            const int peHeaderOffset = 60;
+            const int linkerTimestampOffset = 8;
+            byte[] b = new byte[2048];
+            using (FileStream s = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                arg = rawArgument.Substring(1, rawArgument.Length - 2);
+                s.Read(b, 0, 2048);
             }
-            if (arg.Contains(" "))
-            {
-                arg = "\"" + arg + "\"";
-            }
-
-            return arg;
+            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(BitConverter.ToInt32(b, BitConverter.ToInt32(b, peHeaderOffset) + linkerTimestampOffset));
+            return dt.AddHours(TimeZone.CurrentTimeZone.GetUtcOffset(dt).Hours);
         }
 
-
-#region CRC
+        #region CRC
 
         private const int bufferSize = 4096;
         private const uint polynome = 0xEDB88320;
-        private static bool inizialized = false;
+        private static bool initialized = false;
         private static uint startValue = 0xffffffff;
         private static uint[] crcTable;
-
 
         /// <summary>
         /// Gets the CRC32 hash of a file
@@ -137,7 +137,7 @@ namespace MediaExtractor
                     number = GetCrc(fs);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 number = 0;
             }
@@ -151,7 +151,7 @@ namespace MediaExtractor
         /// <returns>CRC32 hash</returns>
         public static uint GetCrc(Stream stream)
         {
-            if (inizialized == false) // InitializeCrc
+            if (!initialized) // InitializeCrc
             { InitializeCrc(); }
             byte[] streambuffer = new byte[bufferSize];
             byte[] hash = new byte[4];
@@ -199,9 +199,9 @@ namespace MediaExtractor
                 }
                 crcTable[i] = temp;
             }
-            inizialized = true;
+            initialized = true;
         }
-#endregion
+        #endregion
 
     }
 }

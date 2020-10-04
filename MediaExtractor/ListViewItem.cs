@@ -1,9 +1,11 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2018
+ * Copyright Raphael Stoeckli © 2020
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
+
+using System;
 
 namespace MediaExtractor
 {
@@ -12,22 +14,6 @@ namespace MediaExtractor
     /// </summary>
     public class ListViewItem
     {
-        /// <summary>
-        /// Enum to define the coarse file type of the entry
-        /// </summary>
-        public enum FileType
-        {
-            /// <summary>Entry is an image</summary>
-            image,
-            /// <summary>Entry is an XML file</summary>
-            xml,
-            /// <summary>Entry is a text file</summary>
-            text,
-            /// <summary>Entry is not an image</summary>
-            other,
-            /// <summary>Entry no file at all / error</summary>
-            none,
-        }
 
         /// <summary>
         /// File name of the entry
@@ -38,6 +24,8 @@ namespace MediaExtractor
         /// </summary>
         public string FileExtension { get; set; }
 
+        public Size FileSize { get; set; }
+
         /// <summary>
         /// Relative path of the file
         /// </summary>
@@ -46,42 +34,36 @@ namespace MediaExtractor
         /// <summary>
         /// Coarse file type of the entry
         /// </summary>
-        public FileType Type { get; set; }
+        public ExtractorItem.Type Type { get; set; }
         /// <summary>
         /// Reference to the ExtractorItem of the entry
         /// </summary>
         public ExtractorItem FileReference { get; set; }
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public ListViewItem()
+        public class Size : IComparable
         {
+            public long Value { get; private set; }
 
+            public Size(long value)
+            {
+                Value = value;
+            }
+
+            public int CompareTo(object obj)
+            {
+                if (!(obj is Size))
+                {
+                    return -1;
+                }
+                return Value.CompareTo((obj as Size).Value);
+            }
+
+            public override string ToString()
+            {
+                return Utils.ConvertFileSize(Value);
+            }
         }
 
-        /// <summary>
-        /// Method to determine the type of the item
-        /// </summary>
-        public void SetType()
-        {
-            if (this.FileReference.IsXml)
-            {
-                this.Type = FileType.xml;
-            }
-            else if (this.FileReference.IsImage)
-            {
-                this.Type = FileType.image;
-            }
-            else if (this.FileReference.IsText)
-            {
-                this.Type = FileType.text;
-            }
-            else
-            {
-                this.Type = FileType.other;
-            }
-        }
 
     }
 }

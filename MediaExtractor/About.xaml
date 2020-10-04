@@ -1,0 +1,49 @@
+﻿<adonisControls:AdonisWindow 
+        x:Class="MediaExtractor.About"
+        xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+        xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p = "clr-namespace:MediaExtractor.Properties"
+        xmlns:properties="clr-namespace:MediaExtractor.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.AboutHeader}" Height="351.73" Width="410.465" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Media-Extractor" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.056,-0.303" Height="55" Width="334" FontSize="36"/>
+        <Grid HorizontalAlignment="Left" Height="150" Margin="10,133,0,0" VerticalAlignment="Top" Width="384">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="78" />
+                <ColumnDefinition Width="127*" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Content="{x:Static p:Resources.AboutVersion}" Grid.Row="0" FontSize="14"/>
+            <Label Grid.Column="1" Name="VersionLabel" FontSize="14" Grid.Row="0" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+            <Label Grid.Column="0" Content="{x:Static p:Resources.AboutDate}" FontSize="14" Grid.Row="1"/>
+            <Label Grid.Column="1" Name="DateLabel" FontSize="14" Grid.Row="1" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+            <Label Grid.Column="0" Content="{x:Static p:Resources.AboutAuthor}" FontSize="14" Grid.Row="2"/>
+            <Label Grid.Column="1" Content="{Binding Source={x:Static properties:Settings.Default}, Path=Author}" FontSize="14" Grid.Row="2" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+            <Label Grid.Column="0" Content="{x:Static p:Resources.AboutLicense}" FontSize="14" Grid.Row="3"/>
+            <Label Grid.Column="1" Content="{Binding Source={x:Static properties:Settings.Default}, Path=License}" FontSize="14" Grid.Row="3" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+            <Label Grid.Column="0" Content="{x:Static p:Resources.AboutWebsite}" FontSize="14" Grid.Row="4"/>
+            <Label x:Name="LinkLabel" Grid.Column="1" Content="{Binding Source={x:Static properties:Settings.Default}, Path=Website}" Grid.Row="4" FontWeight="Bold" Grid.ColumnSpan="2" FontSize="11" Foreground="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" MouseUp="LinkLabel_MouseUp"/>
+
+        </Grid>
+        <TextBlock Text="{x:Static p:Resources.AboutDescription}" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Height="77" Width="385" TextWrapping="Wrap" FontSize="14"/>
+        <Button x:Name="AboutCloseButton" Content="{x:Static p:Resources.AboutCloseButton}" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="CloseButton_Click"/>
+
+    </Grid>
+</adonisControls:AdonisWindow>
