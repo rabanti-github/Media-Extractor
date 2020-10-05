@@ -102,6 +102,7 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ArchiveResolver.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="ExistingFileDialog.xaml.cs">
       <DependentUpon>ExistingFileDialog.xaml</DependentUpon>

@@ -1,5 +1,14 @@
 # Change Log
 
+## v1.6.1
+
+Release Date: **05.10.2020**
+
+- Fixed a bug in the preview-handling of embedded plain text files
+- Fixed a general bug in the handling of archive files (no office or zip files)
+
+---
+
 ## v1.6.0
 
 Release Date: **04.10.2020**

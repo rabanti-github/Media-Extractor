@@ -203,7 +203,7 @@ namespace MediaExtractor
         /// </summary>
         public void CreateText()
         {
-            ValidImage = Preview.CreateText(Stream, out genericText, out errorMessage);
+            ValidGenericText = Preview.CreateText(Stream, out genericText, out errorMessage);
             initialized = true;
         }
 

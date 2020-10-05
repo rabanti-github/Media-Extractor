@@ -5,6 +5,8 @@
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
+
+
 using SevenZipExtractor;
 using System;
 using System.Collections.Generic;
@@ -79,10 +81,12 @@ namespace MediaExtractor
         /// </summary>
         public void Extract()
         {
+            
             try
             {
+                FileInfo fi = new FileInfo(FileName);
                 MemoryStream ms = GetFileStream();
-                ArchiveFile ex = new ArchiveFile(ms, SevenZipFormat.Zip);
+                ArchiveFile ex = ArchiveResolver.Open(ms, fi.Extension.ToLower().TrimStart('.'));
                 embeddedFiles = GetEntries(ref ex);
                 currentModel.NumberOfFiles = embeddedFiles.Count;
                 for (int i = 0; i < currentModel.NumberOfFiles; i++)
