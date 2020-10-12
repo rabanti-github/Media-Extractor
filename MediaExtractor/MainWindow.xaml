@@ -5,12 +5,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p = "clr-namespace:MediaExtractor.Properties"
+        xmlns:local ="clr-namespace:MediaExtractor"
         Title="{Binding Path=WindowTitle}" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300" Icon="media/media_extractor.ico" Closing="Window_Closing">
     <Window.Style>
         <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}" />
     </Window.Style>
-    <Window.Resources>
-        <Style x:Key="roundedBorder" TargetType="Label">
+    <adonisControls:AdonisWindow.Resources>
+        <local:StringEnabledConverter x:Key="StringEnabledConverter"/>
+        <local:StringVisibilityConverter x:Key="StringVisibilityConverter" />
+        <Style x:Key="roundedBorder" TargetType="{x:Type Label}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Label}">
@@ -32,7 +35,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
+    </adonisControls:AdonisWindow.Resources>
 
     <Grid UseLayoutRounding="False" Margin="0,26,0,0">
         <Grid.ColumnDefinitions>
@@ -45,6 +48,21 @@
                 <MenuItem x:Name="OpenFileMenuItem" Header="{x:Static p:Resources.MenuFileOpen}" Click="OpenFileMenuItem_Click" />
                 <MenuItem x:Name="SaveFileMenuItem" Header="{x:Static p:Resources.MenuFileSaveSelected}" Click="SaveSelectedFileMenuItem_Click" IsEnabled="{Binding Path=SaveSelectedStatus}" />
                 <MenuItem x:Name="SaveAllFilesMenuItem" Header="{x:Static p:Resources.MenuFileSaveAll}" Click="SaveAllFilesMenuItem_Click" IsEnabled="{Binding Path=SaveAllStatus}" />
+                <Separator/>
+                <MenuItem x:Name="RecentFilesMenuItem" Header="{x:Static p:Resources.MenuFileRecent}" IsEnabled="{Binding RecentFile1, Converter={StaticResource StringEnabledConverter}}">
+                    <MenuItem x:Name="RecentFileMenuItem1" Header="{Binding Path=RecentFile1}" Visibility="{Binding RecentFile1, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem2" Header="{Binding Path=RecentFile2}" Visibility="{Binding RecentFile2, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem3" Header="{Binding Path=RecentFile3}" Visibility="{Binding RecentFile3, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem4" Header="{Binding Path=RecentFile4}" Visibility="{Binding RecentFile4, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem5" Header="{Binding Path=RecentFile5}" Visibility="{Binding RecentFile5, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem6" Header="{Binding Path=RecentFile6}" Visibility="{Binding RecentFile6, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem7" Header="{Binding Path=RecentFile7}" Visibility="{Binding RecentFile7, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem8" Header="{Binding Path=RecentFile8}" Visibility="{Binding RecentFile8, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem9" Header="{Binding Path=RecentFile9}" Visibility="{Binding RecentFile9, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <MenuItem x:Name="RecentFileMenuItem10" Header="{Binding Path=RecentFile10}" Visibility="{Binding RecentFile10, Converter={StaticResource StringVisibilityConverter}}"  Click="OpenRecentFileMenuItem_Click" />
+                    <Separator/>
+                    <MenuItem x:Name="ClearRecentFilesMenuItem" Header="{x:Static p:Resources.MenuFileClearRecent}" Click="ClearRecentFilesMenuItem_Click" />
+                </MenuItem>
                 <Separator/>
                 <MenuItem x:Name="QuitMenuItem" Header="{x:Static p:Resources.MenuFileQuit}" Click="QuitMenuItem_Click"/>
             </MenuItem>

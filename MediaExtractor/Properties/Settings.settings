@@ -44,5 +44,8 @@
     <Setting Name="XmlExtensions" Type="System.String" Scope="User">
       <Value Profile="(Default)">xml,manifest,rels,xhtml,xaml,svg,pom,dtd,xsd,x3d,collada,cdxml,config,nuspec,graphml</Value>
     </Setting>
+    <Setting Name="RecentFiles" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -6,8 +6,10 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -18,10 +20,14 @@ namespace MediaExtractor
     /// </summary>
     public class ViewModel : INotifyPropertyChanged
     {
+        private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
+        public static readonly int NUMBER_OF_RECENT_FILES = 10;
+
         private string windowTitle;
         private ObservableCollection<ListViewItem> listViewItems;
         private ICommand saveDefaultCommand;
         private BitmapImage image;
+        private List<string> recentFiles = new List<string>();
         private bool saveStatus;
         private string fileName;
         private string statusText;
@@ -39,7 +45,8 @@ namespace MediaExtractor
         private float numberOfFiles;
         private float currentFile;
         private int progress;
-        private readonly float FLOATING_POINT_TOLERANCE = 0.00001f;
+
+
 
         /// <summary>
         /// Handler for the combined save button
@@ -362,6 +369,102 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Gets recent file number 1 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile1
+        {
+            get { return GetRecentFile(0); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 2 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile2
+        {
+            get { return GetRecentFile(1); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 3 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile3
+        {
+            get { return GetRecentFile(2); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 4 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile4
+        {
+            get { return GetRecentFile(3); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 5 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile5
+        {
+            get { return GetRecentFile(4); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 6 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile6
+        {
+            get { return GetRecentFile(5); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 7 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile7
+        {
+            get { return GetRecentFile(6); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 8 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile8
+        {
+            get { return GetRecentFile(7); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 9 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile9
+        {
+            get { return GetRecentFile(8); }
+        }
+
+        /// <summary>
+        /// Gets recent file number 10 (may be empty if not existing)
+        /// </summary>
+        public string RecentFile10
+        {
+            get { return GetRecentFile(9); }
+        }
+
+        /// <summary>
+        /// Gets or sets the recent files (0 to 9 considered)
+        /// </summary>
+        public List<string> RecentFiles
+        {
+            get { return recentFiles; }
+            set
+            {
+                this.recentFiles = value;
+                for (int i = 1; i <= NUMBER_OF_RECENT_FILES; i++)
+                {
+                    NotifyPropertyChanged("RecentFile" + i.ToString(CultureInfo.InvariantCulture));
+                }
+            }
+        }
+
+        /// <summary>
         /// Items of the listview (file overview)
         /// </summary>
         public ObservableCollection<ListViewItem> ListViewItems
@@ -411,6 +514,21 @@ namespace MediaExtractor
             SaveAllStatus = false;
             SaveSelectedStatus = false;
         }
+
+        /// <summary>
+        /// Method to get a recent file path based on its index
+        /// </summary>
+        /// <param name="index">Index of the recent file entry</param>
+        /// <returns>File path or empty if the index is out of bound</returns>
+        private string GetRecentFile(int index)
+        {
+            if (recentFiles == null || recentFiles.Count < index + 1)
+            {
+                return string.Empty;
+            }
+            return recentFiles[index];
+        }
+
 
         /// <summary>
         /// Method to propagate changes for the data binding

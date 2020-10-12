@@ -126,6 +126,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="SaveFileHandler.cs" />
+    <Compile Include="MenuConverters.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="About.xaml">

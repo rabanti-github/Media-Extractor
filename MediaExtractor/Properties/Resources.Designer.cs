@@ -412,6 +412,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file was not found:\n{0}\nShould the entry be removed from the recent file list?.
+        /// </summary>
+        public static string DialogMissingRecentFile {
+            get {
+                return ResourceManager.GetString("DialogMissingRecentFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The project website could not be loaded.
         /// </summary>
         public static string DialogMissingWebsite {
@@ -673,6 +682,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear List.
+        /// </summary>
+        public static string MenuFileClearRecent {
+            get {
+                return ResourceManager.GetString("MenuFileClearRecent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Document.
         /// </summary>
         public static string MenuFileOpen {
@@ -687,6 +705,15 @@ namespace MediaExtractor.Properties {
         public static string MenuFileQuit {
             get {
                 return ResourceManager.GetString("MenuFileQuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Files.
+        /// </summary>
+        public static string MenuFileRecent {
+            get {
+                return ResourceManager.GetString("MenuFileRecent", resourceCulture);
             }
         }
         
@@ -822,15 +849,6 @@ namespace MediaExtractor.Properties {
         public static string StatusLoadingEmbedded {
             get {
                 return ResourceManager.GetString("StatusLoadingEmbedded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file could not be loaded (no supported format).
-        /// </summary>
-        public static string StatusNotLoaded {
-            get {
-                return ResourceManager.GetString("StatusNotLoaded", resourceCulture);
             }
         }
         

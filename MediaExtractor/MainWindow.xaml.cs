@@ -8,11 +8,13 @@
 using AdonisUI;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,7 +52,6 @@ namespace MediaExtractor
         /// Current locale string
         /// </summary>
         public string CurrentLocale { get; set; } = null;
-        #endregion
 
         #region constructors
         /// <summary>
@@ -101,6 +102,7 @@ namespace MediaExtractor
             {
                 CurrentModel.SaveSelectedIsDefault = true;
             }
+            LoadRecentFiles(Properties.Settings.Default.RecentFiles);
             HandleDarkMode();
             string imageExts = Properties.Settings.Default.ImageExtensions;
             string textExts = Properties.Settings.Default.TextExtensions;
@@ -196,6 +198,93 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Method to add a file path to the recent files 
+        /// </summary>
+        /// <param name="path">Path to add</param>
+        private void AddRecentFile(string path)
+        {
+            List<string> recentFiles = CurrentModel.RecentFiles;
+            if (recentFiles.Contains(path))
+            {
+                recentFiles.Remove(path);
+            }
+            recentFiles.Insert(0, path);
+            if (recentFiles.Count >= ViewModel.NUMBER_OF_RECENT_FILES)
+            {
+                List<string> temp = recentFiles.Take(ViewModel.NUMBER_OF_RECENT_FILES).ToList();
+                recentFiles = temp;
+            }
+            CurrentModel.RecentFiles = recentFiles;
+            SaveRecentFiles();
+        }
+
+        /// <summary>
+        /// Method to remove file paths from the recent files
+        /// </summary>
+        /// <param name="entryToRemove">Optional parameter to remove a single path. If null, the recent files are cleared</param>
+        private void RemoveRecentFiles(string entryToRemove = null)
+        {
+            string[] entriesToRemove;
+            if (entryToRemove == null)
+            {
+                entriesToRemove = CurrentModel.RecentFiles.ToArray();
+            }
+            else
+            {
+                entriesToRemove = new string[] { entryToRemove };
+            }
+            List<string> recentFiles = CurrentModel.RecentFiles;
+            foreach (string entry in entriesToRemove)
+            {
+                if (recentFiles.Contains(entry))
+                {
+                    recentFiles.Remove(entry);
+                }
+            }
+            CurrentModel.RecentFiles = recentFiles;
+            SaveRecentFiles();
+        }
+
+        /// <summary>
+        /// Method to save the recent files to the settings 
+        /// </summary>
+        private void SaveRecentFiles()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (string file in CurrentModel.RecentFiles)
+            {
+                sb.Append(file).Append('|');
+            }
+            string recentFiles = sb.ToString().TrimEnd('|');
+            Properties.Settings.Default.RecentFiles = recentFiles;
+            Properties.Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Method to load the recent files from a string (usually settings)
+        /// </summary>
+        /// <param name="splitString">Recent file paths, split by a pipe character</param>
+        private void LoadRecentFiles(string splitString)
+        {
+            if (string.IsNullOrEmpty(splitString))
+            {
+                CurrentModel.RecentFiles = new List<string>();
+                return;
+            }
+            string[] files = splitString.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+            List<string> recentFiles = new List<string>();
+            foreach (string file in files)
+            {
+                recentFiles.Add(file);
+                if (recentFiles.Count >= ViewModel.NUMBER_OF_RECENT_FILES)
+                {
+                    break;
+                }
+            }
+            CurrentModel.RecentFiles = recentFiles;
+        }
+
+        /// <summary>
         /// Method to save the currently selected entry or entries as file(s)
         /// </summary>
         private void SaveSelectedFile()
@@ -259,50 +348,40 @@ namespace MediaExtractor
             Cursor c = Cursors.Arrow;
             reference.ChangeCursor(Cursors.Wait);
             reference.CurrentExtractor = new Extractor(reference.CurrentModel.FileName, reference.CurrentModel);
+            reference.CurrentExtractor.Extract(); // All includes images, XML and text
             if (reference.CurrentExtractor.HasErrors)
             {
-                reference.CurrentModel.StatusText = I18n.T(I18n.Key.StatusNotLoaded);
+                string message;
+                string[] ext = new[] { ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".zip", ".7z", ".rar", ".bzip2", ".gz", ".tar", ".cab", ".chm", ".lzh", ".iso" };
+                try
+                {
+                    FileInfo fi = new FileInfo(reference.CurrentModel.FileName);
+                    if (ext.Contains(fi.Extension.ToLower()))
+                    {
+                        message = I18n.T(I18n.Key.TextLockedFile);
+                    }
+                    else
+                    {
+                        message = I18n.T(I18n.Key.TextInvalidFormat);
+                    }
+                }
+                catch
+                {
+                    message = I18n.T(I18n.Key.TextInvalidPath);
+                }
+
+                reference.CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoadFailure);
+                MessageBox.Show(I18n.R(I18n.Key.DialogLoadFailure, message, reference.CurrentExtractor.LastError), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 reference.CurrentModel.WindowTitle = reference.ProductName;
                 reference.CurrentExtractor.ResetErrors();
-                return;
             }
             else
             {
-                reference.CurrentExtractor.Extract(); // All includes images, XML and text
-                if (reference.CurrentExtractor.HasErrors)
-                {
-                    string message;
-                    string[] ext = new[] { ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".docx", ".dotx", ".docm", ".dotm", ".xlsx", ".xlsm", ".xlsb", ".xltx", ".xltm", ".pptx", ".pptm", ".potx", ".potm", ".ppsx", ".ppsm", ".zip", ".7z", ".rar", ".bzip2", ".gz", ".tar", ".cab", ".chm", ".lzh", ".iso" };
-                    try
-                    {
-                        FileInfo fi = new FileInfo(reference.CurrentModel.FileName);
-                        if (ext.Contains(fi.Extension.ToLower()))
-                        {
-                            message = I18n.T(I18n.Key.TextLockedFile);
-                        }
-                        else
-                        {
-                            message = I18n.T(I18n.Key.TextInvalidFormat);
-                        }
-                    }
-                    catch
-                    {
-                        message = I18n.T(I18n.Key.TextInvalidPath);
-                    }
-
-                    reference.CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoadFailure);
-                    MessageBox.Show(I18n.R(I18n.Key.DialogLoadFailure, message, reference.CurrentExtractor.LastError), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    reference.CurrentModel.WindowTitle = reference.ProductName;
-                    reference.CurrentModel.Progress = 0;
-                    reference.ChangeCursor(c);
-                    reference.CurrentExtractor.ResetErrors();
-                    RecalculateListViwItems(reference);
-                    return;
-                }
-                RecalculateListViwItems(reference);
+                reference.CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoaded, reference.CurrentModel.FileName);
+                reference.CurrentModel.WindowTitle = reference.ProductName + " - " + reference.CurrentModel.FileName;
+                reference.AddRecentFile(reference.CurrentModel.FileName);
             }
-            reference.CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoaded, reference.CurrentModel.FileName);
-            reference.CurrentModel.WindowTitle = reference.ProductName + " - " + reference.CurrentModel.FileName;
+            RecalculateListViwItems(reference);
             reference.CurrentModel.Progress = 0;
             reference.ChangeCursor(c);
         }
@@ -545,6 +624,45 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Menu event to open a recent file
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
+        private void OpenRecentFileMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string path = (sender as MenuItem).Header as string;
+                if (File.Exists(path))
+                {
+                    LoadFile(path);
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show(I18n.R(I18n.Key.DialogMissingRecentFile, path), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        RemoveRecentFiles(path);
+                    }
+                }
+            }
+            catch
+            {
+                // ignore
+            }
+        }
+
+        /// <summary>
+        /// Menu event to clear the list of recent files
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
+        private void ClearRecentFilesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveRecentFiles();
+        }
+
+        /// <summary>
         /// Opens the project website
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -666,7 +784,6 @@ namespace MediaExtractor
                 LoadFile(files[0]);
             }
         }
-
         #endregion
 
     }

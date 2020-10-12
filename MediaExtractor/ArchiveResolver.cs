@@ -123,8 +123,17 @@ namespace MediaExtractor
             try
             {
                 archive = new ArchiveFile(stream, format);
-                error = string.Empty;
-                return true;
+                if (archive.Entries.Count != 0)
+                {
+                    error = string.Empty;
+                    return true;
+                }
+                else // will be triggered when the archive is valid but empty
+                {
+                    error = "Empty Archive";
+                    return false;
+                }
+                
             }
             catch (Exception ex)
             {

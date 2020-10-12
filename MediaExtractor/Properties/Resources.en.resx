@@ -363,9 +363,6 @@
   <data name="StatusLoading" xml:space="preserve">
     <value>Loading file... Please wait</value>
   </data>
-  <data name="StatusNotLoaded" xml:space="preserve">
-    <value>The file could not be loaded (no supported format)</value>
-  </data>
   <data name="TextInvalidFormat" xml:space="preserve">
     <value>The file may be not a valid Office file or archive.</value>
   </data>
@@ -425,5 +422,14 @@
   </data>
   <data name="ListViewColumnSize" xml:space="preserve">
     <value>Size</value>
+  </data>
+  <data name="DialogMissingRecentFile" xml:space="preserve">
+    <value>The file was not found:\n{0}\nShould the entry be removed from the recent file list?</value>
+  </data>
+  <data name="MenuFileClearRecent" xml:space="preserve">
+    <value>Clear List</value>
+  </data>
+  <data name="MenuFileRecent" xml:space="preserve">
+    <value>Recent Files</value>
   </data>
 </root>
