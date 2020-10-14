@@ -12,7 +12,7 @@ The most recent version of Media-Extractor can be downloaded on the [Page of the
 Usually, the **Release version** is suitable for the most users (e.g. '**Media-Extractor_Release_v1.7.0.zip**').
 The debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
 
-Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#-SmartScreen-Warning-in-Windows-8.1-and-10)
+Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#SmartScreen-Warning-in-Windows-8.1-and-10)
 
 
 ## Features
@@ -26,7 +26,7 @@ Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#-SmartS
 * Supports export of other embedded data (e.g. xml files in xlsx or docx)
 * Loading of files by menu, button, drag&drop or 'open with' (Windows Explorer)
 * Dark mode
-* Translations (see section [Translations](#-Translations))
+* Translations (see section [Translations](#Translations))
 
 ---
 
@@ -41,7 +41,7 @@ Documents (e.g. Excel worksheets, word documents or zip archives) can be opened 
 
 ### Appearance
 
-Media-Extractor supports on the fly changing of the language (see section [Translations](#-Translations)) and switching between light and dark mode.
+Media-Extractor supports on the fly changing of the language (see section [Translations](#Translations)) and switching between light and dark mode.
 
 ![Change the Language](./MediaExtractor/media/readme/change_locale.gif)
 ![Switch to Dark Mode](./MediaExtractor/media/readme/dark_mode.gif)
