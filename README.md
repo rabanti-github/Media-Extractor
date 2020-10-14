@@ -12,7 +12,7 @@ The most recent version of Media-Extractor can be downloaded on the [Page of the
 Usually, the **Release version** is suitable for the most users (e.g. '**Media-Extractor_Release_v1.7.0.zip**').
 The debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
 
-Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#SmartScreen-Warning-in-Windows-8.1-and-10)
+Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#smartscreen-warning-in-windows-81-and-10)
 
 
 ## Features
