@@ -432,4 +432,25 @@
   <data name="MenuFileRecent" xml:space="preserve">
     <value>Zuletzt geöffnete Dateien</value>
   </data>
+  <data name="DialogSizeWarning" xml:space="preserve">
+    <value>Es wird versucht eine große Datei (&gt; {0}) anzuzeigen.\nDieser Vorgang kann unter Umständen sehr lange dauern.\nSoll die Vorschau erstellt werden?</value>
+  </data>
+  <data name="DialogSizeWarningTitle" xml:space="preserve">
+    <value>Versuch eine große Datei anzuzeigen...</value>
+  </data>
+  <data name="MenuDocumentGenerictextPreview" xml:space="preserve">
+    <value>Textvorschau für unbekannte Dateiformate</value>
+  </data>
+  <data name="MenuDocumentSizeWarning" xml:space="preserve">
+    <value>Warnung für Vorschau großer Dateien anzeigen</value>
+  </data>
+  <data name="StatusLoadEmbeddedImageFallback" xml:space="preserve">
+    <value>Das Vorschaubild für '{0}' konnte nicht erstellt werden. Anzeige als Text</value>
+  </data>
+  <data name="StatusLoadEmbeddedOtherFallback" xml:space="preserve">
+    <value>Die Vorschau für '{0}' konnte nicht erstellt werden. Anzeige als Text</value>
+  </data>
+  <data name="StatusPreviewSkipped" xml:space="preserve">
+    <value>Die Vorschau von '{0}' wurde nicht erstellt (Datei zu groß)</value>
+  </data>
 </root>

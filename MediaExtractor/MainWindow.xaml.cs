@@ -52,6 +52,7 @@ namespace MediaExtractor
         /// Current locale string
         /// </summary>
         public string CurrentLocale { get; set; } = null;
+        #endregion
 
         #region constructors
         /// <summary>
@@ -91,6 +92,8 @@ namespace MediaExtractor
         {
             CurrentModel.ShowEmbeddedImages = Properties.Settings.Default.DocumentShowImages;
             CurrentModel.ShowEmbeddedOther = Properties.Settings.Default.DocumentShowOther;
+            CurrentModel.GenericTextPreview = Properties.Settings.Default.DocumentGenericTextPreview;
+            CurrentModel.LargeFilePreviewWarning = Properties.Settings.Default.DocumentShowLargeFileWarning;
             CurrentModel.KeepFolderStructure = Properties.Settings.Default.DocumentPreserveStructure;
             CurrentModel.ShowInExplorer = Properties.Settings.Default.DocumentShowExplorer;
             CurrentModel.UseDarkMode = Properties.Settings.Default.AppearanceDarkMode;
@@ -319,19 +322,181 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Method to restore the window position, size and state
+        /// </summary>
+        private void RestoreWindowState()
+        {
+            string screenName = Properties.Settings.Default.ScreenName;
+            double left = Properties.Settings.Default.WindowLeft;
+            double top = Properties.Settings.Default.WindowTop;
+            double width = Properties.Settings.Default.WindowWidth;
+            double height = Properties.Settings.Default.WindowHeight;
+
+            ScreenHandler targetScreen;
+            bool validScreen = false;
+            if (ScreenHandler.GetScreenByName(screenName, out targetScreen))
+            {
+                validScreen = targetScreen.ValidateScreen(left, top, width, height);
+            }
+
+            if (validScreen)
+            {
+
+                if (Properties.Settings.Default.WindowMaximized)
+                {
+                    this.Left = targetScreen.X;
+                    this.Top = targetScreen.Y;
+                    this.Width = targetScreen.Width;
+                    this.Height = targetScreen.Height;
+                    this.WindowState = WindowState.Maximized;
+                }
+                else
+                {
+                    this.Left = left;
+                    this.Top = top;
+                    this.Width = width;
+                    this.Height = height;
+                    this.WindowState = WindowState.Normal;
+                }
+            }
+            else
+            {
+                ScreenHandler screen = ScreenHandler.GetPrimaryScreen();
+                this.Left = screen.X +  (screen.Width / 2) - (this.Width / 2);
+                this.Top = screen.Y  + (screen.Height / 2) - (this.Height / 2);
+            }
+        }
+
+        /// <summary>
         /// Stores the user settings
         /// </summary>
         private void StoreSettings()
         {
             Properties.Settings.Default.DocumentShowImages = CurrentModel.ShowEmbeddedImages;
             Properties.Settings.Default.DocumentShowOther = CurrentModel.ShowEmbeddedOther;
+            Properties.Settings.Default.DocumentGenericTextPreview = CurrentModel.GenericTextPreview;
+            Properties.Settings.Default.DocumentShowLargeFileWarning = CurrentModel.LargeFilePreviewWarning;
             Properties.Settings.Default.DocumentPreserveStructure = CurrentModel.KeepFolderStructure;
             Properties.Settings.Default.DocumentShowExplorer = CurrentModel.ShowInExplorer;
             Properties.Settings.Default.AppearanceDarkMode = CurrentModel.UseDarkMode;
             Properties.Settings.Default.ExtractSaveAll = CurrentModel.SaveAllIsDefault;
             Properties.Settings.Default.ExtractSaveSelected = CurrentModel.SaveSelectedIsDefault;
             Properties.Settings.Default.Locale = CurrentLocale;
+            Properties.Settings.Default.WindowLeft = this.Left;
+            Properties.Settings.Default.WindowTop = this.Top;
+            Properties.Settings.Default.WindowWidth = this.Width;
+            Properties.Settings.Default.WindowHeight = this.Height;
+            if (this.WindowState == WindowState.Maximized)
+            {
+                Properties.Settings.Default.WindowMaximized = true;
+            }
+            else
+            {
+                Properties.Settings.Default.WindowMaximized = false;
+            }
+            Properties.Settings.Default.ScreenName = ScreenHandler.GetScreenNameByRect(this.Left, this.Top);
             Properties.Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Shows the preview of the currently selected embedded file
+        /// </summary>
+        private void ShowPreview()
+        {
+            Cursor c = Cursor;
+            CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoadingEmbedded);
+            Cursor = Cursors.Wait;
+            try
+            {
+                ListViewItem[] selected = new ListViewItem[ImagesListView.SelectedItems.Count];
+                ImagesListView.SelectedItems.CopyTo(selected, 0);
+                CurrentModel.SelectedItems = selected;
+
+                ListViewItem item = selected.Last();
+
+                if (CurrentModel.LargeFilePreviewWarning)
+                {
+                    long threshold = Properties.Settings.Default.LargeFileThreshold;
+                    if (item.FileSize.Value > threshold)
+                    {
+                        MessageBoxResult result = MessageBox.Show(I18n.R(I18n.Key.DialogSizeWarning, Utils.ConvertFileSize(threshold)), I18n.T(I18n.Key.DialogSizeWarningTitle), MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (result != MessageBoxResult.Yes)
+                        {
+                            ImageBox.Source = null;
+                            SetTextPreviewVisible(true);
+                            CurrentExtractor.ResetErrors();
+                            CurrentModel.StatusText = I18n.R(I18n.Key.StatusPreviewSkipped, item.FileName);
+                            Cursor = c;
+                            return;
+                        }
+                    }
+                }
+
+                if (item.Type == ExtractorItem.Type.Image)
+                {
+                    CurrentExtractor.GetImageSourceByName(item.FileName, out var img);
+                    SetImagePreviewVisible();
+                    if (CurrentExtractor.HasErrors)
+                    {
+                        if (CurrentModel.GenericTextPreview)
+                        {
+                            SetTextPreview(item);
+                        }
+                        else
+                        {
+                            CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedImageFailure, CurrentExtractor.LastError);
+                            SetTextPreviewVisible(true);
+                        }
+                        ImageBox.Source = null;
+                        CurrentExtractor.ResetErrors();
+                    }
+                    else
+                    {
+                        ImageBox.Source = img;
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusEmbeddedLoaded, item.FileName);
+                    }
+                }
+                else if (item.Type == ExtractorItem.Type.Xml || item.Type == ExtractorItem.Type.Text || CurrentModel.GenericTextPreview)
+                {
+                    CurrentExtractor.GetGenericTextByName(item.FileName, out var text);
+
+                    if (CurrentExtractor.HasErrors)
+                    {
+                        SetTextPreviewVisible();
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedTextFailure, CurrentExtractor.LastError);
+                        TextBox.Text = string.Empty;
+                        SetTextPreviewVisible(true);
+                        CurrentExtractor.ResetErrors();
+                    }
+                    else
+                    {
+                        SetTextPreview(item);
+                    }
+                }
+                else
+                {
+                    SetTextPreviewVisible(true);
+                    CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedOtherFailure, item.FileName);
+                    TextBox.Text = string.Empty;
+
+                    // Fall-back
+                }
+            }
+            catch
+            {
+                CurrentModel.SelectedItems = new ListViewItem[0];
+                // ignore
+            }
+
+            Cursor = c;
+            if (ImagesListView.Items.Count == 0)
+            {
+                CurrentModel.SaveSelectedStatus = false;
+            }
+            else
+            {
+                CurrentModel.SaveSelectedStatus = true;
+            }
         }
 
         #endregion
@@ -451,113 +616,68 @@ namespace MediaExtractor
         /// <param name="e">Event arguments</param>
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Cursor c = Cursor;
-            CurrentModel.StatusText = I18n.T(I18n.Key.StatusLoadingEmbedded);
-            Cursor = Cursors.Wait;
-            try
+            ShowPreview();
+        }
+
+        /// <summary>
+        /// Method to set a text as preview
+        /// </summary>
+        /// <param name="item">Listview item to preview</param>
+        private void SetTextPreview(ListViewItem item)
+        {
+            string text = item.FileReference.GenericText;
+            if (text.Length == 0 && item.FileSize.Value > 0)
             {
-                ListViewItem[] selected = new ListViewItem[ImagesListView.SelectedItems.Count];
-                ImagesListView.SelectedItems.CopyTo(selected, 0);
-                CurrentModel.SelectedItems = selected;
-
-                ListViewItem item = selected.Last();
-
-                if (item.Type == ExtractorItem.Type.Image)
+                switch (item.Type)
                 {
-                    CurrentExtractor.GetImageSourceByName(item.FileName, out var img);
-                    SetImagePreviewVisible();
-                    if (CurrentExtractor.HasErrors)
-                    {
-                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedImageFailure, CurrentExtractor.LastError);
-                        SetTextPreviewVisible(true);
-                        ImageBox.Source = null;
-                        CurrentExtractor.ResetErrors();
-                    }
-                    else
-                    {
-                        ImageBox.Source = img;
-                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusEmbeddedLoaded, item.FileName);
-                    }
+                    case ExtractorItem.Type.Text:
+                    case ExtractorItem.Type.Xml:
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedTextFailure, item.FileName);
+                        break;
+                    default:
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedOtherFailure, item.FileName);
+                        break;
                 }
-                else if (item.Type == ExtractorItem.Type.Xml || item.Type == ExtractorItem.Type.Text)
-                {
-                    CurrentExtractor.GetGenericTextByName(item.FileName, out var text);
-                    SetTextPreviewVisible();
-                    if (CurrentExtractor.HasErrors)
-                    {
-                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedTextFailure, CurrentExtractor.LastError);
-                        TextBox.Text = string.Empty;
-                        SetTextPreviewVisible(true);
-                        CurrentExtractor.ResetErrors();
-                    }
-                    else
-                    {
-                        TextBox.Text = text;
-                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusEmbeddedLoaded, item.FileName);
-                    }
-                }
-                else
-                {
-                    SetTextPreviewVisible(true);
-                    CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedOtherFailure, item.FileName);
-                    TextBox.Text = string.Empty;
-
-                    // Fall-back
-                }
-            }
-            catch
-            {
-                CurrentModel.SelectedItems = new ListViewItem[0];
-                // ignore
-            }
-
-            Cursor = c;
-            if (ImagesListView.Items.Count == 0)
-            {
-                CurrentModel.SaveSelectedStatus = false;
+                SetTextPreviewVisible(true);
             }
             else
             {
-                CurrentModel.SaveSelectedStatus = true;
+                switch (item.Type)
+                {
+                    case ExtractorItem.Type.Image:
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedImageFallback, item.FileName);
+                        break;
+                    case ExtractorItem.Type.Text:
+                    case ExtractorItem.Type.Xml:
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusEmbeddedLoaded, item.FileName);
+                        break;
+                    default:
+                        CurrentModel.StatusText = I18n.R(I18n.Key.StatusLoadEmbeddedOtherFallback, item.FileName);
+                        break;
+                }
+                TextBox.Text = text;
+                SetTextPreviewVisible();
             }
+            ImageBox.Source = null;
+            CurrentExtractor.ResetErrors();
         }
 
         /// <summary>
-        /// Menu Event for the image filter item (checked)
+        /// Menu Event for the image filter item
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void ImageFilterMenuItem_Checked(object sender, RoutedEventArgs e)
+        private void ImageFilterMenuItem_Click(object sender, RoutedEventArgs e)
         {
             RecalculateListViwItems(this);
         }
 
         /// <summary>
-        /// Menu Event for other files filter (checked)
+        /// Menu Event for other files filter
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">Event arguments</param>
-        private void OtherFilterMenuItem_Checked(object sender, RoutedEventArgs e)
-        {
-            RecalculateListViwItems(this);
-        }
-
-        /// <summary>
-        /// Menu Event for the image filter item (unchecked)
-        /// </summary>
-        /// <param name="sender">Sender object</param>
-        /// <param name="e">Event arguments</param>
-        private void ImageFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
-        {
-            RecalculateListViwItems(this);
-        }
-
-        /// <summary>
-        /// Menu Event for other files filter (unchecked)
-        /// </summary>
-        /// <param name="sender">Sender object</param>
-        /// <param name="e">Event arguments</param>
-        private void OtherFilterMenuItem_Unchecked(object sender, RoutedEventArgs e)
+        private void OtherFilterMenuItem_Click(object sender, RoutedEventArgs e)
         {
             RecalculateListViwItems(this);
         }
@@ -747,6 +867,21 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Invalidates the extractor entries (toggles show unknown formats as text)
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void GenericTextPreviewMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentExtractor != null)
+            {
+                CurrentExtractor.InvalidateEntries();
+                ShowPreview();
+            }
+
+        }
+
+        /// <summary>
         /// Handles the window closing event
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -763,12 +898,24 @@ namespace MediaExtractor
                 window.Show();
                 window.Left = this.Left;
                 window.Top = this.Top;
+                window.WindowState = this.WindowState;
                 I18n.MatchLocale(window.CurrentModel, locale);
+                window.RestoreSettings();
             }
             else
             {
                 App.Current.Shutdown();
             }
+        }
+
+        /// <summary>
+        /// Handles the window loaded event
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="CancelEventArgs"/> instance containing the event data.</param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            RestoreWindowState();
         }
 
         /// <summary>

@@ -34,6 +34,8 @@ namespace MediaExtractor
         private bool saveAllStatus;
         private bool showEmbeddedImages;
         private bool showEmbeddedOther;
+        private bool genericTextPreview;
+        private bool largeFilePreviewWarning = true;
         private bool keepFolderStructure = true;
         private bool showInExplorer = true;
         private bool useDarkMode = false;
@@ -250,6 +252,38 @@ namespace MediaExtractor
             {
                 showEmbeddedOther = value;
                 NotifyPropertyChanged("ShowEmbeddedOther");
+            }
+        }
+
+        /// <summary>
+        /// If true, unknown file formats are tried to be displayed as text
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if unknown file formats are previewed as text, otherwise, <c>false</c>.
+        /// </value>
+        public bool GenericTextPreview
+        {
+            get { return genericTextPreview; }
+            set
+            {
+                genericTextPreview = value;
+                NotifyPropertyChanged("GenericTextPreview");
+            }
+        }
+
+        /// <summary>
+        /// If true, a warning will be displayed when a large file is tried to be displayed
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if size warning on large previews is displayed, otherwise, <c>false</c>.
+        /// </value>
+        public bool LargeFilePreviewWarning
+        {
+            get { return largeFilePreviewWarning; }
+            set
+            {
+                largeFilePreviewWarning = value;
+                NotifyPropertyChanged("LargeFilePreviewWarning");
             }
         }
 

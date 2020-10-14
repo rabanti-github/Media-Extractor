@@ -502,6 +502,24 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The preview of a large file (&gt; {0}) is attempted.\nThis process may take a long time.\nShall the preview be created?.
+        /// </summary>
+        public static string DialogSizeWarning {
+            get {
+                return ResourceManager.GetString("DialogSizeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attempt to preview a large File....
+        /// </summary>
+        public static string DialogSizeWarningTitle {
+            get {
+                return ResourceManager.GetString("DialogSizeWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an unexpected error during the extraction:.
         /// </summary>
         public static string DialogUnexpectedError {
@@ -637,6 +655,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text Preview on unknown File Formats.
+        /// </summary>
+        public static string MenuDocumentGenerictextPreview {
+            get {
+                return ResourceManager.GetString("MenuDocumentGenerictextPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keep Folder Structure when Extracting.
         /// </summary>
         public static string MenuDocumentKeepStructure {
@@ -655,7 +682,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Embedded Image Files.
+        ///   Looks up a localized string similar to Show embedded Image Files.
         /// </summary>
         public static string MenuDocumentShowImages {
             get {
@@ -664,11 +691,20 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Other Embedded Files.
+        ///   Looks up a localized string similar to Show other embedded Files.
         /// </summary>
         public static string MenuDocumentShowOther {
             get {
                 return ResourceManager.GetString("MenuDocumentShowOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Warning for Prview of large Files.
+        /// </summary>
+        public static string MenuDocumentSizeWarning {
+            get {
+                return ResourceManager.GetString("MenuDocumentSizeWarning", resourceCulture);
             }
         }
         
@@ -808,11 +844,29 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The preview image for &apos;{0}&apos; could not be loaded. Displaying as text.
+        /// </summary>
+        public static string StatusLoadEmbeddedImageFallback {
+            get {
+                return ResourceManager.GetString("StatusLoadEmbeddedImageFallback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preview not possible for {0}.
         /// </summary>
         public static string StatusLoadEmbeddedOtherFailure {
             get {
                 return ResourceManager.GetString("StatusLoadEmbeddedOtherFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The preview for &apos;{0}&apos; could not be loaded. Displaying as text.
+        /// </summary>
+        public static string StatusLoadEmbeddedOtherFallback {
+            get {
+                return ResourceManager.GetString("StatusLoadEmbeddedOtherFallback", resourceCulture);
             }
         }
         
@@ -849,6 +903,15 @@ namespace MediaExtractor.Properties {
         public static string StatusLoadingEmbedded {
             get {
                 return ResourceManager.GetString("StatusLoadingEmbedded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The preview of &apos;{0}&apos; was skipped (file too large).
+        /// </summary>
+        public static string StatusPreviewSkipped {
+            get {
+                return ResourceManager.GetString("StatusPreviewSkipped", resourceCulture);
             }
         }
         

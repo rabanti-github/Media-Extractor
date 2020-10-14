@@ -152,7 +152,7 @@ namespace MediaExtractor
         {
             foreach (ExtractorItem item in embeddedFiles)
             {
-                if (item.FileName == filename && (item.ItemType == ExtractorItem.Type.Text || item.ItemType == ExtractorItem.Type.Xml))
+                if (item.FileName == filename && (item.ItemType == ExtractorItem.Type.Text || item.ItemType == ExtractorItem.Type.Xml || currentModel.GenericTextPreview))
                 {
                     genericText = item.GenericText;
                     if (!item.ValidGenericText)
@@ -171,6 +171,17 @@ namespace MediaExtractor
             lastError = I18n.T(I18n.Key.TextErrorInvalidText);
             hasErrors = true;
             return false;
+        }
+
+        /// <summary>
+        /// Invalidates (resets preview) of all entries
+        /// </summary>
+        public void InvalidateEntries()
+        {
+            for (int i = 0; i < this.embeddedFiles.Count; i++)
+            {
+                embeddedFiles[i].Invalidate(currentModel.GenericTextPreview);
+            }
         }
 
         /// <summary>
@@ -200,7 +211,7 @@ namespace MediaExtractor
                 file = split[split.Length - 1];
                 path = archive.Entries[i].FileName.Substring(0, archive.Entries[i].FileName.Length - file.Length);
 
-                item = new ExtractorItem(file, ms, false, path);
+                item = new ExtractorItem(file, ms, path, currentModel.GenericTextPreview);
                 item.Crc32 = archive.Entries[i].CRC;
                 item.FileSize = (long)archive.Entries[i].Size;
                 item.LastChange = archive.Entries[i].LastWriteTime;

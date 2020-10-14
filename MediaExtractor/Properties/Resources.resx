@@ -136,10 +136,10 @@
     <value>Document</value>
   </data>
   <data name="MenuDocumentShowImages" xml:space="preserve">
-    <value>Show Embedded Image Files</value>
+    <value>Show embedded Image Files</value>
   </data>
   <data name="MenuDocumentShowOther" xml:space="preserve">
-    <value>Show Other Embedded Files</value>
+    <value>Show other embedded Files</value>
   </data>
   <data name="MenuDocumentKeepStructure" xml:space="preserve">
     <value>Keep Folder Structure when Extracting</value>
@@ -431,5 +431,26 @@
   </data>
   <data name="MenuFileRecent" xml:space="preserve">
     <value>Recent Files</value>
+  </data>
+  <data name="DialogSizeWarning" xml:space="preserve">
+    <value>The preview of a large file (&gt; {0}) is attempted.\nThis process may take a long time.\nShall the preview be created?</value>
+  </data>
+  <data name="DialogSizeWarningTitle" xml:space="preserve">
+    <value>Attempt to preview a large File...</value>
+  </data>
+  <data name="MenuDocumentGenerictextPreview" xml:space="preserve">
+    <value>Text Preview on unknown File Formats</value>
+  </data>
+  <data name="MenuDocumentSizeWarning" xml:space="preserve">
+    <value>Show Warning for Prview of large Files</value>
+  </data>
+  <data name="StatusLoadEmbeddedImageFallback" xml:space="preserve">
+    <value>The preview image for '{0}' could not be loaded. Displaying as text</value>
+  </data>
+  <data name="StatusLoadEmbeddedOtherFallback" xml:space="preserve">
+    <value>The preview for '{0}' could not be loaded. Displaying as text</value>
+  </data>
+  <data name="StatusPreviewSkipped" xml:space="preserve">
+    <value>The preview of '{0}' was skipped (file too large)</value>
   </data>
 </root>

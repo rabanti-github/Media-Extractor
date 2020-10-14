@@ -75,8 +75,9 @@ namespace MediaExtractor
         /// <param name="inputStream">Stream to process</param>
         /// <param name="text">result text as output parameter</param>
         /// <param name="errorMessage">Possible error message. Is empty when no error occurred</param>
+        /// <param name="fallbackToText">If true, the preview tries to fall back to a plain text preview, otherwise no preview is displayed</param>
         /// <returns>True if valid, otherwise false. In the later case, an error message is returned in the out parameter</returns>
-        public static bool CreateXml(MemoryStream inputStream, out string text, out string errorMessage)
+        public static bool CreateXml(MemoryStream inputStream, bool fallbackToText, out string text, out string errorMessage)
         {
             string tempText;
             string lastError;
@@ -105,9 +106,18 @@ namespace MediaExtractor
             }
             catch (Exception e)
             {
-                errorMessage = e.Message;
-                text = string.Empty;
-                return false;
+                if (fallbackToText)
+                {
+                    errorMessage = string.Empty;
+                    text = tempText;
+                    return true;
+                }
+                else
+                {
+                    errorMessage = e.Message;
+                    text = string.Empty;
+                    return false;
+                }
             }
         }
 
@@ -118,9 +128,11 @@ namespace MediaExtractor
         /// <param name="inputStream">Stream to process</param>
         /// <param name="image">result image as output parameter</param>
         /// <param name="errorMessage">Possible error message. Is empty when no error occurred</param>
+        /// <param name="fallbackToText">If true, the preview tries to fall back to a plain text preview, otherwise no preview is displayed</param>
+        /// <param name="fallbackText">Fallback text if image could not be parsed</param>
         /// <returns>True if valid, otherwise false. In the later case, an error message is returned in the out parameter</returns>
         /// <returns></returns>
-        public static bool CreateImage(string fileExtension, MemoryStream inputStream, out BitmapImage image, out string errorMessage)
+        public static bool CreateImage(string fileExtension, MemoryStream inputStream, bool fallbackToText, out BitmapImage image, out string errorMessage, out string fallbackText)
         {
             string lastError = string.Empty;
             string ext = "png"; // Default if not defined
@@ -131,6 +143,7 @@ namespace MediaExtractor
             if (ImageConverters.ContainsKey(ext) && TryParseImage(ImageConverters[ext], inputStream, out image, out lastError))
             {
                 errorMessage = string.Empty;
+                fallbackText = string.Empty;
                 return true;
             }
 
@@ -139,11 +152,22 @@ namespace MediaExtractor
                 if (TryParseImage(item.Value, inputStream, out image, out lastError))
                 {
                     errorMessage = string.Empty;
+                    fallbackText = string.Empty;
                     return true;
                 }
             }
-            image = null;
+            image = null; // Not a valid image
+            if (fallbackToText)
+            {
+                inputStream.Position = 0;
+                if (CreateText(inputStream, out fallbackText, out lastError))
+                {
+                    errorMessage = string.Empty;
+                    return false;
+                }
+            }
             errorMessage = lastError;
+            fallbackText = string.Empty;
             return false;
         }
 

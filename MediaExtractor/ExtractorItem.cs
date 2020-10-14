@@ -109,7 +109,7 @@ namespace MediaExtractor
             {
                 if (image == null && !initialized)
                 {
-                    ValidImage = Preview.CreateImage(FileExtension, Stream, out image, out errorMessage);
+                    ValidImage = Preview.CreateImage(FileExtension, Stream, ShowGenericText, out image, out errorMessage, out genericText);
                     initialized = true;
                 }
                 return image;
@@ -125,14 +125,14 @@ namespace MediaExtractor
             {
                 if (genericText == null && !initialized)
                 {
-                    if (ItemType == Type.Text)
+                    if (ItemType == Type.Text || ShowGenericText)
                     {
                         ValidGenericText = Preview.CreateText(Stream, out genericText, out errorMessage);
                         initialized = true;
                     }
                     else if (ItemType == Type.Xml)
                     {
-                        ValidGenericText = Preview.CreateXml(Stream, out genericText, out errorMessage);
+                        ValidGenericText = Preview.CreateXml(Stream, ShowGenericText, out genericText, out errorMessage);
                         initialized = true;
                     }
                     else
@@ -154,13 +154,18 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Gets or sets whether unknown file formats, as well as invalid formats, will be displayed as text
+        /// </summary>
+        public bool ShowGenericText { get; set; }
+
+        /// <summary>
         /// Constructor with parameters
         /// </summary>
         /// <param name="fileName">File name of the item</param>
         /// <param name="stream">Passed memoryStream of the item</param>
-        /// <param name="createFile">If true, an Image, text or XML object will be created</param>
         /// <param name="path">Relative path within the archive / file</param>
-        public ExtractorItem(string fileName, MemoryStream stream, bool createFile, string path)
+        /// <param name="showGenericText">If true, unknown file formats, as well as invalid formats, will be displayed as text</param>
+        public ExtractorItem(string fileName, MemoryStream stream, string path, bool showGenericText)
         {
             string[] tokens = fileName.Split('.');
             if (tokens.Length > 1)
@@ -173,7 +178,7 @@ namespace MediaExtractor
                 FileExtension = "";
                 ItemType = Type.Other;
             }
-
+            ShowGenericText = showGenericText;
             FileName = fileName;
             Path = path;
             Stream = stream;
@@ -185,7 +190,7 @@ namespace MediaExtractor
         /// </summary>
         public void CreateImage()
         {
-            ValidImage = Preview.CreateImage(FileExtension, Stream, out image, out errorMessage);
+            ValidImage = Preview.CreateImage(FileExtension, Stream, ShowGenericText, out image, out errorMessage, out genericText);
             initialized = true;
         }
 
@@ -194,7 +199,7 @@ namespace MediaExtractor
         /// </summary>
         public void CreateXml()
         {
-            ValidGenericText = Preview.CreateXml(Stream, out genericText, out errorMessage);
+            ValidGenericText = Preview.CreateXml(Stream, ShowGenericText,  out genericText, out errorMessage);
             initialized = true;
         }
 
@@ -205,6 +210,24 @@ namespace MediaExtractor
         {
             ValidGenericText = Preview.CreateText(Stream, out genericText, out errorMessage);
             initialized = true;
+        }
+
+        /// <summary>
+        /// Invalidates (resets) the current item
+        /// </summary>
+        /// <param name="showGenericText">If true, unknown file formats, as well as invalid formats, will be displayed as text</param>
+        public void Invalidate(bool showGenericText)
+        {
+            if (ValidImage || ValidGenericText)
+            {
+                return;
+            }
+            ValidGenericText = false;
+            ValidImage = false;
+            initialized = false;
+            genericText = null;
+            image = null;
+            ShowGenericText = showGenericText;
         }
 
         /// <summary>

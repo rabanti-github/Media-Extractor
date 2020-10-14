@@ -1,5 +1,20 @@
 # Change Log
 
+## v1.7.0
+
+Release Date: **14.10.2020**
+
+- Added option to display unknown file formats as text
+- Added an optional warning for large file previews
+- Added recent files
+- Added settings to remember the window position, size and state
+- Fixed a bug in the handling of archive files (no office or zip files)
+- Updated documentation and translations
+- Updated readme
+- Code cleanup
+
+---
+
 ## v1.6.1
 
 Release Date: **05.10.2020**

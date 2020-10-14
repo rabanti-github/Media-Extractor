@@ -6,7 +6,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p = "clr-namespace:MediaExtractor.Properties"
         xmlns:local ="clr-namespace:MediaExtractor"
-        Title="{Binding Path=WindowTitle}" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300" Icon="media/media_extractor.ico" Closing="Window_Closing">
+        Title="{Binding Path=WindowTitle}" Height="600" Width="800" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinWidth="660" MinHeight="300" Icon="media/media_extractor.ico" Closing="Window_Closing" Loaded="Window_Loaded">
     <Window.Style>
         <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}" />
     </Window.Style>
@@ -67,8 +67,13 @@
                 <MenuItem x:Name="QuitMenuItem" Header="{x:Static p:Resources.MenuFileQuit}" Click="QuitMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.MenuDocument}">
-                <MenuItem x:Name="ImageFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowImages}" IsChecked="{Binding Path=ShowEmbeddedImages}" IsCheckable="True" Checked="ImageFilterMenuItem_Checked" Unchecked="ImageFilterMenuItem_Unchecked" />
-                <MenuItem x:Name="OtherFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowOther}" IsChecked="{Binding Path=ShowEmbeddedOther}" IsCheckable="True" Checked="OtherFilterMenuItem_Checked" Unchecked="OtherFilterMenuItem_Unchecked" />
+                <MenuItem x:Name="ImageFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowImages}" IsChecked="{Binding Path=ShowEmbeddedImages}" IsCheckable="True" Click="ImageFilterMenuItem_Click" />
+                <MenuItem x:Name="OtherFilterMenuItem" Header="{x:Static p:Resources.MenuDocumentShowOther}" IsChecked="{Binding Path=ShowEmbeddedOther}" IsCheckable="True" Click="OtherFilterMenuItem_Click" />
+                <Separator/>
+
+                <MenuItem x:Name="GenericTextPreviewMenuItem" Header="{x:Static p:Resources.MenuDocumentGenerictextPreview}" IsChecked="{Binding Path=GenericTextPreview}" IsCheckable="True" Click="GenericTextPreviewMenuItem_Click" />
+                <MenuItem x:Name="LargeFilePreviewWarningMenuItem" Header="{x:Static p:Resources.MenuDocumentSizeWarning}" IsChecked="{Binding Path=LargeFilePreviewWarning}" IsCheckable="True" />
+
                 <Separator/>
                 <MenuItem x:Name="KeepFolderStructureMenuItem" IsChecked="{Binding Path=KeepFolderStructure}" Header="{x:Static p:Resources.MenuDocumentKeepStructure}" IsCheckable="True" />
                 <MenuItem x:Name="ShowInExplorarMenuItem" IsChecked="{Binding Path=ShowInExplorer}" Header="{x:Static p:Resources.MenuDocumentOpenExplorer}" IsCheckable="True" />

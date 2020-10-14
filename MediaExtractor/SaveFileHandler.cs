@@ -15,6 +15,9 @@ using System.Text;
 
 namespace MediaExtractor
 {
+    /// <summary>
+    /// Class to handle saving embedded files
+    /// </summary>
     public class SaveFileHandler
     {
         /// <summary>
