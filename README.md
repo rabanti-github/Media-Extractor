@@ -1,4 +1,4 @@
-# ![Favicon](./MediaExtractor/media/readme/icon32.png) Media-Extractor
+# ![Favicon](./resources/img/icon32.png) Media-Extractor
 
 [![license: MIT](https://img.shields.io/github/license/rabanti-github/media-extractor.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Releases](https://img.shields.io/github/downloads/rabanti-github/media-extractor/latest/total.svg)](https://github.com/rabanti-github/Media-Extractor/releases/latest)
@@ -14,8 +14,7 @@ The debug version (Debug.zip), as well as the source code (zip / tar.gz), is onl
 
 Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#smartscreen-warning-in-windows-81-and-10)
 
-
-## Features
+## Feature Overview
 
 * Supports most of the new Office formats (e.g. docx, xlsx, pptx)
 * Supports a variety of archive formats (e.g. zip, tar, 7z)
@@ -32,37 +31,46 @@ Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#smartsc
 
 ### Loading Documents
 
-Documents (e.g. Excel worksheets, word documents or zip archives) can be opened either by menu, using the open button in the application, drag and drop of the document into a drop area, drag and drop the document into the application or using the Windows Explorer context menu "Open with..."
+Documents (e.g. Excel worksheets, Word documents or zip archives) can be opened either by menu, using the open button in the application, drag and drop of the document into a drop area, drag and drop the document into the application or using the Windows Explorer context menu "Open with..."
 
-![Open by Button](./MediaExtractor/media/readme/button_open.gif)
-![Open by Drag into Area](./MediaExtractor/media/readme/drag_open.gif)
-![Open by Drag into App](./MediaExtractor/media/readme/drag_app_open.gif)
-![Open by Context Menu](./MediaExtractor/media/readme/context_open.gif)
+![Open by Button](./resources/img/button_open.gif)
+![Open by Drag into Area](./resources/img/drag_open.gif)
+![Open by Drag into App](./resources/img/drag_app_open.gif)
+![Open by Context Menu](./resources/img/context_open.gif)
 
 ### Appearance
 
 Media-Extractor supports on the fly changing of the language (see section [Translations](#Translations)) and switching between light and dark mode.
 
-![Change the Language](./MediaExtractor/media/readme/change_locale.gif)
-![Switch to Dark Mode](./MediaExtractor/media/readme/dark_mode.gif)
+![Change the Language](./resources/img/change_locale.gif)
+![Switch to Dark Mode](./resources/img/dark_mode.gif)
 
 ### Preview of embedded Files
 
 By default, only previews of images are provided when loading a document in Media-Extractor. However, all other files (e.g. XML, texts, config files or binary blobs) can be enabled for previews. There is also an option to display unknown file formats as texts. Nevertheless, the attempt to display binary files (e.g. exe, nested archives or movie clips) as text may still fail.
 Furthermore, embedded files can be sorted based on its properties, like file name, size or extension.
 
-![Show all Files](./MediaExtractor/media/readme/show_all_files.gif)
-![Preview unknown Formats](./MediaExtractor/media/readme/preview_unknown_formats.gif)
-![Preview unknown Formats](./MediaExtractor/media/readme/sort_files.gif)
+![Show all Files](./resources/img/show_all_files.gif)
+![Preview unknown Formats](./resources/img/preview_unknown_formats.gif)
+![Preview unknown Formats](./resources/img/sort_files.gif)
 
 ### Saving of embedded Files
 
-Embedded files can be saved in various ways. If no file is selected in the list, all files are saved by default. One or many files (using ctrl or shift key) can be selected in the list and exported by selection. The default of saving all or saving only selected can be defined in the save button on the right side of the application.
-Saving of embedded files is independent of the previews. They can be saved even not possible to be displayed as preview.
+Embedded files can be saved in various ways. If no file is selected in the list, all files are saved by default. One or many files (using ctrl or shift key) can be selected in the list and extracted. The default of saving all or saving only selected files can be defined with the save button on the right side of the application.
+Saving of embedded files is independent of the previews. They can be saved, even if not possible to be displayed as preview.
 
-![Save selected Files](./MediaExtractor/media/readme/save_all_files.gif)
+![Save selected Files](./resources/img/save_selected_files.gif)
+![Save all Files](./resources/img/save_all_files.gif)
 
 ---
+
+## System Requirements
+Media-Extractor does not need an installation. The [downloaded zip file](#Download) can be unzipped in a folder of your choice. The system requirements are:
+
+* Microsoft Windows 7, 8.x, 10
+* .NET 4.5 or higher installed
+
+Please see the section about the [SmartScreen Warning](#smartscreen-warning-in-windows-81-and-10) if you have problem to run the application after downloading.
 
 ## Translations
 
@@ -73,8 +81,8 @@ Currently, Media-Extractor is translated to the following Languages:
 | **English**  | Completed | Application Author |
 | **German**   | Completed | Application Author |
 
-If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template).
-For a translation, just a copy of the whole table (with name and translation column necessary) or the file [Resources.resx](https://github.com/rabanti-github/Media-Extractor/blob/master/MediaExtractor/Properties/Resources.resx). Please don't hesitate to ask, if the context of a term is not clear.
+If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template). Alternatively, the default translation terms can be downloaded as [Excel file](./resources/translation/DefaultTranslationStrings.xlsx). This is a direct copy of the default [Resources.resx file](https://github.com/rabanti-github/Media-Extractor/blob/master/MediaExtractor/Properties/Resources.resx).
+Please don't hesitate to ask, if the context of a term is not clear.
 
 ## SmartScreen Warning in Windows 8.1 and 10
 
@@ -89,18 +97,6 @@ What you can do to execute Media-Extractor:
 
 Note: Similar mechanisms may be also triggered by Browsers, like Edge, Chrome or Vivaldi
 
-## System Requirements
-
-* Microsoft Windows 7, 8.x, 10
-* .NET 4.5 or higher
-
-Media-Extractor does not need an installation. It can be executed by:
-
-* Double-clicking on the exe file
-* Dragging a supported media file into the exe file
-* Using the option in Windows Explorer "Open with..."
-* Dropping a file into the designated area (drag&drop)
-
 ## Development Dependencies
 
 The following libraries / dependencies are necessary for the development of Media-Extractor. All of them are maintained by NuGet:
@@ -108,6 +104,8 @@ The following libraries / dependencies are necessary for the development of Medi
 * SevenZipExtractor
 * WindowsAPICodePack-Core and WindowsAPICodePack-Shell
 * AdonisUI and AdonisUI.ClassicTheme
+* NanoXLSX (for TranslationHelper project)
+* Mono.Options (for TranslationHelper project)
 
 ## License
 

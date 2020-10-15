@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaExtractor", "MediaExtractor\MediaExtractor.csproj", "{863DFC29-45E2-4769-B980-51E3C635AFAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationHelper", "TranslationHelper\TranslationHelper.csproj", "{595C1814-AA36-4499-A98D-E21D9EC2A57E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{863DFC29-45E2-4769-B980-51E3C635AFAB} = {863DFC29-45E2-4769-B980-51E3C635AFAB}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +44,26 @@ Global
 		{863DFC29-45E2-4769-B980-51E3C635AFAB}.Release|x64.Build.0 = Release|Any CPU
 		{863DFC29-45E2-4769-B980-51E3C635AFAB}.Release|x86.ActiveCfg = Release|Any CPU
 		{863DFC29-45E2-4769-B980-51E3C635AFAB}.Release|x86.Build.0 = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|x64.Build.0 = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Debug|x86.Build.0 = Debug|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|ARM.Build.0 = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|ARM64.Build.0 = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|x64.ActiveCfg = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|x64.Build.0 = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|x86.ActiveCfg = Release|Any CPU
+		{595C1814-AA36-4499-A98D-E21D9EC2A57E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
