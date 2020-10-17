@@ -37,7 +37,7 @@ Use either the file menu or the 'Open Document' button to quickly load a documen
 
 ![Open by Button](./resources/img/button_open.gif)
 
-Drag a document or archive from the Windows Explorer into the drop ara of the application.
+Drag a document or archive from the Windows Explorer into the drop area of the application (dashed box 'Drop Document here').
 
 ![Open by Drag into Area](./resources/img/drag_open.gif)
 
@@ -45,31 +45,38 @@ If Media-Extractor is not open yet, a document or archive can simply be dragged 
 
 ![Open by Drag into App](./resources/img/drag_app_open.gif)
 
-Last but not least, a document or archive can be opened over the Windows Explorer, using the context menu entry "Open with..."
+Last but not least, a document or archive can be opened over the Windows Explorer, using the context menu entry "Open with...". If performed once, Media-Extractor will be available as possible application to open a document or archive. This assignment must be done for each individual file extension (e.g. .docx, .xlsx, .zip).
 
 ![Open by Context Menu](./resources/img/context_open.gif)
 
 ### Appearance
 
-Media-Extractor supports on the fly changing of the language (see section [Translations](#Translations)). However, the application will quickly reload. Documents or archives must be opened again if the language is changed.
+Media-Extractor supports on the fly changing of the language (see section [Translations](#Translations)). However, the application will quickly reload. Previously loaded documents or archives must be opened again if the language is changed.
 
 ![Change the Language](./resources/img/change_locale.gif)
 
-Media-Extractor supports Dark Mode. The mode can be changed on-the-fly, even if a document or archive is loaded.
+Media-Extractor supports Dark Mode. The mode can be changed on-the-fly, even if a document or archive is loaded. The mode, as well as other settings are remembered by Media-Extractor and restored if the application is restarted.
 
 ![Switch to Dark Mode](./resources/img/dark_mode.gif)
 
 ### Preview of embedded Files
 
-By default, only previews of images are provided when loading a document or archive in Media-Extractor. However, all other files (e.g. XML, texts, config files or binary blobs) can be enabled for previews.
+By default, only previews of images are provided when loading a document or archive in Media-Extractor. However, all other files (e.g. XML, texts or config files) can be enabled for previews.
 
 ![Show all Files](./resources/img/show_all_files.gif)
 
-There is also an option to display unknown file formats as texts. Nevertheless, the attempt to display binary files (e.g. exe, nested archives or movie clips) as text may still fail.
+There is also an option to display unknown file formats as texts. Nevertheless, the attempt to display binary files (e.g. exe, nested archives or movie clips) as text may still fail if there are non-printable characters.
 
 ![Preview unknown Formats](./resources/img/preview_unknown_formats.gif)
 
-Furthermore, embedded files can be sorted based on its properties, like file name, size or extension.
+Furthermore, embedded files can be sorted based on their properties, like file name, size or extension.
+
+Currently, four columns are available:
+
+* Name of the embedded file
+* Relative path of the embedded file in the document or archive
+* File extension of the embedded file
+* Size of the embedded file (extracted size)
 
 ![Preview unknown Formats](./resources/img/sort_files.gif)
 
