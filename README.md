@@ -42,6 +42,7 @@ Drag a document or archive from the Windows Explorer into the drop ara of the ap
 ![Open by Drag into Area](./resources/img/drag_open.gif)
 
 If Media-Extractor is not open yet, a document or archive can simply be dragged into the executable (MediaExtractor.exe).
+
 ![Open by Drag into App](./resources/img/drag_app_open.gif)
 
 Last but not least, a document or archive can be opened over the Windows Explorer, using the context menu entry "Open with..."
