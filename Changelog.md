@@ -1,5 +1,15 @@
 # Change Log
 
+## v1.7.1
+
+Release Date: **20.01.2022**
+
+- Changed internal software libraries due to licensing issues
+- Bumped to .NET 4.6.2
+- General code maintenance
+
+---
+
 ## v1.7.0
 
 Release Date: **14.10.2020**

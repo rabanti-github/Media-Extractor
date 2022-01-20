@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2020
+ * Copyright Raphael Stoeckli © 2022
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -11,10 +11,13 @@ using System.Windows.Forms;
 
 namespace MediaExtractor
 {
+    /// <summary>
+    /// Class to deal with monitors and screen resolution
+    /// </summary>
     public class ScreenHandler
     {
         /// <summary>
-        /// Border width of the window to compensate window dimensions in full screen node
+        /// Border width of the window to compensate window dimensions in full screen mode
         /// </summary>
         private const double BORDER_WIDTH = 8.1d;
 

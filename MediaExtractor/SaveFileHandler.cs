@@ -1,13 +1,12 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2020
+ * Copyright Raphael Stoeckli © 2022
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
 
 using AdonisUI.Controls;
 using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.IO;
 using System.Linq;
@@ -149,11 +148,13 @@ namespace MediaExtractor
         {
             try
             {
-                CommonOpenFileDialog ofd = new CommonOpenFileDialog();
-                ofd.IsFolderPicker = true;
-                ofd.Title = dialogMessage;
-                CommonFileDialogResult res = ofd.ShowDialog();
-                if (res == CommonFileDialogResult.Ok)
+                Ookii.Dialogs.Wpf.VistaFolderBrowserDialog ofd = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog
+                {
+                    Description = dialogMessage,
+                    UseDescriptionForTitle = true
+                };
+                bool? res = ofd.ShowDialog();
+                if (res.HasValue && res.Value)
                 {
                     bool fileExists, check;
                     int errors = 0;
@@ -165,7 +166,7 @@ namespace MediaExtractor
                     ExistingFileDialog.ResetDialog();
                     foreach (ListViewItem item in items)
                     {
-                        fileExists = CheckFileExists(ofd.FileName, item.FileReference, CurrentModel.KeepFolderStructure, out var fileName);
+                        fileExists = CheckFileExists(ofd.SelectedPath, item.FileReference, CurrentModel.KeepFolderStructure, out var fileName);
                         if (fileExists && (ExistingFileDialog.RememberDecision == null || !ExistingFileDialog.RememberDecision.Value))
                         {
                             fi = new FileInfo(fileName);
@@ -246,10 +247,10 @@ namespace MediaExtractor
                     }
                     if (CurrentModel.ShowInExplorer)
                     {
-                        bool open = Utils.ShowInExplorer(ofd.FileName);
+                        bool open = Utils.ShowInExplorer(ofd.SelectedPath);
                         if (!open)
                         {
-                            MessageBox.Show(I18n.R(I18n.Key.DialogExplorerError, ofd.FileName), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            MessageBox.Show(I18n.R(I18n.Key.DialogExplorerError, ofd.SelectedPath), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
                     }
                 }

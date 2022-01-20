@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Media-Extractor")]
-[assembly: AssemblyCopyright("Copyright ©  2020 Raphael Stoeckli")]
+[assembly: AssemblyCopyright("Copyright ©  2022 Raphael Stoeckli")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
