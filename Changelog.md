@@ -7,6 +7,8 @@ Release Date: **20.01.2022**
 - Changed internal software libraries due to licensing issues
 - Bumped to .NET 4.6.2
 - General code maintenance
+- Tested in Windows 11
+- Updated readme
 
 ---
 

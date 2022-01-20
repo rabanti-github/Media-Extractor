@@ -9,10 +9,10 @@ Media-Extractor is an application to preview and extract packed media in Microso
 ## Download
 
 The most recent version of Media-Extractor can be downloaded on the [Page of the latest Release](https://github.com/rabanti-github/Media-Extractor/releases/latest).
-Usually, the **Release version** is suitable for the most users (e.g. '**Media-Extractor_Release_v1.7.0.zip**').
+Usually, the **Release version** is suitable for the most users (e.g. '**Media-Extractor_Release_v1.7.1.zip**').
 The debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
 
-Please see also the section [SmartScreen Warning in Windows 8.1 and 10](#smartscreen-warning-in-windows-81-and-10)
+Please see also the section [SmartScreen Warning in Windows 8.1, 10 and 11](#smartscreen-warning-in-windows-81-10-and-11)
 
 ## Feature Overview
 
@@ -98,10 +98,10 @@ One or many files (using ctrl or shift key) can be selected in the list and extr
 
 Media-Extractor does not need an installation. The [downloaded zip file](#Download) can be unzipped in a folder of your choice. The system requirements are:
 
-* Microsoft Windows 7, 8.x, 10
-* .NET 4.5 or higher installed
+* Microsoft Windows 7, 8.1, 10, 11
+* .NET 4.6.2 or higher installed
 
-Please see the section about the [SmartScreen Warning](#smartscreen-warning-in-windows-81-and-10) if you have problem to run the application after downloading.
+Please see the section about the [SmartScreen Warning](#smartscreen-warning-in-windows-81-10-and-11) if you have problem to run the application after downloading.
 
 ## Translations
 
@@ -116,7 +116,7 @@ If you are interested in translating the application, please [open a new Issue](
 
 Please don't hesitate to ask, if the context of a term is not clear.
 
-## SmartScreen Warning in Windows 8.1 and 10
+## SmartScreen Warning in Windows 8.1, 10 and 11
 
 Windows 8.1 introduced a mechanism to protect users from phishing websites and malware, yet not known to Antivirus programs. This mechanism is called [SmartScreen](https://support.microsoft.com/en-us/help/17443/microsoft-edge-smartscreen-faq) and either blocks the access to a malicious website, or the execution of unknown apps.
 Unfortunately, it is possible that Media-Extractor is initially blocked by SmartScreen, since the mechanism don't know the app until 'some people' have downloaded and executed the app. The number of necessary downloads until the app is not seen as unknown (thus, not blocked by SmartScreen anymore) is not that clear.
