@@ -134,7 +134,7 @@ Note: Similar mechanisms may be also triggered by Browsers, like Edge, Chrome or
 The following libraries / dependencies are necessary for the development of Media-Extractor. All of them are maintained by NuGet:
 
 * SevenZipExtractor
-* WindowsAPICodePack-Core and WindowsAPICodePack-Shell
+* Ookii.Dialogs.Wpf
 * AdonisUI and AdonisUI.ClassicTheme
 * NanoXLSX (for TranslationHelper project)
 * Mono.Options (for TranslationHelper project)
