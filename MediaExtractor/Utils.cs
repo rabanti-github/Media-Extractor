@@ -46,7 +46,7 @@ namespace MediaExtractor
             while (size >= 1024 && index < 4)
             {
                 index++;
-                size = size / 1024;
+                size /= 1024;
             }
             return String.Format("{0:0.##} {1}", size, new[] { "B", "KB", "MB", "GB", "TB" }[index]);
         }

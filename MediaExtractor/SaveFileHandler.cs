@@ -116,10 +116,12 @@ namespace MediaExtractor
         {
             try
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Title = I18n.T(I18n.Key.DialogSaveCurrentTitle);
-                sfd.Filter = I18n.T(I18n.Key.DialogSaveFilter); // All files|*.*
-                sfd.FileName = item.FileName;
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Title = I18n.T(I18n.Key.DialogSaveCurrentTitle),
+                    Filter = I18n.T(I18n.Key.DialogSaveFilter), // All files|*.*
+                    FileName = item.FileName
+                };
                 bool? result = sfd.ShowDialog();
                 if (result == true)
                 {

@@ -1,5 +1,14 @@
 # Change Log
 
+## v1.7.2
+
+Release Date: **28.09.2022**
+
+- Added TIFF as image format to preview
+- Updated dependencies
+
+---
+
 ## v1.7.1
 
 Release Date: **20.01.2022**
