@@ -9,7 +9,7 @@ Media-Extractor is an application to preview and extract packed media in Microso
 ## Download
 
 The most recent version of Media-Extractor can be downloaded on the [Page of the latest Release](https://github.com/rabanti-github/Media-Extractor/releases/latest).
-Usually, the **Release version** is suitable for the most users (e.g. '**Media-Extractor_Release_v1.7.1.zip**').
+Usually, the **Release version** is suitable for the most users (e.g. '**Media-Extractor_Release_v1.7.2.zip**').
 The debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
 
 Please see also the section [SmartScreen Warning in Windows 8.1, 10 and 11](#smartscreen-warning-in-windows-81-10-and-11)
