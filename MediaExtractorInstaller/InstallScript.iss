@@ -71,8 +71,8 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Debug\MediaExtractor.exe; DestDir: "{app}"; Flags: ignoreversion
-Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Debug\*; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Media-Extractor_Release_v-VERSION-\MediaExtractor.exe; DestDir: "{app}"; Flags: ignoreversion
+Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Media-Extractor_Release_v-VERSION-\*; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
