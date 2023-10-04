@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MediaExtractor.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Author" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Raphael Stoeckli</Value>
-    </Setting>
     <Setting Name="Website" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://github.com/rabanti-github/Media-Extractor</Value>
     </Setting>
@@ -34,9 +31,6 @@
     </Setting>
     <Setting Name="ExtractSaveSelected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ImageExtensions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp</Value>
     </Setting>
     <Setting Name="TextExtensions" Type="System.String" Scope="User">
       <Value Profile="(Default)">asc,bas,bat,c,cfg,cmd,cpp,cs,css,csv,h,hex,htm,html,inc,inf,info,ini,java,js,json,kt,ktm,kts,latex,less,lisp,log,lst,lua,markdown,md,me,meta,mf,p,pas,php,pl,pp,ps,ps1,psm1,py,r,rb,readme,reg,rs,rst,sh,sln,sql,sty,tcl,tex,ts,tsx,txt,vb,vba,vbs,yaml,yml</Value>
@@ -73,6 +67,15 @@
     </Setting>
     <Setting Name="ScreenName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Support" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/rabanti-github/Media-Extractor/issues</Value>
+    </Setting>
+    <Setting Name="Author" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Raphael Stoeckli</Value>
+    </Setting>
+    <Setting Name="ImageExtensions" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp,tif,tiff</Value>
     </Setting>
   </Settings>
 </SettingsFile>

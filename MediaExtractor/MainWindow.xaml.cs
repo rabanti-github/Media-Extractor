@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2022
+ * Copyright Raphael Stoeckli © 2023
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -112,9 +112,9 @@ namespace MediaExtractor
             string xmlExts = Properties.Settings.Default.XmlExtensions;
             if (!ExtractorItem.GetExtensions(textExts, imageExts, xmlExts))
             {
-                Properties.Settings.Default.ImageExtensions = ExtractorItem.FALLBACK_IMAGE_EXTENTIONS;
-                Properties.Settings.Default.TextExtensions = ExtractorItem.FALLBACK_TEXT_EXTENTIONS;
-                Properties.Settings.Default.XmlExtensions = ExtractorItem.FALLBACK_XML_EXTENTIONS;
+                Properties.Settings.Default.ImageExtensions = ExtractorItem.FALLBACK_IMAGE_EXTENSIONS;
+                Properties.Settings.Default.TextExtensions = ExtractorItem.FALLBACK_TEXT_EXTENSIONS;
+                Properties.Settings.Default.XmlExtensions = ExtractorItem.FALLBACK_XML_EXTENSIONS;
                 MessageBox.Show(I18n.T(I18n.Key.DialogInvalidExtensions), I18n.T(I18n.Key.DialogErrorTitle), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -854,6 +854,16 @@ namespace MediaExtractor
         private void GermanMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ChangeLocale(I18n.GERMAN);
+        }
+
+        /// <summary>
+        /// Enables French as application language
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void FrenchMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeLocale(I18n.FRENCH);
         }
 
         /// <summary>

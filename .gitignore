@@ -301,3 +301,4 @@ icon128\.png
 MediaExtractor/translations/
 
 MediaExtractor/I18N\.cs
+MediaExtractorInstaller/Output/

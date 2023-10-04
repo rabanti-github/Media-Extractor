@@ -1,0 +1,41 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>1.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>3589ba86-f4ba-4b13-b153-bb2f15c78b77</ProjectGuid>
+    <AssemblyName>MediaExtractorInstaller</AssemblyName>
+    <Name>MediaExtractorInstaller</Name>
+    <RootNamespace>MediaExtractorInstaller</RootNamespace>
+    <InnoSetupPath>C:\Program Files (x86)\Inno Setup 6</InnoSetupPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>
+    </OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>
+    </OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="InstallScript.iss">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources" />
+    <Folder Include="Templates" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\media_extractor.ico">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Resources\MIT-License.rtf">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Templates\InstallScript.iss.TPL">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\InnoSetupTools\InnoSetupProject.targets" />
+</Project>

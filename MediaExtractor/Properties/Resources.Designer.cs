@@ -637,6 +637,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        public static string MenuAppearanceLanguageFrench {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguageFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deutsch (German).
         /// </summary>
         public static string MenuAppearanceLanguageGerman {

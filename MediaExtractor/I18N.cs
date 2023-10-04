@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2022
+ * Copyright Raphael Stoeckli © 2023
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -86,6 +86,7 @@ namespace MediaExtractor
             MenuAppearanceLanguageDefault,
             MenuAppearanceLanguageEnglish,
             MenuAppearanceLanguageGerman,
+            MenuAppearanceLanguageFrench,
             MenuDocument,
             MenuDocumentGenerictextPreview,
             MenuDocumentSizeWarning,
@@ -143,6 +144,10 @@ namespace MediaExtractor
         /// Locale identifier for German (de-DE)
         /// </summary>
         public const string GERMAN = "de-DE";
+        /// <summary>
+        /// Locale identifier for French (fr-FR)
+        /// </summary>
+        public const string FRENCH = "fr-FR";
 
         /// <summary>
         /// Method to set the current locale in the view model
@@ -162,11 +167,19 @@ namespace MediaExtractor
                 case ENGLISH:
                     viewModel.UseEnglishLocale = true;
                     viewModel.UseGermanLocale = false;
+                    viewModel.UseFrenchLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case GERMAN:
                     viewModel.UseEnglishLocale = false;
                     viewModel.UseGermanLocale = true;
+                    viewModel.UseFrenchLocale = false;
+                    viewModel.UseSystemLocale = false;
+                    break;
+                case FRENCH:
+                    viewModel.UseEnglishLocale = false;
+                    viewModel.UseGermanLocale = false;
+                    viewModel.UseFrenchLocale = true;
                     viewModel.UseSystemLocale = false;
                     break;
                 default:
@@ -228,6 +241,7 @@ namespace MediaExtractor
         {
             viewModel.UseEnglishLocale = false;
             viewModel.UseGermanLocale = false;
+            viewModel.UseFrenchLocale = false;
             viewModel.UseSystemLocale = true;
         }
 

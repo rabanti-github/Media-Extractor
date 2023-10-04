@@ -160,7 +160,7 @@
     <value>English</value>
   </data>
   <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
-    <value>Deutsch (German)</value>
+    <value>German (Deutsch)</value>
   </data>
   <data name="MenuHelp" xml:space="preserve">
     <value>Help</value>
@@ -452,5 +452,8 @@
   </data>
   <data name="StatusPreviewSkipped" xml:space="preserve">
     <value>The preview of '{0}' was skipped (file too large)</value>
+  </data>
+  <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
+    <value>French (Français)</value>
   </data>
 </root>

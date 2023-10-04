@@ -25,15 +25,6 @@ namespace MediaExtractor.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Raphael Stoeckli")]
-        public string Author {
-            get {
-                return ((string)(this["Author"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rabanti-github/Media-Extractor")]
         public string Website {
             get {
@@ -143,18 +134,6 @@ namespace MediaExtractor.Properties {
             }
             set {
                 this["ExtractSaveSelected"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp")]
-        public string ImageExtensions {
-            get {
-                return ((string)(this["ImageExtensions"]));
-            }
-            set {
-                this["ImageExtensions"] = value;
             }
         }
         
@@ -300,6 +279,39 @@ namespace MediaExtractor.Properties {
             }
             set {
                 this["ScreenName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rabanti-github/Media-Extractor/issues")]
+        public string Support {
+            get {
+                return ((string)(this["Support"]));
+            }
+            set {
+                this["Support"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Raphael Stoeckli")]
+        public string Author {
+            get {
+                return ((string)(this["Author"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp,tif,tiff")]
+        public string ImageExtensions {
+            get {
+                return ((string)(this["ImageExtensions"]));
+            }
+            set {
+                this["ImageExtensions"] = value;
             }
         }
     }

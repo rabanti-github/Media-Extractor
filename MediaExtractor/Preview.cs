@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2022
+ * Copyright Raphael Stoeckli © 2023
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -31,14 +31,18 @@ namespace MediaExtractor
             {
                 if (imageConverters == null)
                 {
-                    imageConverters = new Dictionary<string, Func<MemoryStream, MemoryStream>>();
-                    imageConverters.Add("jpg", GetJpeg);
-                    imageConverters.Add("png", GetPng);
-                    imageConverters.Add("bmp", GetBmp);
-                    imageConverters.Add("gif", GetGif);
-                    imageConverters.Add("emf", GetEmf);
-                    imageConverters.Add("wmf", GetWmf);
-                    imageConverters.Add("wdp", GetWdp);
+                    imageConverters = new Dictionary<string, Func<MemoryStream, MemoryStream>>
+                    {
+                        { "jpg", GetJpeg },
+                        { "png", GetPng },
+                        { "bmp", GetBmp },
+                        { "gif", GetGif },
+                        { "tif", GetTiff },
+                        { "tiff", GetTiff },
+                        { "emf", GetEmf },
+                        { "wmf", GetWmf },
+                        { "wdp", GetWdp }
+                    };
                 }
                 return imageConverters;
             }
@@ -79,9 +83,7 @@ namespace MediaExtractor
         /// <returns>True if valid, otherwise false. In the later case, an error message is returned in the out parameter</returns>
         public static bool CreateXml(MemoryStream inputStream, bool fallbackToText, out string text, out string errorMessage)
         {
-            string tempText;
-            string lastError;
-            bool check = CreateText(inputStream, out tempText, out lastError);
+            bool check = CreateText(inputStream, out string tempText, out string lastError);
             if (!check)
             {
                 errorMessage = lastError;
@@ -90,13 +92,17 @@ namespace MediaExtractor
             }
             try
             {
-                XmlDocument doc = new XmlDocument();
-                doc.XmlResolver = null;
+                XmlDocument doc = new XmlDocument
+                {
+                    XmlResolver = null
+                };
                 doc.LoadXml(tempText);
                 StringBuilder sb = new StringBuilder();
                 TextWriter tw = new StringWriter(sb);
-                XmlTextWriter xtw = new XmlTextWriter(tw);
-                xtw.Formatting = Formatting.Indented;
+                XmlTextWriter xtw = new XmlTextWriter(tw)
+                {
+                    Formatting = Formatting.Indented
+                };
                 doc.Save(xtw);
                 xtw.Flush();
                 xtw.Close();
@@ -241,6 +247,16 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Method, used as function reference to create a TIFF
+        /// </summary>
+        /// <param name="input">Input memory stream</param>
+        /// <returns>Output memory stream of a BitmapImage</returns>
+        private static MemoryStream GetTiff(MemoryStream input)
+        {
+            return GetBitmap(input, ImageFormat.Tiff);
+        }
+
+        /// <summary>
         /// Method, used as function reference to create a WMF
         /// </summary>
         /// <param name="input">Input memory stream</param>
@@ -310,6 +326,5 @@ namespace MediaExtractor
             ms.Position = 0;
             return ms;
         }
-
     }
 }

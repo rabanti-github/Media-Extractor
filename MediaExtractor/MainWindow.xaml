@@ -85,6 +85,8 @@
                     <Separator/>
                     <MenuItem x:Name="EnglishMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageEnglish}" IsCheckable="True" IsChecked="{Binding Path=UseEnglishLocale}" Click="EnglishMenuItem_Click" />
                     <MenuItem x:Name="GermanhMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageGerman}" IsCheckable="True" IsChecked="{Binding Path=UseGermanLocale}" Click="GermanMenuItem_Click" />
+                    <MenuItem x:Name="FrenchMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageFrench}" IsCheckable="True" IsChecked="{Binding Path=UseFrenchLocale}" Click="FrenchMenuItem_Click" />
+
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.MenuHelp}">
@@ -130,7 +132,7 @@
                 </Border>
                 <TextBox x:Name="TextBox" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Hidden" Padding="5,5,3,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
                 <TextBox x:Name="NoPreviewBox"  Text="{x:Static p:Resources.TextNoPreview}" Margin="5,42,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Visibility="Visible" Padding="5,5,3,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" IsReadOnlyCaretVisible="False" FontWeight="Bold" FontSize="24" FontStyle="Italic" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                <adonisControls:SplitButton Command="{Binding SaveDefaultCommand}"  Content="{x:Static p:Resources.ButtonSave}" Margin="0,10,10,0" VerticalAlignment="Top" Width="150" IsEnabled="{Binding Path=SaveAllStatus}" HorizontalAlignment="Right">
+                <adonisControls:SplitButton Command="{Binding SaveDefaultCommand}"  Content="{x:Static p:Resources.ButtonSave}" Margin="0,10,10,0" VerticalAlignment="Top" Width="175" IsEnabled="{Binding Path=SaveAllStatus}" HorizontalAlignment="Right">
                     <adonisControls:SplitButton.SplitMenu>
                         <ContextMenu MinWidth="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
                             <MenuItem IsEnabled="{Binding Path=SaveSelectedStatus}" IsCheckable="True" IsChecked="{Binding Path=SaveSelectedIsDefault}" Header="{x:Static p:Resources.ButtonSaveSelected}" Command="{Binding SaveDefaultCommand}"/>

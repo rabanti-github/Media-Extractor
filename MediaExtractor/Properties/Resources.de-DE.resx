@@ -453,4 +453,7 @@
   <data name="StatusPreviewSkipped" xml:space="preserve">
     <value>Die Vorschau von '{0}' wurde nicht erstellt (Datei zu groß)</value>
   </data>
+  <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
+    <value>Französisch (Français)</value>
+  </data>
 </root>

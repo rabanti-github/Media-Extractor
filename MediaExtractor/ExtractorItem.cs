@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2022
+ * Copyright Raphael Stoeckli © 2023
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -28,15 +28,15 @@ namespace MediaExtractor
         /// <summary>
         /// Default file endings that are previewed as text
         /// </summary>
-        public const string FALLBACK_TEXT_EXTENTIONS = "asc,bas,bat,c,cfg,cmd,cpp,cs,css,csv,h,hex,htm,html,inc,inf,info,ini,java,js,json,kt,ktm,kts,latex,less,lisp,log,lst,lua,markdown,md,me,meta,mf,p,pas,php,pl,pp,ps,ps1,psm1,py,r,rb,readme,reg,rs,rst,sh,sln,sql,sty,tcl,tex,ts,tsx,txt,vb,vba,vbs,yaml,yml";
+        public const string FALLBACK_TEXT_EXTENSIONS = "asc,bas,bat,c,cfg,cmd,cpp,cs,css,csv,h,hex,htm,html,inc,inf,info,ini,java,js,json,kt,ktm,kts,latex,less,lisp,log,lst,lua,markdown,md,me,meta,mf,p,pas,php,pl,pp,ps,ps1,psm1,py,r,rb,readme,reg,rs,rst,sh,sln,sql,sty,tcl,tex,ts,tsx,txt,vb,vba,vbs,yaml,yml";
         /// <summary>
         /// Default file endings that are previewed as image
         /// </summary>
-        public const string FALLBACK_IMAGE_EXTENTIONS = "jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp";
+        public const string FALLBACK_IMAGE_EXTENSIONS = "jpg,jpeg,png,wmf,emf,gif,bmp,ico,wdp,tif,tiff";
         /// <summary>
         /// Default file endings that are previewed as XML
         /// </summary>
-        public const string FALLBACK_XML_EXTENTIONS = "xml,manifest,rels,xhtml,xaml,svg,pom,dtd,xsd,x3d,collada,cdxml,config,nuspec,graphml";
+        public const string FALLBACK_XML_EXTENSIONS = "xml,manifest,rels,xhtml,xaml,svg,pom,dtd,xsd,x3d,collada,cdxml,config,nuspec,graphml";
 
         /// <summary>
         /// Enum to define the coarse file type of the entry
@@ -248,9 +248,9 @@ namespace MediaExtractor
             }
             catch
             {
-                textExtensions = SplitExtensions(FALLBACK_TEXT_EXTENTIONS);
-                imageExtensions = SplitExtensions(FALLBACK_IMAGE_EXTENTIONS);
-                xmlExtensions = SplitExtensions(FALLBACK_XML_EXTENTIONS);
+                textExtensions = SplitExtensions(FALLBACK_TEXT_EXTENSIONS);
+                imageExtensions = SplitExtensions(FALLBACK_IMAGE_EXTENSIONS);
+                xmlExtensions = SplitExtensions(FALLBACK_XML_EXTENSIONS);
                 return false;
             }
         }

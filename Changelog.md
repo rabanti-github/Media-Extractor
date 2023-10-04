@@ -1,5 +1,17 @@
 # Change Log
 
+## v1.8.0
+
+Release Date: **04.10.2022**
+
+- Added French translation
+- Added installer
+- Bumped to .NET 4.8
+- UI adaptions to handle further translations
+- Code maintenance
+- Updated readme, added development utilities and updated project structure
+
+
 ## v1.7.2
 
 Release Date: **28.09.2022**

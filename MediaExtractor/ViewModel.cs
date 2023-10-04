@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2022
+ * Copyright Raphael Stoeckli © 2023
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -42,6 +42,7 @@ namespace MediaExtractor
         private bool useSystemLocale = true;
         private bool useEnglishLocale = false;
         private bool useGermanLocale = false;
+        private bool useFrenchLocale = false;
         private bool saveSelectedIsDefault;
         private bool saveAllIsDefault;
         private float numberOfFiles;
@@ -302,6 +303,7 @@ namespace MediaExtractor
                 {
                     UseGermanLocale = false;
                     UseEnglishLocale = false;
+                    UseFrenchLocale = false;
                 }
                 useSystemLocale = value;
                 NotifyPropertyChanged("UseSystemLocale");
@@ -322,6 +324,7 @@ namespace MediaExtractor
                 if (value)
                 {
                     UseGermanLocale = false;
+                    UseFrenchLocale = false;
                     UseSystemLocale = false;
                 }
                 useEnglishLocale = value;
@@ -343,10 +346,34 @@ namespace MediaExtractor
                 if (value)
                 {
                     UseEnglishLocale = false;
+                    useFrenchLocale = false;
                     UseSystemLocale = false;
                 }
                 useGermanLocale = value;
                 NotifyPropertyChanged("UseGermanLocale");
+            }
+        }
+
+
+        /// <summary>
+        /// If true, the Application will be using French (fr-Fr) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if German is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseFrenchLocale
+        {
+            get { return useFrenchLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                    UseGermanLocale = false;
+                    UseSystemLocale = false;
+                }
+                useFrenchLocale = value;
+                NotifyPropertyChanged("UseFrenchLocale");
             }
         }
 
