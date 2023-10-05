@@ -11,25 +11,23 @@ Media-Extractor is an application to preview and extract packed media in Microso
 The most recent version of Media-Extractor can be downloaded on the [Page of the latest Release](https://github.com/rabanti-github/Media-Extractor/releases/latest).
 
 - Usually, the **Installer** is suitable for the most users (e.g. **Media-Extractor-Setup_1_8.exe**).
-
-* If you want to use Media-Extractor as a **portable app**, the release version is the right choic (e.g. '**Media-Extractor_Release_v1.8.zip**').
-
-* The portable debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
+- If you want to use Media-Extractor as a **portable app**, the release version is the right choice (e.g. '**Media-Extractor_Release_v1.8.zip**').
+- The portable debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
 
 Please see also the section [SmartScreen Warning in Windows 8.1, 10 and 11](#smartscreen-warning-in-windows-81-10-and-11)
 
 ## Feature Overview
 
-* Supports most of the new Office formats (e.g. docx, xlsx, pptx)
-* Supports a variety of archive formats (e.g. zip, tar, 7z)
-* Creates previews of the most commonly used image formats used in Office (e.g. png, jpg, emf) which can be embedded
-* Creates previews of embedded text and XML files
-* Option to preview unknown, embedded files as plain text
-* Supports export of all embedded files at once, selected ones or particular ones
-* Supports export of other embedded data (e.g. xml files in xlsx or docx)
-* Loading of files by menu, button, drag&drop or 'open with' (Windows Explorer)
-* Dark mode
-* Translations (see section [Translations](#Translations))
+- Supports most of the new Office formats (e.g. docx, xlsx, pptx)
+- Supports a variety of archive formats (e.g. zip, tar, 7z)
+- Creates previews of the most commonly used image formats used in Office (e.g. png, jpg, emf) which can be embedded
+- Creates previews of embedded text and XML files
+- Option to preview unknown, embedded files as plain text
+- Supports export of all embedded files at once, selected ones or particular ones
+- Supports export of other embedded data (e.g. xml files in xlsx or docx)
+- Loading of files by menu, button, drag&drop or 'open with' (Windows Explorer)
+- Dark mode
+- Translations (see section [Translations](#Translations))
 
 ---
 
@@ -77,10 +75,10 @@ Furthermore, embedded files can be sorted based on their properties, like file n
 
 Currently, four columns are available:
 
-* Name of the embedded file
-* Relative path of the embedded file in the document or archive
-* File extension of the embedded file
-* Size of the embedded file (extracted size)
+- Name of the embedded file
+- Relative path of the embedded file in the document or archive
+- File extension of the embedded file
+- Size of the embedded file (extracted size)
 
 ![Preview unknown Formats](./resources/img/sort_files.gif)
 
@@ -100,10 +98,10 @@ One or many files (using ctrl or shift key) can be selected in the list and extr
 
 ## System Requirements
 
-Media-Extractor does not need an installation. The [downloaded zip file](#Download) can be unzipped in a folder of your choice. The system requirements are:
+Although Media-Extractor provides an [installer](#Download), it does not need an installation and can be run as portable app. The [downloaded zip file](#Download) can be unzipped in a folder of your choice. The general system requirements are:
 
-* Microsoft Windows 7, 8.1, 10, 11
-* .NET 4.6.2 or higher installed
+- Microsoft Windows 7, 8.1, 10, 11
+- .NET 4.8 or higher installed
 
 Please see the section about the [SmartScreen Warning](#smartscreen-warning-in-windows-81-10-and-11) if you have problem to run the application after downloading.
 
@@ -115,22 +113,22 @@ Currently, Media-Extractor is translated to the following Languages:
 | -------- | --------- | ------------------ |
 | **English**  | Completed | Application Author |
 | **German**   | Completed | Application Author |
-| **French**   | Completed | AI based transaltion |
+| **French**   | Completed | AI based translation |
 
 If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template). Alternatively, the default translation terms can be downloaded as [Excel file](./resources/translation/DefaultTranslationStrings.xlsx). This is a direct copy of the default [Resources.resx file](https://github.com/rabanti-github/Media-Extractor/blob/master/MediaExtractor/Properties/Resources.resx).
 
-Please don't hesitate to ask, if the context of a term is not clear.
+Please do not hesitate to ask, if the context of a term is not clear.
 
 ## SmartScreen Warning in Windows 8.1, 10 and 11
 
 Windows 8.1 introduced a mechanism to protect users from phishing websites and malware, yet not known to Antivirus programs. This mechanism is called [SmartScreen](https://support.microsoft.com/en-us/help/17443/microsoft-edge-smartscreen-faq) and either blocks the access to a malicious website, or the execution of unknown apps.
-Unfortunately, it is possible that Media-Extractor is initially blocked by SmartScreen, since the mechanism don't know the app until 'some people' have downloaded and executed the app. The number of necessary downloads until the app is not seen as unknown (thus, not blocked by SmartScreen anymore) is not that clear.
+Unfortunately, it is possible that Media-Extractor is initially blocked by SmartScreen, since the mechanism do not know the app until 'some people' have downloaded and executed the app. The number of necessary downloads until the app is not seen as unknown (thus, not blocked by SmartScreen anymore) is not that clear.
 The second unfortunately fact is that SmartScreen will be triggered by each new version of the app.
 What you can do to execute Media-Extractor:
 
-* Tell SmartScreen that you trust the app (must only declared once)
-* Disable SmartScreen according to [this article](https://support.microsoft.com/en-us/help/17443/microsoft-edge-smartscreen-faq)
-* Wait until enough people have downloaded and executed Media-Extractor
+- Tell SmartScreen that you trust the app (must only declared once)
+- Disable SmartScreen according to [this article](https://support.microsoft.com/en-us/help/17443/microsoft-edge-smartscreen-faq)
+- Wait until enough people have downloaded and executed Media-Extractor
 
 Note: Similar mechanisms may be also triggered by Browsers, like Edge, Chrome or Vivaldi
 
@@ -138,17 +136,17 @@ Note: Similar mechanisms may be also triggered by Browsers, like Edge, Chrome or
 
 The following libraries / dependencies are necessary for the development of Media-Extractor. All of them are maintained by NuGet:
 
-* SevenZipExtractor
-* Ookii.Dialogs.Wpf
-* AdonisUI and AdonisUI.ClassicTheme
-* NanoXLSX (for TranslationHelper project)
-* Mono.Options (for TranslationHelper project)
+- [SevenZipExtractor](https://github.com/adoconnection/SevenZipExtractor)
+- [Ookii.Dialogs.Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf)
+- [AdonisUI](https://github.com/benruehl/adonis-ui/) and AdonisUI.ClassicTheme
+- [NanoXLSX](https://github.com/rabanti-github/NanoXLSX) (for TranslationHelper project)
+- [Mono.Options](https://github.com/xamarin/XamarinComponents/tree/main/XPlat/Mono.Options) (for TranslationHelper project)
 
 ## Additional Development Projects
 
-* TranslationHelper (import/export utility, used for the translation of Media-Extractor)
-* InsdtallerBootstrap (utility to post-build the installer script after building Media-Extractor)
-* MediaExtractorInstaller (Inno Setup project to create the installer file)
+- TranslationHelper (import/export utility, used for the translation of Media-Extractor)
+- InstallerBootstrap (utility to post-build the installer script after building Media-Extractor)
+- MediaExtractorInstaller ([Inno Setup](https://jrsoftware.org/isinfo.php) project to create the installer file)
 
 ## License
 
