@@ -10,8 +10,8 @@ Media-Extractor is an application to preview and extract packed media in Microso
 
 The most recent version of Media-Extractor can be downloaded on the [Page of the latest Release](https://github.com/rabanti-github/Media-Extractor/releases/latest).
 
-- Usually, the **Installer** is suitable for the most users (e.g. **Media-Extractor-Setup_1_8.exe**).
-- If you want to use Media-Extractor as a **portable app**, the release version is the right choice (e.g. '**Media-Extractor_Release_v1.8.zip**').
+- Usually, the **Installer** is suitable for the most users (e.g. **Media-Extractor-Setup_1_9.exe**).
+- If you want to use Media-Extractor as a **portable app**, the release version is the right choice (e.g. '**Media-Extractor_Release_v1.9.zip**').
 - The portable debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
 
 Please see also the section [SmartScreen Warning in Windows 8.1, 10 and 11](#smartscreen-warning-in-windows-81-10-and-11)
@@ -114,6 +114,7 @@ Currently, Media-Extractor is translated to the following Languages:
 | **English**  | Completed | Application Author |
 | **German**   | Completed | Application Author |
 | **French**   | Completed | AI based translation |
+| **Spanish**   | Completed | AI based translation |
 
 If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template). Alternatively, the default translation terms can be downloaded as [Excel file](./resources/translation/DefaultTranslationStrings.xlsx). This is a direct copy of the default [Resources.resx file](https://github.com/rabanti-github/Media-Extractor/blob/master/MediaExtractor/Properties/Resources.resx).
 

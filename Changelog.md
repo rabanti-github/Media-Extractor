@@ -1,5 +1,17 @@
 # Change Log
 
+## v1.9.0
+
+Release Date: **15.11.2023**
+
+- Added Spanish translation
+- Code maintenance
+- Updated readme
+
+Note: Due to an error in the installer of the previous version 1.8, the upgrade process from 1.8 to 1.9 may fail. Please uninstall version 1.8 first in case of a message, stating that the installation directory already exists.
+
+---
+
 ## v1.8.0
 
 Release Date: **04.10.2022**
@@ -11,6 +23,7 @@ Release Date: **04.10.2022**
 - Code maintenance
 - Updated readme, added development utilities and updated project structure
 
+---
 
 ## v1.7.2
 

@@ -118,345 +118,345 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MenuFile" xml:space="preserve">
-    <value>File</value>
+    <value>Archivo</value>
   </data>
   <data name="MenuFileOpen" xml:space="preserve">
-    <value>Open Document</value>
+    <value>Abrir documento</value>
   </data>
   <data name="MenuFileSaveSelected" xml:space="preserve">
-    <value>Save selected File(s)</value>
+    <value>Guardar archivo(s) seleccionado(s)</value>
   </data>
   <data name="MenuFileSaveAll" xml:space="preserve">
-    <value>Save all Files</value>
+    <value>Guardar todos los archivos</value>
   </data>
   <data name="MenuFileQuit" xml:space="preserve">
-    <value>Quit</value>
+    <value>Salir</value>
   </data>
   <data name="MenuDocument" xml:space="preserve">
-    <value>Document</value>
+    <value>Documento</value>
   </data>
   <data name="MenuDocumentShowImages" xml:space="preserve">
-    <value>Show embedded Image Files</value>
+    <value>Mostrar archivos de imagen incrustados</value>
   </data>
   <data name="MenuDocumentShowOther" xml:space="preserve">
-    <value>Show other embedded Files</value>
+    <value>Mostrar otros archivos incrustados</value>
   </data>
   <data name="MenuDocumentKeepStructure" xml:space="preserve">
-    <value>Keep Folder Structure when Extracting</value>
+    <value>Mantener la estructura de carpetas al extraer</value>
   </data>
   <data name="MenuDocumentOpenExplorer" xml:space="preserve">
-    <value>Show in Explorer after Extracting</value>
+    <value>Mostrar en el Explorador después de extraer</value>
   </data>
   <data name="MenuAppearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Apariencia</value>
   </data>
   <data name="MenuAppearanceDarkmode" xml:space="preserve">
-    <value>Dark Mode</value>
+    <value>Modo oscuro</value>
   </data>
   <data name="MenuAppearanceLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Idioma</value>
   </data>
   <data name="MenuAppearanceLanguageEnglish" xml:space="preserve">
-    <value>English</value>
+    <value>Inglés (English)</value>
   </data>
   <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
-    <value>German (Deutsch)</value>
+    <value>Alemán (German)</value>
   </data>
   <data name="MenuHelp" xml:space="preserve">
-    <value>Help</value>
+    <value>Ayuda</value>
   </data>
   <data name="MenuHelpAbout" xml:space="preserve">
-    <value>About</value>
+    <value>Sobre</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Project Website</value>
+    <value>Página web del proyecto</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
-    <value>Change Log</value>
+    <value>Historial de cambios</value>
   </data>
   <data name="MenuHelpLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licencia</value>
   </data>
   <data name="ButtonOpen" xml:space="preserve">
-    <value>Open Document</value>
+    <value>Abrir documento</value>
   </data>
   <data name="LabelListview" xml:space="preserve">
-    <value>Embedded Files</value>
+    <value>Archivos incrustados</value>
   </data>
   <data name="ListViewColumnName" xml:space="preserve">
-    <value>Filename (Embedded)</value>
+    <value>Nombre de archivo (incrustado)</value>
   </data>
   <data name="ListViewColumnExtension" xml:space="preserve">
     <value>Ext.</value>
   </data>
   <data name="ListViewColumnPath" xml:space="preserve">
-    <value>Relative Path</value>
+    <value>Ruta relativa</value>
   </data>
   <data name="ButtonSave" xml:space="preserve">
-    <value>Save File(s)</value>
+    <value>Guardar archivo(s)</value>
   </data>
   <data name="ButtonSaveAll" xml:space="preserve">
-    <value>Save all Files</value>
+    <value>Guardar todos los archivos</value>
   </data>
   <data name="LabelPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Vista previa</value>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
-    <value>Author</value>
+    <value>Autor</value>
   </data>
   <data name="AboutCloseButton" xml:space="preserve">
-    <value>Close</value>
+    <value>Cerrar</value>
   </data>
   <data name="AboutDate" xml:space="preserve">
-    <value>Date</value>
+    <value>Fecha</value>
   </data>
   <data name="AboutDescription" xml:space="preserve">
-    <value>Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar)</value>
+    <value>Media Extractor es una aplicación para previsualizar y extraer medios empaquetados en archivos de Microsoft Office (por ejemplo, documentos de Word, PowerPoint o Excel) o archivos comunes (por ejemplo, zip, 7z o tar)</value>
   </data>
   <data name="AboutHeader" xml:space="preserve">
-    <value>About Media-Extractor</value>
+    <value>Acerca de Media-Extractor</value>
   </data>
   <data name="AboutLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licencia</value>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Version</value>
+    <value>Versión</value>
   </data>
   <data name="AboutWebsite" xml:space="preserve">
-    <value>Website</value>
+    <value>Página web</value>
   </data>
   <data name="ButtonSaveSelected" xml:space="preserve">
-    <value>Save selected File(s)</value>
+    <value>Guardar archivo(s) seleccionados</value>
   </data>
   <data name="CrcDescription" xml:space="preserve">
-    <value>CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected.</value>
+    <value>CRC32 (comprobación de redundancia cíclica) es un método hash sencillo para comparar si los datos o archivos son idénticos. Sin embargo, el CRC no garantiza al 100% que dos archivos sean idénticos. Pero es una prueba contundente si el tamaño de ambos archivos es idéntico y no cabe esperar ninguna manipulación malintencionada.</value>
   </data>
   <data name="DialogButtonCancel" xml:space="preserve">
-    <value>Cancel Extraction</value>
+    <value>Cancelar extracción</value>
   </data>
   <data name="DialogButtonCancelTooltip" xml:space="preserve">
-    <value>Cancel the extraction</value>
+    <value>Cancelar la extracción</value>
   </data>
   <data name="DialogButtonOverwrite" xml:space="preserve">
-    <value>Overwrite</value>
+    <value>Sobrescribir</value>
   </data>
   <data name="DialogButtonOverwriteTooltip" xml:space="preserve">
-    <value>Replace the existing file</value>
+    <value>Sustituir el archivo existente</value>
   </data>
   <data name="DialogButtonRename" xml:space="preserve">
-    <value>Rename</value>
+    <value>Cambiar nombre</value>
   </data>
   <data name="DialogButtonRenameTooltip" xml:space="preserve">
-    <value>Rename the new file</value>
+    <value>Cambiar el nombre del nuevo archivo</value>
   </data>
   <data name="DialogButtonSkip" xml:space="preserve">
-    <value>Skip</value>
+    <value>Omitir</value>
   </data>
   <data name="DialogButtonSkipTooltip" xml:space="preserve">
-    <value>Skip the extraction of the file</value>
+    <value>Omitir la extracción del archivo</value>
   </data>
   <data name="DialogCancelTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Cancelado</value>
   </data>
   <data name="DialogErrorTitle" xml:space="preserve">
     <value>Error</value>
   </data>
   <data name="DialogExplorerError" xml:space="preserve">
-    <value>The path '{0}' could not be opened</value>
+    <value>No se ha podido abrir la ruta '{0}'</value>
   </data>
   <data name="DialogHeader" xml:space="preserve">
-    <value>File already exists...</value>
+    <value>El archivo ya existe...</value>
   </data>
   <data name="DialogLabelCrc" xml:space="preserve">
     <value>CRC32:</value>
   </data>
   <data name="DialogLabelDate" xml:space="preserve">
-    <value>Date:</value>
+    <value>Fecha:</value>
   </data>
   <data name="DialogLabelExisting" xml:space="preserve">
-    <value>Existing File</value>
+    <value>Archivo existente</value>
   </data>
   <data name="DialogLabelName" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nombre:</value>
   </data>
   <data name="DialogLabelNew" xml:space="preserve">
-    <value>New File to Extract</value>
+    <value>Nuevo archivo a extraer</value>
   </data>
   <data name="DialogLabelSize" xml:space="preserve">
-    <value>Size:</value>
+    <value>Tamaño:</value>
   </data>
   <data name="DialogRememberCheckbox" xml:space="preserve">
-    <value>Remember Decision</value>
+    <value>Recordar la decisión</value>
   </data>
   <data name="DialogSaveAllTitle" xml:space="preserve">
-    <value>Select a Folder to save all Files...</value>
+    <value>Seleccione una carpeta para guardar todos los archivos...</value>
   </data>
   <data name="DialogSaveCurrentTitle" xml:space="preserve">
-    <value>Save current File as...</value>
+    <value>Guardar archivo actual como...</value>
   </data>
   <data name="DialogSaveErrors" xml:space="preserve">
-    <value>Not all files were extracted</value>
+    <value>No se han extraído todos los archivos</value>
   </data>
   <data name="DialogSaveFailure" xml:space="preserve">
-    <value>The file could not be saved</value>
+    <value>No se ha podido almacenar el archivo</value>
   </data>
   <data name="DialogSaveFilter" xml:space="preserve">
-    <value>All files|*.*</value>
+    <value>Todos los archivos|*.*</value>
   </data>
   <data name="DialogSaveSelectedTitle" xml:space="preserve">
-    <value>Select a Folder to save the selected Files...</value>
+    <value>Seleccione una Carpeta para almacenar los archivos seleccionados...</value>
   </data>
   <data name="DialogUnexpectedError" xml:space="preserve">
-    <value>There was an unexpected error during the extraction:</value>
+    <value>Se ha producido un error inesperado durante la extracción:</value>
   </data>
   <data name="DropAreaWatermark" xml:space="preserve">
-    <value>Drop Document here</value>
+    <value>Deje aquí el documento</value>
   </data>
   <data name="StatusSaveCanceled" xml:space="preserve">
-    <value>The save process was canceled</value>
+    <value>Se ha cancelado el proceso de guardado</value>
   </data>
   <data name="StatusSaveErrorSummary" xml:space="preserve">
-    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped, {4} not extracted (errors)</value>
+    <value>{0} archivos extraídos ({1} sobrescritos, {2} renombrados), {3} omitidos, {4} no extraídos (errores)</value>
   </data>
   <data name="StatusSaveFailure" xml:space="preserve">
-    <value>Could not save the file: {0}</value>
+    <value>No se ha podido guardar el archivo: {0}</value>
   </data>
   <data name="StatusSaveSuccess" xml:space="preserve">
-    <value>The file was saved as: {0}</value>
+    <value>El archivo fue guardado como: {0}</value>
   </data>
   <data name="StatusSaveSummary" xml:space="preserve">
-    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped</value>
+    <value>{0} archivos extraídos ({1} sobrescritos, {2} renombrados), {3} omitidos</value>
   </data>
   <data name="TextErrorMultipleFiles" xml:space="preserve">
-    <value>{0} files could not be extracted.</value>
+    <value>{0} archivos no pudieron ser extraídos.</value>
   </data>
   <data name="TextErrorOneFile" xml:space="preserve">
-    <value>One file could not be extracted.</value>
+    <value>No se ha podido extraer un archivo.</value>
   </data>
   <data name="TextNoPreview" xml:space="preserve">
-    <value>No Preview</value>
+    <value>Sin vista previa</value>
   </data>
   <data name="TextSaveError" xml:space="preserve">
-    <value>The path '{0}' could not be opened</value>
+    <value>No se ha podido abrir la ruta '{0}</value>
   </data>
   <data name="TextSkippedMultipleFiles" xml:space="preserve">
-    <value>{0} files were skipped.</value>
+    <value>Se han omitido {0} archivos.</value>
   </data>
   <data name="TextSkippedOneFile" xml:space="preserve">
-    <value>One file was skipped.</value>
+    <value>Se ha omitido un archivo.</value>
   </data>
   <data name="DialogLoadFailure" xml:space="preserve">
-    <value>The file could not be loaded.\n{0}\nError Message: {1}</value>
+    <value>El archivo no se ha podido cargar.\n{0}\nMensaje de error: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
+    <value>Todos los formatos de Office|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Documentos Word|*.docx;*.dotx;*.docm;*.dotm|Documentos Excel|*. xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|Documentos PowerPoint|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Formatos de archivo comunes|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Todos los archivos|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
-    <value>Select Office Document...</value>
+    <value>Seleccione Documento Office...</value>
   </data>
   <data name="StatusLoaded" xml:space="preserve">
-    <value>File loaded: {0}</value>
+    <value>Archivo cargado: {0}</value>
   </data>
   <data name="StatusLoadFailure" xml:space="preserve">
-    <value>The file could not be loaded</value>
+    <value>No se ha podido cargar el archivo</value>
   </data>
   <data name="StatusLoading" xml:space="preserve">
     <value>Loading file... Please wait</value>
   </data>
   <data name="TextInvalidFormat" xml:space="preserve">
-    <value>The file may be not a valid Office file or archive.</value>
+    <value>Es posible que el archivo no sea un archivo válido de Office.</value>
   </data>
   <data name="TextInvalidPath" xml:space="preserve">
-    <value>It looks like the filename is not valid. Please check the file name and path.</value>
+    <value>Parece que el nombre del archivo no es válido. Por favor, compruebe el nombre del archivo y la ruta.</value>
   </data>
   <data name="TextLockedFile" xml:space="preserve">
-    <value>Please make sure that the file is not open in another application.</value>
+    <value>Asegúrese de que el archivo no está abierto en otra aplicación.</value>
   </data>
   <data name="DialogMissingChangelog" xml:space="preserve">
-    <value>The change log '{0}' was not found.</value>
+    <value>No se ha encontrado el historial de cambios '{0}'.</value>
   </data>
   <data name="DialogMissingChangelogTitle" xml:space="preserve">
-    <value>Changelog not found</value>
+    <value>Registro de cambios no encontrado</value>
   </data>
   <data name="DialogMissingLicense" xml:space="preserve">
-    <value>The license file '{0}' was not found.</value>
+    <value>No se ha encontrado el archivo de licencia '{0}'.</value>
   </data>
   <data name="DialogMissingLicenseTitle" xml:space="preserve">
-    <value>License could not be found</value>
+    <value>No se ha encontrado la licencia</value>
   </data>
   <data name="StatusEmbeddedLoaded" xml:space="preserve">
-    <value>{0} loaded</value>
+    <value>{0} cargado</value>
   </data>
   <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
-    <value>Embedded file could not be loaded: {0}</value>
+    <value>No se ha podido cargar el archivo incrustado: {0}</value>
   </data>
   <data name="StatusLoadEmbeddedOtherFailure" xml:space="preserve">
-    <value>Preview not possible for {0}</value>
+    <value>Vista previa no posible para {0}</value>
   </data>
   <data name="StatusLoadEmbeddedTextFailure" xml:space="preserve">
-    <value>Text / XML file could not be loaded: {0}</value>
+    <value>No se ha podido cargar el archivo de texto / XML: {0}</value>
   </data>
   <data name="StatusLoadingEmbedded" xml:space="preserve">
-    <value>Loading embedded file... Please wait</value>
+    <value>Cargando archivo... Espere</value>
   </data>
   <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
-    <value>System Language (Default)</value>
+    <value>Idioma del sistema (por defecto)</value>
   </data>
   <data name="DialogMissingWebsite" xml:space="preserve">
-    <value>The project website could not be loaded</value>
+    <value>No se ha podido cargar el sitio web del proyecto</value>
   </data>
   <data name="DialogMissingWebsiteTitle" xml:space="preserve">
-    <value>Project website not loaded</value>
+    <value>El sitio web del proyecto no se carga</value>
   </data>
   <data name="TextErrorInvalidImage" xml:space="preserve">
-    <value>Image preview could not be created</value>
+    <value>No se ha podido crear la vista previa de la imagen</value>
   </data>
   <data name="TextErrorInvalidText" xml:space="preserve">
-    <value>Text preview could not be created</value>
+    <value>No se ha podido crear la vista previa del texto</value>
   </data>
   <data name="DialogInvalidExtensions" xml:space="preserve">
-    <value>An error occurred during the retrieval of the file extensions for the previews. The default values are restored</value>
+    <value>Se ha producido un error al recuperar las extensiones de archivo para las vistas previas. Se restablecen los valores por defecto</value>
   </data>
   <data name="StatusReady" xml:space="preserve">
-    <value>Ready</value>
+    <value>Listo</value>
   </data>
   <data name="ListViewColumnSize" xml:space="preserve">
-    <value>Size</value>
+    <value>Tamaño</value>
   </data>
   <data name="DialogMissingRecentFile" xml:space="preserve">
-    <value>The file was not found:\n{0}\nShould the entry be removed from the recent file list?</value>
+    <value>No se ha encontrado el archivo:\n{0}\n¿Debe eliminarse la entrada de la lista de archivos recientes?</value>
   </data>
   <data name="MenuFileClearRecent" xml:space="preserve">
-    <value>Clear List</value>
+    <value>Lista clara</value>
   </data>
   <data name="MenuFileRecent" xml:space="preserve">
-    <value>Recent Files</value>
+    <value>Archivos recientes</value>
   </data>
   <data name="DialogSizeWarning" xml:space="preserve">
-    <value>The preview of a large file (&gt; {0}) is attempted.\nThis process may take a long time.\nShall the preview be created?</value>
+    <value>Se intenta crear la vista previa de un archivo grande (&gt; {0}).\nEste proceso puede tardar mucho tiempo.\n¿Se debe crear la vista previa?</value>
   </data>
   <data name="DialogSizeWarningTitle" xml:space="preserve">
-    <value>Attempt to preview a large File...</value>
+    <value>Intento de previsualizar un archivo grande...</value>
   </data>
   <data name="MenuDocumentGenerictextPreview" xml:space="preserve">
-    <value>Text Preview on unknown File Formats</value>
+    <value>Vista previa de texto en formatos de archivo desconocidos</value>
   </data>
   <data name="MenuDocumentSizeWarning" xml:space="preserve">
-    <value>Show Warning for Preview of large Files</value>
+    <value>Mostrar advertencia en la vista previa de archivos grandes</value>
   </data>
   <data name="StatusLoadEmbeddedImageFallback" xml:space="preserve">
-    <value>The preview image for '{0}' could not be loaded. Displaying as text</value>
+    <value>No se ha podido cargar la imagen de previsualización de '{0}'. Mostrar como texto</value>
   </data>
   <data name="StatusLoadEmbeddedOtherFallback" xml:space="preserve">
-    <value>The preview for '{0}' could not be loaded. Displaying as text</value>
+    <value>No se ha podido cargar la vista previa de '{0}'. Mostrar como texto</value>
   </data>
   <data name="StatusPreviewSkipped" xml:space="preserve">
-    <value>The preview of '{0}' was skipped (file too large)</value>
+    <value>Se ha omitido la vista previa de '{0}' (archivo demasiado grande)</value>
   </data>
   <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
-    <value>French (Français)</value>
+    <value>Francés (French)</value>
   </data>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
-    <value>Spanish (Español)</value>
+    <value>Español</value>
   </data>
 </root>

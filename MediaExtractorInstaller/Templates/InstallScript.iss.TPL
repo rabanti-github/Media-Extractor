@@ -31,6 +31,7 @@ begin
       'english': NextButtonCaption  := '&I agree';
       'german': NextButtonCaption  := '&Ich stimme zu';
       'french': NextButtonCaption  := '&J''accepte';
+      'spanish': NextButtonCaption  := '&Yo acepto';
       else
         NextButtonCaption  := '&I agree'; // Default to English
       end;
@@ -56,8 +57,8 @@ LicenseFile=${TPL_LICENSE_FILE}
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=${TPL_OUTPUT_BASE_FILENAME}
-SetupIconFile=${TPL_INSTALL_ICON_FILE}
 UninstallDisplayIcon={app}\{#MyAppExeName}
+SetupIconFile=.\Resources\media_extractor_installer.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -66,6 +67,7 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
@@ -78,7 +80,7 @@ Source: ${TPL_ASSEMBLY_PATH}*; DestDir: "{app}"; Flags: ignoreversion recursesub
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-Name: "{group}\changelog.txt"; Filename: "{app}\${TPL_CHANGELOG_FILE}"
+Name: "{group}\changelog.txt"; Filename: "{app}\changelog.txt"
 Name: "{group}\Project Website"; Filename: "{#MyAppURL}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 

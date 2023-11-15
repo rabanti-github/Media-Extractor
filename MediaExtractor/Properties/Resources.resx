@@ -442,7 +442,7 @@
     <value>Text Preview on unknown File Formats</value>
   </data>
   <data name="MenuDocumentSizeWarning" xml:space="preserve">
-    <value>Show Warning for Prview of large Files</value>
+    <value>Show Warning for Preview of large Files</value>
   </data>
   <data name="StatusLoadEmbeddedImageFallback" xml:space="preserve">
     <value>The preview image for '{0}' could not be loaded. Displaying as text</value>
@@ -454,6 +454,9 @@
     <value>The preview of '{0}' was skipped (file too large)</value>
   </data>
   <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
-    <value>French</value>
+    <value>Français (French)</value>
+  </data>
+  <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
+    <value>Español (Spanish)</value>
   </data>
 </root>

@@ -4,15 +4,15 @@ This project is the setup build project, using **Inno Setup**
 
 ## Compatibility
 
-The Visual Studio extension was initially written for VS version 2005 and 2008. It may nit be compatible with newer versions and may throw errors during the build process in the IDE.
+The Visual Studio extension was initially written for VS version 2005 and 2008. It may not be compatible with newer versions and may throw errors during the build process in the IDE.
 
-However, the main installer script file **InstallScript.iss** sould be compiled by a recent version fo a InnoSetup installation without issues.
+However, the main installer script file **InstallScript.iss** should be compiled by a recent version fo a Inno Setup installation without issues.
 
 If building in the IDE fails, the build can be performed directly in the Inno Setup Compiler application.
 
 ## Environment
 
-The project has only one preset to be maintened: The Inno Setup Path.
+The project has only one preset to be maintained: The Inno Setup Path.
 This path is currently set to the standard installation path:
 
 ```sh

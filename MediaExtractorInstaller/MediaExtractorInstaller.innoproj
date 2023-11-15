@@ -30,6 +30,9 @@
     <Content Include="Resources\media_extractor.ico">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Resources\media_extractor_uninstaller.ico">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Resources\MIT-License.rtf">
       <SubType>Content</SubType>
     </Content>
@@ -37,5 +40,4 @@
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\InnoSetupTools\InnoSetupProject.targets" />
 </Project>

@@ -43,6 +43,7 @@ namespace MediaExtractor
         private bool useEnglishLocale = false;
         private bool useGermanLocale = false;
         private bool useFrenchLocale = false;
+        private bool useSpanishLocale = false;
         private bool saveSelectedIsDefault;
         private bool saveAllIsDefault;
         private float numberOfFiles;
@@ -304,6 +305,7 @@ namespace MediaExtractor
                     UseGermanLocale = false;
                     UseEnglishLocale = false;
                     UseFrenchLocale = false;
+                    useSpanishLocale = false;
                 }
                 useSystemLocale = value;
                 NotifyPropertyChanged("UseSystemLocale");
@@ -325,6 +327,7 @@ namespace MediaExtractor
                 {
                     UseGermanLocale = false;
                     UseFrenchLocale = false;
+                    useSpanishLocale = false;
                     UseSystemLocale = false;
                 }
                 useEnglishLocale = value;
@@ -347,6 +350,7 @@ namespace MediaExtractor
                 {
                     UseEnglishLocale = false;
                     useFrenchLocale = false;
+                    useSpanishLocale = false;
                     UseSystemLocale = false;
                 }
                 useGermanLocale = value;
@@ -356,7 +360,7 @@ namespace MediaExtractor
 
 
         /// <summary>
-        /// If true, the Application will be using French (fr-Fr) as locale
+        /// If true, the Application will be using French (fr-FR) as locale
         /// </summary>
         /// <value>
         ///   <c>true</c> if German is the current locale, otherwise, <c>false</c>
@@ -370,10 +374,34 @@ namespace MediaExtractor
                 {
                     UseEnglishLocale = false;
                     UseGermanLocale = false;
+                    useSpanishLocale = false;
                     UseSystemLocale = false;
                 }
                 useFrenchLocale = value;
                 NotifyPropertyChanged("UseFrenchLocale");
+            }
+        }
+
+        /// <summary>
+        /// If true, the Application will be using Spanish (es-ES) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if Spanish is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseSpanishLocale
+        {
+            get { return useSpanishLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                    UseGermanLocale = false;
+                    UseFrenchLocale = false;
+                    UseSystemLocale = false;
+                }
+                useSpanishLocale = value;
+                NotifyPropertyChanged("UseSpanishLocale");
             }
         }
 

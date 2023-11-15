@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaExtractor", "MediaExtractor\MediaExtractor.csproj", "{863DFC29-45E2-4769-B980-51E3C635AFAB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AA74FD79-120E-457F-A596-9A3DE3845F36} = {AA74FD79-120E-457F-A596-9A3DE3845F36}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationHelper", "TranslationHelper\TranslationHelper.csproj", "{595C1814-AA36-4499-A98D-E21D9EC2A57E}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -14,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationHelper", "Transl
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerBootstrap", "InstallerBootstrap\InstallerBootstrap.csproj", "{AA74FD79-120E-457F-A596-9A3DE3845F36}"
-EndProject
-Project("{29E15B7A-B420-4782-B51D-1BE2F663A160}") = "MediaExtractorInstaller", "MediaExtractorInstaller\MediaExtractorInstaller.innoproj", "{3589BA86-F4BA-4B13-B153-BB2F15C78B77}"
 	ProjectSection(ProjectDependencies) = postProject
 		{863DFC29-45E2-4769-B980-51E3C635AFAB} = {863DFC29-45E2-4769-B980-51E3C635AFAB}
 	EndProjectSection
+EndProject
+Project("{29E15B7A-B420-4782-B51D-1BE2F663A160}") = "MediaExtractorInstaller", "MediaExtractorInstaller\MediaExtractorInstaller.innoproj", "{3589BA86-F4BA-4B13-B153-BB2F15C78B77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

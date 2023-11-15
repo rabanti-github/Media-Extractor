@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Media Extractor"
-#define MyAppVersion "1.8"
+#define MyAppVersion "1.9"
 #define MyAppURL "https://github.com/rabanti-github/Media-Extractor"
 #define MyAppSupportURL "https://github.com/rabanti-github/Media-Extractor/issues"
 #define MyAppExeName "MediaExtractor.exe"
@@ -31,6 +31,7 @@ begin
       'english': NextButtonCaption  := '&I agree';
       'german': NextButtonCaption  := '&Ich stimme zu';
       'french': NextButtonCaption  := '&J''accepte';
+      'spanish': NextButtonCaption  := '&Yo acepto';
       else
         NextButtonCaption  := '&I agree'; // Default to English
       end;
@@ -55,9 +56,9 @@ LicenseFile=.\Resources\MIT-License.rtf
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=Media-Extractor-Setup_1_8
-SetupIconFile=.\Resources\media_extractor_installer.ico
+OutputBaseFilename=Media-Extractor-Setup_1_9
 UninstallDisplayIcon={app}\{#MyAppExeName}
+SetupIconFile=.\Resources\media_extractor_installer.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -66,6 +67,7 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked

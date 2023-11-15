@@ -87,6 +87,7 @@ namespace MediaExtractor
             MenuAppearanceLanguageEnglish,
             MenuAppearanceLanguageGerman,
             MenuAppearanceLanguageFrench,
+            MenuAppearanceLanguageSpanish,
             MenuDocument,
             MenuDocumentGenerictextPreview,
             MenuDocumentSizeWarning,
@@ -148,6 +149,10 @@ namespace MediaExtractor
         /// Locale identifier for French (fr-FR)
         /// </summary>
         public const string FRENCH = "fr-FR";
+        /// <summary>
+        /// Locale identifier for Spanish (es-ES)
+        /// </summary>
+        public const string SPANISH = "es-ES";
 
         /// <summary>
         /// Method to set the current locale in the view model
@@ -168,18 +173,28 @@ namespace MediaExtractor
                     viewModel.UseEnglishLocale = true;
                     viewModel.UseGermanLocale = false;
                     viewModel.UseFrenchLocale = false;
+                    viewModel.UseSpanishLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case GERMAN:
                     viewModel.UseEnglishLocale = false;
                     viewModel.UseGermanLocale = true;
                     viewModel.UseFrenchLocale = false;
+                    viewModel.UseSpanishLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case FRENCH:
                     viewModel.UseEnglishLocale = false;
                     viewModel.UseGermanLocale = false;
                     viewModel.UseFrenchLocale = true;
+                    viewModel.UseSpanishLocale = false;
+                    viewModel.UseSystemLocale = false;
+                    break;
+                case SPANISH:
+                    viewModel.UseEnglishLocale = false;
+                    viewModel.UseGermanLocale = false;
+                    viewModel.UseFrenchLocale = false;
+                    viewModel.UseSpanishLocale = true;
                     viewModel.UseSystemLocale = false;
                     break;
                 default:
@@ -242,6 +257,7 @@ namespace MediaExtractor
             viewModel.UseEnglishLocale = false;
             viewModel.UseGermanLocale = false;
             viewModel.UseFrenchLocale = false;
+            viewModel.UseSpanishLocale = false;
             viewModel.UseSystemLocale = true;
         }
 

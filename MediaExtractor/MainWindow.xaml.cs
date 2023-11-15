@@ -867,6 +867,16 @@ namespace MediaExtractor
         }
 
         /// <summary>
+        /// Enables Spanish as application language
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void SpanishMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeLocale(I18n.SPANISH);
+        }
+
+        /// <summary>
         /// Enables the system locale as application language
         /// </summary>
         /// <param name="sender">The source of the event.</param>

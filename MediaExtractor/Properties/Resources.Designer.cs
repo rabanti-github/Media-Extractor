@@ -637,7 +637,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to French.
+        ///   Looks up a localized string similar to Français (French).
         /// </summary>
         public static string MenuAppearanceLanguageFrench {
             get {
@@ -651,6 +651,15 @@ namespace MediaExtractor.Properties {
         public static string MenuAppearanceLanguageGerman {
             get {
                 return ResourceManager.GetString("MenuAppearanceLanguageGerman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Español (Spanish).
+        /// </summary>
+        public static string MenuAppearanceLanguageSpanish {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguageSpanish", resourceCulture);
             }
         }
         
@@ -709,7 +718,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Warning for Prview of large Files.
+        ///   Looks up a localized string similar to Show Warning for Preview of large Files.
         /// </summary>
         public static string MenuDocumentSizeWarning {
             get {
