@@ -459,4 +459,7 @@
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Español (Spanish)</value>
   </data>
+  <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
+    <value>Japanese (日本語)</value>
+  </data>
 </root>

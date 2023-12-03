@@ -112,8 +112,9 @@ Currently, Media-Extractor is translated to the following Languages:
 | Language | Status    | Provided by        |
 | -------- | --------- | ------------------ |
 | **English**  | Completed | Application Author |
-| **German**   | Completed | Application Author |
 | **French**   | Completed | AI based translation |
+| **German**   | Completed | Application Author |
+| **Japanese**   | Completed | AI based translation |
 | **Spanish**   | Completed | AI based translation |
 
 If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template). Alternatively, the default translation terms can be downloaded as [Excel file](./resources/translation/DefaultTranslationStrings.xlsx). This is a direct copy of the default [Resources.resx file](https://github.com/rabanti-github/Media-Extractor/blob/master/MediaExtractor/Properties/Resources.resx).

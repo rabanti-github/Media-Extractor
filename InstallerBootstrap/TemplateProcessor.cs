@@ -6,6 +6,7 @@
  */
 
 using System.IO;
+using System.Text;
 
 namespace InstallerBootstrap
 {
@@ -34,7 +35,7 @@ namespace InstallerBootstrap
 
         public void SaveFile(string path)
         {
-            File.WriteAllText(path, TemplateText);
+            File.WriteAllText(path, TemplateText, Encoding.UTF8);
         }
 
         public void SetAppName(string appName)

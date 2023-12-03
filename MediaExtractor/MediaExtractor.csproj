@@ -110,6 +110,11 @@
     <Compile Include="ExtractorItem.cs" />
     <Compile Include="I18N.cs" />
     <Compile Include="Preview.cs" />
+    <Compile Include="Properties\Resources.ja-JP.Designer.cs">
+      <DependentUpon>Resources.ja-JP.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -173,6 +178,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -193,6 +202,15 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.es-ES.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\Changelog.md">
+      <Link>Other\Changelog.md</Link>
+    </None>
+    <None Include="..\LICENSE">
+      <Link>Other\LICENSE</Link>
+    </None>
+    <None Include="..\README.md">
+      <Link>Other\README.md</Link>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

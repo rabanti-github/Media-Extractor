@@ -655,6 +655,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Japanese (日本語).
+        /// </summary>
+        public static string MenuAppearanceLanguageJapanese {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguageJapanese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Español (Spanish).
         /// </summary>
         public static string MenuAppearanceLanguageSpanish {

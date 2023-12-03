@@ -1,5 +1,14 @@
 # Change Log
 
+## v1.10.0
+
+Release Date: **03.12.2023**
+
+- Added Japanese translation
+- Updated installer (uninstall handling)
+- Project maintenance
+- Updated readme
+
 ## v1.9.0
 
 Release Date: **15.11.2023**
@@ -14,7 +23,7 @@ Note: Due to an error in the installer of the previous version 1.8, the upgrade 
 
 ## v1.8.0
 
-Release Date: **04.10.2022**
+Release Date: **04.10.2023**
 
 - Added French translation
 - Added installer

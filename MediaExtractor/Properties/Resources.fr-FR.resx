@@ -315,6 +315,9 @@
   <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
     <value>Allemand (Deutsch)</value>
   </data>
+  <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
+    <value>Japonais  (日本語)</value>
+  </data>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Espagnol (Español)</value>
   </data>

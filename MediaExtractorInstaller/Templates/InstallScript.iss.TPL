@@ -6,6 +6,8 @@
 #define MyAppURL "${TPL_MY_APP_URL}"
 #define MyAppSupportURL "${TPL_MY_APP_SUPPORT_URL}"
 #define MyAppExeName "${TPL_MY_APP_EXE_NAME}"
+; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+#define MyAppId = "{{D1DF90C3-1CE8-4D17-9A39-C1D1568D508F}}"
 
 [Code]
 var
@@ -29,8 +31,9 @@ begin
     case ActiveLanguage of
     // TODO: Add more languages if implemented 
       'english': NextButtonCaption  := '&I agree';
-      'german': NextButtonCaption  := '&Ich stimme zu';
       'french': NextButtonCaption  := '&J''accepte';
+      'german': NextButtonCaption  := '&Ich stimme zu';
+      'japanese': NextButtonCaption  := '同感だ(&D)';
       'spanish': NextButtonCaption  := '&Yo acepto';
       else
         NextButtonCaption  := '&I agree'; // Default to English
@@ -41,8 +44,7 @@ end;
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{D1DF90C3-1CE8-4D17-9A39-C1D1568D508F}}
+AppId={#MyAppId}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -67,7 +69,11 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
+
+[Registry]
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppId}"; ValueType: string; ValueName: "DisplayVersion"; ValueData: "{#MyAppVersion}"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked

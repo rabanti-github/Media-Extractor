@@ -43,6 +43,7 @@ namespace MediaExtractor
         private bool useEnglishLocale = false;
         private bool useGermanLocale = false;
         private bool useFrenchLocale = false;
+        private bool useJapaneseLocale = false;
         private bool useSpanishLocale = false;
         private bool saveSelectedIsDefault;
         private bool saveAllIsDefault;
@@ -305,6 +306,7 @@ namespace MediaExtractor
                     UseGermanLocale = false;
                     UseEnglishLocale = false;
                     UseFrenchLocale = false;
+                    UseJapaneseLocale = false;
                     useSpanishLocale = false;
                 }
                 useSystemLocale = value;
@@ -327,6 +329,7 @@ namespace MediaExtractor
                 {
                     UseGermanLocale = false;
                     UseFrenchLocale = false;
+                    UseJapaneseLocale = false;
                     useSpanishLocale = false;
                     UseSystemLocale = false;
                 }
@@ -350,6 +353,7 @@ namespace MediaExtractor
                 {
                     UseEnglishLocale = false;
                     useFrenchLocale = false;
+                    UseJapaneseLocale = false;
                     useSpanishLocale = false;
                     UseSystemLocale = false;
                 }
@@ -363,7 +367,7 @@ namespace MediaExtractor
         /// If true, the Application will be using French (fr-FR) as locale
         /// </summary>
         /// <value>
-        ///   <c>true</c> if German is the current locale, otherwise, <c>false</c>
+        ///   <c>true</c> if French is the current locale, otherwise, <c>false</c>
         /// </value>
         public bool UseFrenchLocale
         {
@@ -374,11 +378,36 @@ namespace MediaExtractor
                 {
                     UseEnglishLocale = false;
                     UseGermanLocale = false;
+                    UseJapaneseLocale = false;
                     useSpanishLocale = false;
                     UseSystemLocale = false;
                 }
                 useFrenchLocale = value;
                 NotifyPropertyChanged("UseFrenchLocale");
+            }
+        }
+
+        /// <summary>
+        /// If true, the Application will be using Japanese (ja-JP) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if Japanese is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseJapaneseLocale
+        {
+            get { return useJapaneseLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                    UseGermanLocale = false;
+                    UseFrenchLocale = false;
+                    useSpanishLocale = false;
+                    UseSystemLocale = false;
+                }
+                useJapaneseLocale = value;
+                NotifyPropertyChanged("UseJapaneseLocale");
             }
         }
 
@@ -398,6 +427,7 @@ namespace MediaExtractor
                     UseEnglishLocale = false;
                     UseGermanLocale = false;
                     UseFrenchLocale = false;
+                    UseJapaneseLocale = false;
                     UseSystemLocale = false;
                 }
                 useSpanishLocale = value;

@@ -118,348 +118,345 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MenuFile" xml:space="preserve">
-    <value>File</value>
+    <value>ファイル</value>
   </data>
   <data name="MenuFileOpen" xml:space="preserve">
-    <value>Open Document</value>
+    <value>ドキュメントを開く</value>
   </data>
   <data name="MenuFileSaveSelected" xml:space="preserve">
-    <value>Save selected File(s)</value>
+    <value>選択したファイルを保存</value>
   </data>
   <data name="MenuFileSaveAll" xml:space="preserve">
-    <value>Save all Files</value>
+    <value>すべてのファイルを保存する</value>
   </data>
   <data name="MenuFileQuit" xml:space="preserve">
-    <value>Quit</value>
+    <value>終了</value>
   </data>
   <data name="MenuDocument" xml:space="preserve">
-    <value>Document</value>
+    <value>書類</value>
   </data>
   <data name="MenuDocumentShowImages" xml:space="preserve">
-    <value>Show embedded Image Files</value>
+    <value>埋め込まれた画像ファイルを表示</value>
   </data>
   <data name="MenuDocumentShowOther" xml:space="preserve">
-    <value>Show other embedded Files</value>
+    <value>他の埋め込まれたファイルを表示</value>
   </data>
   <data name="MenuDocumentKeepStructure" xml:space="preserve">
-    <value>Keep Folder Structure when Extracting</value>
+    <value>抽出時にフォルダ構造を保持する</value>
   </data>
   <data name="MenuDocumentOpenExplorer" xml:space="preserve">
-    <value>Show in Explorer after Extracting</value>
+    <value>抽出後にエクスプローラで表示</value>
   </data>
   <data name="MenuAppearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>外観</value>
   </data>
   <data name="MenuAppearanceDarkmode" xml:space="preserve">
-    <value>Dark Mode</value>
+    <value>ダークモード</value>
   </data>
   <data name="MenuAppearanceLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>言語</value>
   </data>
   <data name="MenuAppearanceLanguageEnglish" xml:space="preserve">
-    <value>English</value>
+    <value>英語 (English)</value>
   </data>
   <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
-    <value>German (Deutsch)</value>
+    <value>ドイツ語 (Deutsch)</value>
   </data>
   <data name="MenuHelp" xml:space="preserve">
-    <value>Help</value>
+    <value>ヘルプ</value>
   </data>
   <data name="MenuHelpAbout" xml:space="preserve">
-    <value>About</value>
+    <value>アバウト</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Project Website</value>
+    <value>プロジェクトのウェブサイト</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
-    <value>Change Log</value>
+    <value>変更履歴</value>
   </data>
   <data name="MenuHelpLicense" xml:space="preserve">
-    <value>License</value>
+    <value>ライセンス</value>
   </data>
   <data name="ButtonOpen" xml:space="preserve">
-    <value>Open Document</value>
+    <value>文書を開く</value>
   </data>
   <data name="LabelListview" xml:space="preserve">
-    <value>Embedded Files</value>
+    <value>埋め込まれたファイル</value>
   </data>
   <data name="ListViewColumnName" xml:space="preserve">
-    <value>Filename (Embedded)</value>
+    <value>ファイル名 (埋め込まれた)</value>
   </data>
   <data name="ListViewColumnExtension" xml:space="preserve">
-    <value>Ext.</value>
+    <value>拡張子</value>
   </data>
   <data name="ListViewColumnPath" xml:space="preserve">
-    <value>Relative Path</value>
+    <value>相対パス</value>
   </data>
   <data name="ButtonSave" xml:space="preserve">
-    <value>Save File(s)</value>
+    <value>ファイルを保存</value>
   </data>
   <data name="ButtonSaveAll" xml:space="preserve">
-    <value>Save all Files</value>
+    <value>全て保存</value>
   </data>
   <data name="LabelPreview" xml:space="preserve">
-    <value>Preview</value>
-  </data>
-  <data name="AboutAuthor" xml:space="preserve">
-    <value>Author</value>
-  </data>
-  <data name="AboutCloseButton" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="AboutDate" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="AboutDescription" xml:space="preserve">
-    <value>Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar)</value>
-  </data>
-  <data name="AboutHeader" xml:space="preserve">
-    <value>About Media-Extractor</value>
-  </data>
-  <data name="AboutLicense" xml:space="preserve">
-    <value>License</value>
-  </data>
-  <data name="AboutVersion" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="AboutWebsite" xml:space="preserve">
-    <value>Website</value>
+    <value>プレビュー</value>
   </data>
   <data name="ButtonSaveSelected" xml:space="preserve">
-    <value>Save selected File(s)</value>
+    <value>選択したファイルを保存</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="AboutCloseButton" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="AboutDate" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>メディアエクストラクターは、Microsoft Officeファイル（例：Word、PowerPoint、またはExcelドキュメント）や一般的なアーカイブ（例：zip、7z、またはtar）に含まれるメディアをプレビューして抽出するためのアプリケーションです。</value>
+  </data>
+  <data name="AboutHeader" xml:space="preserve">
+    <value>Media Extractorについて</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>ライセンス</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="AboutWebsite" xml:space="preserve">
+    <value>ウェブサイト</value>
   </data>
   <data name="CrcDescription" xml:space="preserve">
-    <value>CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected.</value>
+    <value>CRC32（巡回冗長検査）は、データやファイルが同一かどうかを比較するためのシンプルなハッシングメソッドです。ただし、CRCは2つのファイルが同一であることを100％保証するものではありません。しかし、両方のファイルのサイズが同一であり、悪意のある改ざんが予想されない場合、強力な証拠となります。</value>
   </data>
   <data name="DialogButtonCancel" xml:space="preserve">
-    <value>Cancel Extraction</value>
+    <value>抽出のキャンセル</value>
   </data>
   <data name="DialogButtonCancelTooltip" xml:space="preserve">
-    <value>Cancel the extraction</value>
+    <value>抽出のキャンセル</value>
   </data>
   <data name="DialogButtonOverwrite" xml:space="preserve">
-    <value>Overwrite</value>
+    <value>上書き</value>
   </data>
   <data name="DialogButtonOverwriteTooltip" xml:space="preserve">
-    <value>Replace the existing file</value>
+    <value>既存のファイルを置き換える</value>
   </data>
   <data name="DialogButtonRename" xml:space="preserve">
-    <value>Rename</value>
+    <value>リネーム</value>
   </data>
   <data name="DialogButtonRenameTooltip" xml:space="preserve">
-    <value>Rename the new file</value>
+    <value>新しいファイルの名前を変更</value>
   </data>
   <data name="DialogButtonSkip" xml:space="preserve">
-    <value>Skip</value>
+    <value>スキップ</value>
   </data>
   <data name="DialogButtonSkipTooltip" xml:space="preserve">
-    <value>Skip the extraction of the file</value>
+    <value>ファイルの抽出をスキップ</value>
   </data>
   <data name="DialogCancelTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>キャンセルされました</value>
   </data>
   <data name="DialogErrorTitle" xml:space="preserve">
-    <value>Error</value>
+    <value>エラー</value>
   </data>
   <data name="DialogExplorerError" xml:space="preserve">
-    <value>The path '{0}' could not be opened</value>
+    <value>パス '{0}' を開けませんでした</value>
   </data>
   <data name="DialogHeader" xml:space="preserve">
-    <value>File already exists...</value>
+    <value>ファイルはすでに存在します…</value>
   </data>
   <data name="DialogLabelCrc" xml:space="preserve">
     <value>CRC32:</value>
   </data>
   <data name="DialogLabelDate" xml:space="preserve">
-    <value>Date:</value>
+    <value>日付:</value>
   </data>
   <data name="DialogLabelExisting" xml:space="preserve">
-    <value>Existing File</value>
+    <value>既存のファイル</value>
   </data>
   <data name="DialogLabelName" xml:space="preserve">
-    <value>Name:</value>
+    <value>名前:</value>
   </data>
   <data name="DialogLabelNew" xml:space="preserve">
-    <value>New File to Extract</value>
+    <value>抽出する新しいファイル</value>
   </data>
   <data name="DialogLabelSize" xml:space="preserve">
-    <value>Size:</value>
+    <value>サイズ:</value>
   </data>
   <data name="DialogRememberCheckbox" xml:space="preserve">
-    <value>Remember Decision</value>
+    <value>決定を記憶する</value>
   </data>
   <data name="DialogSaveAllTitle" xml:space="preserve">
-    <value>Select a Folder to save all Files...</value>
+    <value>すべてのファイルを保存するフォルダを選択…</value>
   </data>
   <data name="DialogSaveCurrentTitle" xml:space="preserve">
-    <value>Save current File as...</value>
+    <value>現在のファイルを別名で保存…</value>
   </data>
   <data name="DialogSaveErrors" xml:space="preserve">
-    <value>Not all files were extracted</value>
+    <value>すべてのファイルが抽出されませんでした。</value>
   </data>
   <data name="DialogSaveFailure" xml:space="preserve">
-    <value>The file could not be saved</value>
+    <value>ファイルを保存できませんでした。</value>
   </data>
   <data name="DialogSaveFilter" xml:space="preserve">
-    <value>All files|*.*</value>
+    <value>すべてのファイル|*.*</value>
   </data>
   <data name="DialogSaveSelectedTitle" xml:space="preserve">
-    <value>Select a Folder to save the selected Files...</value>
+    <value>選択したファイルを保存するフォルダを選択...</value>
   </data>
   <data name="DialogUnexpectedError" xml:space="preserve">
-    <value>There was an unexpected error during the extraction:</value>
+    <value>抽出中に予期しないエラーが発生しました：</value>
   </data>
   <data name="DropAreaWatermark" xml:space="preserve">
-    <value>Drop Document here</value>
+    <value>ここにドキュメントをドロップ</value>
   </data>
   <data name="StatusSaveCanceled" xml:space="preserve">
-    <value>The save process was canceled</value>
+    <value>保存プロセスがキャンセルされました</value>
   </data>
   <data name="StatusSaveErrorSummary" xml:space="preserve">
-    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped, {4} not extracted (errors)</value>
+    <value>{0} ファイルが抽出されました（{1} 上書き、{2} 名前変更）、{3} スキップ、{4} 抽出できませんでした（エラー）</value>
   </data>
   <data name="StatusSaveFailure" xml:space="preserve">
-    <value>Could not save the file: {0}</value>
+    <value>ファイルを保存できませんでした: {0}</value>
   </data>
   <data name="StatusSaveSuccess" xml:space="preserve">
-    <value>The file was saved as: {0}</value>
+    <value>ファイルは次のように保存されました: {0}</value>
   </data>
   <data name="StatusSaveSummary" xml:space="preserve">
-    <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped</value>
+    <value>{0} ファイルが抽出されました（{1} 上書き、{2} 名前変更）、{3} スキップ</value>
   </data>
   <data name="TextErrorMultipleFiles" xml:space="preserve">
-    <value>{0} files could not be extracted.</value>
+    <value>{0} ファイルが抽出できませんでした</value>
   </data>
   <data name="TextErrorOneFile" xml:space="preserve">
-    <value>One file could not be extracted.</value>
+    <value>1つのファイルを抽出できませんでした</value>
   </data>
   <data name="TextNoPreview" xml:space="preserve">
-    <value>No Preview</value>
+    <value>プレビューなし</value>
   </data>
   <data name="TextSaveError" xml:space="preserve">
-    <value>The path '{0}' could not be opened</value>
+    <value>パス '{0}' を開けませんでした</value>
   </data>
   <data name="TextSkippedMultipleFiles" xml:space="preserve">
-    <value>{0} files were skipped.</value>
+    <value>{0} ファイルがスキップされました</value>
   </data>
   <data name="TextSkippedOneFile" xml:space="preserve">
-    <value>One file was skipped.</value>
+    <value>1つのファイルがスキップされました</value>
   </data>
   <data name="DialogLoadFailure" xml:space="preserve">
-    <value>The file could not be loaded.\n{0}\nError Message: {1}</value>
+    <value>ファイルをロードできませんでした。\n{0}\nエラーメッセージ: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
+    <value>すべてのオフィス形式|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|ワード ドキュメント|*.docx;*.dotx;*.docm;*.dotm|エクセル ドキュメント|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|パワーポイント ドキュメント|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|一般的なアーカイブ形式|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|すべてのファイル|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
-    <value>Select Office Document...</value>
+    <value>オフィス ドキュメントを選択…</value>
   </data>
   <data name="StatusLoaded" xml:space="preserve">
-    <value>File loaded: {0}</value>
+    <value>ファイルが読み込まれました: {0}</value>
   </data>
   <data name="StatusLoadFailure" xml:space="preserve">
-    <value>The file could not be loaded</value>
+    <value>ファイルを読み込めませんでした</value>
   </data>
   <data name="StatusLoading" xml:space="preserve">
-    <value>Loading file... Please wait</value>
+    <value>ファイルを読み込んでいます... お待ちください</value>
   </data>
   <data name="TextInvalidFormat" xml:space="preserve">
-    <value>The file may be not a valid Office file or archive.</value>
+    <value>ファイルは有効なオフィスファイルまたはアーカイブでない可能性があります</value>
   </data>
   <data name="TextInvalidPath" xml:space="preserve">
-    <value>It looks like the filename is not valid. Please check the file name and path.</value>
+    <value>ファイル名が無効なようです。ファイル名とパスを確認してください</value>
   </data>
   <data name="TextLockedFile" xml:space="preserve">
-    <value>Please make sure that the file is not open in another application.</value>
+    <value>ファイルが他のアプリケーションで開かれていないか確認してください</value>
   </data>
   <data name="DialogMissingChangelog" xml:space="preserve">
-    <value>The change log '{0}' was not found.</value>
+    <value>変更ログ '{0}' が見つかりませんでした。</value>
   </data>
   <data name="DialogMissingChangelogTitle" xml:space="preserve">
-    <value>Changelog not found</value>
+    <value>変更ログが見つかりません</value>
   </data>
   <data name="DialogMissingLicense" xml:space="preserve">
-    <value>The license file '{0}' was not found.</value>
+    <value>ライセンスファイル '{0}' が見つかりませんでした。</value>
   </data>
   <data name="DialogMissingLicenseTitle" xml:space="preserve">
-    <value>License could not be found</value>
+    <value>ライセンスが見つかりません</value>
   </data>
   <data name="StatusEmbeddedLoaded" xml:space="preserve">
-    <value>{0} loaded</value>
+    <value>{0} 読み込まれました</value>
   </data>
   <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
-    <value>Embedded file could not be loaded: {0}</value>
+    <value>埋め込まれたファイルを読み込めませんでした: {0}</value>
   </data>
   <data name="StatusLoadEmbeddedOtherFailure" xml:space="preserve">
-    <value>Preview not possible for {0}</value>
+    <value>{0} に対するプレビューはできません</value>
   </data>
   <data name="StatusLoadEmbeddedTextFailure" xml:space="preserve">
-    <value>Text / XML file could not be loaded: {0}</value>
+    <value>テキスト / XML ファイルを読み込めませんでした: {0}</value>
   </data>
   <data name="StatusLoadingEmbedded" xml:space="preserve">
-    <value>Loading embedded file... Please wait</value>
-  </data>
-  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
-    <value>System Language (Default)</value>
+    <value>埋め込まれたファイルを読み込んでいます... お待ちください</value>
   </data>
   <data name="DialogMissingWebsite" xml:space="preserve">
-    <value>The project website could not be loaded</value>
+    <value>プロジェクトのウェブサイトをロードできませんでした。</value>
   </data>
   <data name="DialogMissingWebsiteTitle" xml:space="preserve">
-    <value>Project website not loaded</value>
+    <value>プロジェクトのウェブサイトがロードされませんでした</value>
+  </data>
+  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
+    <value>システム言語（デフォルト）</value>
   </data>
   <data name="TextErrorInvalidImage" xml:space="preserve">
-    <value>Image preview could not be created</value>
+    <value>画像のプレビューを作成できませんでした</value>
   </data>
   <data name="TextErrorInvalidText" xml:space="preserve">
-    <value>Text preview could not be created</value>
+    <value>テキストのプレビューを作成できませんでした</value>
   </data>
   <data name="DialogInvalidExtensions" xml:space="preserve">
-    <value>An error occurred during the retrieval of the file extensions for the previews. The default values are restored</value>
+    <value>プレビューのためのファイル拡張子の取得中にエラーが発生しました。デフォルトの値が復元されました。</value>
   </data>
   <data name="StatusReady" xml:space="preserve">
-    <value>Ready</value>
+    <value>準備完了</value>
   </data>
   <data name="ListViewColumnSize" xml:space="preserve">
-    <value>Size</value>
+    <value>サイズ</value>
   </data>
   <data name="DialogMissingRecentFile" xml:space="preserve">
-    <value>The file was not found:\n{0}\nShould the entry be removed from the recent file list?</value>
+    <value>ファイルが見つかりませんでした:\n{0}\n最近のファイルリストからエントリを削除しますか？</value>
   </data>
   <data name="MenuFileClearRecent" xml:space="preserve">
-    <value>Clear List</value>
+    <value>リストをクリア</value>
   </data>
   <data name="MenuFileRecent" xml:space="preserve">
-    <value>Recent Files</value>
+    <value>最近のファイル</value>
   </data>
   <data name="DialogSizeWarning" xml:space="preserve">
-    <value>The preview of a large file (&gt; {0}) is attempted.\nThis process may take a long time.\nShall the preview be created?</value>
+    <value>大きなファイル（&gt;{0}）のプレビューが試みられています。\nこのプロセスには時間がかかる可能性があります。\nプレビューを作成しますか？</value>
   </data>
   <data name="DialogSizeWarningTitle" xml:space="preserve">
-    <value>Attempt to preview a large File...</value>
+    <value>大きなファイルのプレビューを試行…</value>
   </data>
   <data name="MenuDocumentGenerictextPreview" xml:space="preserve">
-    <value>Text Preview on unknown File Formats</value>
+    <value>未知のファイル形式のテキストプレビュー</value>
   </data>
   <data name="MenuDocumentSizeWarning" xml:space="preserve">
-    <value>Show Warning for Preview of large Files</value>
+    <value>大きなファイルのプレビューに警告を表示</value>
   </data>
   <data name="StatusLoadEmbeddedImageFallback" xml:space="preserve">
-    <value>The preview image for '{0}' could not be loaded. Displaying as text</value>
+    <value>{0}' のプレビュー画像を読み込めませんでした。テキストとして表示しています</value>
   </data>
   <data name="StatusLoadEmbeddedOtherFallback" xml:space="preserve">
-    <value>The preview for '{0}' could not be loaded. Displaying as text</value>
+    <value>{0}' のプレビューを読み込めませんでした。テキストとして表示しています</value>
   </data>
   <data name="StatusPreviewSkipped" xml:space="preserve">
-    <value>The preview of '{0}' was skipped (file too large)</value>
+    <value>{0}' のプレビューはスキップされました（ファイルが大きすぎます）</value>
   </data>
   <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
-    <value>French (Français)</value>
+    <value>フランス語 (Français)</value>
   </data>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
-    <value>Spanish (Español)</value>
-  </data>
-  <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
-    <value>Japanese (日本語)</value>
+    <value>スペイン語(Español)</value>
   </data>
 </root>

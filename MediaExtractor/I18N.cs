@@ -17,7 +17,7 @@ namespace MediaExtractor
     public class I18n
     {
         /// <summary>
-        /// Keys of the I18n resources. The keys must EXACTLY math with the names in the resx files 
+        /// Keys of the I18n resources. The keys must EXACTLY match with the names in the resx files 
         /// </summary>
         public enum Key
         {
@@ -87,6 +87,7 @@ namespace MediaExtractor
             MenuAppearanceLanguageEnglish,
             MenuAppearanceLanguageGerman,
             MenuAppearanceLanguageFrench,
+            MenuAppearanceLanguageJapanese,
             MenuAppearanceLanguageSpanish,
             MenuDocument,
             MenuDocumentGenerictextPreview,
@@ -150,6 +151,10 @@ namespace MediaExtractor
         /// </summary>
         public const string FRENCH = "fr-FR";
         /// <summary>
+        /// Locale identifier for Japanese (ja-JP)
+        /// </summary>
+        public const string JAPANESE = "ja-JP";
+        /// <summary>
         /// Locale identifier for Spanish (es-ES)
         /// </summary>
         public const string SPANISH = "es-ES";
@@ -173,6 +178,7 @@ namespace MediaExtractor
                     viewModel.UseEnglishLocale = true;
                     viewModel.UseGermanLocale = false;
                     viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
@@ -180,6 +186,7 @@ namespace MediaExtractor
                     viewModel.UseEnglishLocale = false;
                     viewModel.UseGermanLocale = true;
                     viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
@@ -187,6 +194,15 @@ namespace MediaExtractor
                     viewModel.UseEnglishLocale = false;
                     viewModel.UseGermanLocale = false;
                     viewModel.UseFrenchLocale = true;
+                    viewModel.UseJapaneseLocale = false;
+                    viewModel.UseSpanishLocale = false;
+                    viewModel.UseSystemLocale = false;
+                    break;
+                case JAPANESE:
+                    viewModel.UseEnglishLocale = false;
+                    viewModel.UseGermanLocale = false;
+                    viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = true;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
@@ -194,6 +210,7 @@ namespace MediaExtractor
                     viewModel.UseEnglishLocale = false;
                     viewModel.UseGermanLocale = false;
                     viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = true;
                     viewModel.UseSystemLocale = false;
                     break;
@@ -257,6 +274,7 @@ namespace MediaExtractor
             viewModel.UseEnglishLocale = false;
             viewModel.UseGermanLocale = false;
             viewModel.UseFrenchLocale = false;
+            viewModel.UseJapaneseLocale = false;
             viewModel.UseSpanishLocale = false;
             viewModel.UseSystemLocale = true;
         }

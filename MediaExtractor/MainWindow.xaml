@@ -86,6 +86,7 @@
                     <MenuItem x:Name="EnglishMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageEnglish}" IsCheckable="True" IsChecked="{Binding Path=UseEnglishLocale}" Click="EnglishMenuItem_Click" />
                     <MenuItem x:Name="GermanhMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageGerman}" IsCheckable="True" IsChecked="{Binding Path=UseGermanLocale}" Click="GermanMenuItem_Click" />
                     <MenuItem x:Name="FrenchMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageFrench}" IsCheckable="True" IsChecked="{Binding Path=UseFrenchLocale}" Click="FrenchMenuItem_Click" />
+                    <MenuItem x:Name="JapaneseMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageJapanese}" IsCheckable="True" IsChecked="{Binding Path=UseJapaneseLocale}" Click="JapaneseMenuItem_Click" />
                     <MenuItem x:Name="SpanishMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageSpanish}" IsCheckable="True" IsChecked="{Binding Path=UseSpanishLocale}" Click="SpanishMenuItem_Click" />
 
 
@@ -107,7 +108,7 @@
             <Grid Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="OpenFileButton" Content="{x:Static p:Resources.ButtonOpen}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="115" Click="OpenFileButton_Click"/>
-                    <Label x:Name="DragField" Style="{StaticResource roundedBorder}" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" Height="54"  Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Drop="DragField_Drop" AllowDrop="True">
+                    <Label x:Name="DragField" Style="{StaticResource roundedBorder}" Margin="10,10,0,0" VerticalAlignment="Top" Width="160" Height="54"  Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Drop="DragField_Drop" AllowDrop="True">
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{x:Static p:Resources.DropAreaWatermark}" />
                     </Label>
                 </StackPanel>

@@ -40,3 +40,13 @@ ${ String }
 ```
 
 ... are defined in the **Installer Bootstrap Utility** project and will be replaced with the actual values, when running the bootstrap utility.
+
+## Internationalization
+
+Due to implemented installer languages with characters that are not covered by an ASCII/ANSI encoding (e.g. Japanese), it is important that the Inno Setup application is set to UTF-8 as encoding before the build process is executed.
+This option can be set in the application under: `File -> Save Encoding` (Inno Setup version 6.2.2)
+
+## License Modification
+
+Due to the open license of Media-Extractor (MIT), there is no explicit agreement or disagreement of that license necessary. Therefore, the license agreement dialog was modified. Instead of instead of two buttons, only one "I agree" button appears besides the cancel button.
+This custom dialog must be adapted for every implemented installer language in the template
