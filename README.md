@@ -84,13 +84,13 @@ Currently, four columns are available:
 
 ### Saving of embedded Files
 
-Saving of embedded files is independent of the previews. They can be saved, even if not possible to be displayed as preview. Embedded files can be saved in various ways:
+Saving of embedded files is independent of the preview. They can be saved, even if not possible to be displayed as preview. Embedded files can be saved in various ways:
 
 If no file is selected in the list, all files are saved by default. The default of saving all or saving only selected files can be defined with the save button on the right side of the application.
 
 ![Save all Files](./resources/img/save_all_files.gif)
 
-One or many files (using ctrl or shift key) can be selected in the list and extracted.
+One or many files can be selected (using ctrl or shift key) in the list and extracted.
 
 ![Save selected Files](./resources/img/save_selected_files.gif)
 

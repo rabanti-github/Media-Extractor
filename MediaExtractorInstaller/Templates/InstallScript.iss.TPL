@@ -73,7 +73,19 @@ Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Registry]
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppId}"; ValueType: string; ValueName: "DisplayVersion"; ValueData: "{#MyAppVersion}"
+; ––– Only write to HKLM when we’re actually running elevated
+Root: HKLM; \
+  Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppId}"; \
+  ValueType: string; ValueName: "DisplayVersion"; \
+  ValueData: "{#MyAppVersion}"; \
+  Check: IsAdminInstallMode
+
+; ––– Write into HKCU when running as “Just for me”
+Root: HKCU; \
+  Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppId}"; \
+  ValueType: string; ValueName: "DisplayVersion"; \
+  ValueData: "{#MyAppVersion}"; \
+  Check: not IsAdminInstallMode
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked

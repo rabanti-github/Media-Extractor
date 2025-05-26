@@ -73,14 +73,26 @@ Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Registry]
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppId}"; ValueType: string; ValueName: "DisplayVersion"; ValueData: "{#MyAppVersion}"
+; ––– Only write to HKLM when we’re actually running elevated
+Root: HKLM; \
+  Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppId}"; \
+  ValueType: string; ValueName: "DisplayVersion"; \
+  ValueData: "{#MyAppVersion}"; \
+  Check: IsAdminInstallMode
+
+; ––– Write into HKCU when running as “Just for me”
+Root: HKCU; \
+  Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#MyAppId}"; \
+  ValueType: string; ValueName: "DisplayVersion"; \
+  ValueData: "{#MyAppVersion}"; \
+  Check: not IsAdminInstallMode
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Media-Extractor_Release_v-VERSION-\MediaExtractor.exe; DestDir: "{app}"; Flags: ignoreversion
-Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Media-Extractor_Release_v-VERSION-\*; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Debug\MediaExtractor.exe; DestDir: "{app}"; Flags: ignoreversion
+Source: D:\Dev\NET\Media-Extractor\MediaExtractor\bin\Debug\*; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
