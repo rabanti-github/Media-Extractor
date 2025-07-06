@@ -28,7 +28,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -49,7 +49,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Media-Extractor_Release_v-VERSION-\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -60,6 +60,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>MediaExtractor.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdonisUI, Version=1.17.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -203,13 +206,13 @@
       <LastGenOutput>Resources.es-ES.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="..\Changelog.md">
-      <Link>Other\Changelog.md</Link>
+      <Link>includes\Changelog.md</Link>
     </None>
     <None Include="..\LICENSE">
-      <Link>Other\LICENSE</Link>
+      <Link>includes\LICENSE</Link>
     </None>
     <None Include="..\README.md">
-      <Link>Other\README.md</Link>
+      <Link>includes\README.md</Link>
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -217,6 +220,7 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="scripts\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="media\media_extractor.ico" />
@@ -234,7 +238,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="scripts\generate-file-list.ps1" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cd $(TargetDir)
@@ -244,9 +250,9 @@ xcopy "$(SolutionDir)LICENSE" "$(TargetDir)" /Y
 ren "$(TargetDir)LICENSE" license.txt
 xcopy "$(SolutionDir)Changelog.md" "$(TargetDir)" /Y
 ren "$(TargetDir)Changelog.md" changelog.txt
-
-"$(SolutionDir)InstallerBootstrap\bin\$(ConfigurationName)\InstallerBootstrap.exe" "$(SolutionDir)MediaExtractorInstaller\Templates\InstallScript.iss.TPL" "$(SolutionDir)MediaExtractorInstaller\InstallScript.iss" $(TargetDir) $(TargetFileName)
-</PostBuildEvent>
+xcopy "$(SolutionDir)\MediaExtractor\media\media_extractor.ico" "$(TargetDir)" /Y
+ren "$(TargetDir)media_extractor.ico" MediaExtractor.ico
+powershell -ExecutionPolicy Bypass -File "$(ProjectDir)scripts\generate-file-list.ps1" $(TargetDir) $(TargetDir)InstallerFileList.txt</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>rd /s /q "$(TargetDir)"</PreBuildEvent>

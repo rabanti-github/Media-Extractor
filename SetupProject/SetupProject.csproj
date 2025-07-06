@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>WixSharp</RootNamespace>
+    <BaseOutputPath />
+    <PackageIcon>iconInstall256.png</PackageIcon>
+    <PackageProjectUrl>https://media-extractor.rabanti.ch/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rabanti-github/Media-Extractor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>unzip, extractor, archives, office, unpacker, media-extractor, Microsoft-office-files</PackageTags>
+    <IncludeSymbols>False</IncludeSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="*.msi" />
+    <None Remove="*.exe" />
+    <None Remove="*.wxs" />
+    <None Remove="*.wixpdb" />
+    <None Remove="*.wixobj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="resources\icon256.png" />
+    <None Remove="resources\media_extractor.ico" />
+    <None Remove="resources\MIT-License.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WixSharp_wix4" Version="2.7.0" />
+    <PackageReference Include="WixToolset.Dtf.WindowsInstaller" Version="4.0.4" />
+    <PackageReference Include="WixToolset.Mba.Core" Version="4.0.4" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Content Include="resources\localization\WixUI_es-es.wxl" />
+    <Content Include="resources\localization\WixUI_fr-fr.wxl" />
+    <Content Include="resources\localization\WixUI_ja-jp.wxl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="resources\iconInstall256.png" />
+    <EmbeddedResource Include="resources\media_extractor.ico" />
+    <EmbeddedResource Include="resources\MIT-License.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="resources\iconInstall256.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="cd .\&#xD;&#xA;set ide=true&#xD;&#xA;&quot;$(TargetPath)&quot;" />
+  </Target>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="cd &quot;$(ProjectDir)\output&quot;&#xD;&#xA;del *.msi" />
+  </Target>
+</Project>
