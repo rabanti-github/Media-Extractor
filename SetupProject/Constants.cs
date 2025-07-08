@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows;
 using WixSharp.CommonTasks;
 using WixToolset.Dtf.WindowsInstaller;
 
@@ -16,12 +16,10 @@ namespace WixSharp
             RESUME_INSTALLATION,
             UI_LANGUAGE,
             INSTALLATION_TYPE,
-            INSTALLATION_FEATURES,
-//            ADD_STARTMENU_ICON,
-      //      ADD_QUICKLAUNCH_ICON,
-        //    ADD_DESKTOP_ICON,
-       //     REGISTER_EXPLORER,
-            INSTALLATION_PATH,
+            ADD_STARTMENU_ICON,
+            ADD_DESKTOP_ICON,
+            REGISTER_EXPLORER,
+            TARGET_DIR,
             SETUP_PID
         }
 
@@ -29,22 +27,27 @@ namespace WixSharp
         {
             desktop,
             start,
-            quicklaunch,
             explorer,
         }
 
         #region external
         public const string PROPERTIES_PATH = @"..\MediaExtractor\Properties\AssemblyInfo.cs";
+#if Debug
         public const string PROGRAM_FILES_PATH = @"..\MediaExtractor\bin\release\";
+#else
+        public const string PROGRAM_FILES_PATH = @"..\MediaExtractor\bin\debug\";
+#endif
         public const string MAIN_APP_NAME = "MediaExtractor.exe";
+        public const string ICON_NAME = "MediaExtractor.ico";
+        public const string INSTALLER_OUTPUT_PATH = @"..\Install\";
         #endregion
 
         #region internal
         private const string PROPERTY_UNDEFINED_VALUE = "PROPERTY_UNDEFINED";
-       // public const string WIX_MAIN_CLASS = "Program.cs";
         public const string PRODUCT_NAME_KEY = "ProductName";
         public const string PRODUCT_VERSION_KEY = "PRODUCT_VERSION";
-        public const string INSTALL_SCOPE_KEY = "INSTALL_SCOPE";
+        public const string OPEN_AS_ADMIN_KEY = "OPEN_AS_ADMIN";
+        public const string INSTALL_SCOPE_KEY = "INSTALLATION_TYPE";
         #endregion
 
         public const string LANGUAGE_ENGLISH = "EN";
@@ -55,13 +58,16 @@ namespace WixSharp
 
         public const string INSTALLATION_TYPE_USER = "user";
         public const string INSTALLATION_TYPE_SYSTEM = "system";
-        public const string INSTALLATION_TYPE_PORTABLE = "portable";
 
-        public const string INSTALLATION_FEATURE_ROOT = "[InstallationFeatureProgramFiles]";
-        public const string INSTALLATION_FEATURE_DESKTOP = "[InstallationFeatureDesktopIcon]";
-        public const string INSTALLATION_FEATURE_STARTMENU = "[InstallationFeatureStartIcon]";
-        public const string INSTALLATION_FEATURE_QUICKLAUNCH = "[InstallationFeatureQuickLaunchIcon]";
-        public const string INSTALLATION_FEATURE_EXPLORER = "[InstallationFeatureRegisterExplorer]";
+
+        public const string FEATURE_ROOT_NAME = "[InstallationFeatureProgramFiles]";
+        public const string FEATURE_DESKTOP_NAME = "[InstallationFeatureDesktopIcon]";
+        public const string FEATURE_STARTMENU_NAME = "[InstallationFeatureStartIcon]";
+        public const string FEATURE_EXPLORER_NAME = "[InstallationFeatureRegisterExplorer]";
+
+        public const string INSTALLATION_FEATURE_DESKTOP = "desktopIcon";
+        public const string INSTALLATION_FEATURE_STARTMENU = "startMenuIcon";
+        public const string INSTALLATION_FEATURE_EXPLORER = "explorerRegistration";
 
 
 
@@ -72,18 +78,13 @@ namespace WixSharp
 
         public static void AddSecureProperty(Session session, SecureProperties property, string value)
         {
-           session[property.ToString()] = value;
+            session[property.ToString()] = value;
         }
 
         public static void AddSecureProperty(ManagedProject project, SecureProperties property)
         {
             AddSecureProperty(project, property, "", true);
         }
-
-        //public static void AddSecureProperty(ManagedProject project, SecureProperties property, bool value)
-        //{
-         //   AddSecureProperty(project, property, value ? "true" : "false");
-       // }
 
         public static void AddSecureProperty(ManagedProject project, SecureProperties property, string value, bool undefined = false)
         {
@@ -93,7 +94,6 @@ namespace WixSharp
             }
             Property secureProperty = new Property(property.ToString(), value) { Secure = true };
             int index = project.Properties.FindIndex(p => p.Name == property.ToString() && p.Secure == true);
-           // MessageBox.Show("property:" + property.ToString() + " - value:" + value);
             if (index == -1)
             {
                 project.AddProperty(secureProperty);
@@ -111,7 +111,6 @@ namespace WixSharp
             {
                 value = string.Empty; // Convert placeholder back to empty string
             }
-        //    MessageBox.Show($"GetSecureProperty: {property} = {value}");
             return !string.IsNullOrEmpty(value);
         }
 

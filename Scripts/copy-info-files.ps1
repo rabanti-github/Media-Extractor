@@ -2,7 +2,6 @@ param (
     [string]$targetDir,
     [string]$solutionDir
 )
-Write-Host "Raben"
 
 $ErrorActionPreference = "Stop"
 
@@ -19,6 +18,7 @@ function Copy-And-Rename {
     Write-Host "Copying '$source' to '$destinationPath'"
     Copy-Item -Path $source -Destination $destinationPath -Force
 }
+# Following file names and paths must be maintained according to the project structure
 
 # Copy and rename license
 Copy-And-Rename -source (Join-Path $solutionDir "LICENSE") -destinationName "license.txt"

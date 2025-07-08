@@ -612,21 +612,17 @@
 	<String Id="LegacyCheck_Title" Overridable="yes">Checking existing installations</String>
 	<String Id="LegacyCheck_TitleDescription" Overridable="yes">The installer is searching for legacy installations.</String>
 	<String Id="previousInstallationWasDetected" Overridable="yes">
-		A previous version has been detected.
-		This version must be removed first, since it was installed in a non-compatible way.
+A previous version has been detected.
+This version must be removed first, since it was installed in a non-compatible way.
 
-		The old version will uninstalled automatically if you click on Next.</String>
+The old version will uninstalled automatically if you click on Next.</String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">Please wait while the Setup Wizard check the installation.</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">Portable</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[ProductName] will be placed in the selected folder without installation.</String>
     <String Id="InstallationFeatureProgramFiles" Overridable="yes">Program files</String>
     <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">Storing the program files (mandatory)</String>
     <String Id="InstallationFeatureDesktopIcon" Overridable="yes">Desktop icon</String>
     <String Id="InstallationFeatureDesktopIconDescription" Overridable="yes">Adding an icon to the desktop</String>
     <String Id="InstallationFeatureStartIcon" Overridable="yes">Start icon</String>
     <String Id="InstallationFeatureStartIconDescription" Overridable="yes">Adding an icon to the start menu</String>
-    <String Id="InstallationFeatureQuickLaunchIcon" Overridable="yes">Quick launch icon</String>
-    <String Id="InstallationFeatureQuickLaunchIconDescription" Overridable="yes">Adding an icon to the quick launch toolbar</String>
     <String Id="InstallationFeatureRegisterExplorer" Overridable="yes">Register to Explorer</String>
     <String Id="InstallationFeatureRegisterExplorerDescription" Overridable="yes">Register the application in the Explorer as a default application to open files</String>
 	</WixLocalization>

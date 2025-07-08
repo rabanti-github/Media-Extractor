@@ -611,22 +611,18 @@
 	<String Id="LegacyCheck_Title" Overridable="yes">Überprüfung vorhandener Installationen</String>
 	<String Id="LegacyCheck_TitleDescription" Overridable="yes">Das Installationsprogramm sucht nach älteren Installationen.</String>
 	<String Id="previousInstallationWasDetected" Overridable="yes">
-		Es wurde eine frühere Version entdeckt.
-		Diese Version muss zuerst entfernt werden, da sie auf eine nicht kompatible Weise installiert wurde.
+Es wurde eine frühere Version entdeckt.
+Diese Version muss zuerst entfernt werden, da sie auf eine nicht kompatible Weise installiert wurde.
 
-		Die alte Version wird automatisch deinstalliert, wenn Sie auf Weiter klicken.
+Die alte Version wird automatisch deinstalliert, wenn Sie auf Weiter klicken.
 	</String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">Bitte warten Sie, während der Setup-Assistent die Installation überprüft.</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">Portabel</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[Produktname] wird ohne Installation im ausgewählten Ordner abgelegt.</String>
     <String Id="InstallationFeatureProgramFiles" Overridable="yes">Programmdateien</String>
     <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">Speichert die Programmdateien (erforderlich)</String>
     <String Id="InstallationFeatureDesktopIcon" Overridable="yes">Desktop-Symbol</String>
     <String Id="InstallationFeatureDesktopIconDescription" Overridable="yes">Fügt ein Symbol auf dem Desktop hinzu</String>
     <String Id="InstallationFeatureStartIcon" Overridable="yes">Startmenü-Symbol</String>
     <String Id="InstallationFeatureStartIconDescription" Overridable="yes">Fügt ein Symbol zum Startmenü hinzu</String>
-    <String Id="InstallationFeatureQuickLaunchIcon" Overridable="yes">Schnellstart-Symbol</String>
-    <String Id="InstallationFeatureQuickLaunchIconDescription" Overridable="yes">Fügt ein Symbol zur Schnellstartleiste hinzu</String>
     <String Id="InstallationFeatureRegisterExplorer" Overridable="yes">Im Explorer registrieren</String>
     <String Id="InstallationFeatureRegisterExplorerDescription" Overridable="yes">Registriert die Anwendung im Explorer als Standardanwendung zum Öffnen von Dateien</String>
 

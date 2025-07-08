@@ -609,26 +609,20 @@
 	<!-- CUSTOM SECTION -->
 	<String Id="LanguageSelection_Title" Overridable="yes">言語を選択</String>
 	<String Id="LegacyCheck_Title" Overridable="yes">既存のインストールをチェックします。</String>
-	<String Id="「LegacyCheck_TitleDescription」" Overridable="「yes」">
-		インストーラはレガシー インストールを検索しています。
-    </String>
+	<String Id="LegacyCheck_TitleDescription" Overridable="yes">インストーラはレガシー インストールを検索しています。</String>
     <String Id="previousInstallationWasDetected" Overridable="yes">
-        以前のバージョンが検出されました。
-        このバージョンは互換性のない方法でインストールされているため、最初に削除する必要があります。
+以前のバージョンが検出されました。
+このバージョンは互換性のない方法でインストールされているため、最初に削除する必要があります。
 
-        [\[]次へ[\]] をクリックすると、古いバージョンは自動的にアンインストールされます。
+[\[]次へ[\]] をクリックすると、古いバージョンは自動的にアンインストールされます。
     </String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">セットアップ ウィザードがインストールを確認するまでお待ちください。</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">ポータブル</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[ProductName] は、インストールせずに選択したフォルダに配置されます。</String>
     <String Id="InstallationFeatureProgramFiles" Overridable="yes">プログラムファイル</String>
     <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">プログラムファイルを保存します（必須）</String>
     <String Id="InstallationFeatureDesktopIcon" Overridable="yes">デスクトップアイコン</String>
     <String Id="InstallationFeatureDesktopIconDescription" Overridable="yes">デスクトップにアイコンを追加します</String>
     <String Id="InstallationFeatureStartIcon" Overridable="yes">スタートメニューアイコン</String>
     <String Id="InstallationFeatureStartIconDescription" Overridable="yes">スタートメニューにアイコンを追加します</String>
-    <String Id="InstallationFeatureQuickLaunchIcon" Overridable="yes">クイック起動アイコン</String>
-    <String Id="InstallationFeatureQuickLaunchIconDescription" Overridable="yes">クイック起動バーにアイコンを追加します</String>
     <String Id="InstallationFeatureRegisterExplorer" Overridable="yes">エクスプローラーに登録</String>
     <String Id="InstallationFeatureRegisterExplorerDescription" Overridable="yes">ファイルを開く既定のアプリケーションとしてエクスプローラーに登録します</String>
 
