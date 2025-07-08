@@ -220,7 +220,6 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="scripts\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="media\media_extractor.ico" />
@@ -238,21 +237,13 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="scripts\generate-file-list.ps1" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>cd $(TargetDir)
-del *.pdb
-if $(ConfigurationName) == Release del *.xml
-xcopy "$(SolutionDir)LICENSE" "$(TargetDir)" /Y
-ren "$(TargetDir)LICENSE" license.txt
-xcopy "$(SolutionDir)Changelog.md" "$(TargetDir)" /Y
-ren "$(TargetDir)Changelog.md" changelog.txt
-xcopy "$(SolutionDir)\MediaExtractor\media\media_extractor.ico" "$(TargetDir)" /Y
-ren "$(TargetDir)media_extractor.ico" MediaExtractor.ico
-powershell -ExecutionPolicy Bypass -File "$(ProjectDir)scripts\generate-file-list.ps1" $(TargetDir) $(TargetDir)InstallerFileList.txt</PostBuildEvent>
+    <PostBuildEvent>powershell -ExecutionPolicy Bypass -File "$(SolutionDir)Scripts\copy-info-files.ps1" $(TargetDir) $(SolutionDir)
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)Scripts\clean-folder.ps1" $(SolutionDir)Install
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)Scripts\generate-portable-zip.ps1" "$(TargetDir)." "$(SolutionDir)Install" "$(ProjectDir)Properties\AssemblyInfo.cs" "-portable.zip"
+
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>rd /s /q "$(TargetDir)"</PreBuildEvent>

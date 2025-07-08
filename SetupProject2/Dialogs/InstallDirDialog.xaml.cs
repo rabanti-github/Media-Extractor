@@ -57,13 +57,6 @@ namespace SetupProject2
                         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                         name);
                     break;
-
-                case Constants.INSTALLATION_TYPE_PORTABLE:
-                    // For portable, default to current directory + app folder
-                    var installerDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                    baseDir = Path.Combine(installerDir, $"{name}-Portable");
-                    break;
-
                 default:
                     // Fallback to MSI’s original default
                     baseDir = this.Session()["INSTALLDIR"];
@@ -144,7 +137,6 @@ namespace SetupProject2
 
         public void ChangeInstallDir()
         {
-            // `OpenFolderDialog.Select` is still under development so disabling it for now
             if (session.UseModernFolderBrowserDialog())
             {
                 try
@@ -164,7 +156,6 @@ namespace SetupProject2
                 if (dialog.ShowDialog() == DialogResult.OK)
                     InstallDirPath = dialog.SelectedPath;
             }
-            // }
         }
 
         public void GoPrev()
@@ -173,16 +164,7 @@ namespace SetupProject2
         public void GoNext()
         {
             Constants.AddSecureProperty(WixSession, Constants.SecureProperties.TARGET_DIR, InstallDirPath);
-            string installationType;
-            bool installationTypeDefined = Constants.GetSecureProperty(WixSession, Constants.SecureProperties.INSTALLATION_TYPE, out installationType);
-            if (installationTypeDefined && installationType == Constants.INSTALLATION_TYPE_PORTABLE)
-            {
-                shell?.GoTo<PortableInstallationDialog>();
-            }
-            else
-            {
-                shell?.GoTo<ProgressDialog>();
-            }
+            shell?.GoTo<ProgressDialog>();
         }
 
         public void Cancel()

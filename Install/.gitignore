@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# But not these files
+!.gitignore
+!readme
+!readme.md
+
+# Case-insensitive rules for README
+!README
+!README.md
+!ReadMe.md

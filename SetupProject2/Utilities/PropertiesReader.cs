@@ -23,10 +23,31 @@ namespace WixSharp.Utilities
             get
             {
                 string version = GetProperty("AssemblyVersion");
-                version = SanitizeFilename(version);
-                return version?.Replace(".", "_");
+                if (string.IsNullOrEmpty(version))
+                    return string.Empty;
+
+                // Parse the version string into segments
+                string[] parts = version.Split('.');
+                List<int> numbers = parts.Select(p =>
+                {
+                    int.TryParse(p, out int n);
+                    return n;
+                }).ToList();
+
+                // Trim trailing zero segments (from the right)
+                for (int i = numbers.Count - 1; i > 1; i--)
+                {
+                    if (numbers[i] == 0)
+                        numbers.RemoveAt(i);
+                    else
+                        break;
+                }
+
+                // Convert to _-separated string
+                return string.Join(".", numbers);
             }
         }
+
 
         public string ProductName
         {

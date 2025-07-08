@@ -69,10 +69,6 @@ namespace SetupProject2
                     this.Dispatcher.BeginInvoke(new System.Action(() =>
                     {
                         this.Session()["INSTALLDIR"] = installationPath;
-                        if (installationTypeDefined && installationType == Constants.INSTALLATION_TYPE_PORTABLE)
-                        {
-                            base.Shell.GoTo<PortableInstallationDialog>();
-                        }
                         base.Shell.GoTo<ProgressDialog>();
                     }), DispatcherPriority.ApplicationIdle);
                 }

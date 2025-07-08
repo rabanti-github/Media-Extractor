@@ -153,18 +153,11 @@ namespace SetupProject2
         public bool DefaultChecked { get; set; }
         public object Data { get; set; }
         public Node Parent => ((FeatureItem)this.Data).Parent?.ViewModel as Node;
-        //public bool IsEditable { get; set; } = true;
 
         public bool IsEditable
         {
             get 
             {
-                string portable;
-                Constants.GetSecureProperty(session, Constants.SecureProperties.INSTALLATION_TYPE, out portable);
-                if (portable == Constants.INSTALLATION_TYPE_PORTABLE && name == Constants.FEATURE_EXPLORER_NAME)
-                {
-                    return false; // disable editing for portable installation
-                }
                 return isEditable;
             }
             set

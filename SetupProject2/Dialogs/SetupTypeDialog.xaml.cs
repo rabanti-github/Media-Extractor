@@ -52,8 +52,6 @@ namespace SetupProject2
         void PerMachine_Click(object sender, System.Windows.RoutedEventArgs e)
             => model.PerMachine();
 
-        void Portable_Click(object sender, System.Windows.RoutedEventArgs e)
-            => model.Portable();
     }
 
     /// <summary>
@@ -91,26 +89,9 @@ namespace SetupProject2
             {
                 // JumpToProgressDialog();
                 Constants.AddSecureProperty(Host.Session(), Constants.SecureProperties.INSTALLATION_TYPE, Constants.INSTALLATION_TYPE_USER);
-                //session[Constants.INSTALL_SCOPE_KEY] = Constants.INSTALLATION_TYPE_USER;
                 shell.GoNext();
             }
 
-        }
-
-        public void Portable()
-        {
-            if (shell != null)
-            {
-                // mark all features to be installed
-                // string[] names = session.Features.Select(x => x.Name).ToArray();
-                // session["ADDLOCAL"] = names.JoinBy(",");
-
-                //JumpToProgressDialog();
-                Constants.AddSecureProperty(Host.Session(), Constants.SecureProperties.INSTALLATION_TYPE, Constants.INSTALLATION_TYPE_PORTABLE);
-                //session[Constants.INSTALL_SCOPE_KEY] = Constants.INSTALLATION_TYPE_PORTABLE;
-                session[Constants.INSTALL_SCOPE_KEY] = "portable";
-                shell.GoNext();
-            }
         }
 
         public void PerMachine()
@@ -122,8 +103,6 @@ namespace SetupProject2
                 session[Constants.OPEN_AS_ADMIN_KEY] = "true";
                 shell.GoNext();
             }
-
-                //      => shell?.GoNext(); // let the dialog flow through
         }
 
 

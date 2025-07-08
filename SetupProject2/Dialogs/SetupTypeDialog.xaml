@@ -92,25 +92,6 @@
                 TextWrapping="WrapWithOverflow">
                 [InstallScopeDlgPerMachineDescription]
             </TextBlock>
-
-            <Button
-                x:Name="DoComplete"
-                Grid.Row="2"
-                Height="23"
-                MinWidth="112"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Click="Portable_Click"
-                Content="[InstallScopeDlgPortable]" />
-            <TextBlock
-                Grid.Row="2"
-                MinHeight="35"
-                Margin="0,35,0,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                TextWrapping="WrapWithOverflow">
-                [InstallScopeDlgPortableDescription]
-            </TextBlock>
         </Grid>
 
         <Border

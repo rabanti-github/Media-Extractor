@@ -99,7 +99,6 @@ namespace SetupProject2
                                             .Add<SetupProject2.FeaturesDialog>()
                                             .Add<SetupProject2.InstallDirDialog>()
                                             .Add<SetupProject2.ProgressDialog>()
-                                            .Add<SetupProject2.PortableInstallationDialog>()
                                             .Add<SetupProject2.ExitDialog>();
 
             project.ManagedUI.ModifyDialogs.Add<SetupProject2.LanguageSelectionDialog>()
@@ -127,7 +126,6 @@ namespace SetupProject2
                 {
                     Id        = "Reg_OpenWith_Command",
                     Feature   = registration,
-                    Condition = "INSTALLATION_TYPE <> \"portable\""
                 },
                 // Context‑menu icon
                 new RegValue(RegistryHive.ClassesRoot,
@@ -137,8 +135,6 @@ namespace SetupProject2
                 {
                     Id        = "Reg_OpenWith_Icon",
                     Feature   = registration,
-                    // Only in per‑machine or per‑user mode; skip portable
-                    Condition = "INSTALLATION_TYPE <> \"portable\"",
                 },
             };
             #endregion
@@ -147,7 +143,9 @@ namespace SetupProject2
 
             #region postBuild
             var sourceMsi = Path.Combine(Directory.GetCurrentDirectory(), project.OutFileName + ".msi");
-            var outputDir = Path.Combine(Directory.GetCurrentDirectory(), "output");
+            //var outputDir = Path.(Directory.GetCurrentDirectory(), "output");
+
+            var outputDir = Constants.INSTALLER_OUTPUT_PATH;
 
             Directory.CreateDirectory(outputDir);
             string outputMsi = Path.Combine(propertiesReader.ProductName + "-" + propertiesReader.FileNameVersion + ".msi");

@@ -39,7 +39,7 @@ namespace WixSharp
 #endif
         public const string MAIN_APP_NAME = "MediaExtractor.exe";
         public const string ICON_NAME = "MediaExtractor.ico";
-        public const string INSTALLER_FILE_LIST = "InstallerFileList.txt";
+        public const string INSTALLER_OUTPUT_PATH = @"..\Install\";
         #endregion
 
         #region internal
@@ -58,7 +58,7 @@ namespace WixSharp
 
         public const string INSTALLATION_TYPE_USER = "user";
         public const string INSTALLATION_TYPE_SYSTEM = "system";
-        public const string INSTALLATION_TYPE_PORTABLE = "portable";
+
 
         public const string FEATURE_ROOT_NAME = "[InstallationFeatureProgramFiles]";
         public const string FEATURE_DESKTOP_NAME = "[InstallationFeatureDesktopIcon]";

@@ -617,8 +617,6 @@
 [\[]次へ[\]] をクリックすると、古いバージョンは自動的にアンインストールされます。
     </String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">セットアップ ウィザードがインストールを確認するまでお待ちください。</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">ポータブル</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[ProductName] は、インストールせずに選択したフォルダに配置されます。</String>
     <String Id="InstallationFeatureProgramFiles" Overridable="yes">プログラムファイル</String>
     <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">プログラムファイルを保存します（必須）</String>
     <String Id="InstallationFeatureDesktopIcon" Overridable="yes">デスクトップアイコン</String>

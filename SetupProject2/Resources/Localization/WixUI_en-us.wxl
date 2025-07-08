@@ -617,8 +617,6 @@ This version must be removed first, since it was installed in a non-compatible w
 
 The old version will uninstalled automatically if you click on Next.</String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">Please wait while the Setup Wizard check the installation.</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">Portable</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[ProductName] will be placed in the selected folder without installation.</String>
     <String Id="InstallationFeatureProgramFiles" Overridable="yes">Program files</String>
     <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">Storing the program files (mandatory)</String>
     <String Id="InstallationFeatureDesktopIcon" Overridable="yes">Desktop icon</String>

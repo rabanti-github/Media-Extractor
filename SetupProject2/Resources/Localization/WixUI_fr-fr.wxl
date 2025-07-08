@@ -618,8 +618,6 @@ Cette version doit d'abord être supprimée, car elle a été installée de mani
 L'ancienne version sera désinstallée automatiquement si vous cliquez sur Suivant.
 	</String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">Veuillez patienter pendant que l'assistant d'installation vérifie l'installation.</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">Portable</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[ProductName] sera placé dans le dossier sélectionné sans installation.</String>
 <String Id="InstallationFeatureProgramFiles" Overridable="yes">Fichiers du programme</String>
 <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">Stockage des fichiers du programme (obligatoire)</String>
 <String Id="InstallationFeatureDesktopIcon" Overridable="yes">Icône sur le bureau Windows</String>

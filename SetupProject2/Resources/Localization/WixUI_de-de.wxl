@@ -617,8 +617,6 @@ Diese Version muss zuerst entfernt werden, da sie auf eine nicht kompatible Weis
 Die alte Version wird automatisch deinstalliert, wenn Sie auf Weiter klicken.
 	</String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">Bitte warten Sie, während der Setup-Assistent die Installation überprüft.</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">Portabel</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[Produktname] wird ohne Installation im ausgewählten Ordner abgelegt.</String>
     <String Id="InstallationFeatureProgramFiles" Overridable="yes">Programmdateien</String>
     <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">Speichert die Programmdateien (erforderlich)</String>
     <String Id="InstallationFeatureDesktopIcon" Overridable="yes">Desktop-Symbol</String>

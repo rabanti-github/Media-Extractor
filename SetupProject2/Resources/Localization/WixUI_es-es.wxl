@@ -617,8 +617,6 @@ Esta versión debe eliminarse primero, ya que se instaló de forma no compatible
 La versión antigua se desinstalará automáticamente si hace clic en Siguiente.
 	</String>
 	<String Id="ProgressDlgTextChecking" Overridable="yes">Espere mientras el asistente de instalación comprueba la instalación.</String>
-    <String Id="InstallScopeDlgPortable" Overridable="yes">Portátil</String>
-    <String Id="InstallScopeDlgPortableDescription" Overridable="yes">[ProductName] se colocará en la carpeta seleccionada sin instalación.</String>
     <String Id="InstallationFeatureProgramFiles" Overridable="yes">Archivos del programa</String>
     <String Id="InstallationFeatureProgramFilesDescription" Overridable="yes">Almacena los archivos del programa (obligatorio)</String>
     <String Id="InstallationFeatureDesktopIcon" Overridable="yes">Icono en el escritorio de Windows</String>
