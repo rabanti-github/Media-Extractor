@@ -44,6 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="README.md" />
+    <None Include="LICENSE" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="WixSharp-wix4.WPF" Version="2.6.2" />
     <PackageReference Include="WixToolset.Dtf.WindowsInstaller" Version="4.0.4" />
     <PackageReference Include="WixToolset.Mba.Core" Version="4.0.4" />

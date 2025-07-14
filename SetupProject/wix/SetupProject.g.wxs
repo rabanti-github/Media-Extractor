@@ -49,8 +49,16 @@
           <File Id="MediaExtractor.ico_2161859844" Source="..\MediaExtractor\bin\debug\MediaExtractor.ico" />
         </Component>
 
+        <Component Id="Component.MediaExtractor.pdb_3987330814" Guid="6446f2f5-6f37-4dd0-b0da-6248df58e56b">
+          <File Id="MediaExtractor.pdb_3987330814" Source="..\MediaExtractor\bin\debug\MediaExtractor.pdb" />
+        </Component>
+
         <Component Id="Component.Ookii.Dialogs.Wpf.dll_3368900281" Guid="6446f2f5-6f37-4dd0-b0da-6248ea459df2">
           <File Id="Ookii.Dialogs.Wpf.dll_3368900281" Source="..\MediaExtractor\bin\debug\Ookii.Dialogs.Wpf.dll" />
+        </Component>
+
+        <Component Id="Component.Ookii.Dialogs.Wpf.pdb_1814756241" Guid="6446f2f5-6f37-4dd0-b0da-624862adb872">
+          <File Id="Ookii.Dialogs.Wpf.pdb_1814756241" Source="..\MediaExtractor\bin\debug\Ookii.Dialogs.Wpf.pdb" />
         </Component>
 
         <Component Id="Component.Ookii.Dialogs.Wpf.xml_640803358" Guid="6446f2f5-6f37-4dd0-b0da-6248cb3d1311">
@@ -235,7 +243,9 @@
       <ComponentRef Id="Component.MediaExtractor.exe_3206557558" />
       <ComponentRef Id="Component.MediaExtractor.exe.config_978156635" />
       <ComponentRef Id="Component.MediaExtractor.ico_2161859844" />
+      <ComponentRef Id="Component.MediaExtractor.pdb_3987330814" />
       <ComponentRef Id="Component.Ookii.Dialogs.Wpf.dll_3368900281" />
+      <ComponentRef Id="Component.Ookii.Dialogs.Wpf.pdb_1814756241" />
       <ComponentRef Id="Component.Ookii.Dialogs.Wpf.xml_640803358" />
       <ComponentRef Id="Component.SevenZipExtractor.dll_513712357" />
       <ComponentRef Id="Component.MediaExtractor.resources.dll_472057742" />
