@@ -160,7 +160,7 @@
     <value>Inglés (English)</value>
   </data>
   <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
-    <value>Alemán (German)</value>
+    <value>Alemán (Deutsch)</value>
   </data>
   <data name="MenuHelp" xml:space="preserve">
     <value>Ayuda</value>
@@ -454,7 +454,7 @@
     <value>Se ha omitido la vista previa de '{0}' (archivo demasiado grande)</value>
   </data>
   <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
-    <value>Francés (French)</value>
+    <value>Francés (Français)</value>
   </data>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Español</value>

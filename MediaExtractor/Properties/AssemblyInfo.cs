@@ -7,7 +7,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Media-Extractor")]
-[assembly: AssemblyCopyright("Copyright © 2023 Raphael Stoeckli")]
+[assembly: AssemblyCopyright("Copyright © 2025 Raphael Stoeckli")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

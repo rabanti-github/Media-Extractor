@@ -201,9 +201,6 @@
   <data name="LabelPreview" xml:space="preserve">
     <value>プレビュー</value>
   </data>
-  <data name="ButtonSaveSelected" xml:space="preserve">
-    <value>選択したファイルを保存</value>
-  </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>作者</value>
   </data>
@@ -227,6 +224,9 @@
   </data>
   <data name="AboutWebsite" xml:space="preserve">
     <value>ウェブサイト</value>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>選択したファイルを保存</value>
   </data>
   <data name="CrcDescription" xml:space="preserve">
     <value>CRC32（巡回冗長検査）は、データやファイルが同一かどうかを比較するためのシンプルなハッシングメソッドです。ただし、CRCは2つのファイルが同一であることを100％保証するものではありません。しかし、両方のファイルのサイズが同一であり、悪意のある改ざんが予想されない場合、強力な証拠となります。</value>
@@ -399,14 +399,14 @@
   <data name="StatusLoadingEmbedded" xml:space="preserve">
     <value>埋め込まれたファイルを読み込んでいます... お待ちください</value>
   </data>
+  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
+    <value>システム言語（デフォルト）</value>
+  </data>
   <data name="DialogMissingWebsite" xml:space="preserve">
     <value>プロジェクトのウェブサイトをロードできませんでした。</value>
   </data>
   <data name="DialogMissingWebsiteTitle" xml:space="preserve">
     <value>プロジェクトのウェブサイトがロードされませんでした</value>
-  </data>
-  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
-    <value>システム言語（デフォルト）</value>
   </data>
   <data name="TextErrorInvalidImage" xml:space="preserve">
     <value>画像のプレビューを作成できませんでした</value>
@@ -458,5 +458,8 @@
   </data>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>スペイン語(Español)</value>
+  </data>
+  <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
+    <value>日本語</value>
   </data>
 </root>

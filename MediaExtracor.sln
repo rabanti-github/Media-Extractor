@@ -17,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{02EA
 		Scripts\clean-folder.ps1 = Scripts\clean-folder.ps1
 		Scripts\copy-info-files.ps1 = Scripts\copy-info-files.ps1
 		Scripts\generate-portable-zip.ps1 = Scripts\generate-portable-zip.ps1
-		Scripts\readme.md = Scripts\readme.md
+		Scripts\README.md = Scripts\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Install", "Install", "{A0927149-916C-4552-A1B2-7414278561C1}"
 	ProjectSection(SolutionItems) = preProject
 		Install\.gitignore = Install\.gitignore
-		Install\readme.md = Install\readme.md
+		Install\README.md = Install\README.md
 	EndProjectSection
 EndProject
 Global

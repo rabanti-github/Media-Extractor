@@ -119,347 +119,462 @@
   </resheader>
   <data name="MenuFile" xml:space="preserve">
     <value>File</value>
+    <comment>Menu title for file operation</comment>
   </data>
   <data name="MenuFileOpen" xml:space="preserve">
     <value>Open Document</value>
+    <comment>Menu title to open a document or file</comment>
   </data>
   <data name="MenuFileSaveSelected" xml:space="preserve">
     <value>Save selected File(s)</value>
+    <comment>Menu title to save the selected files</comment>
   </data>
   <data name="MenuFileSaveAll" xml:space="preserve">
     <value>Save all Files</value>
+    <comment>Menu title to save all files</comment>
   </data>
   <data name="MenuFileQuit" xml:space="preserve">
     <value>Quit</value>
+    <comment>Menu title to quit the app</comment>
   </data>
   <data name="MenuDocument" xml:space="preserve">
     <value>Document</value>
+    <comment>Menu title for document options</comment>
   </data>
   <data name="MenuDocumentShowImages" xml:space="preserve">
     <value>Show embedded Image Files</value>
+    <comment>Menu title to set or unset whether embedded images are displayed in the preview</comment>
   </data>
   <data name="MenuDocumentShowOther" xml:space="preserve">
     <value>Show other embedded Files</value>
+    <comment>Menu title to set or unset whether other files are shown in the listview</comment>
   </data>
   <data name="MenuDocumentKeepStructure" xml:space="preserve">
     <value>Keep Folder Structure when Extracting</value>
+    <comment>Menu title to set or unset whether the embedded structure is kept when extracting files</comment>
   </data>
   <data name="MenuDocumentOpenExplorer" xml:space="preserve">
     <value>Show in Explorer after Extracting</value>
+    <comment>Menu title to set or unset whether Windows Explorer is opened after extraction</comment>
   </data>
   <data name="MenuAppearance" xml:space="preserve">
     <value>Appearance</value>
+    <comment>Menu title for the view settings of the app</comment>
   </data>
   <data name="MenuAppearanceDarkmode" xml:space="preserve">
     <value>Dark Mode</value>
+    <comment>Menu title to set or unset dark mode</comment>
   </data>
   <data name="MenuAppearanceLanguage" xml:space="preserve">
     <value>Language</value>
+    <comment>Menu title of the language selection</comment>
   </data>
   <data name="MenuAppearanceLanguageEnglish" xml:space="preserve">
     <value>English</value>
+    <comment>Menu title for English (app translation)</comment>
   </data>
   <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
     <value>Deutsch (German)</value>
+    <comment>Menu title for German (app translation)</comment>
   </data>
   <data name="MenuHelp" xml:space="preserve">
     <value>Help</value>
+    <comment>Menu title of the help menu section</comment>
   </data>
   <data name="MenuHelpAbout" xml:space="preserve">
     <value>About</value>
+    <comment>Menu title to call the "About" dialog</comment>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
     <value>Project Website</value>
+    <comment>Menu title to call the app project website</comment>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
     <value>Change Log</value>
+    <comment>Menu title to call the change log file</comment>
   </data>
   <data name="MenuHelpLicense" xml:space="preserve">
     <value>License</value>
+    <comment>Menu title to call the license file</comment>
   </data>
   <data name="ButtonOpen" xml:space="preserve">
     <value>Open Document</value>
+    <comment>Button text to open a file or document</comment>
   </data>
   <data name="LabelListview" xml:space="preserve">
     <value>Embedded Files</value>
+    <comment>Label of the listview that shows the embedded files</comment>
   </data>
   <data name="ListViewColumnName" xml:space="preserve">
     <value>Filename (Embedded)</value>
+    <comment>Column name for the embedded file name</comment>
   </data>
   <data name="ListViewColumnExtension" xml:space="preserve">
     <value>Ext.</value>
+    <comment>Column name for the file extension</comment>
   </data>
   <data name="ListViewColumnPath" xml:space="preserve">
     <value>Relative Path</value>
+    <comment>Column name for the relative path of the embedded file</comment>
   </data>
   <data name="ButtonSave" xml:space="preserve">
     <value>Save File(s)</value>
+    <comment>Button text to save one or multiple files</comment>
   </data>
   <data name="ButtonSaveAll" xml:space="preserve">
     <value>Save all Files</value>
+    <comment>Button text to save all files</comment>
   </data>
   <data name="LabelPreview" xml:space="preserve">
     <value>Preview</value>
+    <comment>Label of the preview section</comment>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>Author</value>
+    <comment>Author label in the 'About' dialog</comment>
   </data>
   <data name="AboutCloseButton" xml:space="preserve">
     <value>Close</value>
+    <comment>Label of the close button in the 'About' dialog</comment>
   </data>
   <data name="AboutDate" xml:space="preserve">
     <value>Date</value>
+    <comment>Release date label in the 'About' dialog</comment>
   </data>
   <data name="AboutDescription" xml:space="preserve">
     <value>Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar)</value>
+    <comment>App description in the 'Abou' dialog. It wraps, but will be truncated if too long</comment>
   </data>
   <data name="AboutHeader" xml:space="preserve">
     <value>About Media-Extractor</value>
+    <comment>Dialog title of the 'About' dialog</comment>
   </data>
   <data name="AboutLicense" xml:space="preserve">
     <value>License</value>
+    <comment>License label in the 'About' dialog</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Version</value>
+    <comment>Version number label in the 'About' dialog</comment>
   </data>
   <data name="AboutWebsite" xml:space="preserve">
     <value>Website</value>
+    <comment>Website label in the 'About' dialog</comment>
   </data>
   <data name="ButtonSaveSelected" xml:space="preserve">
     <value>Save selected File(s)</value>
+    <comment>Button text to save the selected files</comment>
   </data>
   <data name="CrcDescription" xml:space="preserve">
     <value>CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected.</value>
+    <comment>Text to explain CRC32 in a tooltip. It wraps, but will be truncated if too long</comment>
   </data>
   <data name="DialogButtonCancel" xml:space="preserve">
     <value>Cancel Extraction</value>
+    <comment>Button text to cancel the file extraction</comment>
   </data>
   <data name="DialogButtonCancelTooltip" xml:space="preserve">
     <value>Cancel the extraction</value>
+    <comment>Button tooltip to cancel the file extraction</comment>
   </data>
   <data name="DialogButtonOverwrite" xml:space="preserve">
     <value>Overwrite</value>
+    <comment>Button text to overwrite files</comment>
   </data>
   <data name="DialogButtonOverwriteTooltip" xml:space="preserve">
     <value>Replace the existing file</value>
+    <comment>Button tooltip to overwrite files</comment>
   </data>
   <data name="DialogButtonRename" xml:space="preserve">
     <value>Rename</value>
+    <comment>Button text to rename extracted files instead of overwriting existing</comment>
   </data>
   <data name="DialogButtonRenameTooltip" xml:space="preserve">
     <value>Rename the new file</value>
+    <comment>Button tooltip to rename extracted files instead of overwriting existing</comment>
   </data>
   <data name="DialogButtonSkip" xml:space="preserve">
     <value>Skip</value>
+    <comment>Button text to skip a file during extraction</comment>
   </data>
   <data name="DialogButtonSkipTooltip" xml:space="preserve">
     <value>Skip the extraction of the file</value>
+    <comment>Button tooltip to skip a file during extraction</comment>
   </data>
   <data name="DialogCancelTitle" xml:space="preserve">
     <value>Canceled</value>
+    <comment>Dialog title when an operation was canceled</comment>
   </data>
   <data name="DialogErrorTitle" xml:space="preserve">
     <value>Error</value>
+    <comment>Dialog title when errors occurred</comment>
   </data>
   <data name="DialogExplorerError" xml:space="preserve">
     <value>The path '{0}' could not be opened</value>
+    <comment>Dialog text with mandatory parameter {0} if a path is invalid</comment>
   </data>
   <data name="DialogHeader" xml:space="preserve">
     <value>File already exists...</value>
+    <comment>Dialog title if a file already exists</comment>
   </data>
   <data name="DialogLabelCrc" xml:space="preserve">
     <value>CRC32:</value>
+    <comment>Dialog label for a CRC32 value</comment>
   </data>
   <data name="DialogLabelDate" xml:space="preserve">
     <value>Date:</value>
+    <comment>Dialog label for a date</comment>
   </data>
   <data name="DialogLabelExisting" xml:space="preserve">
     <value>Existing File</value>
+    <comment>Dialog label for the section of an existing file</comment>
   </data>
   <data name="DialogLabelName" xml:space="preserve">
     <value>Name:</value>
+    <comment>Dialog label for a file name</comment>
   </data>
   <data name="DialogLabelNew" xml:space="preserve">
     <value>New File to Extract</value>
+    <comment>Dialog label for the section of a new file to extract</comment>
   </data>
   <data name="DialogLabelSize" xml:space="preserve">
     <value>Size:</value>
+    <comment>Dialog label for a file size</comment>
   </data>
   <data name="DialogRememberCheckbox" xml:space="preserve">
     <value>Remember Decision</value>
+    <comment>Dialog label for a checkbox to remember the decision of the user</comment>
   </data>
   <data name="DialogSaveAllTitle" xml:space="preserve">
     <value>Select a Folder to save all Files...</value>
+    <comment>Dialog title to select a folder to extract all files into it</comment>
   </data>
   <data name="DialogSaveCurrentTitle" xml:space="preserve">
     <value>Save current File as...</value>
+    <comment>Dialog title to select a path to extract the current file into it</comment>
   </data>
   <data name="DialogSaveErrors" xml:space="preserve">
     <value>Not all files were extracted</value>
+    <comment>Dialog text if not all files could be extracted</comment>
   </data>
   <data name="DialogSaveFailure" xml:space="preserve">
     <value>The file could not be saved</value>
+    <comment>Dialog text if the selected file could not be saved</comment>
   </data>
   <data name="DialogSaveFilter" xml:space="preserve">
     <value>All files|*.*</value>
+    <comment>File filter in a "Save as" dialog</comment>
   </data>
   <data name="DialogSaveSelectedTitle" xml:space="preserve">
     <value>Select a Folder to save the selected Files...</value>
+    <comment>Dialog title to select a folder to extract the selected  files into it</comment>
   </data>
   <data name="DialogUnexpectedError" xml:space="preserve">
     <value>There was an unexpected error during the extraction:</value>
+    <comment>Warning text in a dialog, if something went wrong during the extraction</comment>
   </data>
   <data name="DropAreaWatermark" xml:space="preserve">
     <value>Drop Document here</value>
+    <comment>Watermark text of a GUI drop zone</comment>
   </data>
   <data name="StatusSaveCanceled" xml:space="preserve">
     <value>The save process was canceled</value>
+    <comment>Status message, indicating that the save process was canceled</comment>
   </data>
   <data name="StatusSaveErrorSummary" xml:space="preserve">
     <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped, {4} not extracted (errors)</value>
+    <comment>Status message with mandatory parameters {0}, {1}, {2}, {3} and {4}, that summarizes a file extraction process</comment>
   </data>
   <data name="StatusSaveFailure" xml:space="preserve">
     <value>Could not save the file: {0}</value>
+    <comment>Status message with mandatory parameter {0}, indicating that the file could not be saved</comment>
   </data>
   <data name="StatusSaveSuccess" xml:space="preserve">
     <value>The file was saved as: {0}</value>
+    <comment>Status message with mandatory parameter {0}, indicating that the file was saved</comment>
   </data>
   <data name="StatusSaveSummary" xml:space="preserve">
     <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped</value>
+    <comment>Status message with mandatory parameters {0}, {1}, {2} and {3}, that summarizes a file extraction process</comment>
   </data>
   <data name="TextErrorMultipleFiles" xml:space="preserve">
     <value>{0} files could not be extracted.</value>
+    <comment>General text with mandatory parameter {0}, indicating how many files could not be extracted</comment>
   </data>
   <data name="TextErrorOneFile" xml:space="preserve">
     <value>One file could not be extracted.</value>
+    <comment>General text, indicating that one file could not be extracted</comment>
   </data>
   <data name="TextNoPreview" xml:space="preserve">
     <value>No Preview</value>
+    <comment>General text, indicating that there is no preview</comment>
   </data>
   <data name="TextSaveError" xml:space="preserve">
     <value>The path '{0}' could not be opened</value>
+    <comment>General text with mandatory parameter {0}, indicating that the path could not be opened</comment>
   </data>
   <data name="TextSkippedMultipleFiles" xml:space="preserve">
     <value>{0} files were skipped.</value>
+    <comment>General text with mandatory parameter {0}, indicating how many files were skipped during the extraction</comment>
   </data>
   <data name="TextSkippedOneFile" xml:space="preserve">
     <value>One file was skipped.</value>
+    <comment>General text, indicating that one file was skipped during the extraction</comment>
   </data>
   <data name="DialogLoadFailure" xml:space="preserve">
     <value>The file could not be loaded.\n{0}\nError Message: {1}</value>
+    <comment>Dialog text with the mandatory parameters {0} and {1} if a file could not be loaded</comment>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
     <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
+    <comment>File filter in a "Open File" dialog</comment>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>Select Office Document...</value>
+    <comment>Dialog title in a "Open File" dialog</comment>
   </data>
   <data name="StatusLoaded" xml:space="preserve">
     <value>File loaded: {0}</value>
+    <comment>Status message with mandatory parameter {0}, indicating what file is currently selected</comment>
   </data>
   <data name="StatusLoadFailure" xml:space="preserve">
     <value>The file could not be loaded</value>
+    <comment>Status message, indicating that the file could not be loaded</comment>
   </data>
   <data name="StatusLoading" xml:space="preserve">
     <value>Loading file... Please wait</value>
+    <comment>Status message, indicating, that a file is currently be loaded</comment>
   </data>
   <data name="TextInvalidFormat" xml:space="preserve">
     <value>The file may be not a valid Office file or archive.</value>
+    <comment>General text, indicating that the input file has a not supported format</comment>
   </data>
   <data name="TextInvalidPath" xml:space="preserve">
     <value>It looks like the filename is not valid. Please check the file name and path.</value>
+    <comment>General text, indicating that a path seems to be invalid</comment>
   </data>
   <data name="TextLockedFile" xml:space="preserve">
     <value>Please make sure that the file is not open in another application.</value>
+    <comment>General text, indicating that a file is probably locked by another application</comment>
   </data>
   <data name="DialogMissingChangelog" xml:space="preserve">
     <value>The change log '{0}' was not found.</value>
+    <comment>Dialog text with the mandatory parameter {0}, indicating that the changelog was not found</comment>
   </data>
   <data name="DialogMissingChangelogTitle" xml:space="preserve">
     <value>Changelog not found</value>
+    <comment>Dialog title, indicating that the changelog was not found</comment>
   </data>
   <data name="DialogMissingLicense" xml:space="preserve">
     <value>The license file '{0}' was not found.</value>
+    <comment>Dialog text with the mandatory parameter {0}, indicating that the license was not found</comment>
   </data>
   <data name="DialogMissingLicenseTitle" xml:space="preserve">
     <value>License could not be found</value>
+    <comment>Dialog title, indicating that the license was not found</comment>
   </data>
   <data name="StatusEmbeddedLoaded" xml:space="preserve">
     <value>{0} loaded</value>
+    <comment>Status message with mandatory parameter {0}, indicating how many files were loaded</comment>
   </data>
   <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
     <value>Embedded file could not be loaded: {0}</value>
+    <comment>Status message with mandatory parameter {0}, indicating that the currently selected file could not be loaded</comment>
   </data>
   <data name="StatusLoadEmbeddedOtherFailure" xml:space="preserve">
     <value>Preview not possible for {0}</value>
+    <comment>Status message with mandatory parameter {0}, indicating that the currently selected file could not be used as image preview</comment>
   </data>
   <data name="StatusLoadEmbeddedTextFailure" xml:space="preserve">
     <value>Text / XML file could not be loaded: {0}</value>
+    <comment>Status message with mandatory parameter {0}, indicating that the currently selected file could not be displayed as text</comment>
   </data>
   <data name="StatusLoadingEmbedded" xml:space="preserve">
     <value>Loading embedded file... Please wait</value>
+    <comment>Status message, indicating, that an embedded file is currently be loaded</comment>
   </data>
   <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
     <value>System Language (Default)</value>
+    <comment>Menu title of the default language</comment>
   </data>
   <data name="DialogMissingWebsite" xml:space="preserve">
     <value>The project website could not be loaded</value>
+    <comment>Dialog text, indicating that the app project website was not found</comment>
   </data>
   <data name="DialogMissingWebsiteTitle" xml:space="preserve">
     <value>Project website not loaded</value>
+    <comment>Dialog title, indicating that the app project website was not found</comment>
   </data>
   <data name="TextErrorInvalidImage" xml:space="preserve">
     <value>Image preview could not be created</value>
+    <comment>General text, indicating that a preview image could not be created</comment>
   </data>
   <data name="TextErrorInvalidText" xml:space="preserve">
     <value>Text preview could not be created</value>
+    <comment>General text, indicating that a preview text could not be created</comment>
   </data>
   <data name="DialogInvalidExtensions" xml:space="preserve">
     <value>An error occurred during the retrieval of the file extensions for the previews. The default values are restored</value>
+    <comment>Dialog text if errors occurred because of invalid file extensions</comment>
   </data>
   <data name="StatusReady" xml:space="preserve">
     <value>Ready</value>
+    <comment>Status message, indicating, that the app is ready</comment>
   </data>
   <data name="ListViewColumnSize" xml:space="preserve">
     <value>Size</value>
+    <comment>Column name for the file size of the embedded file</comment>
   </data>
   <data name="DialogMissingRecentFile" xml:space="preserve">
     <value>The file was not found:\n{0}\nShould the entry be removed from the recent file list?</value>
+    <comment>Dialog text with the mandatory parameter {0}, indicating that a recent file was not found (question to remove)</comment>
   </data>
   <data name="MenuFileClearRecent" xml:space="preserve">
     <value>Clear List</value>
+    <comment>Menu title to clear recent files</comment>
   </data>
   <data name="MenuFileRecent" xml:space="preserve">
     <value>Recent Files</value>
+    <comment>Menu title for the recent files</comment>
   </data>
   <data name="DialogSizeWarning" xml:space="preserve">
     <value>The preview of a large file (&gt; {0}) is attempted.\nThis process may take a long time.\nShall the preview be created?</value>
+    <comment>Warning text with mandatory parameter {0}, indicating that a file could be too large for a preview</comment>
   </data>
   <data name="DialogSizeWarningTitle" xml:space="preserve">
     <value>Attempt to preview a large File...</value>
+    <comment>Dialog title if a file could be too large for a preview</comment>
   </data>
   <data name="MenuDocumentGenerictextPreview" xml:space="preserve">
     <value>Text Preview on unknown File Formats</value>
+    <comment>Menu title to set or unset preview of unknown file extensions</comment>
   </data>
   <data name="MenuDocumentSizeWarning" xml:space="preserve">
     <value>Show Warning for Preview of large Files</value>
+    <comment>Menu title to set or unset whether a warning should be shown if large files should be displayed in the preview</comment>
   </data>
   <data name="StatusLoadEmbeddedImageFallback" xml:space="preserve">
     <value>The preview image for '{0}' could not be loaded. Displaying as text</value>
+    <comment>Status message with mandatory parameter {0}, indicating that the currently selected file could not be used as image preview, and it is displayed as text</comment>
   </data>
   <data name="StatusLoadEmbeddedOtherFallback" xml:space="preserve">
     <value>The preview for '{0}' could not be loaded. Displaying as text</value>
+    <comment>Status message with mandatory parameter {0}, indicating that the currently selected file could not be used as image preview, and it is displayed as text</comment>
   </data>
   <data name="StatusPreviewSkipped" xml:space="preserve">
     <value>The preview of '{0}' was skipped (file too large)</value>
+    <comment>Status message, indicating that the file preview was skipped, because the file was too large</comment>
   </data>
   <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
     <value>Français (French)</value>
+    <comment>Menu title for French (app translation)</comment>
   </data>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Español (Spanish)</value>
+    <comment>Menu title for Spanish (app translation)</comment>
   </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Japanese (日本語)</value>
+    <comment>Menu title for Japanese (app translation)</comment>
   </data>
 </root>

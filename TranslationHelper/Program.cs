@@ -28,6 +28,7 @@ namespace TranslationHelper
         /// <param name="args">Arguments in the format of Mono.Options</param>
         static void Main(string[] args)
         {
+            Console.ReadKey(); // Wait for a key press to ensure the console window stays open during debugging
             bool showHelp = false;
             bool modeResxToCsv = false;
             bool modeResxToXlsx = false;
