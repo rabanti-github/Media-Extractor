@@ -1,45 +1,94 @@
-# Media-Extractor - TranslationHelper
+﻿# Media-Extractor - Translation Helper
 
-TranslationHelper is a console application and mainly to export the existing translation strings to an Excel file. Furthermore, an Excel file can be read to generate a markdown file (for Wiki maintenance)
+**Translation Helper** is a command-line tool used to extract, convert, and update translation strings from `.resx` files. It supports conversion between `.resx`, `.csv`, `.xlsx`, and `.md` (Markdown) formats. This allows convenient editing in spreadsheet applications or interactions with Large Language Models (LLMs) for translation purposes.
 
-## Usage
+Its primary use case is to simplify translation workflows for the **Media-Extractor** project by providing automation-friendly, batch-capable export/import capabilities.
 
-Example to write all translation strings to an Excel file:
+However, Translation Helper is not tied to Media-Extractor. If you have `.resx` files with keys, values and comments that can act as context, then Translation Helper can be used for any project, of course 😀 
 
-   ```shell
-   TranslationHelper -l=de-De -x=C:\temp\germanStrings.xlsx
-   ```
+---
 
-Example to read a translation from an Excel file and to write it back to a markdown file:
+## 🚀 Usage
 
-   ```shell
-   TranslationHelper -i=C:\temp\germanStrings.xlsx -m=C:\temp\markdown.md
-   ```
+Basic syntax:
 
-Example to write a default markdown file:
+```bash
+TranslationHelper [OPTIONS]
+```
 
-   ```shell
-   TranslationHelper -d=C:\temp\markdown.md
-   ```
+### 📌 Examples
 
-Example to write a default markdown file with externally loaded comments:
+Export neutral and German `.resx` files to Excel:
 
-   ```shell
-    TranslationHelper -c=C:\temp\comments.xlsx -d=C:\temp\markdown.md
-   ```
+```bash
+TranslationHelper -n=Resources.resx -l=Resources.de-DE.resx -x -o=translation.xlsx
+```
 
-## Options
+Export to Markdown for LLM translation, when the source language is German and the target language is Swedish:
 
-| Short Option | Long Option | Description |
-| --- | --- | --- |
-| `-h` | `--help` | Shows the help |
-| `-l=VALUE` | `--locale=VALUE` | Defines the locale to be written (e.g. 'en', 'de-DE'). If not valid or defined, the application default (en) will be used |
-| `-x=VALUE` | `--xlsx=VALUE`  | Writes an Excel file with all translation strings in the defined locale at the defined path |
-| `-i=VALUE` | `--input=VALUE` | Reads an Excel file with all translation strings from the defined path. The structure must be the same as generated with 'x' |
-| `-m=VALUE` | `--markdown=VALUE` | Writes a markdown text based on a loaded Excel file at the defined path. The 'i' flag must be defined as well |
-| `-d=VALUE` | `--default=VALUE`  | Writes a markdown text only with the default terms to the specified path
-| `-c=VALUE` | `--comments=VALUE` | Reads an Excel file with term comments, where column A is the translation key and B the comment (starting with row 2). These comments will overrode existing ones |
+```bash
+TranslationHelper -n=Resources.resx -l=Resources.de-DE.resx -m -o=swe.md -s=German -t=Swedish
+```
 
-## License
+Import translated Markdown and generate `.resx`:
 
-MIT License
+```bash
+TranslationHelper -i=de.md -R -o=de.resx
+```
+
+Convert CSV to `.resx` (using source texts instead of translation):
+
+```bash
+TranslationHelper -i=de.csv -C -o=de.resx -r
+```
+
+---
+
+## 📋 Options
+
+| Short | Long         | Description                                                                             |
+|-------|--------------|---------------------------------------------------------------------------------------- |
+| `-h`  | `--help`     | Shows this help message                                                                 |
+| `-c`  | `--csv`      | Read `.resx` and save as CSV                                                            |
+| `-x`  | `--xlsx`     | Read `.resx` and save as XLSX                                                           |
+| `-m`  | `--md`       | Read `.resx` and save as Markdown for LLM translation                                   |
+| `-M`  | `--mdin`     | Read LLM-generated Markdown and save as CSV                                             |
+| `-X`  | `--mdxlsx`   | Read LLM-generated Markdown and save as XLSX                                            |
+| `-R`  | `--mdresx`   | Read LLM-generated Markdown and save as `.resx`                                         |
+| `-Z`  | `--xlsxresx` | Read XLSX file and save as `.resx`                                                      |
+| `-C`  | `--csvresx`  | Read CSV file and save as `.resx`                                                       |
+| `-n`  | `--neutral`  | Input path to the default (neutral) `.resx` (required if `-l` is used)                  |
+| `-l`  | `--lang`     | Optional input path to language-specific `.resx`                                        |
+| `-i`  | `--input`    | Input file (Markdown, CSV, or XLSX, depending on mode)                                  |
+| `-r`  | `--usesource`| Use source language (instead of translated) when importing translation from CSV or XLSX.|
+| `-o`  | `--output`   | Output path and file name                                                               |
+| `-t`  | `--target`   | Target language name (e.g. `German`, `Italian`)                                         |
+| `-s`  | `--source`   | Optional source language (default: `English`)                                           |
+| `-d`  | `--delimiter`| Optional CSV delimiter (default is `,`)                                                 |
+
+---
+
+## 📎 Notes and Tips
+
+- An input Markdown file (`.md`) must use the same table structure as the one generated by `-m`.
+- Use `-s` and `-t` to define the source and target languages for LLM translation. The value of `-s` must match the language of the `.resx` file provided with `-l`.
+- When importing from CSV or XLSX, the first row is always treated as the header and skipped.
+- The expected column order for CSV and XLSX is: **Key**, **Default Value**, **Translated Value**, **Comment**.
+- CSV and XLSX files must be encoded in **UTF-8** for correct import/export.
+- When importing XLSX file, the worksheet name (tab) with the data to import must be `Translation`.
+- Using `-m` will generate a Markdown file containing a translation prompt followed by a table with keys, source texts, and contextual information.
+- Using `-m` will always be an English prompt and expects English comments as context. The source language can be any language (specified by `-l` and `-t` as its name), but it is recommended to have English as source language
+
+---
+
+## 🌍 Adding a New Language
+
+*This section will describe how to add a new language to Media-Extractor, including resx handling and translation workflows.*
+
+(coming soon)
+
+---
+
+## 📄 License
+
+TranslationHelper is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
