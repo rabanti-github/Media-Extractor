@@ -462,4 +462,7 @@
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Japanese (日本語)</value>
   </data>
+  <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
+    <value>Italian (Italiano)</value>
+  </data>
 </root>

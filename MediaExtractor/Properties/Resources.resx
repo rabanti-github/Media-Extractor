@@ -577,4 +577,8 @@
     <value>Japanese (日本語)</value>
     <comment>Menu title for Japanese (app translation)</comment>
   </data>
+  <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
+    <value>Italiano (Italian)</value>
+    <comment>Menu title for Italian (app translation)</comment>
+  </data>
 </root>

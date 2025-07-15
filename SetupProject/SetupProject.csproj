@@ -24,6 +24,7 @@
     <None Remove="readme.txt" />
     <None Remove="Resources\Localization\WixUI_de-de.wxl" />
     <None Remove="Resources\Localization\WixUI_en-us.wxl" />
+    <None Remove="resources\localization\WixUI_it-it.wxl" />
     <None Remove="*.CA.dll" />
     <None Remove="*.cs.dll" />
     <None Remove="*.cmd.log" />
@@ -34,6 +35,7 @@
     <Content Include="Resources\Localization\WixUI_en-us.wxl" />
     <Content Include="Resources\Localization\WixUI_es-es.wxl" />
     <Content Include="Resources\Localization\WixUI_fr-fr.wxl" />
+    <Content Include="resources\localization\WixUI_it-it.wxl" />
     <Content Include="Resources\Localization\WixUI_ja-jp.wxl" />
   </ItemGroup>
 

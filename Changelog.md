@@ -1,5 +1,17 @@
 # Change Log
 
+## v1.11.0
+
+Release Date: **15.07.2025**
+
+- Added Italian translation
+- Updated installer (replaced EXE with MSI)
+- Added portable file version
+- Project maintenance
+- Updated internal utilities (Translation Helper, Setup Project)
+- Updated various readme files
+
+
 ## v1.10.0
 
 Release Date: **03.12.2023**

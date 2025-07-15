@@ -81,11 +81,119 @@ TranslationHelper -i=de.csv -C -o=de.resx -r
 
 ---
 
-## 🌍 Adding a New Language
+## 🌍 Adding a New Language to Media-Extractor
 
-*This section will describe how to add a new language to Media-Extractor, including resx handling and translation workflows.*
+This section describes how to add a new language to Media-Extractor, including resx handling and translation workflows.
+As example Language, **Italian** is used.
 
-(coming soon)
+1. Adapt the neutral `.resx` file (Properties/Resources.resx) in the Media-Extractor project. Add a new Key for the language selection:
+	- Key = `MenuAppearanceLanguageItalian`
+	- Value = `Italiano (Italian)` (the first part is the native language name, the second part is the English name) 
+	- Comment = `Menu title for Italian (app translation)`
+2. Translate the new entry into all existing languages (e.g. German, French, etc.). Use a LLM based translation tool or manual translation, if you are confident with the terms
+	- Example German: `Italienisch (Italiano)`
+	- Example Japanese: `イタリア語 (Italiano)`
+	- Example French: `Italien (Italiano)`
+	- Example Spanish: `Italiano (Italiano)`
+3. In `ViewModel.cs`, add a new parameter `private bool useItalianLocale = false;`
+4. In `ViewModel.cs`, add a new section for the Italian locale, where the value is true:
+  ```cs
+        public bool UseItalianLocale
+        {
+            get { return useItalianLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                    UseGermanLocale = false;
+                    UseFrenchLocale = false;
+                    UseJapaneseLocale = false;
+                    UseSpanishLocale = false;
+                    UseSystemLocale = false;
+                }
+                useItalianLocale = value;
+                NotifyPropertyChanged("UseItalianLocale");
+            }
+        }
+  ```
+4. In `ViewModel.cs`, add the Italian locale to all other sections (including `UseSystemLocale`) with false as value, e.g in French:
+  ```cs
+        public bool UseFrenchLocale
+        {
+            get { return useFrenchLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                    UseGermanLocale = false;
+                    UseJapaneseLocale = false;
+                    UseSpanishLocale = false;
+                    UseItalianLocale = false; // Add this line
+                    UseSystemLocale = false;
+                }
+                useFrenchLocale = value;
+                NotifyPropertyChanged("UseFrenchLocale");
+            }
+        }
+  ```
+5. In `I18N.cs`, add the constant for the Italian locale:
+  ```cs	
+  public const string ITALIAN = "it-IT";
+  ```
+6. In `I18N.cs`, add the enum value for Italian in the `Key` enum:
+  ```cs
+  public enum Key
+  {
+  // ... existing keys
+	MenuAppearanceLanguageItalian,
+  }
+  ```
+7. In `I18N.cs`, add the Italian section in the method `MatchLocale`:
+  ```cs
+                case ITALIAN:
+                    viewModel.UseEnglishLocale = false;
+                    viewModel.UseGermanLocale = false;
+                    viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = false;
+                    viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = true;
+                    viewModel.UseSystemLocale = false;
+                    break;
+  ```
+8. In `I18N.cs`, add the Italian entry to all other sections in the method `MatchLocale` with the value false, e.g. in German:
+  ```cs
+                case GERMAN:
+                    viewModel.UseEnglishLocale = false;
+                    viewModel.UseGermanLocale = true;
+                    viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = false;
+                    viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = false; // Add this line
+                    viewModel.UseSystemLocale = false;
+                    break;
+  ```
+9. In `MainWindow.xaml`, add a new menu item for Italian language selection:
+  ```xml
+<MenuItem x:Name="ItalianMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageItalian}" IsCheckable="True" IsChecked="{Binding Path=UseItalianLocale}" Click="ItalianMenuItem_Click" />
+  ```
+10. In `MainWindow.xaml.cs`, add the Italian menu item click handler:
+  ```cs
+        private void ItalianMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeLocale(I18n.ITALIAN);
+        }
+  ```
+11. Create an Italian `.resx` file, using the `Translation Helper` tool, e.g.:
+    ```bash
+    TranslationHelper -m -t=Italian -n=Resources.resx -o=italianLLM.md
+    // Translate the generated `italianLLM.md` file using a LLM or manually, and save it as `italianTraslation.md`.
+    TranslationHelper -R -i=italianTraslation.md -o=Resources.it-IT.resx
+    ```
+12. In the Media-Extractor project, add the new Italian `.resx` file to the project and set its properties to "Embedded Resource".
+
+After the last step and a compilation, Media-Extractor should be able to switch to Italian language using the menu item.
 
 ---
 

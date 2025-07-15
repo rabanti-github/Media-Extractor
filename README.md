@@ -10,9 +10,8 @@ Media-Extractor is an application to preview and extract packed media in Microso
 
 The most recent version of Media-Extractor can be downloaded on the [Page of the latest Release](https://github.com/rabanti-github/Media-Extractor/releases/latest).
 
-- Usually, the **Installer** is suitable for the most users (e.g. **Media-Extractor-Setup_1_9.exe**).
-- If you want to use Media-Extractor as a **portable app**, the release version is the right choice (e.g. '**Media-Extractor_Release_v1.9.zip**').
-- The portable debug version (Debug.zip), as well as the source code (zip / tar.gz), is only necessary for development purpose.
+- Usually, the **Installer** is suitable for the most users (e.g. **Media-Extractor-1.11.msi**).
+- If you want to use Media-Extractor as a **portable app**, the zip version is the right choice (e.g. '**Media-Extractor-1.11-portable.zip**').
 
 Please see also the section [SmartScreen Warning in Windows 8.1, 10 and 11](#smartscreen-warning-in-windows-81-10-and-11)
 
@@ -100,10 +99,12 @@ One or many files can be selected (using ctrl or shift key) in the list and extr
 
 Although Media-Extractor provides an [installer](#Download), it does not need an installation and can be run as portable app. The [downloaded zip file](#Download) can be unzipped in a folder of your choice. The general system requirements are:
 
-- Microsoft Windows 7, 8.1, 10, 11
+- Microsoft Windows 7*, 8.1*, 10, 11
 - .NET 4.8 or higher installed
 
 Please see the section about the [SmartScreen Warning](#smartscreen-warning-in-windows-81-10-and-11) if you have problem to run the application after downloading.
+
+*) Support for Windows 7 and 8 cannot be ensured anymore. Media-Extractor may or may not run on these systems.
 
 ## Translations
 
@@ -116,10 +117,15 @@ Currently, Media-Extractor is translated to the following Languages:
 | **German**   | Completed | Application Author |
 | **Japanese**   | Completed | AI based translation |
 | **Spanish**   | Completed | AI based translation |
+| **Italian**   | Completed | AI based translation |
 
-If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'. The defined terms that are to be translated can be found in [this wiki Article](https://github.com/rabanti-github/Media-Extractor/wiki/Translation-Template). Alternatively, the default translation terms can be downloaded as [Excel file](./resources/translation/DefaultTranslationStrings.xlsx). This is a direct copy of the default [Resources.resx file](https://github.com/rabanti-github/Media-Extractor/blob/master/MediaExtractor/Properties/Resources.resx).
+If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'.
 
-Please do not hesitate to ask, if the context of a term is not clear.
+Since **Large Language Models** (LLMs) became so powerful, the sub-project **TranslationHelper** was adapted to feed resource files with translation terms (resx) as prompt to a LLM, to get back the translated version.
+TranslationHelper provides several import and export methods, not only limited to LLM translation.
+
+There is also a description, how to add a new language to Media-Extractor.
+
 
 ## SmartScreen Warning in Windows 8.1, 10 and 11
 
@@ -141,14 +147,17 @@ The following libraries / dependencies are necessary for the development of Medi
 - [SevenZipExtractor](https://github.com/adoconnection/SevenZipExtractor)
 - [Ookii.Dialogs.Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf)
 - [AdonisUI](https://github.com/benruehl/adonis-ui/) and AdonisUI.ClassicTheme
-- [NanoXLSX](https://github.com/rabanti-github/NanoXLSX) (for TranslationHelper project)
-- [Mono.Options](https://github.com/xamarin/XamarinComponents/tree/main/XPlat/Mono.Options) (for TranslationHelper project)
+- [NanoXLSX](https://github.com/rabanti-github/NanoXLSX) for TranslationHelper project
+- [Mono.Options](https://github.com/xamarin/XamarinComponents/tree/main/XPlat/Mono.Options) for TranslationHelper project
+- [CsvHelper](https://joshclose.github.io/CsvHelper/) for the TranslationHelper project
+- [ResXResourceReader](https://www.nuget.org/packages/ResXResourceReader.NetStandard) for the TranslationHelper project
+- [WixSharp](https://github.com/oleg-shilo/wixsharp) as foundation for the SetupProject
+- [WixToolest](https://github.com/wixtoolset) (several packages) as dependencies of the SetupProject
 
 ## Additional Development Projects
 
 - TranslationHelper (import/export utility, used for the translation of Media-Extractor)
-- InstallerBootstrap (utility to post-build the installer script after building Media-Extractor)
-- MediaExtractorInstaller ([Inno Setup](https://jrsoftware.org/isinfo.php) project to create the installer file)
+- SetupProject ([WixSharp](https://github.com/oleg-shilo/wixsharp) project to create the installer file)
 
 ## License
 

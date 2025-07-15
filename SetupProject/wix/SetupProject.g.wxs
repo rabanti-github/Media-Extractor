@@ -6,7 +6,7 @@
     To suppress generation of this file remove `set ide=true` from the PostBuildEvent of the VS project
 </auto-generated>
 -->
-  <Package Compressed="yes" ProductCode="6446f2f5-6f37-4dd0-b0da-6248b5901edb" Name="Media-Extractor" Language="1033" Version="1.10.0.0" UpgradeCode="6446f2f5-6f37-4dd0-b0da-6248a5f01eda" Manufacturer="rabanti" Scope="perUserOrMachine" InstallerVersion="200">
+  <Package Compressed="yes" ProductCode="6446f2f5-6f37-4dd0-b0da-6248b5a01edb" Name="Media-Extractor" Language="1033" Version="1.11.0.0" UpgradeCode="6446f2f5-6f37-4dd0-b0da-6248a5f01eda" Manufacturer="rabanti" Scope="perUserOrMachine" InstallerVersion="200">
     <SummaryInformation Codepage="Windows-1252" />
     <Media Id="1" Cabinet="Media2dExtractor.cab" EmbedCab="yes" />
 
@@ -97,6 +97,14 @@
 
           <Component Id="Component.MediaExtractor.resources.dll_728138086" Guid="6446f2f5-6f37-4dd0-b0da-62484509d9aa">
             <File Id="MediaExtractor.resources.dll_728138086" Source="..\MediaExtractor\bin\debug\fr-FR\MediaExtractor.resources.dll" />
+          </Component>
+
+        </Directory>
+
+        <Directory Id="it2dIT" Name="it-IT">
+
+          <Component Id="Component.MediaExtractor.resources.dll_2895420350" Guid="6446f2f5-6f37-4dd0-b0da-6248163e08e1">
+            <File Id="MediaExtractor.resources.dll_2895420350" Source="..\MediaExtractor\bin\debug\it-IT\MediaExtractor.resources.dll" />
           </Component>
 
         </Directory>
@@ -206,6 +214,7 @@
     <Binary Id="en_wxl" SourceFile="Resources\Localization\WixUI_en-us.wxl" />
     <Binary Id="fr_wxl" SourceFile="Resources\Localization\WixUI_fr-fr.wxl" />
     <Binary Id="es_wxl" SourceFile="Resources\Localization\WixUI_es-es.wxl" />
+    <Binary Id="it_wxl" SourceFile="Resources\Localization\WixUI_it-it.wxl" />
     <Binary Id="jp_wxl" SourceFile="Resources\Localization\WixUI_ja-jp.wxl" />
     <Binary Id="WixSharp_UIText" SourceFile="C:\ProgramData\WixSharp\2.6.2.0\WixUI_en-US.wxl" />
     <Binary Id="WixSharp_LicenceFile" SourceFile="resources\MIT-License.rtf" />
@@ -214,7 +223,7 @@
 
     <UIRef Id="WixUI_ErrorProgressText" />
 
-    <Property Id="PRODUCT_VERSION" Value="1.10.0.0" />
+    <Property Id="PRODUCT_VERSION" Value="1.11.0.0" />
     <Property Id="RESUME_INSTALLATION" Value="PROPERTY_UNDEFINED" Secure="yes" />
     <Property Id="UI_LANGUAGE" Value="PROPERTY_UNDEFINED" Secure="yes" />
     <Property Id="INSTALLATION_TYPE" Value="PROPERTY_UNDEFINED" Secure="yes" />
@@ -252,6 +261,7 @@
       <ComponentRef Id="Component.MediaExtractor.resources.dll_3521735867" />
       <ComponentRef Id="Component.MediaExtractor.resources.dll_1495733095" />
       <ComponentRef Id="Component.MediaExtractor.resources.dll_728138086" />
+      <ComponentRef Id="Component.MediaExtractor.resources.dll_2895420350" />
       <ComponentRef Id="Component.MediaExtractor.resources.dll_1755373747" />
       <ComponentRef Id="Component._7z.dll_1854388378" />
       <ComponentRef Id="Component._7z.dll_1988493852" />

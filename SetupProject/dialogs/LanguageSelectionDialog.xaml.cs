@@ -130,6 +130,10 @@ namespace SetupProject
                     runtime.UIText.InitFromWxl(wixSession.ReadBinary("jp_wxl"));
                     break;
 
+                case Constants.LANGUAGE_ITALIAN:
+                    runtime.UIText.InitFromWxl(wixSession.ReadBinary("it_wxl"));
+                    break;
+
                 default:
                     runtime.UIText.InitFromWxl(wixSession.ReadBinary("en_wxl"));
                     break;
@@ -149,6 +153,7 @@ namespace SetupProject
     {
         public bool EnChecked { get; set; }
         public bool FrChecked { get; set; }
+        public bool ItChecked { get; set; }
         public bool JpChecked { get; set; }
         public bool EsChecked { get; set; }
         public bool DeChecked { get; set; }
@@ -166,6 +171,7 @@ namespace SetupProject
                 else if (FrChecked) { return Constants.LANGUAGE_FRENCH; }
                 else if (EsChecked) { return Constants.LANGUAGE_SPANISH; }
                 else if (JpChecked) { return Constants.LANGUAGE_JAPANESE; }
+                else if (ItChecked) { return Constants.LANGUAGE_ITALIAN; }
                 else { return Constants.LANGUAGE_ENGLISH; }
             } 
             internal set 
@@ -182,6 +188,9 @@ namespace SetupProject
                         break;
                     case Constants.LANGUAGE_JAPANESE:
                         JpChecked = true;
+                        break;
+                    case Constants.LANGUAGE_ITALIAN:
+                        ItChecked = true;
                         break;
                     default:
                         EnChecked = true;

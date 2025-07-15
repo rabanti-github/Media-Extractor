@@ -45,6 +45,7 @@ namespace MediaExtractor
         private bool useFrenchLocale = false;
         private bool useJapaneseLocale = false;
         private bool useSpanishLocale = false;
+        private bool useItalianLocale = false;
         private bool saveSelectedIsDefault;
         private bool saveAllIsDefault;
         private float numberOfFiles;
@@ -307,7 +308,8 @@ namespace MediaExtractor
                     UseEnglishLocale = false;
                     UseFrenchLocale = false;
                     UseJapaneseLocale = false;
-                    useSpanishLocale = false;
+                    UseSpanishLocale = false;
+                    UseItalianLocale = false;
                 }
                 useSystemLocale = value;
                 NotifyPropertyChanged("UseSystemLocale");
@@ -330,7 +332,8 @@ namespace MediaExtractor
                     UseGermanLocale = false;
                     UseFrenchLocale = false;
                     UseJapaneseLocale = false;
-                    useSpanishLocale = false;
+                    UseSpanishLocale = false;
+                    UseItalianLocale = false;
                     UseSystemLocale = false;
                 }
                 useEnglishLocale = value;
@@ -354,7 +357,8 @@ namespace MediaExtractor
                     UseEnglishLocale = false;
                     useFrenchLocale = false;
                     UseJapaneseLocale = false;
-                    useSpanishLocale = false;
+                    UseSpanishLocale = false;
+                    UseItalianLocale = false;
                     UseSystemLocale = false;
                 }
                 useGermanLocale = value;
@@ -379,7 +383,8 @@ namespace MediaExtractor
                     UseEnglishLocale = false;
                     UseGermanLocale = false;
                     UseJapaneseLocale = false;
-                    useSpanishLocale = false;
+                    UseSpanishLocale = false;
+                    UseItalianLocale = false;
                     UseSystemLocale = false;
                 }
                 useFrenchLocale = value;
@@ -403,7 +408,8 @@ namespace MediaExtractor
                     UseEnglishLocale = false;
                     UseGermanLocale = false;
                     UseFrenchLocale = false;
-                    useSpanishLocale = false;
+                    UseSpanishLocale = false;
+                    UseItalianLocale = false;
                     UseSystemLocale = false;
                 }
                 useJapaneseLocale = value;
@@ -428,10 +434,36 @@ namespace MediaExtractor
                     UseGermanLocale = false;
                     UseFrenchLocale = false;
                     UseJapaneseLocale = false;
+                    UseItalianLocale = false;
                     UseSystemLocale = false;
                 }
                 useSpanishLocale = value;
                 NotifyPropertyChanged("UseSpanishLocale");
+            }
+        }
+
+        /// <summary>
+        /// If true, the Application will be using Italian (it-IT) as locale
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if Italian is the current locale, otherwise, <c>false</c>
+        /// </value>
+        public bool UseItalianLocale
+        {
+            get { return useItalianLocale; }
+            set
+            {
+                if (value)
+                {
+                    UseEnglishLocale = false;
+                    UseGermanLocale = false;
+                    UseFrenchLocale = false;
+                    UseJapaneseLocale = false;
+                    UseSpanishLocale = false;
+                    UseSystemLocale = false;
+                }
+                useItalianLocale = value;
+                NotifyPropertyChanged("UseItalianLocale");
             }
         }
 

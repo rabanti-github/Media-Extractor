@@ -655,6 +655,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Italiano (Italian) ähnelt.
+        /// </summary>
+        public static string MenuAppearanceLanguageItalian {
+            get {
+                return ResourceManager.GetString("MenuAppearanceLanguageItalian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Japanese (日本語) ähnelt.
         /// </summary>
         public static string MenuAppearanceLanguageJapanese {

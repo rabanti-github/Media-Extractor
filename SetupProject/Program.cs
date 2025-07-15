@@ -161,6 +161,7 @@ namespace SetupProject
                    .AddBinary(new Binary(new Id("en_wxl"), @"Resources\Localization\WixUI_en-us.wxl"))
                    .AddBinary(new Binary(new Id("fr_wxl"), @"Resources\Localization\WixUI_fr-fr.wxl"))
                    .AddBinary(new Binary(new Id("es_wxl"), @"Resources\Localization\WixUI_es-es.wxl"))
+                   .AddBinary(new Binary(new Id("it_wxl"), @"Resources\Localization\WixUI_it-it.wxl"))
                    .AddBinary(new Binary(new Id("jp_wxl"), @"Resources\Localization\WixUI_ja-jp.wxl"));
 
             project.UIInitialized += (SetupEventArgs e) =>
@@ -188,6 +189,9 @@ namespace SetupProject
                         break;
                     case Constants.LANGUAGE_JAPANESE:
                         runtime.UIText.InitFromWxl(e.Session.ReadBinary("jp_wxl"));
+                        break;
+                    case Constants.LANGUAGE_ITALIAN:
+                        runtime.UIText.InitFromWxl(e.Session.ReadBinary("it_wxl"));
                         break;
                     default:
                         runtime.UIText.InitFromWxl(e.Session.ReadBinary("en_wxl"));
@@ -232,7 +236,6 @@ namespace SetupProject
                     string additionalParameters = Constants.CollectSecureProperties(e.Session);
 
                     "msiexec".StartElevated($"/i \"{msiFilePath}\" {additionalParameters}");
-                    DumpCommandLine(msiFilePath, additionalParameters);  // TODO remove this line in production code
 
                     e.Result = ActionResult.SkipRemainingActions;
                     MessageBox.Show("The setup will now restart with elevated privileges. Please wait...", "Restarting Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -255,19 +258,6 @@ namespace SetupProject
                 }
 
             
-        }
-
-        // Writes the exact command you launch to %TEMP%\installer_debug.txt --> Remove this in production code
-        static void DumpCommandLine(string msiPath, string extraParams)
-        {
-            var temp = Path.Combine(Path.GetTempPath(), "D:\\Dev\\NET\\Media-Extractor\\SetupProject\\output\\installer_debug.txt");
-            using (var tw = new StreamWriter(temp, append: true))
-            {
-                var cmd = $@"msiexec /i ""{msiPath}"" {extraParams}";
-                tw.WriteLine($"=== Relaunch command at {DateTime.Now:O} ===");
-                tw.WriteLine(cmd);
-                tw.WriteLine();  // blank line
-            }
         }
 
         static void Msi_Load(SetupEventArgs e)

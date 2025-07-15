@@ -89,6 +89,7 @@ namespace MediaExtractor
             MenuAppearanceLanguageFrench,
             MenuAppearanceLanguageJapanese,
             MenuAppearanceLanguageSpanish,
+            MenuAppearanceLanguageItalian,
             MenuDocument,
             MenuDocumentGenerictextPreview,
             MenuDocumentSizeWarning,
@@ -158,6 +159,10 @@ namespace MediaExtractor
         /// Locale identifier for Spanish (es-ES)
         /// </summary>
         public const string SPANISH = "es-ES";
+        /// <summary>
+        /// Locale identifier for Italian (it-IT)
+        /// </summary>
+        public const string ITALIAN = "it-IT";
 
         /// <summary>
         /// Method to set the current locale in the view model
@@ -180,6 +185,7 @@ namespace MediaExtractor
                     viewModel.UseFrenchLocale = false;
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case GERMAN:
@@ -188,6 +194,7 @@ namespace MediaExtractor
                     viewModel.UseFrenchLocale = false;
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case FRENCH:
@@ -196,6 +203,7 @@ namespace MediaExtractor
                     viewModel.UseFrenchLocale = true;
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case JAPANESE:
@@ -204,6 +212,7 @@ namespace MediaExtractor
                     viewModel.UseFrenchLocale = false;
                     viewModel.UseJapaneseLocale = true;
                     viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case SPANISH:
@@ -212,6 +221,16 @@ namespace MediaExtractor
                     viewModel.UseFrenchLocale = false;
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = true;
+                    viewModel.UseItalianLocale = false;
+                    viewModel.UseSystemLocale = false;
+                    break;
+                case ITALIAN:
+                    viewModel.UseEnglishLocale = false;
+                    viewModel.UseGermanLocale = false;
+                    viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = false;
+                    viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = true;
                     viewModel.UseSystemLocale = false;
                     break;
                 default:
