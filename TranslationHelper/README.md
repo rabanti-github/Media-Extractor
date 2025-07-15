@@ -4,7 +4,7 @@
 
 Its primary use case is to simplify translation workflows for the **Media-Extractor** project by providing automation-friendly, batch-capable export/import capabilities.
 
-However, Translation Helper is not tied to Media-Extractor. If you have `.resx` files with keys, values and comments that can act as context, then Translation Helper can be used for any project, of course ?? 
+However, Translation Helper is not tied to Media-Extractor. If you have `.resx` files with keys, values and comments that can act as context, then Translation Helper can be used for any project, of course 😀 
 
 ---
 
