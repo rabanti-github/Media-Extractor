@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-using System.Windows.Forms;
 using WixSharp;
 using WixSharp.CommonTasks;
 using WixSharp.Utilities;
@@ -14,8 +13,14 @@ namespace SetupProject
 {
     public static class Program
     {
+        private const string WixToolsetVersion = "5.0.2";
+
         static void Main()
         {
+            // WiX 6+ is governed by the Open Source Maintenance Fee. Keep the
+            // compiler used by WixSharp on the explicitly approved WiX 5 line.
+            WixTools.SetWixVersion(Directory.GetCurrentDirectory(), WixToolsetVersion);
+
             PropertiesReader propertiesReader = new PropertiesReader();
 
             #region featureDefinitions
@@ -60,9 +65,9 @@ namespace SetupProject
             project.LicenceFile = "resources\\MIT-License.rtf"; // path to the license file
             
 
-            project.Scope = InstallScope.perUserOrMachine;
-            project.EnableUninstallFullUI();
-            project.EnableResilientPackage();
+            project.Scope = InstallScope.perUser;
+           // project.EnableUninstallFullUI();
+           // project.EnableResilientPackage();
             project.InitLocalization();
             #endregion
 
@@ -108,34 +113,11 @@ namespace SetupProject
             #endregion
 
             #region hooks
-            project.Load += Msi_Load;
             project.Load += Project_Load;
-            project.BeforeInstall += Msi_BeforeInstall;
-            project.AfterInstall += Msi_AfterInstall;
             #endregion
 
             #region regValues
-            project.RegValues = new[]
-           {
-                // Context‑menu command
-                new RegValue(RegistryHive.ClassesRoot,
-                             @"*\shell\Open with " + propertiesReader.ProductName + @"\command",
-                             "",
-                             "\"[INSTALLDIR]" + Constants.MAIN_APP_NAME + "\" \"%1\"")
-                {
-                    Id        = "Reg_OpenWith_Command",
-                    Feature   = registration,
-                },
-                // Context‑menu icon
-                new RegValue(RegistryHive.ClassesRoot,
-                             @"*\shell\Open with " + propertiesReader.ProductName,
-                             "Icon",
-                             "[INSTALLDIR]" + Constants.MAIN_APP_NAME + ",0")
-                {
-                    Id        = "Reg_OpenWith_Icon",
-                    Feature   = registration,
-                },
-            };
+
             #endregion
 
             project.BuildMsi();
@@ -145,12 +127,13 @@ namespace SetupProject
             var outputDir = Constants.INSTALLER_OUTPUT_PATH;
 
             Directory.CreateDirectory(outputDir);
-            string outputMsi = Path.Combine(propertiesReader.ProductName + "-" + propertiesReader.FileNameVersion + ".msi");
-            if (System.IO.File.Exists(outputMsi))
+            string outputMsi = propertiesReader.ProductName + "-" + propertiesReader.FileNameVersion + ".msi";
+            string destinationMsi = Path.Combine(outputDir, outputMsi);
+            if (System.IO.File.Exists(destinationMsi))
             {
-                System.IO.File.Delete(outputMsi);
+                System.IO.File.Delete(destinationMsi);
             }
-            System.IO.File.Move(sourceMsi, Path.Combine(outputDir, outputMsi));
+            System.IO.File.Move(sourceMsi, destinationMsi);
             #endregion
         }
 
@@ -212,17 +195,7 @@ namespace SetupProject
                 return;
             }
 
-            string installForAll = e.Session["INSTALL_FOR_ALL_USERS"] ?? "";
-            if (installForAll == "1")
-            {
-                // Per-machine install
-                e.Session["ALLUSERS"] = "1";
-            }
-            else
-            {
-                // Per-user install
-                e.Session["ALLUSERS"] = "";
-            }
+            e.Session["ALLUSERS"] = e.IsElevated ? "1" : "";
 
             // Check if this is an administrator installation started as a user and if we re-start as admin
             string isOpenAdmin = e.Session["OPEN_AS_ADMIN"];
@@ -238,7 +211,6 @@ namespace SetupProject
                     "msiexec".StartElevated($"/i \"{msiFilePath}\" {additionalParameters}");
 
                     e.Result = ActionResult.SkipRemainingActions;
-                    MessageBox.Show("The setup will now restart with elevated privileges. Please wait...", "Restarting Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (Constants.GetSecureProperty(e.Session, Constants.SecureProperties.SETUP_PID, out string pidStr) &&
                          int.TryParse(pidStr, out int oldPid))
                     {
@@ -260,23 +232,6 @@ namespace SetupProject
             
         }
 
-        static void Msi_Load(SetupEventArgs e)
-        {
-            if (!e.IsUISupressed && !e.IsUninstalling)
-                MessageBox.Show(e.ToString(), "Load");
-        }
-
-        static void Msi_BeforeInstall(SetupEventArgs e)
-        {
-            if (!e.IsUISupressed && !e.IsUninstalling)
-                MessageBox.Show(e.ToString(), "BeforeInstall");
-        }
-
-        static void Msi_AfterInstall(SetupEventArgs e)
-        {
-            if (!e.IsUISupressed && !e.IsUninstalling)
-                MessageBox.Show(e.ToString(), "AfterExecute");
-        }
         #endregion
     }
 }
