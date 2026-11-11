@@ -58,7 +58,7 @@ namespace SetupProject
                         name);
                     break;
                 default:
-                    // Fallback to MSI�s original default
+                    // Fallback to MSIs original default
                     baseDir = this.Session()["INSTALLDIR"];
                     break;
             }
@@ -164,7 +164,7 @@ namespace SetupProject
         public void GoNext()
         {
             Constants.AddSecureProperty(WixSession, Constants.SecureProperties.TARGET_DIR, InstallDirPath);
-            shell?.GoTo<ProgressDialog>();
+            shell?.GoNext();
         }
 
         public void Cancel()
