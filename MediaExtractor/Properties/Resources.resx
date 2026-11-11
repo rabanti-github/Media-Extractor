@@ -573,6 +573,10 @@
     <value>Español (Spanish)</value>
     <comment>Menu title for Spanish (app translation)</comment>
   </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>Português do Brasil (Brazilian Portuguese)</value>
+    <comment>Menu title for Brazilian Portuguese (app translation)</comment>
+  </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Japanese (日本語)</value>
     <comment>Menu title for Japanese (app translation)</comment>

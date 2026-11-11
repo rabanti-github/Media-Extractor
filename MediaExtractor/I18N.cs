@@ -90,6 +90,7 @@ namespace MediaExtractor
             MenuAppearanceLanguageJapanese,
             MenuAppearanceLanguageSpanish,
             MenuAppearanceLanguageItalian,
+            MenuAppearanceLanguageBrazilianPortuguese,
             MenuDocument,
             MenuDocumentGenerictextPreview,
             MenuDocumentSizeWarning,
@@ -163,6 +164,10 @@ namespace MediaExtractor
         /// Locale identifier for Italian (it-IT)
         /// </summary>
         public const string ITALIAN = "it-IT";
+        /// <summary>
+        /// Locale identifier for Brazilian Portuguese (pt-BR)
+        /// </summary>
+        public const string PORTUGUESE_BR = "pt-BR";
 
         /// <summary>
         /// Method to set the current locale in the view model
@@ -186,6 +191,7 @@ namespace MediaExtractor
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseItalianLocale = false;
+                    viewModel.UseBrazilianPortugueseLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case GERMAN:
@@ -195,6 +201,7 @@ namespace MediaExtractor
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseItalianLocale = false;
+                    viewModel.UseBrazilianPortugueseLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case FRENCH:
@@ -204,6 +211,7 @@ namespace MediaExtractor
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseItalianLocale = false;
+                    viewModel.UseBrazilianPortugueseLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case JAPANESE:
@@ -213,6 +221,7 @@ namespace MediaExtractor
                     viewModel.UseJapaneseLocale = true;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseItalianLocale = false;
+                    viewModel.UseBrazilianPortugueseLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case SPANISH:
@@ -222,6 +231,7 @@ namespace MediaExtractor
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = true;
                     viewModel.UseItalianLocale = false;
+                    viewModel.UseBrazilianPortugueseLocale = false;
                     viewModel.UseSystemLocale = false;
                     break;
                 case ITALIAN:
@@ -231,6 +241,17 @@ namespace MediaExtractor
                     viewModel.UseJapaneseLocale = false;
                     viewModel.UseSpanishLocale = false;
                     viewModel.UseItalianLocale = true;
+                    viewModel.UseBrazilianPortugueseLocale = false;
+                    viewModel.UseSystemLocale = false;
+                    break;
+                case PORTUGUESE_BR:
+                    viewModel.UseEnglishLocale = false;
+                    viewModel.UseGermanLocale = false;
+                    viewModel.UseFrenchLocale = false;
+                    viewModel.UseJapaneseLocale = false;
+                    viewModel.UseSpanishLocale = false;
+                    viewModel.UseItalianLocale = false;
+                    viewModel.UseBrazilianPortugueseLocale = true;
                     viewModel.UseSystemLocale = false;
                     break;
                 default:
@@ -295,6 +316,7 @@ namespace MediaExtractor
             viewModel.UseFrenchLocale = false;
             viewModel.UseJapaneseLocale = false;
             viewModel.UseSpanishLocale = false;
+            viewModel.UseBrazilianPortugueseLocale = false;
             viewModel.UseSystemLocale = true;
         }
 

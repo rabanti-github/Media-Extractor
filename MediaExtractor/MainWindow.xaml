@@ -89,6 +89,7 @@
                     <MenuItem x:Name="JapaneseMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageJapanese}" IsCheckable="True" IsChecked="{Binding Path=UseJapaneseLocale}" Click="JapaneseMenuItem_Click" />
                     <MenuItem x:Name="SpanishMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageSpanish}" IsCheckable="True" IsChecked="{Binding Path=UseSpanishLocale}" Click="SpanishMenuItem_Click" />
                     <MenuItem x:Name="ItalianMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageItalian}" IsCheckable="True" IsChecked="{Binding Path=UseItalianLocale}" Click="ItalianMenuItem_Click" />
+                    <MenuItem x:Name="BrazilianPortugueseMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageBrazilianPortuguese}" IsCheckable="True" IsChecked="{Binding Path=UseBrazilianPortugueseLocale}" Click="BrazilianPortugueseMenuItem_Click" />
 
                 </MenuItem>
             </MenuItem>

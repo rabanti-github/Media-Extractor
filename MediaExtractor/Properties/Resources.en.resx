@@ -459,6 +459,9 @@
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Spanish (Español)</value>
   </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>Brazilian Portuguese (Português do Brasil)</value>
+  </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Japanese (日本語)</value>
   </data>

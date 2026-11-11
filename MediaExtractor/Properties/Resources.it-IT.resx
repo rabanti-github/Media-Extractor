@@ -463,6 +463,9 @@ Creare l'anteprima?</value>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Spagnolo (Español)</value>
   </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>Portoghese brasiliano (Português do Brasil)</value>
+  </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Giapponese (日本語)</value>
   </data>

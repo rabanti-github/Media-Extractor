@@ -117,6 +117,7 @@ Currently, Media-Extractor is translated to the following Languages:
 | **Japanese**   | Completed | AI based translation |
 | **Spanish**   | Completed | AI based translation |
 | **Italian**   | Completed | AI based translation |
+| **Brazilian Portuguese**   | Completed | AI based translation (agentic) |
 
 If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'.
 
