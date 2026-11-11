@@ -169,7 +169,7 @@
     <value>Über</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Projekt-Webseite</value>
+    <value>Webseite</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
     <value>Änderungsprotokoll</value>
@@ -349,7 +349,7 @@
     <value>Die Datei konnte nicht geladen werden.\n{0}\nFehlermeldung: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>Alle Office-Formate|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word-Dokumente|*.docx;*.dotx;*.docm;*.dotm|Excel-Dokumente|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint-Dokumente|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Gängige Archiv-Formate|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Alle Dateien|*.*</value>
+    <value>Alle Office-Formate|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word-Dokumente|*.docx;*.dotx;*.docm;*.dotm|Excel-Dokumente|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint-Dokumente|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Gängige Archiv-Formate|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Alle Dateien|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>Office-Dokument auswählen...</value>
@@ -459,10 +459,22 @@
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Spanisch (Español)</value>
   </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>Brasilianisches Portugiesisch (Português do Brasil)</value>
+  </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Japanisch (日本語)</value>
   </data>
   <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
     <value>Italienisch (Italiano)</value>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>Projektseite</value>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=de</value>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>Projektseite</value>
   </data>
 </root>

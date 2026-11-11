@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MenuFile" xml:space="preserve">
+    <value>Arquivo</value>
+  </data>
+  <data name="MenuFileOpen" xml:space="preserve">
+    <value>Abrir documento</value>
+  </data>
+  <data name="MenuFileSaveSelected" xml:space="preserve">
+    <value>Salvar arquivo(s) selecionado(s)</value>
+  </data>
+  <data name="MenuFileSaveAll" xml:space="preserve">
+    <value>Salvar todos os arquivos</value>
+  </data>
+  <data name="MenuFileQuit" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="MenuDocument" xml:space="preserve">
+    <value>Documento</value>
+  </data>
+  <data name="MenuDocumentShowImages" xml:space="preserve">
+    <value>Exibir arquivos de imagem incorporados</value>
+  </data>
+  <data name="MenuDocumentShowOther" xml:space="preserve">
+    <value>Exibir outros arquivos incorporados</value>
+  </data>
+  <data name="MenuDocumentKeepStructure" xml:space="preserve">
+    <value>Manter a estrutura de pastas ao extrair</value>
+  </data>
+  <data name="MenuDocumentOpenExplorer" xml:space="preserve">
+    <value>Exibir no Explorador após extrair</value>
+  </data>
+  <data name="MenuAppearance" xml:space="preserve">
+    <value>Aparência</value>
+  </data>
+  <data name="MenuAppearanceDarkmode" xml:space="preserve">
+    <value>Modo escuro</value>
+  </data>
+  <data name="MenuAppearanceLanguage" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="MenuAppearanceLanguageEnglish" xml:space="preserve">
+    <value>Inglês (English)</value>
+  </data>
+  <data name="MenuAppearanceLanguageGerman" xml:space="preserve">
+    <value>Alemão (Deutsch)</value>
+  </data>
+  <data name="MenuHelp" xml:space="preserve">
+    <value>Ajuda</value>
+  </data>
+  <data name="MenuHelpAbout" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="MenuHelpWebsite" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="MenuHelpChangeLog" xml:space="preserve">
+    <value>Histórico de alterações</value>
+  </data>
+  <data name="MenuHelpLicense" xml:space="preserve">
+    <value>Licença</value>
+  </data>
+  <data name="ButtonOpen" xml:space="preserve">
+    <value>Abrir documento</value>
+  </data>
+  <data name="LabelListview" xml:space="preserve">
+    <value>Arquivos incorporados</value>
+  </data>
+  <data name="ListViewColumnName" xml:space="preserve">
+    <value>Nome do arquivo (incorporado)</value>
+  </data>
+  <data name="ListViewColumnExtension" xml:space="preserve">
+    <value>Ext.</value>
+  </data>
+  <data name="ListViewColumnPath" xml:space="preserve">
+    <value>Caminho relativo</value>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Salvar arquivo(s)</value>
+  </data>
+  <data name="ButtonSaveAll" xml:space="preserve">
+    <value>Salvar todos os arquivos</value>
+  </data>
+  <data name="LabelPreview" xml:space="preserve">
+    <value>Visualização</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="AboutCloseButton" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="AboutDate" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Media Extractor é um aplicativo para visualizar e extrair conteúdo de mídia incorporado em arquivos do Microsoft Office (por exemplo, documentos do Word, PowerPoint ou Excel) ou em arquivos compactados comuns (por exemplo, zip, 7z ou tar)</value>
+  </data>
+  <data name="AboutHeader" xml:space="preserve">
+    <value>Sobre o Media-Extractor</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>Licença</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="AboutWebsite" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>Salvar arquivo(s) selecionado(s)</value>
+  </data>
+  <data name="CrcDescription" xml:space="preserve">
+    <value>CRC32 (verificação cíclica de redundância) é um método simples de hash para comparar se dados ou arquivos são idênticos. No entanto, o CRC não garante 100% que dois arquivos sejam idênticos. Ainda assim, ele é um forte indício quando os tamanhos dos dois arquivos são iguais e não há suspeita de adulteração mal-intencionada.</value>
+  </data>
+  <data name="DialogButtonCancel" xml:space="preserve">
+    <value>Cancelar extração</value>
+  </data>
+  <data name="DialogButtonCancelTooltip" xml:space="preserve">
+    <value>Cancelar a extração</value>
+  </data>
+  <data name="DialogButtonOverwrite" xml:space="preserve">
+    <value>Substituir</value>
+  </data>
+  <data name="DialogButtonOverwriteTooltip" xml:space="preserve">
+    <value>Substituir o arquivo existente</value>
+  </data>
+  <data name="DialogButtonRename" xml:space="preserve">
+    <value>Renomear</value>
+  </data>
+  <data name="DialogButtonRenameTooltip" xml:space="preserve">
+    <value>Renomear o novo arquivo</value>
+  </data>
+  <data name="DialogButtonSkip" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
+  <data name="DialogButtonSkipTooltip" xml:space="preserve">
+    <value>Ignorar a extração do arquivo</value>
+  </data>
+  <data name="DialogCancelTitle" xml:space="preserve">
+    <value>Operação cancelada</value>
+  </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="DialogExplorerError" xml:space="preserve">
+    <value>Não foi possível abrir o caminho '{0}'</value>
+  </data>
+  <data name="DialogHeader" xml:space="preserve">
+    <value>O arquivo já existe...</value>
+  </data>
+  <data name="DialogLabelCrc" xml:space="preserve">
+    <value>CRC32:</value>
+  </data>
+  <data name="DialogLabelDate" xml:space="preserve">
+    <value>Data:</value>
+  </data>
+  <data name="DialogLabelExisting" xml:space="preserve">
+    <value>Arquivo existente</value>
+  </data>
+  <data name="DialogLabelName" xml:space="preserve">
+    <value>Nome:</value>
+  </data>
+  <data name="DialogLabelNew" xml:space="preserve">
+    <value>Novo arquivo a extrair</value>
+  </data>
+  <data name="DialogLabelSize" xml:space="preserve">
+    <value>Tamanho:</value>
+  </data>
+  <data name="DialogRememberCheckbox" xml:space="preserve">
+    <value>Lembrar decisão</value>
+  </data>
+  <data name="DialogSaveAllTitle" xml:space="preserve">
+    <value>Selecione uma pasta para salvar todos os arquivos...</value>
+  </data>
+  <data name="DialogSaveCurrentTitle" xml:space="preserve">
+    <value>Salvar arquivo atual como...</value>
+  </data>
+  <data name="DialogSaveErrors" xml:space="preserve">
+    <value>Nem todos os arquivos foram extraídos</value>
+  </data>
+  <data name="DialogSaveFailure" xml:space="preserve">
+    <value>Não foi possível salvar o arquivo</value>
+  </data>
+  <data name="DialogSaveFilter" xml:space="preserve">
+    <value>Todos os arquivos|*.*</value>
+  </data>
+  <data name="DialogSaveSelectedTitle" xml:space="preserve">
+    <value>Selecione uma pasta para salvar os arquivos selecionados...</value>
+  </data>
+  <data name="DialogUnexpectedError" xml:space="preserve">
+    <value>Ocorreu um erro inesperado durante a extração:</value>
+  </data>
+  <data name="DropAreaWatermark" xml:space="preserve">
+    <value>Solte o documento aqui</value>
+  </data>
+  <data name="StatusSaveCanceled" xml:space="preserve">
+    <value>O processo de salvamento foi cancelado</value>
+  </data>
+  <data name="StatusSaveErrorSummary" xml:space="preserve">
+    <value>{0} arquivos extraídos ({1} substituídos, {2} renomeados), {3} ignorados, {4} não extraídos (erros)</value>
+  </data>
+  <data name="StatusSaveFailure" xml:space="preserve">
+    <value>Não foi possível salvar o arquivo: {0}</value>
+  </data>
+  <data name="StatusSaveSuccess" xml:space="preserve">
+    <value>O arquivo foi salvo como: {0}</value>
+  </data>
+  <data name="StatusSaveSummary" xml:space="preserve">
+    <value>{0} arquivos extraídos ({1} substituídos, {2} renomeados), {3} ignorados</value>
+  </data>
+  <data name="TextErrorMultipleFiles" xml:space="preserve">
+    <value>Não foi possível extrair {0} arquivos.</value>
+  </data>
+  <data name="TextErrorOneFile" xml:space="preserve">
+    <value>Não foi possível extrair um arquivo.</value>
+  </data>
+  <data name="TextNoPreview" xml:space="preserve">
+    <value>Sem visualização</value>
+  </data>
+  <data name="TextSaveError" xml:space="preserve">
+    <value>Não foi possível abrir o caminho '{0}'</value>
+  </data>
+  <data name="TextSkippedMultipleFiles" xml:space="preserve">
+    <value>{0} arquivos foram ignorados.</value>
+  </data>
+  <data name="TextSkippedOneFile" xml:space="preserve">
+    <value>Um arquivo foi ignorado.</value>
+  </data>
+  <data name="DialogLoadFailure" xml:space="preserve">
+    <value>Não foi possível carregar o arquivo.\n{0}\nMensagem de erro: {1}</value>
+  </data>
+  <data name="DialogLoadFilter" xml:space="preserve">
+    <value>Todos os formatos do Office|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Documentos do Word|*.docx;*.dotx;*.docm;*.dotm|Documentos do Excel|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|Documentos do PowerPoint|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Formatos de arquivos compactados comuns|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Todos os arquivos|*.*</value>
+  </data>
+  <data name="DialogLoadTitle" xml:space="preserve">
+    <value>Selecione um documento do Office...</value>
+  </data>
+  <data name="StatusLoaded" xml:space="preserve">
+    <value>Arquivo carregado: {0}</value>
+  </data>
+  <data name="StatusLoadFailure" xml:space="preserve">
+    <value>Não foi possível carregar o arquivo</value>
+  </data>
+  <data name="StatusLoading" xml:space="preserve">
+    <value>Carregando arquivo... Aguarde</value>
+  </data>
+  <data name="TextInvalidFormat" xml:space="preserve">
+    <value>O arquivo pode não ser um arquivo válido do Office ou um arquivo compactado.</value>
+  </data>
+  <data name="TextInvalidPath" xml:space="preserve">
+    <value>Parece que o nome do arquivo não é válido. Verifique o nome e o caminho do arquivo.</value>
+  </data>
+  <data name="TextLockedFile" xml:space="preserve">
+    <value>Certifique-se de que o arquivo não esteja aberto em outro aplicativo.</value>
+  </data>
+  <data name="DialogMissingChangelog" xml:space="preserve">
+    <value>O histórico de alterações '{0}' não foi encontrado.</value>
+  </data>
+  <data name="DialogMissingChangelogTitle" xml:space="preserve">
+    <value>Histórico de alterações não encontrado</value>
+  </data>
+  <data name="DialogMissingLicense" xml:space="preserve">
+    <value>O arquivo de licença '{0}' não foi encontrado.</value>
+  </data>
+  <data name="DialogMissingLicenseTitle" xml:space="preserve">
+    <value>Não foi possível encontrar a licença</value>
+  </data>
+  <data name="StatusEmbeddedLoaded" xml:space="preserve">
+    <value>Arquivos carregados: {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
+    <value>Não foi possível carregar o arquivo incorporado: {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedOtherFailure" xml:space="preserve">
+    <value>Não é possível visualizar {0}</value>
+  </data>
+  <data name="StatusLoadEmbeddedTextFailure" xml:space="preserve">
+    <value>Não foi possível carregar o arquivo de texto/XML: {0}</value>
+  </data>
+  <data name="StatusLoadingEmbedded" xml:space="preserve">
+    <value>Carregando arquivo incorporado... Aguarde</value>
+  </data>
+  <data name="MenuAppearanceLanguageDefault" xml:space="preserve">
+    <value>Idioma do sistema (padrão)</value>
+  </data>
+  <data name="DialogMissingWebsite" xml:space="preserve">
+    <value>Não foi possível carregar o site do projeto</value>
+  </data>
+  <data name="DialogMissingWebsiteTitle" xml:space="preserve">
+    <value>Site do projeto não carregado</value>
+  </data>
+  <data name="TextErrorInvalidImage" xml:space="preserve">
+    <value>Não foi possível criar a visualização da imagem</value>
+  </data>
+  <data name="TextErrorInvalidText" xml:space="preserve">
+    <value>Não foi possível criar a visualização do texto</value>
+  </data>
+  <data name="DialogInvalidExtensions" xml:space="preserve">
+    <value>Ocorreu um erro ao obter as extensões de arquivo para as visualizações. Os valores padrão foram restaurados</value>
+  </data>
+  <data name="StatusReady" xml:space="preserve">
+    <value>Pronto</value>
+  </data>
+  <data name="ListViewColumnSize" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
+  <data name="DialogMissingRecentFile" xml:space="preserve">
+    <value>O arquivo não foi encontrado:\n{0}\nA entrada deve ser removida da lista de arquivos recentes?</value>
+  </data>
+  <data name="MenuFileClearRecent" xml:space="preserve">
+    <value>Limpar lista</value>
+  </data>
+  <data name="MenuFileRecent" xml:space="preserve">
+    <value>Arquivos recentes</value>
+  </data>
+  <data name="DialogSizeWarning" xml:space="preserve">
+    <value>Será feita uma tentativa de visualizar um arquivo grande (&gt; {0}).\nEsse processo pode demorar muito.\nDeseja criar a visualização?</value>
+  </data>
+  <data name="DialogSizeWarningTitle" xml:space="preserve">
+    <value>Tentativa de visualizar um arquivo grande...</value>
+  </data>
+  <data name="MenuDocumentGenerictextPreview" xml:space="preserve">
+    <value>Visualização de texto para formatos de arquivo desconhecidos</value>
+  </data>
+  <data name="MenuDocumentSizeWarning" xml:space="preserve">
+    <value>Exibir aviso ao visualizar arquivos grandes</value>
+  </data>
+  <data name="StatusLoadEmbeddedImageFallback" xml:space="preserve">
+    <value>Não foi possível carregar a imagem de visualização de '{0}'. Exibindo como texto</value>
+  </data>
+  <data name="StatusLoadEmbeddedOtherFallback" xml:space="preserve">
+    <value>Não foi possível carregar a visualização de '{0}'. Exibindo como texto</value>
+  </data>
+  <data name="StatusPreviewSkipped" xml:space="preserve">
+    <value>A visualização de '{0}' foi ignorada (arquivo muito grande)</value>
+  </data>
+  <data name="MenuAppearanceLanguageFrench" xml:space="preserve">
+    <value>Francês (Français)</value>
+  </data>
+  <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
+    <value>Espanhol (Español)</value>
+  </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>Português do Brasil</value>
+  </data>
+  <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
+    <value>Japonês (日本語)</value>
+  </data>
+  <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>Pág. do projeto</value>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=pt-br</value>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>Página do projeto</value>
+  </data>
+</root>

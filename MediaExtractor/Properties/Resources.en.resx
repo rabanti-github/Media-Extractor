@@ -169,7 +169,7 @@
     <value>About</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Project Website</value>
+    <value>Website</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
     <value>Change Log</value>
@@ -211,7 +211,7 @@
     <value>Date</value>
   </data>
   <data name="AboutDescription" xml:space="preserve">
-    <value>Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar)</value>
+    <value>Media Extractor is an application for previewing and extracting embedded media from Microsoft Office files (e.g. Word, PowerPoint or Excel documents) and common archives (e.g. zip, 7z or tar)</value>
   </data>
   <data name="AboutHeader" xml:space="preserve">
     <value>About Media-Extractor</value>
@@ -349,7 +349,7 @@
     <value>The file could not be loaded.\n{0}\nError Message: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
+    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>Select Office Document...</value>
@@ -385,7 +385,7 @@
     <value>License could not be found</value>
   </data>
   <data name="StatusEmbeddedLoaded" xml:space="preserve">
-    <value>{0} loaded</value>
+    <value>{0} files loaded</value>
   </data>
   <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
     <value>Embedded file could not be loaded: {0}</value>
@@ -459,10 +459,22 @@
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Spanish (Español)</value>
   </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>Brazilian Portuguese (Português do Brasil)</value>
+  </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Japanese (日本語)</value>
   </data>
   <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
     <value>Italian (Italiano)</value>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>Project Page</value>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=en</value>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>Project Page</value>
   </data>
 </root>

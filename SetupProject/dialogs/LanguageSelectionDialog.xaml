@@ -80,7 +80,13 @@
                         Margin="0,5,0,5"
                         IsChecked="{Binding ItChecked}" />
                     <RadioButton
-                        x:Name="LanguageChinese"
+                        x:Name="LanguagePortugueseBrazil"
+                        GroupName="LanguageSelection"
+                        Content="Português (Brasil)"
+                        Margin="0,5,0,5"
+                        IsChecked="{Binding PtBrChecked}" />
+                    <RadioButton
+                        x:Name="LanguageJapanese"
                         GroupName="LanguageSelection"
                         Content="日本語 (Japanese)"
                         Margin="0,5,0,0"

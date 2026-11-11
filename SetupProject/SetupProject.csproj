@@ -9,6 +9,7 @@
     <RootNamespace>WixSharp</RootNamespace>
     <UseWPF>true</UseWPF>
     <RollForward>Major</RollForward>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <!-- https://stackoverflow.com/questions/58844785/how-to-reference-system-windows-forms-in-net-core-3-0-for-wpf-apps -->
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
@@ -37,6 +38,7 @@
     <Content Include="Resources\Localization\WixUI_fr-fr.wxl" />
     <Content Include="resources\localization\WixUI_it-it.wxl" />
     <Content Include="Resources\Localization\WixUI_ja-jp.wxl" />
+    <Content Include="Resources\Localization\WixUI_pt-br.wxl" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,20 +53,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!--
+      WiX 6+ is governed by the Open Source Maintenance Fee. Do not update the
+      WiX extension beyond the explicitly approved WiX 5.0.2 toolchain.
+      The matching CLI version is pinned in .config/dotnet-tools.json and in
+      Program.cs via WixTools.SetWixVersion.
+    -->
     <PackageReference Include="WixSharp-wix4.WPF" Version="2.6.2" />
     <PackageReference Include="WixToolset.Dtf.WindowsInstaller" Version="4.0.4" />
     <PackageReference Include="WixToolset.Mba.Core" Version="4.0.4" />
-    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.4" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.2" />
   </ItemGroup>
 
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(SkipInstallerGeneration)' != 'true'">
     <Exec Command="cd .\&#xD;&#xA;set ide=true&#xD;&#xA;&quot;$(TargetPath)&quot;" />
   </Target>
-
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="cd &quot;$(ProjectDir)\output&quot;&#xD;&#xA;del *.msi" />
-  </Target>
-
 </Project>

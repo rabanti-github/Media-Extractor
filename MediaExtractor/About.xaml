@@ -9,16 +9,17 @@
         xmlns:p = "clr-namespace:MediaExtractor.Properties"
         xmlns:properties="clr-namespace:MediaExtractor.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.AboutHeader}" Height="351.73" Width="450" ResizeMode="NoResize">
+        Title="{x:Static p:Resources.AboutHeader}" Height="370" Width="450" ResizeMode="NoResize">
     <Grid>
         <Label Content="Media-Extractor" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.056,-0.303" Height="55" Width="424" FontSize="36"/>
-        <Grid HorizontalAlignment="Left" Height="150" Margin="10,133,0,0" VerticalAlignment="Top" Width="424">
+        <Grid HorizontalAlignment="Left" Height="200" Margin="10,133,0,0" VerticalAlignment="Top" Width="424">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="127*" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="107*" />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
@@ -39,7 +40,10 @@
             <Label Grid.Column="1" Content="{Binding Source={x:Static properties:Settings.Default}, Path=License}" FontSize="14" Grid.Row="3" FontWeight="Bold" Grid.ColumnSpan="2"/>
 
             <Label Grid.Column="0" Content="{x:Static p:Resources.AboutWebsite}" FontSize="14" Grid.Row="4"/>
-            <Label x:Name="LinkLabel" Grid.Column="1" Content="{Binding Source={x:Static properties:Settings.Default}, Path=Website}" Grid.Row="4" FontWeight="Bold" Grid.ColumnSpan="2" FontSize="11" Foreground="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" MouseUp="LinkLabel_MouseUp"/>
+            <Label x:Name="WebsiteLinkLabel" Grid.Column="1" Grid.Row="4" FontWeight="Bold" Grid.ColumnSpan="2" FontSize="11" Foreground="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" MouseUp="WebsiteLinkLabel_MouseUp"/>
+
+            <Label Grid.Column="0" Content="{x:Static p:Resources.AboutProjectSite}" FontSize="14" Grid.Row="5"/>
+            <Label x:Name="ProjectSiteLinkLabel" Grid.Column="1" Content="{Binding Source={x:Static properties:Settings.Default}, Path=ProjectSite}" Grid.Row="5" FontWeight="Bold" Grid.ColumnSpan="2" FontSize="11" Foreground="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" MouseUp="ProjectSiteLinkLabel_MouseUp"/>
 
         </Grid>
         <TextBlock Text="{x:Static p:Resources.AboutDescription}" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Height="77" Width="424" TextWrapping="Wrap" FontSize="14"/>

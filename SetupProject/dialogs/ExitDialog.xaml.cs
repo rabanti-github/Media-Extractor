@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using WixSharp;
 using WixSharp.UI.Forms;
@@ -10,6 +9,43 @@ using IO = System.IO;
 
 namespace SetupProject
 {
+    /// <summary>
+    /// Data required after MSI execution has completed. The live MSI session is
+    /// no longer safe to query when the exit dialog is created.
+    /// </summary>
+    internal static class InstallerUiState
+    {
+        public static string ProductName { get; private set; }
+        public static string ProductVersion { get; private set; }
+        public static string LogFile { get; private set; }
+        public static BitmapImage ExitBanner { get; private set; }
+
+        public static void Capture(ISession session)
+        {
+            if (session == null)
+                return;
+
+            ProductName = session["ProductName"];
+            ProductVersion = session["ProductVersion"];
+            LogFile = session.LogFile;
+
+            try
+            {
+                ExitBanner = session.GetResourceBitmap("WixSharpUI_Bmp_Dialog").ToImageSource() ??
+                             session.GetResourceBitmap("WixUI_Bmp_Dialog").ToImageSource();
+
+                if (ExitBanner?.CanFreeze == true)
+                    ExitBanner.Freeze();
+            }
+            catch
+            {
+                // The completion page remains usable if an optional bitmap is
+                // unavailable. Never let decorative UI abort the installation.
+                ExitBanner = null;
+            }
+        }
+    }
+
     /// <summary>
     /// The standard ExitDialog.
     /// </summary>
@@ -32,10 +68,11 @@ namespace SetupProject
         /// </summary>
         public void Init()
         {
-            var name = this.Session()["ProductName"];
-            var ver = this.Session()["ProductVersion"];
-            this.DialogTitle = $"{name} {ver} Setup";
-            UpdateTitles(ManagedFormHost.Runtime.Session);
+            // MSI execution has finished here; do not query Runtime.Session.
+            if (!string.IsNullOrEmpty(InstallerUiState.ProductName))
+                DialogTitle = $"{InstallerUiState.ProductName} {InstallerUiState.ProductVersion} Setup";
+
+            UpdateTitles();
 
             DataContext = model = new ExitDialogModel { Host = ManagedFormHost };
         }
@@ -45,8 +82,7 @@ namespace SetupProject
         /// <summary>
         /// Updates the titles of the dialog depending on the success of the installation action.
         /// </summary>
-        /// <param name="session">The session.</param>
-        public void UpdateTitles(ISession session)
+        public void UpdateTitles()
         {
             if (Shell.UserInterrupted || Shell.Log.Contains("User canceled installation."))
             {
@@ -79,11 +115,9 @@ namespace SetupProject
     internal class ExitDialogModel
     {
         public ManagedForm Host { get; set; }
-        ISession session => Host?.Runtime.Session;
         IManagedUIShell shell => Host?.Shell;
 
-        public BitmapImage Banner => session?.GetResourceBitmap("WixSharpUI_Bmp_Dialog").ToImageSource() ??
-                                     session?.GetResourceBitmap("WixUI_Bmp_Dialog").ToImageSource();
+        public BitmapImage Banner => InstallerUiState.ExitBanner;
 
         public void GoExit()
             => shell?.Exit();
@@ -96,7 +130,7 @@ namespace SetupProject
             if (shell != null)
                 try
                 {
-                    string logFile = session.LogFile;
+                    string logFile = InstallerUiState.LogFile;
 
                     if (logFile.IsEmpty())
                     {
@@ -105,7 +139,8 @@ namespace SetupProject
                         if (!Directory.Exists(wixSharpDir))
                             Directory.CreateDirectory(wixSharpDir);
 
-                        logFile = wixSharpDir.PathCombine(Host.Runtime.ProductName + ".log");
+                        string productName = InstallerUiState.ProductName ?? "Installer";
+                        logFile = wixSharpDir.PathCombine(productName + ".log");
                         IO.File.WriteAllText(logFile, shell.Log);
                     }
                     Process.Start("notepad.exe", logFile);

@@ -169,7 +169,7 @@
     <value>Informazioni</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Sito del progetto</value>
+    <value>Sito web</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
     <value>Registro modifiche</value>
@@ -349,7 +349,7 @@
     <value>Impossibile caricare il file.\n{0}\nMessaggio di errore: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>Tutti i formati Office`</value>
+    <value>Tutti i formati Office|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Documenti Word|*.docx;*.dotx;*.docm;*.dotm|Documenti Excel|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|Documenti PowerPoint|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Formati di archivio comuni|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Tutti i file|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>Seleziona documento Office...</value>
@@ -463,10 +463,22 @@ Creare l'anteprima?</value>
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>Spagnolo (Español)</value>
   </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>Portoghese brasiliano (Português do Brasil)</value>
+  </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>Giapponese (日本語)</value>
   </data>
   <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
     <value>Italiano</value>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>Pag. d. progetto</value>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=it</value>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>Pagina del progetto</value>
   </data>
 </root>

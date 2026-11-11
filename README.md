@@ -2,17 +2,15 @@
 
 [![license: MIT](https://img.shields.io/github/license/rabanti-github/media-extractor.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Releases](https://img.shields.io/github/downloads/rabanti-github/media-extractor/latest/total.svg)](https://github.com/rabanti-github/Media-Extractor/releases/latest)
-<!--- Remove Fossa until we have solved the installer issue -->
-<!--- [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor?ref=badge_shield)
 
-Media-Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents), as well as in common archive files (e.g. zip, 7z, tar). Media-Extractor was written in C# and uses the 7zip library as archive processor, as well as WPF as GUI framework. -->
+Media-Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents), as well as in common archive files (e.g. zip, 7z, tar). Media-Extractor was written in C# and uses the 7zip library as archive processor, as well as WPF as GUI framework.
 
 ## Download
 
 The most recent version of Media-Extractor can be downloaded on the [Page of the latest Release](https://github.com/rabanti-github/Media-Extractor/releases/latest).
 
-- Usually, the **Installer** is suitable for the most users (e.g. **Media-Extractor-1.11.msi**).
-- If you want to use Media-Extractor as a **portable app**, the zip version is the right choice (e.g. '**Media-Extractor-1.11-portable.zip**').
+- Usually, the **Installer** is suitable for the most users (e.g. **Media-Extractor-1.12.msi**).
+- If you want to use Media-Extractor as a **portable app**, the zip version is the right choice (e.g. '**Media-Extractor-1.12-portable.zip**').
 
 Please see also the section [SmartScreen Warning in Windows 8.1, 10 and 11](#smartscreen-warning-in-windows-81-10-and-11)
 
@@ -119,6 +117,7 @@ Currently, Media-Extractor is translated to the following Languages:
 | **Japanese**   | Completed | AI based translation |
 | **Spanish**   | Completed | AI based translation |
 | **Italian**   | Completed | AI based translation |
+| **Brazilian Portuguese**   | Completed | AI based translation (agentic) |
 
 If you are interested in translating the application, please [open a new Issue](https://github.com/rabanti-github/Media-Extractor/issues/new) with the tag '**translation**'.
 
@@ -163,5 +162,3 @@ The following libraries / dependencies are necessary for the development of Medi
 ## License
 
 Media-Extractor is developed and distributed freely and without any costs, under the [MIT license](https://opensource.org/licenses/MIT).
-<!--- Remove Fossa until we have solved the installer issue -->
-<!--- [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frabanti-github%2FMedia-Extractor?ref=badge_large) -->

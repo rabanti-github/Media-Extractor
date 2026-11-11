@@ -56,6 +56,7 @@ namespace WixSharp
         public const string LANGUAGE_SPANISH = "ES";
         public const string LANGUAGE_JAPANESE = "JP";
         public const string LANGUAGE_ITALIAN = "IT";
+        public const string LANGUAGE_PORTUGUESE_BRAZIL = "PT";
 
         public const string INSTALLATION_TYPE_USER = "user";
         public const string INSTALLATION_TYPE_SYSTEM = "system";

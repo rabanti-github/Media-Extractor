@@ -1,6 +1,6 @@
 ﻿/*
  * Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents)
- * Copyright Raphael Stoeckli © 2025
+ * Copyright Raphael Stoeckli © 2026
  * This program is licensed under the MIT License.
  * You find a copy of the license in project folder or on: http://opensource.org/licenses/MIT
  */
@@ -783,7 +783,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Opens the project website
+        /// Opens the website
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
@@ -791,7 +791,24 @@ namespace MediaExtractor
         {
             try
             {
-                Process.Start(Properties.Settings.Default.Website);
+                Process.Start(I18n.T(I18n.Key.AboutWebsiteLink));
+            }
+            catch
+            {
+                MessageBox.Show(I18n.T(I18n.Key.DialogMissingWebsite), I18n.T(I18n.Key.DialogMissingWebsiteTitle), MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Opens the project website
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void ProjectSiteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start(Properties.Settings.Default.ProjectSite);
             }
             catch
             {
@@ -894,6 +911,16 @@ namespace MediaExtractor
         private void ItalianMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ChangeLocale(I18n.ITALIAN);
+        }
+
+        /// <summary>
+        /// Enables Brazilian Portuguese as application language
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void BrazilianPortugueseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeLocale(I18n.PORTUGUESE_BR);
         }
 
         /// <summary>

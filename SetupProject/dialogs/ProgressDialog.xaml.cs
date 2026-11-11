@@ -31,8 +31,14 @@ namespace SetupProject
         /// </summary>
         public void Init()
         {
-            var name = this.Session()["ProductName"];
-            var ver = this.Session()["ProductVersion"];
+            var session = this.Session();
+            var name = session["ProductName"];
+            var ver = session["ProductVersion"];
+
+            // The MSI session becomes disconnected after StartExecute. Capture
+            // everything needed by the completion page while it is still valid.
+            InstallerUiState.Capture(ManagedFormHost.Runtime.Session);
+
             this.DialogTitle = $"{name} {ver} Setup";
             UpdateTitles(ManagedFormHost.Runtime.Session);
             DataContext = model = new ProgressDialogModel { Host = ManagedFormHost };
@@ -85,7 +91,9 @@ namespace SetupProject
         /// Called when MSI execution is complete.
         /// </summary>
         public override void OnExecuteComplete()
-            => model?.OnExecuteComplete();
+        {
+            model?.OnExecuteComplete();
+        }
 
         /// <summary>
         /// Called when MSI execution progress is changed.

@@ -89,12 +89,14 @@
                     <MenuItem x:Name="JapaneseMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageJapanese}" IsCheckable="True" IsChecked="{Binding Path=UseJapaneseLocale}" Click="JapaneseMenuItem_Click" />
                     <MenuItem x:Name="SpanishMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageSpanish}" IsCheckable="True" IsChecked="{Binding Path=UseSpanishLocale}" Click="SpanishMenuItem_Click" />
                     <MenuItem x:Name="ItalianMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageItalian}" IsCheckable="True" IsChecked="{Binding Path=UseItalianLocale}" Click="ItalianMenuItem_Click" />
+                    <MenuItem x:Name="BrazilianPortugueseMenuItem" Header="{x:Static p:Resources.MenuAppearanceLanguageBrazilianPortuguese}" IsCheckable="True" IsChecked="{Binding Path=UseBrazilianPortugueseLocale}" Click="BrazilianPortugueseMenuItem_Click" />
 
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{x:Static p:Resources.MenuHelp}">
                 <MenuItem x:Name="AboutMenuItem" Header="{x:Static p:Resources.MenuHelpAbout}" Click="AboutMenuItem_Click"/>
                 <MenuItem x:Name="WebsiteMenuItem" Header="{x:Static p:Resources.MenuHelpWebsite}" Click="WebsiteMenuItem_Click"/>
+                <MenuItem x:Name="ProjectSiteMenuItem" Header="{x:Static p:Resources.MenuHelpProjectSite}" Click="ProjectSiteMenuItem_Click"/>
                 <MenuItem x:Name="ChangeLogMenuItem" Header="{x:Static p:Resources.MenuHelpChangeLog}" Click="ChangeLogMenuItem_Click"/>
                 <MenuItem x:Name="LicenseMenuItem" Header="{x:Static p:Resources.MenuHelpLicense}" Click="LicenseMenuItem_Click"/>
             </MenuItem>

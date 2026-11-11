@@ -169,7 +169,7 @@
     <value>アバウト</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>プロジェクトのウェブサイト</value>
+    <value>ウェブサイト</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
     <value>変更履歴</value>
@@ -349,7 +349,7 @@
     <value>ファイルをロードできませんでした。\n{0}\nエラーメッセージ: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>すべてのオフィス形式|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|ワード ドキュメント|*.docx;*.dotx;*.docm;*.dotm|エクセル ドキュメント|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|パワーポイント ドキュメント|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|一般的なアーカイブ形式|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|すべてのファイル|*.*</value>
+    <value>すべてのオフィス形式|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|ワード ドキュメント|*.docx;*.dotx;*.docm;*.dotm|エクセル ドキュメント|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|パワーポイント ドキュメント|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|一般的なアーカイブ形式|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|すべてのファイル|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>オフィス ドキュメントを選択…</value>
@@ -459,10 +459,22 @@
   <data name="MenuAppearanceLanguageSpanish" xml:space="preserve">
     <value>スペイン語(Español)</value>
   </data>
+  <data name="MenuAppearanceLanguageBrazilianPortuguese" xml:space="preserve">
+    <value>ブラジルポルトガル語 (Português do Brasil)</value>
+  </data>
   <data name="MenuAppearanceLanguageJapanese" xml:space="preserve">
     <value>日本語</value>
   </data>
   <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
     <value>イタリア語 (Italiano)</value>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>プロジェクトページ</value>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=ja</value>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>プロジェクトページ</value>
   </data>
 </root>
