@@ -349,7 +349,7 @@
     <value>ファイルをロードできませんでした。\n{0}\nエラーメッセージ: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>すべてのオフィス形式|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|ワード ドキュメント|*.docx;*.dotx;*.docm;*.dotm|エクセル ドキュメント|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|パワーポイント ドキュメント|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|一般的なアーカイブ形式|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|すべてのファイル|*.*</value>
+    <value>すべてのオフィス形式|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|ワード ドキュメント|*.docx;*.dotx;*.docm;*.dotm|エクセル ドキュメント|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|パワーポイント ドキュメント|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|一般的なアーカイブ形式|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|すべてのファイル|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>オフィス ドキュメントを選択…</value>

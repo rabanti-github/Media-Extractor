@@ -349,7 +349,7 @@
     <value>Le fichier n'a pas pu être chargé.\n{0}\nMessage d'erreur : {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>Tous les formats Office|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Documents Word|*.docx;*.dotx;*.docm;*.dotm|Documents Excel|*. xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|Documents PowerPoint|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Formats d'archivage courants|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Tous les fichiers|*.*</value>
+    <value>Tous les formats Office|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Documents Word|*.docx;*.dotx;*.docm;*.dotm|Documents Excel|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|Documents PowerPoint|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Formats d'archivage courants|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Tous les fichiers|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>Sélectionner un document Office…</value>

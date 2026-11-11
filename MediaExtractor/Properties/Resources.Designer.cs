@@ -88,7 +88,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar).
+        ///   Looks up a localized string similar to Media Extractor is an application for previewing and extracting embedded media from Microsoft Office files (e.g. Word, PowerPoint or Excel documents) and common archives (e.g. zip, 7z or tar).
         /// </summary>
         public static string AboutDescription {
             get {
@@ -358,7 +358,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*.
+        ///   Looks up a localized string similar to All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*.
         /// </summary>
         public static string DialogLoadFilter {
             get {
@@ -862,7 +862,7 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} loaded.
+        ///   Looks up a localized string similar to {0} files loaded.
         /// </summary>
         public static string StatusEmbeddedLoaded {
             get {

@@ -349,7 +349,7 @@
     <value>Die Datei konnte nicht geladen werden.\n{0}\nFehlermeldung: {1}</value>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>Alle Office-Formate|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word-Dokumente|*.docx;*.dotx;*.docm;*.dotm|Excel-Dokumente|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint-Dokumente|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Gängige Archiv-Formate|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Alle Dateien|*.*</value>
+    <value>Alle Office-Formate|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word-Dokumente|*.docx;*.dotx;*.docm;*.dotm|Excel-Dokumente|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint-Dokumente|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Gängige Archiv-Formate|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|Alle Dateien|*.*</value>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>Office-Dokument auswählen...</value>

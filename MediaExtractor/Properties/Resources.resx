@@ -127,11 +127,11 @@
   </data>
   <data name="MenuFileSaveSelected" xml:space="preserve">
     <value>Save selected File(s)</value>
-    <comment>Menu title to save the selected files</comment>
+    <comment>Menu title to extract the selected embedded files and save them to disk</comment>
   </data>
   <data name="MenuFileSaveAll" xml:space="preserve">
     <value>Save all Files</value>
-    <comment>Menu title to save all files</comment>
+    <comment>Menu title to extract all embedded files and save them to disk</comment>
   </data>
   <data name="MenuFileQuit" xml:space="preserve">
     <value>Quit</value>
@@ -219,11 +219,11 @@
   </data>
   <data name="ButtonSave" xml:space="preserve">
     <value>Save File(s)</value>
-    <comment>Button text to save one or multiple files</comment>
+    <comment>Button text to extract one or more embedded files and save them to disk</comment>
   </data>
   <data name="ButtonSaveAll" xml:space="preserve">
     <value>Save all Files</value>
-    <comment>Button text to save all files</comment>
+    <comment>Button text to extract all embedded files and save them to disk</comment>
   </data>
   <data name="LabelPreview" xml:space="preserve">
     <value>Preview</value>
@@ -242,8 +242,8 @@
     <comment>Release date label in the 'About' dialog</comment>
   </data>
   <data name="AboutDescription" xml:space="preserve">
-    <value>Media Extractor is an application to preview and extract packed media in Microsoft Office files (e.g. Word, PowerPoint or Excel documents) or common archives (e.g. zip, 7z or tar)</value>
-    <comment>App description in the 'Abou' dialog. It wraps, but will be truncated if too long</comment>
+    <value>Media Extractor is an application for previewing and extracting embedded media from Microsoft Office files (e.g. Word, PowerPoint or Excel documents) and common archives (e.g. zip, 7z or tar)</value>
+    <comment>Application description in the 'About' dialog. 'Embedded media' means media stored inside Office documents or archives. The text wraps but is truncated if too long.</comment>
   </data>
   <data name="AboutHeader" xml:space="preserve">
     <value>About Media-Extractor</value>
@@ -263,7 +263,7 @@
   </data>
   <data name="ButtonSaveSelected" xml:space="preserve">
     <value>Save selected File(s)</value>
-    <comment>Button text to save the selected files</comment>
+    <comment>Button text to extract the selected embedded files and save them to disk</comment>
   </data>
   <data name="CrcDescription" xml:space="preserve">
     <value>CRC32 (cyclic redundancy check) is a simple hashing method to compare whether data or files are identical. However, CRC does not provide a 100% guarantee that two files are identical. But it is a strong evidence if the size of both files are identical and no malicious tampering is to be expected.</value>
@@ -347,11 +347,11 @@
   </data>
   <data name="DialogSaveAllTitle" xml:space="preserve">
     <value>Select a Folder to save all Files...</value>
-    <comment>Dialog title to select a folder to extract all files into it</comment>
+    <comment>Dialog title for choosing the destination folder where all extracted files will be saved</comment>
   </data>
   <data name="DialogSaveCurrentTitle" xml:space="preserve">
     <value>Save current File as...</value>
-    <comment>Dialog title to select a path to extract the current file into it</comment>
+    <comment>Dialog title for choosing the destination path where the current extracted file will be saved</comment>
   </data>
   <data name="DialogSaveErrors" xml:space="preserve">
     <value>Not all files were extracted</value>
@@ -363,11 +363,11 @@
   </data>
   <data name="DialogSaveFilter" xml:space="preserve">
     <value>All files|*.*</value>
-    <comment>File filter in a "Save as" dialog</comment>
+    <comment>File type filter in a "Save As" dialog. Labels and patterns are separated by '|'; file patterns must not be translated.</comment>
   </data>
   <data name="DialogSaveSelectedTitle" xml:space="preserve">
     <value>Select a Folder to save the selected Files...</value>
-    <comment>Dialog title to select a folder to extract the selected  files into it</comment>
+    <comment>Dialog title for choosing the destination folder where the selected extracted files will be saved</comment>
   </data>
   <data name="DialogUnexpectedError" xml:space="preserve">
     <value>There was an unexpected error during the extraction:</value>
@@ -379,7 +379,7 @@
   </data>
   <data name="StatusSaveCanceled" xml:space="preserve">
     <value>The save process was canceled</value>
-    <comment>Status message, indicating that the save process was canceled</comment>
+    <comment>Status message indicating that writing the extracted files to disk was canceled</comment>
   </data>
   <data name="StatusSaveErrorSummary" xml:space="preserve">
     <value>{0} files extracted ({1} overwritten, {2} renamed), {3} skipped, {4} not extracted (errors)</value>
@@ -426,8 +426,8 @@
     <comment>Dialog text with the mandatory parameters {0} and {1} if a file could not be loaded</comment>
   </data>
   <data name="DialogLoadFilter" xml:space="preserve">
-    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2,*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
-    <comment>File filter in a "Open File" dialog</comment>
+    <value>All Office Formats|*.docx;*.dotx;*.docm;*.dotm;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Word documents|*.docx;*.dotx;*.docm;*.dotm|Excel documents|*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm|PowerPoint documents|*.pptx;*.pptm;*.potx;*.potm;*.ppsx;*.ppsm|Common Archive Formats|*.zip;*.7z;*.rar;*.bzip2;*.gz;*.tar;*.cab;*.chm;*.lzh;*.iso|All files|*.*</value>
+    <comment>File type filter in an "Open File" dialog. Labels and patterns are separated by '|'; individual patterns are separated by ';' and must not be translated.</comment>
   </data>
   <data name="DialogLoadTitle" xml:space="preserve">
     <value>Select Office Document...</value>
@@ -474,8 +474,8 @@
     <comment>Dialog title, indicating that the license was not found</comment>
   </data>
   <data name="StatusEmbeddedLoaded" xml:space="preserve">
-    <value>{0} loaded</value>
-    <comment>Status message with mandatory parameter {0}, indicating how many files were loaded</comment>
+    <value>{0} files loaded</value>
+    <comment>Status message indicating how many embedded files were loaded. Mandatory parameter {0} is the numeric file count.</comment>
   </data>
   <data name="StatusLoadEmbeddedImageFailure" xml:space="preserve">
     <value>Embedded file could not be loaded: {0}</value>
