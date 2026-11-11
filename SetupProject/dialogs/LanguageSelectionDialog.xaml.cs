@@ -134,6 +134,10 @@ namespace SetupProject
                     runtime.UIText.InitFromWxl(wixSession.ReadBinary("it_wxl"));
                     break;
 
+                case Constants.LANGUAGE_PORTUGUESE_BRAZIL:
+                    runtime.UIText.InitFromWxl(wixSession.ReadBinary("pt_br_wxl"));
+                    break;
+
                 default:
                     runtime.UIText.InitFromWxl(wixSession.ReadBinary("en_wxl"));
                     break;
@@ -157,6 +161,7 @@ namespace SetupProject
         public bool JpChecked { get; set; }
         public bool EsChecked { get; set; }
         public bool DeChecked { get; set; }
+        public bool PtBrChecked { get; set; }
 
         public ManagedForm Host;
 
@@ -172,6 +177,7 @@ namespace SetupProject
                 else if (EsChecked) { return Constants.LANGUAGE_SPANISH; }
                 else if (JpChecked) { return Constants.LANGUAGE_JAPANESE; }
                 else if (ItChecked) { return Constants.LANGUAGE_ITALIAN; }
+                else if (PtBrChecked) { return Constants.LANGUAGE_PORTUGUESE_BRAZIL; }
                 else { return Constants.LANGUAGE_ENGLISH; }
             } 
             internal set 
@@ -191,6 +197,9 @@ namespace SetupProject
                         break;
                     case Constants.LANGUAGE_ITALIAN:
                         ItChecked = true;
+                        break;
+                    case Constants.LANGUAGE_PORTUGUESE_BRAZIL:
+                        PtBrChecked = true;
                         break;
                     default:
                         EnChecked = true;

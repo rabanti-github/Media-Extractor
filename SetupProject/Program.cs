@@ -117,7 +117,37 @@ namespace SetupProject
             #endregion
 
             #region regValues
-
+            const string explorerVerbKey = @"Software\Classes\*\shell\MediaExtractor.Open";
+            project.RegValues = new[]
+            {
+                // Register the shell verb for the current user. HKCR is a merged
+                // view and writes can be redirected to HKLM, which does not fit
+                // this per-user package and can require elevation.
+                new RegValue(RegistryHive.CurrentUser,
+                             explorerVerbKey,
+                             "MUIVerb",
+                             "Open with " + propertiesReader.ProductName)
+                {
+                    Id = "Reg_OpenWith_Name",
+                    Feature = registration,
+                },
+                new RegValue(RegistryHive.CurrentUser,
+                             explorerVerbKey,
+                             "Icon",
+                             "[INSTALLDIR]" + Constants.MAIN_APP_NAME + ",0")
+                {
+                    Id = "Reg_OpenWith_Icon",
+                    Feature = registration,
+                },
+                new RegValue(RegistryHive.CurrentUser,
+                             explorerVerbKey + @"\command",
+                             "",
+                             "\"[INSTALLDIR]" + Constants.MAIN_APP_NAME + "\" \"%1\"")
+                {
+                    Id = "Reg_OpenWith_Command",
+                    Feature = registration,
+                },
+            };
             #endregion
 
             project.BuildMsi();
@@ -145,7 +175,8 @@ namespace SetupProject
                    .AddBinary(new Binary(new Id("fr_wxl"), @"Resources\Localization\WixUI_fr-fr.wxl"))
                    .AddBinary(new Binary(new Id("es_wxl"), @"Resources\Localization\WixUI_es-es.wxl"))
                    .AddBinary(new Binary(new Id("it_wxl"), @"Resources\Localization\WixUI_it-it.wxl"))
-                   .AddBinary(new Binary(new Id("jp_wxl"), @"Resources\Localization\WixUI_ja-jp.wxl"));
+                   .AddBinary(new Binary(new Id("jp_wxl"), @"Resources\Localization\WixUI_ja-jp.wxl"))
+                   .AddBinary(new Binary(new Id("pt_br_wxl"), @"Resources\Localization\WixUI_pt-br.wxl"));
 
             project.UIInitialized += (SetupEventArgs e) =>
             {
@@ -175,6 +206,9 @@ namespace SetupProject
                         break;
                     case Constants.LANGUAGE_ITALIAN:
                         runtime.UIText.InitFromWxl(e.Session.ReadBinary("it_wxl"));
+                        break;
+                    case Constants.LANGUAGE_PORTUGUESE_BRAZIL:
+                        runtime.UIText.InitFromWxl(e.Session.ReadBinary("pt_br_wxl"));
                         break;
                     default:
                         runtime.UIText.InitFromWxl(e.Session.ReadBinary("en_wxl"));

@@ -38,6 +38,7 @@
     <Content Include="Resources\Localization\WixUI_fr-fr.wxl" />
     <Content Include="resources\localization\WixUI_it-it.wxl" />
     <Content Include="Resources\Localization\WixUI_ja-jp.wxl" />
+    <Content Include="Resources\Localization\WixUI_pt-br.wxl" />
   </ItemGroup>
 
   <ItemGroup>

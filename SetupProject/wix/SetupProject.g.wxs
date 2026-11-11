@@ -141,6 +141,31 @@
 
         </Directory>
       </Directory>
+
+      <Component Id="Registry.1" Guid="6446f2f5-6f37-4dd0-b0da-6248a20dec59" KeyPath="yes">
+        <RegistryKey Root="HKCU" Key="Software\Classes\*\shell\MediaExtractor.Open">
+          <RegistryValue Id="Reg_OpenWith_Name" Type="string" KeyPath="no" Value="Open with Media-Extractor" Name="MUIVerb" />
+        </RegistryKey>
+
+        <CreateFolder />
+        <RemoveFolder Id="ProgramFilesFolder" On="uninstall" />
+      </Component>
+
+      <Component Id="Registry.2" Guid="6446f2f5-6f37-4dd0-b0da-6248a20eec59">
+        <RegistryKey Root="HKCU" Key="Software\Classes\*\shell\MediaExtractor.Open">
+          <RegistryValue Id="Reg_OpenWith_Icon" Type="string" KeyPath="yes" Value="[INSTALLDIR]MediaExtractor.exe,0" Name="Icon" />
+        </RegistryKey>
+
+        <CreateFolder />
+      </Component>
+
+      <Component Id="Registry.3" Guid="6446f2f5-6f37-4dd0-b0da-6248a20fec59">
+        <RegistryKey Root="HKCU" Key="Software\Classes\*\shell\MediaExtractor.Open\command">
+          <RegistryValue Id="Reg_OpenWith_Command" Type="expandable" KeyPath="yes" Value="&quot;[INSTALLDIR]MediaExtractor.exe&quot; &quot;%1&quot;" />
+        </RegistryKey>
+
+        <CreateFolder />
+      </Component>
     </StandardDirectory>
 
     <StandardDirectory Id="ProgramMenuFolder">
@@ -195,6 +220,7 @@
     <Binary Id="es_wxl" SourceFile="Resources\Localization\WixUI_es-es.wxl" />
     <Binary Id="it_wxl" SourceFile="Resources\Localization\WixUI_it-it.wxl" />
     <Binary Id="jp_wxl" SourceFile="Resources\Localization\WixUI_ja-jp.wxl" />
+    <Binary Id="pt_br_wxl" SourceFile="Resources\Localization\WixUI_pt-br.wxl" />
     <Binary Id="WixSharp_UIText" SourceFile="C:\ProgramData\WixSharp\2.6.2.0\WixUI_en-US.wxl" />
     <Binary Id="WixSharp_LicenceFile" SourceFile="resources\MIT-License.rtf" />
     <Binary Id="WixSharpUI_Bmp_Dialog" SourceFile="Media-Extractor.dialog_bmp.png" />
@@ -252,7 +278,11 @@
         <ComponentRef Id="Component.Media2dExtractor__" />
       </Feature>
 
-      <Feature Id="_...ationFeatureRegisterExplorer5d" Title="[InstallationFeatureRegisterExplorer]" Level="2" Description="[InstallationFeatureRegisterExplorerDescription]" AllowAbsent="yes" />
+      <Feature Id="_...ationFeatureRegisterExplorer5d" Title="[InstallationFeatureRegisterExplorer]" Level="2" Description="[InstallationFeatureRegisterExplorerDescription]" AllowAbsent="yes">
+        <ComponentRef Id="Registry.1" />
+        <ComponentRef Id="Registry.2" />
+        <ComponentRef Id="Registry.3" />
+      </Feature>
     </Feature>
 
     <InstallExecuteSequence>
