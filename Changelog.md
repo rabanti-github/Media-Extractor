@@ -1,5 +1,14 @@
 # Change Log
 
+## v1.12.0
+
+Release Date: **11.11.2026**
+
+- Added Brazilian Portuguese translation
+- Fixed installer issue
+- Fixed a filename filter issue
+- Project maintenance
+
 ## v1.11.0
 
 Release Date: **15.07.2025**
