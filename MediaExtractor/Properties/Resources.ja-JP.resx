@@ -169,7 +169,7 @@
     <value>アバウト</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>プロジェクトのウェブサイト</value>
+    <value>ウェブサイト</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
     <value>変更履歴</value>
@@ -467,5 +467,14 @@
   </data>
   <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
     <value>イタリア語 (Italiano)</value>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>プロジェクトページ</value>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=ja</value>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>プロジェクトページ</value>
   </data>
 </root>

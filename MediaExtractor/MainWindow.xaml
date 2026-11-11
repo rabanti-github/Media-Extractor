@@ -96,6 +96,7 @@
             <MenuItem Header="{x:Static p:Resources.MenuHelp}">
                 <MenuItem x:Name="AboutMenuItem" Header="{x:Static p:Resources.MenuHelpAbout}" Click="AboutMenuItem_Click"/>
                 <MenuItem x:Name="WebsiteMenuItem" Header="{x:Static p:Resources.MenuHelpWebsite}" Click="WebsiteMenuItem_Click"/>
+                <MenuItem x:Name="ProjectSiteMenuItem" Header="{x:Static p:Resources.MenuHelpProjectSite}" Click="ProjectSiteMenuItem_Click"/>
                 <MenuItem x:Name="ChangeLogMenuItem" Header="{x:Static p:Resources.MenuHelpChangeLog}" Click="ChangeLogMenuItem_Click"/>
                 <MenuItem x:Name="LicenseMenuItem" Header="{x:Static p:Resources.MenuHelpLicense}" Click="LicenseMenuItem_Click"/>
             </MenuItem>

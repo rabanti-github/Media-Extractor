@@ -783,7 +783,7 @@ namespace MediaExtractor
         }
 
         /// <summary>
-        /// Opens the project website
+        /// Opens the website
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
@@ -791,7 +791,24 @@ namespace MediaExtractor
         {
             try
             {
-                Process.Start(Properties.Settings.Default.Website);
+                Process.Start(I18n.T(I18n.Key.AboutWebsiteLink));
+            }
+            catch
+            {
+                MessageBox.Show(I18n.T(I18n.Key.DialogMissingWebsite), I18n.T(I18n.Key.DialogMissingWebsiteTitle), MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Opens the project website
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void ProjectSiteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start(Properties.Settings.Default.ProjectSite);
             }
             catch
             {

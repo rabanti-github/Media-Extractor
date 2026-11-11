@@ -5,6 +5,7 @@
 Release Date: **11.11.2026**
 
 - Added Brazilian Portuguese translation
+- Added Website link
 - Fixed installer issue
 - Fixed a filename filter issue
 - Project maintenance

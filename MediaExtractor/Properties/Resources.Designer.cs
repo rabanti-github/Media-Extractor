@@ -115,6 +115,15 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project Page.
+        /// </summary>
+        public static string AboutProjectSite {
+            get {
+                return ResourceManager.GetString("AboutProjectSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string AboutVersion {
@@ -129,6 +138,15 @@ namespace MediaExtractor.Properties {
         public static string AboutWebsite {
             get {
                 return ResourceManager.GetString("AboutWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://media-extractor.rabanti.ch/?lang=en.
+        /// </summary>
+        public static string AboutWebsiteLink {
+            get {
+                return ResourceManager.GetString("AboutWebsiteLink", resourceCulture);
             }
         }
         
@@ -853,7 +871,16 @@ namespace MediaExtractor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project Website.
+        ///   Looks up a localized string similar to Project Page.
+        /// </summary>
+        public static string MenuHelpProjectSite {
+            get {
+                return ResourceManager.GetString("MenuHelpProjectSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
         /// </summary>
         public static string MenuHelpWebsite {
             get {

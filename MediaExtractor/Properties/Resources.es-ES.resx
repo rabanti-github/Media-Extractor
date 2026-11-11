@@ -169,7 +169,7 @@
     <value>Sobre</value>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Página web del proyecto</value>
+    <value>Página web</value>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
     <value>Historial de cambios</value>
@@ -467,5 +467,14 @@
   </data>
   <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
     <value>Italiano (Italiano)</value>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>Pág. d. proyecto</value>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=es</value>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>Página del proyecto</value>
   </data>
 </root>

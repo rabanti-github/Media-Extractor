@@ -186,7 +186,7 @@
     <comment>Menu title to call the "About" dialog</comment>
   </data>
   <data name="MenuHelpWebsite" xml:space="preserve">
-    <value>Project Website</value>
+    <value>Website</value>
     <comment>Menu title to call the app project website</comment>
   </data>
   <data name="MenuHelpChangeLog" xml:space="preserve">
@@ -584,5 +584,17 @@
   <data name="MenuAppearanceLanguageItalian" xml:space="preserve">
     <value>Italiano (Italian)</value>
     <comment>Menu title for Italian (app translation)</comment>
+  </data>
+  <data name="AboutProjectSite" xml:space="preserve">
+    <value>Project Page</value>
+    <comment>Project site label in the 'About' dialog. Sjhuld not be longer than 16 characters</comment>
+  </data>
+  <data name="AboutWebsiteLink" xml:space="preserve">
+    <value>https://media-extractor.rabanti.ch/?lang=en</value>
+    <comment>Localized URL of the website</comment>
+  </data>
+  <data name="MenuHelpProjectSite" xml:space="preserve">
+    <value>Project Page</value>
+    <comment>Project site label in the 'Help'  menu</comment>
   </data>
 </root>
