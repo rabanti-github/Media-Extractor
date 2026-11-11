@@ -2,7 +2,7 @@
 
 Setup Project is the new installer project for Media-Extractor. It replaces the previous InnoSetup project.
 The project is based on [WixSharp](https://github.com/oleg-shilo/wixsharp) that is based on [WiX Toolset](https://github.com/wixtoolset).
-Due to license concerns, the installer is pinned to WiX 5.0.2. WiX 6 and later must not be used because they are governed by the Open Source Maintenance Fee.
+Due to license concerns, the installer is pinned to WiX 5.0.2.
 
 ## Dependencies
 

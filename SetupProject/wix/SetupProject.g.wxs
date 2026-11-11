@@ -6,7 +6,7 @@
     To suppress generation of this file remove `set ide=true` from the PostBuildEvent of the VS project
 </auto-generated>
 -->
-  <Package Compressed="yes" ProductCode="6446f2f5-6f37-4dd0-b0da-6248b5a01edb" Name="Media-Extractor" Language="1033" Version="1.11.0.0" UpgradeCode="6446f2f5-6f37-4dd0-b0da-6248a5f01eda" Manufacturer="rabanti" Scope="perUserOrMachine" InstallerVersion="200">
+  <Package Compressed="yes" ProductCode="6446f2f5-6f37-4dd0-b0da-6248b5a01edb" Name="Media-Extractor" Language="1033" Version="1.11.0.0" UpgradeCode="6446f2f5-6f37-4dd0-b0da-6248a5f01eda" Manufacturer="rabanti" Scope="perUser" InstallerVersion="200">
     <SummaryInformation Codepage="Windows-1252" />
     <Media Id="1" Cabinet="Media2dExtractor.cab" EmbedCab="yes" />
 
@@ -133,23 +133,6 @@
 
         </Directory>
       </Directory>
-
-      <Component Id="Registry.1" Guid="6446f2f5-6f37-4dd0-b0da-6248a20dec59" KeyPath="yes">
-        <RegistryKey Root="HKCR" Key="*\shell\Open with Media-Extractor\command">
-          <RegistryValue Id="Reg_OpenWith_Command" Type="expandable" KeyPath="no" Value="&quot;[INSTALLDIR]MediaExtractor.exe&quot; &quot;%1&quot;" />
-        </RegistryKey>
-
-        <CreateFolder />
-        <RemoveFolder Id="ProgramFilesFolder" On="uninstall" />
-      </Component>
-
-      <Component Id="Registry.2" Guid="6446f2f5-6f37-4dd0-b0da-6248a20eec59">
-        <RegistryKey Root="HKCR" Key="*\shell\Open with Media-Extractor">
-          <RegistryValue Id="Reg_OpenWith_Icon" Type="string" KeyPath="yes" Value="[INSTALLDIR]MediaExtractor.exe,0" Name="Icon" />
-        </RegistryKey>
-
-        <CreateFolder />
-      </Component>
     </StandardDirectory>
 
     <StandardDirectory Id="ProgramMenuFolder">
@@ -192,24 +175,12 @@
 
     <Icon Id="IconFile1_MediaExtractor.ico" SourceFile="..\MediaExtractor\bin\debug\MediaExtractor.ico" />
 
-    <CustomAction Id="Set_WixSharp_EnableUninstallFullUI_Action_Props" Property="WixSharp_EnableUninstallFullUI_Action" Value="MSIEXEC_EXTRA_PARAMETERS=;INSTALLDIR=[INSTALLDIR];UILevel=[UILevel];ProductCode=[ProductCode];ADDLOCAL=[ADDLOCAL];ADDFEATURES=[ADDFEATURES]" />
-    <CustomAction Id="WixSharp_EnableUninstallFullUI_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_EnableUninstallFullUI_Action" Return="ignore" Impersonate="no" Execute="deferred" />
-    <CustomAction Id="WixSharp_SetProperty_WIXSHARP_RESILIENT_SOURCE_DIR" Property="WIXSHARP_RESILIENT_SOURCE_DIR" Value="[INSTALLDIR]" Return="check" Execute="immediate" />
-    <CustomAction Id="WixSharp_SetProperty_SOURCELIST" Property="SOURCELIST" Value="[WIXSHARP_RESILIENT_SOURCE_DIR]" Return="check" Execute="immediate" />
-    <CustomAction Id="WixSharp_SetPackageName_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_SetPackageName_Action" Return="ignore" Execute="immediate" />
-    <CustomAction Id="Set_WixSharp_RemoveResilientPackage_Action_Props" Property="WixSharp_RemoveResilientPackage_Action" Value="WIXSHARP_RESILIENT_SOURCE_DIR=[WIXSHARP_RESILIENT_SOURCE_DIR];WIXSHARP_PACKAGENAME=[WIXSHARP_PACKAGENAME];INSTALLDIR=[INSTALLDIR];UILevel=[UILevel];ProductCode=[ProductCode];ADDLOCAL=[ADDLOCAL];ADDFEATURES=[ADDFEATURES]" />
-    <CustomAction Id="WixSharp_RemoveResilientPackage_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_RemoveResilientPackage_Action" Return="ignore" Impersonate="no" Execute="deferred" />
-    <CustomAction Id="Set_WixSharp_CreateResilientPackage_Action_Props" Property="WixSharp_CreateResilientPackage_Action" Value="UserSID=[UserSID];OriginalDatabase=[OriginalDatabase];ALLUSERS=[ALLUSERS];WIXSHARP_RESILIENT_SOURCE_DIR=[WIXSHARP_RESILIENT_SOURCE_DIR];INSTALLDIR=[INSTALLDIR];UILevel=[UILevel];ProductCode=[ProductCode];ADDLOCAL=[ADDLOCAL];ADDFEATURES=[ADDFEATURES]" />
-    <CustomAction Id="WixSharp_CreateResilientPackage_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_CreateResilientPackage_Action" Return="ignore" Impersonate="no" Execute="deferred" />
-    <CustomAction Id="WixSharp_InitRuntime_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_InitRuntime_Action" Return="check" Execute="immediate" />
+    <CustomAction Id="WixSharp_InitRuntime_Action" BinaryRef="WixSharp_InitRuntime_Action_File" DllEntry="WixSharp_InitRuntime_Action" Return="check" Execute="immediate" />
     <CustomAction Id="Set_CancelRequestHandler_Props" Property="CancelRequestHandler" Value="UpgradeCode=[UpgradeCode];INSTALLDIR=[INSTALLDIR];UILevel=[UILevel];ProductCode=[ProductCode];ADDLOCAL=[ADDLOCAL];ADDFEATURES=[ADDFEATURES]" />
-    <CustomAction Id="CancelRequestHandler" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="CancelRequestHandler" Return="check" Impersonate="no" Execute="deferred" />
-    <CustomAction Id="WixSharp_Load_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_Load_Action" Return="check" Execute="immediate" />
-    <CustomAction Id="WixSharp_BeforeInstall_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_BeforeInstall_Action" Return="check" Execute="immediate" />
-    <CustomAction Id="Set_WixSharp_AfterInstall_Action_Props" Property="WixSharp_AfterInstall_Action" Value="WixSharp_AfterInstall_Handlers=[WixSharp_AfterInstall_Handlers];WIXSHARP_RUNTIME_DATA=[WIXSHARP_RUNTIME_DATA];INSTALLDIR=[INSTALLDIR];UILevel=[UILevel];ProductName=[ProductName];FOUNDPREVIOUSVERSION=[FOUNDPREVIOUSVERSION];UpgradeCode=[UpgradeCode];ManagedProjectElevatedEvents=[ManagedProjectElevatedEvents];REMOVE=[REMOVE];REINSTALL=[REINSTALL];Installed=[Installed];MsiLogFileLocation=[MsiLogFileLocation];INSTALLDIR=[INSTALLDIR];UILevel=[UILevel];ProductCode=[ProductCode];ADDLOCAL=[ADDLOCAL];ADDFEATURES=[ADDFEATURES]" />
-    <CustomAction Id="WixSharp_AfterInstall_Action" BinaryRef="WixSharp_EnableUninstallFullUI_Action_File" DllEntry="WixSharp_AfterInstall_Action" Return="check" Impersonate="no" Execute="deferred" />
+    <CustomAction Id="CancelRequestHandler" BinaryRef="WixSharp_InitRuntime_Action_File" DllEntry="CancelRequestHandler" Return="check" Impersonate="no" Execute="deferred" />
+    <CustomAction Id="WixSharp_Load_Action" BinaryRef="WixSharp_InitRuntime_Action_File" DllEntry="WixSharp_Load_Action" Return="check" Execute="immediate" />
 
-    <Binary Id="WixSharp_EnableUninstallFullUI_Action_File" SourceFile="WixSharp.CA.dll" />
+    <Binary Id="WixSharp_InitRuntime_Action_File" SourceFile="WixSharp.CA.dll" />
     <Binary Id="de_wxl" SourceFile="Resources\Localization\WixUI_de-de.wxl" />
     <Binary Id="en_wxl" SourceFile="Resources\Localization\WixUI_en-us.wxl" />
     <Binary Id="fr_wxl" SourceFile="Resources\Localization\WixUI_fr-fr.wxl" />
@@ -236,10 +207,8 @@
     <Property Id="UAC_WARNING" Value="Please wait for UAC prompt to appear.&#xD;&#xA;&#xD;&#xA;If it appears minimized then activate it from the taskbar." />
     <Property Id="WixSharp_InstallDialogs" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.LanguageSelectionDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.WelcomeDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.LicenceDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.LegacyCheckDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.SetupTypeDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.FeaturesDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.InstallDirDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.ProgressDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.ExitDialog" />
     <Property Id="WixSharp_ModifyDialogs" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.LanguageSelectionDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.MaintenanceTypeDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.FeaturesDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.ProgressDialog&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.ExitDialog" />
-    <Property Id="WixSharp_UIInitialized_Handlers" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.Program+&lt;&gt;c|&lt;InitLocalization&gt;b__1_0" />
-    <Property Id="WixSharp_Load_Handlers" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.Program|Msi_Load&#xD;&#xA;SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.Program|Project_Load" />
-    <Property Id="WixSharp_BeforeInstall_Handlers" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.Program|Msi_BeforeInstall" />
-    <Property Id="WixSharp_AfterInstall_Handlers" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.Program|Msi_AfterInstall" />
+    <Property Id="WixSharp_UIInitialized_Handlers" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.Program+&lt;&gt;c|&lt;InitLocalization&gt;b__2_0" />
+    <Property Id="WixSharp_Load_Handlers" Value="SetupProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|SetupProject.Program|Project_Load" />
     <Property Id="ARPPRODUCTICON" Value="app_icon.ico" />
 
     <Feature Id="_...tallationFeatureProgramFiles5d" Title="[InstallationFeatureProgramFiles]" Level="1" Description="[InstallationFeatureProgramFilesDescription]" Display="expand" AllowAbsent="no">
@@ -274,29 +243,14 @@
         <ComponentRef Id="Component.Media2dExtractor__" />
       </Feature>
 
-      <Feature Id="_...ationFeatureRegisterExplorer5d" Title="[InstallationFeatureRegisterExplorer]" Level="2" Description="[InstallationFeatureRegisterExplorerDescription]" AllowAbsent="yes">
-        <ComponentRef Id="Registry.1" />
-        <ComponentRef Id="Registry.2" />
-      </Feature>
+      <Feature Id="_...ationFeatureRegisterExplorer5d" Title="[InstallationFeatureRegisterExplorer]" Level="2" Description="[InstallationFeatureRegisterExplorerDescription]" AllowAbsent="yes" />
     </Feature>
 
     <InstallExecuteSequence>
-      <Custom Action="Set_WixSharp_EnableUninstallFullUI_Action_Props" Before="InstallFinalize" />
-      <Custom Condition=" (NOT Installed) " Action="WixSharp_EnableUninstallFullUI_Action" After="Set_WixSharp_EnableUninstallFullUI_Action_Props" />
-      <Custom Condition="WIXSHARP_RESILIENT_SOURCE_DIR=&quot;&quot;" Action="WixSharp_SetProperty_WIXSHARP_RESILIENT_SOURCE_DIR" Before="InstallInitialize" />
-      <Custom Condition=" (NOT Installed) " Action="WixSharp_SetProperty_SOURCELIST" Before="PublishProduct" />
-      <Custom Condition=" (REMOVE=&quot;ALL&quot;) " Action="WixSharp_SetPackageName_Action" Before="InstallInitialize" />
-      <Custom Action="Set_WixSharp_RemoveResilientPackage_Action_Props" Before="RemoveFiles" />
-      <Custom Condition=" (REMOVE=&quot;ALL&quot;) " Action="WixSharp_RemoveResilientPackage_Action" After="Set_WixSharp_RemoveResilientPackage_Action_Props" />
-      <Custom Action="Set_WixSharp_CreateResilientPackage_Action_Props" Before="InstallFinalize" />
-      <Custom Condition="( (NOT Installed)  OR REINSTALL&lt;&gt;&quot;&quot;)" Action="WixSharp_CreateResilientPackage_Action" After="Set_WixSharp_CreateResilientPackage_Action_Props" />
       <Custom Condition=" (1) " Action="WixSharp_InitRuntime_Action" Before="AppSearch" />
       <Custom Action="Set_CancelRequestHandler_Props" Before="InstallFinalize" />
       <Custom Condition=" (1) " Action="CancelRequestHandler" After="Set_CancelRequestHandler_Props" />
       <Custom Condition="1" Action="WixSharp_Load_Action" Before="AppSearch" />
-      <Custom Condition="1" Action="WixSharp_BeforeInstall_Action" Before="InstallFiles" />
-      <Custom Action="Set_WixSharp_AfterInstall_Action_Props" After="InstallFiles" />
-      <Custom Condition="1" Action="WixSharp_AfterInstall_Action" After="Set_WixSharp_AfterInstall_Action_Props" />
     </InstallExecuteSequence>
   </Package>
 </Wix>
