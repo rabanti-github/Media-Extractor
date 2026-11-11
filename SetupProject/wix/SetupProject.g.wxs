@@ -6,7 +6,7 @@
     To suppress generation of this file remove `set ide=true` from the PostBuildEvent of the VS project
 </auto-generated>
 -->
-  <Package Compressed="yes" ProductCode="6446f2f5-6f37-4dd0-b0da-6248b5a01edb" Name="Media-Extractor" Language="1033" Version="1.11.0.0" UpgradeCode="6446f2f5-6f37-4dd0-b0da-6248a5f01eda" Manufacturer="rabanti" Scope="perUser" InstallerVersion="200">
+  <Package Compressed="yes" ProductCode="6446f2f5-6f37-4dd0-b0da-6248b5b01edb" Name="Media-Extractor" Language="1033" Version="1.12.0.0" UpgradeCode="6446f2f5-6f37-4dd0-b0da-6248a5f01eda" Manufacturer="rabanti" Scope="perUser" InstallerVersion="200">
     <SummaryInformation Codepage="Windows-1252" />
     <Media Id="1" Cabinet="Media2dExtractor.cab" EmbedCab="yes" />
 
@@ -117,6 +117,14 @@
 
         </Directory>
 
+        <Directory Id="pt2dBR" Name="pt-BR">
+
+          <Component Id="Component.MediaExtractor.resources.dll_2221742068" Guid="6446f2f5-6f37-4dd0-b0da-62488b450a87">
+            <File Id="MediaExtractor.resources.dll_2221742068" Source="..\MediaExtractor\bin\debug\pt-BR\MediaExtractor.resources.dll" />
+          </Component>
+
+        </Directory>
+
         <Directory Id="x64_" Name="x64">
 
           <Component Id="Component._7z.dll_1854388378" Guid="6446f2f5-6f37-4dd0-b0da-6248af426129">
@@ -194,7 +202,7 @@
 
     <UIRef Id="WixUI_ErrorProgressText" />
 
-    <Property Id="PRODUCT_VERSION" Value="1.11.0.0" />
+    <Property Id="PRODUCT_VERSION" Value="1.12.0.0" />
     <Property Id="RESUME_INSTALLATION" Value="PROPERTY_UNDEFINED" Secure="yes" />
     <Property Id="UI_LANGUAGE" Value="PROPERTY_UNDEFINED" Secure="yes" />
     <Property Id="INSTALLATION_TYPE" Value="PROPERTY_UNDEFINED" Secure="yes" />
@@ -232,6 +240,7 @@
       <ComponentRef Id="Component.MediaExtractor.resources.dll_728138086" />
       <ComponentRef Id="Component.MediaExtractor.resources.dll_2895420350" />
       <ComponentRef Id="Component.MediaExtractor.resources.dll_1755373747" />
+      <ComponentRef Id="Component.MediaExtractor.resources.dll_2221742068" />
       <ComponentRef Id="Component._7z.dll_1854388378" />
       <ComponentRef Id="Component._7z.dll_1988493852" />
 

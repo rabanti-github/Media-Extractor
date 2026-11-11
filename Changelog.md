@@ -9,6 +9,8 @@ Release Date: **11.11.2026**
 - Fixed a filename filter issue
 - Project maintenance
 
+---
+
 ## v1.11.0
 
 Release Date: **15.07.2025**
@@ -20,6 +22,7 @@ Release Date: **15.07.2025**
 - Updated internal utilities (Translation Helper, Setup Project)
 - Updated various readme files
 
+---
 
 ## v1.10.0
 
@@ -29,6 +32,8 @@ Release Date: **03.12.2023**
 - Updated installer (uninstall handling)
 - Project maintenance
 - Updated readme
+
+---
 
 ## v1.9.0
 
